@@ -3,7 +3,7 @@
 ### 1. **Task/Issue Reference**
 <!-- Link to the current task or issue being addressed -->
 
-**Task:** [RSS-ECOMM-1_01](https://github.com/rolling-scopes-school/tasks/blob/master/tasks/eCommerce-Application/Sprints/Sprint1/RSS-ECOMM-1_01.md)
+**Task:** [Add Pull Request template](https://github.com/petruse4ka/RSS-REACT2025/issues/10)
 
 ### 2. **Changes Made**
 <!-- List the key changes and modifications -->
