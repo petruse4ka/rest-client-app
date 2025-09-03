@@ -7,9 +7,14 @@ import { ThemeContext } from '@/context/theme-context';
 import { useState, useEffect } from 'react';
 import getDefaultTheme from '@/shared/utils/get-default-theme';
 import { MoonOutlined, SunOutlined } from '@ant-design/icons';
+import { Theme } from '@/types/types';
 
 export default function Home() {
-  const [theme, setTheme] = useState(getDefaultTheme());
+  const [theme, setTheme] = useState<Theme>('light');
+
+  useEffect(() => {
+    setTheme(getDefaultTheme());
+  }, []);
 
   useEffect(() => {
     if (theme === 'dark') {
