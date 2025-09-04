@@ -295,6 +295,53 @@ Ensure all commit messages follow this format to maintain consistency throughout
 
 ---
 
+## 🏗️ Project Structure
+
+This project follows the **Feature-Sliced Design (FSD)** methodology combined with **Next.js** App Router structure.
+
+### FSD + Next.js Structure
+
+```
+src/
+├── app/                    # Next.js App Router
+│   ├── [locale]/          # Internationalization routes
+│   │   ├── auth/          # Authentication pages
+│   │   ├── rest-client/   # REST client page
+│   │   ├── history/       # Request history page
+│   │   ├── variables/     # Variables page
+│   │   ├── layout.tsx     # Locale layout
+│   │   └── page.tsx       # Home page
+│   ├── globals.css        # Global styles
+│   └── layout.tsx         # Root layout
+├── shared/                # Reusable functionality
+│   ├── ui/               # UI components
+│   ├── lib/              # Libraries and utilities
+│   └── utils/            # Utility functions
+├── entities/              # Business entities
+│   ├── user/             # User entity
+│   └── request/          # Request entity
+├── features/              # User interactions
+│   ├── auth/             # Authentication feature
+│   ├── api-client/       # API client feature
+│   ├── theme-toggle/     # Theme switching feature
+│   └── language-switch/  # Language switching feature
+└── widgets/               # Composite UI blocks
+    ├── header/           # Header widget
+    └── footer/           # Footer widget
+```
+
+### FSD Layers
+
+- **`app/`** - Next.js App Router with internationalization routes (`[locale]`)
+- **`shared/`** - Reusable code used across the application
+- **`entities/`** - Business entities (User, Request, etc.)
+- **`features/`** - User interactions and business logic
+- **`widgets/`** - Composite UI blocks combining features and entities
+
+For more information about Feature-Sliced Design, visit: [Feature-Sliced Design Documentation](https://feature-sliced.design/ru/docs/get-started/overview)
+
+---
+
 ## 📁 File Naming Rules
 
 ### General Guidelines
