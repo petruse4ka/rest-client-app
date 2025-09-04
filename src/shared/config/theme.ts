@@ -3,6 +3,7 @@ export const lightTheme = {
     colorPrimary: 'rgba(226, 186, 98, 1)',
     colorBgBase: '#979797ff',
     fontSize: 16,
+    colorIcons: '#f59e0b',
   },
   components: {
     Layout: {
@@ -35,6 +36,11 @@ export const darkTheme = {
       optionSelectedBg: '#18181b',
       colorBorder: '#f59e0b',
       colorBgElevated: '#979797ff',
+    },
+    Dropdown: {
+      colorBgElevated: '#979797ff',
+      colorText: '#f59e0b',
+      controlItemBgHover: 'rgba(99, 99, 99, 1)',
     },
   },
 };
