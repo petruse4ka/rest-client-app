@@ -10,6 +10,7 @@ export const lightTheme = {
       footerBg: '#4f4f52ff',
       bodyBg: '#979797ff',
     },
+    Select: {},
   },
 };
 
@@ -24,6 +25,16 @@ export const darkTheme = {
       headerBg: '#18181b',
       footerBg: '#18181b',
       bodyBg: '#27272a',
+    },
+    Select: {
+      activeOutlineColor: 'none',
+      colorText: '#f59e0b',
+      colorTextQuaternary: '#f59e0b',
+      optionActiveBg: 'rgba(99, 99, 99, 1)',
+      optionSelectedColor: '#f59e0b',
+      optionSelectedBg: '#18181b',
+      colorBorder: '#f59e0b',
+      colorBgElevated: '#979797ff',
     },
   },
 };
