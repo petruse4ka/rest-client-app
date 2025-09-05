@@ -1,20 +1,26 @@
-import { Flex } from 'antd';
+import { Col, Flex, Row } from 'antd';
 import InterfaceSettings from './InterfaceSettings';
 import Link from 'next/link';
 import Navigation from './Navigation';
 import AuthControls from './AuthControls';
+import Logo from './Logo';
 
 export default function DesctopHeader({ isLogin }: { isLogin: boolean }) {
   return (
-    <>
-      <InterfaceSettings />
-      <Flex gap="middle" align="center">
-        <Link href="/">
-          <img src="./logo.png" alt="Logo company" className="w-10" />
-        </Link>
-        {isLogin && <Navigation />}
-      </Flex>
-      <AuthControls isLogin={isLogin} />
-    </>
+    <Row align="middle" justify="space-between" style={{ height: '100%' }}>
+      <Col>
+        <InterfaceSettings />
+      </Col>
+      <Col flex="auto" style={{ textAlign: 'center' }}>
+        <Flex gap="middle" align="center" justify="center">
+          <Logo />
+          {isLogin && <Navigation />}
+        </Flex>
+      </Col>
+
+      <Col>
+        <AuthControls isLogin={isLogin} />
+      </Col>
+    </Row>
   );
 }

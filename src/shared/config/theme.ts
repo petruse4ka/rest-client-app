@@ -1,51 +1,85 @@
-import { orangeColors } from '../style';
+import { orangeColors, zincColors } from '../style';
 
 export const lightTheme = {
   token: {
-    colorPrimary: 'rgba(226, 186, 98, 1)',
-    colorBgBase: '#979797ff',
+    colorPrimary: orangeColors[700],
+    colorBgBase: zincColors[100],
     fontSize: 16,
-    colorIcons: '#f59e0b',
   },
   components: {
     Layout: {
-      headerBg: '#4f4f52ff',
-      footerBg: '#4f4f52ff',
-      bodyBg: '#979797ff',
+      headerBg: zincColors[200],
+      footerBg: zincColors[200],
+      bodyBg: zincColors[100],
     },
-    Select: {},
+    Select: {
+      activeOutlineColor: 'none',
+      colorText: orangeColors[700],
+      colorTextQuaternary: orangeColors[700],
+      optionActiveBg: zincColors[300],
+      optionSelectedColor: orangeColors[700],
+      optionSelectedBg: zincColors[300],
+      colorBorder: orangeColors[700],
+      colorBgElevated: zincColors[200],
+    },
+    Dropdown: {
+      colorBgElevated: zincColors[100],
+      colorText: orangeColors[700],
+      controlItemBgHover: zincColors[300],
+    },
+    Button: {
+      colorText: orangeColors[700],
+      primaryShadow: '0',
+      primaryColor: zincColors[50],
+    },
+    Link: {
+      colorText: orangeColors[700],
+    },
+    Drawer: {
+      colorIcon: orangeColors[700],
+      colorIconHover: orangeColors[400],
+    },
   },
 };
 
 export const darkTheme = {
   token: {
-    colorPrimary: '#f59e0b',
-    colorBgBase: '#27272a',
+    colorPrimary: orangeColors[500],
+    colorBgBase: zincColors[800],
     fontSize: 16,
   },
   components: {
     Layout: {
-      headerBg: '#18181b',
-      footerBg: '#18181b',
-      bodyBg: '#27272a',
+      headerBg: zincColors[950],
+      footerBg: zincColors[900],
+      bodyBg: zincColors[800],
     },
     Select: {
       activeOutlineColor: 'none',
-      colorText: '#f59e0b',
-      colorTextQuaternary: '#f59e0b',
-      optionActiveBg: 'rgba(99, 99, 99, 1)',
-      optionSelectedColor: '#f59e0b',
-      optionSelectedBg: '#18181b',
-      colorBorder: '#f59e0b',
-      colorBgElevated: '#979797ff',
+      colorText: orangeColors[500],
+      colorTextQuaternary: orangeColors[500],
+      optionActiveBg: zincColors[500],
+      optionSelectedColor: orangeColors[500],
+      optionSelectedBg: zincColors[700],
+      colorBorder: orangeColors[500],
+      colorBgElevated: zincColors[600],
     },
     Dropdown: {
-      colorBgElevated: '#979797ff',
-      colorText: orangeColors[100],
-      controlItemBgHover: 'rgba(99, 99, 99, 1)',
+      colorBgElevated: zincColors[600],
+      colorText: orangeColors[500],
+      controlItemBgHover: zincColors[500],
     },
     Button: {
-      colorText: '#f59e0b',
+      colorText: orangeColors[500],
+      primaryShadow: '0',
+      primaryColor: zincColors[50],
+    },
+    Link: {
+      colorText: orangeColors[500],
+    },
+    Drawer: {
+      colorIcon: orangeColors[500],
+      colorIconHover: orangeColors[400],
     },
   },
 };

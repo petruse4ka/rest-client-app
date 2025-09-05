@@ -1,9 +1,10 @@
 import { MenuOutlined } from '@ant-design/icons';
-import { Button, Drawer } from 'antd';
+import { Button, Drawer, Flex, Space } from 'antd';
 import InterfaceSettings from './InterfaceSettings';
 import Navigation from './Navigation';
 import AuthControls from './AuthControls';
 import { useState } from 'react';
+import Logo from './Logo';
 
 export default function MobileHeader({ isLogin }: { isLogin: boolean }) {
   const [drawer, setDrawer] = useState(false);
@@ -18,16 +19,24 @@ export default function MobileHeader({ isLogin }: { isLogin: boolean }) {
 
   return (
     <>
-      <Button icon={<MenuOutlined />} onClick={showDrawer} aria-label="Open menu" />
+      <Flex justify="space-between" align="center" style={{ height: '100%' }}>
+        <Logo />
+        <Button size="large" icon={<MenuOutlined />} onClick={showDrawer} aria-label="Open menu" />
+      </Flex>
       <Drawer
-        title="Basic Drawer"
         closable={{ 'aria-label': 'Close Button' }}
         onClose={hiddenDrawer}
         open={drawer}
+        extra={
+          <Space>
+            <InterfaceSettings />
+          </Space>
+        }
       >
-        <InterfaceSettings />
-        {isLogin && <Navigation />}
-        <AuthControls isLogin={isLogin} />
+        <Space direction="vertical" size="large">
+          {isLogin && <Navigation />}
+          <AuthControls isLogin={isLogin} />
+        </Space>
       </Drawer>
     </>
   );
