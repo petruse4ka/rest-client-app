@@ -1,5 +1,6 @@
 'use client';
 
+import '@ant-design/v5-patch-for-react-19';
 import { Button, Typography, Space, Layout, Flex } from 'antd';
 import { HomeOutlined, ReloadOutlined } from '@ant-design/icons';
 import Link from 'next/link';
@@ -39,6 +40,7 @@ export default function NotFound() {
 
   return (
     <Layout
+      data-testid="not-found-layout"
       style={{
         minHeight: '100vh',
         background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -48,6 +50,7 @@ export default function NotFound() {
     >
       <Content>
         <Flex
+          data-testid="not-found-content"
           vertical
           align="center"
           justify="center"
@@ -59,6 +62,7 @@ export default function NotFound() {
         >
           <Space direction="vertical" size="large" align="center">
             <Title
+              data-testid="not-found-title"
               level={1}
               style={{
                 fontSize: '4rem',
@@ -73,6 +77,7 @@ export default function NotFound() {
             </Title>
             <Space direction="vertical" size="large" align="center">
               <Image
+                data-testid="not-found-logo"
                 src="/logo.png"
                 alt="REST Client App Logo"
                 width={200}
@@ -86,6 +91,7 @@ export default function NotFound() {
 
             <Space direction="vertical" size="middle" align="center">
               <Text
+                data-testid="not-found-message"
                 style={{
                   fontSize: '1.5rem',
                   color: 'white',
@@ -99,6 +105,7 @@ export default function NotFound() {
 
             <Space direction="vertical" size="large" align="center">
               <Button
+                data-testid="random-message-button"
                 type="text"
                 icon={<ReloadOutlined />}
                 onClick={() => getRandomMessage(notFoundMessages)}
@@ -113,8 +120,9 @@ export default function NotFound() {
                 Try Another Message
               </Button>
 
-              <Link href="/">
+              <Link href="/" data-testid="homepage-link">
                 <Button
+                  data-testid="homepage-button"
                   type="primary"
                   size="large"
                   icon={<HomeOutlined />}
