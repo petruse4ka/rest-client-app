@@ -8,8 +8,7 @@ import { ThemeValue } from '@/types/types';
 import getDefaultTheme from '@/shared/utils/get-default-theme';
 import { darkTheme, lightTheme } from '@/shared/config/theme';
 import { ThemeContext } from '@/context/theme-context';
-import { HeaderApp } from '@/widgets';
-import { Footer } from 'antd/es/layout/layout';
+import { FooterApp, HeaderApp } from '@/widgets';
 
 // export const metadata: Metadata = {
 //   title: 'REST Client App - Professional API Testing Tool',
@@ -66,7 +65,7 @@ export default function RootLayout({
             <Layout>
               <HeaderApp />
               {children}
-              <Footer>Footer</Footer>
+              <FooterApp />
             </Layout>
           </ConfigProvider>
         </ThemeContext>

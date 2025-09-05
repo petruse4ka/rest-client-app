@@ -4,9 +4,16 @@ export const lightTheme = {
   token: {
     colorPrimary: orangeColors[700],
     colorBgBase: zincColors[100],
+    colorTextBase: zincColors[800],
     fontSize: 16,
   },
   components: {
+    Typography: {
+      colorTextHeading: zincColors[900],
+      colorTextDescription: orangeColors[300],
+      colorLink: orangeColors[700],
+      colorLinkHover: orangeColors[800],
+    },
     Layout: {
       headerBg: zincColors[200],
       footerBg: zincColors[200],
@@ -32,12 +39,12 @@ export const lightTheme = {
       primaryShadow: '0',
       primaryColor: zincColors[50],
     },
-    Link: {
-      colorText: orangeColors[700],
-    },
     Drawer: {
       colorIcon: orangeColors[700],
       colorIconHover: orangeColors[400],
+    },
+    Divider: {
+      colorSplit: orangeColors[700],
     },
   },
 };
@@ -46,10 +53,16 @@ export const darkTheme = {
   token: {
     colorPrimary: orangeColors[500],
     colorBgBase: zincColors[800],
+    colorTextBase: orangeColors[100],
     fontSize: 16,
-    headerScroll: zincColors[700],
   },
   components: {
+    Typography: {
+      colorTextHeading: zincColors[900],
+      colorTextDescription: orangeColors[300],
+      colorLink: orangeColors[100],
+      colorLinkHover: orangeColors[200],
+    },
     Layout: {
       headerBg: zincColors[950],
       footerBg: zincColors[900],
@@ -75,12 +88,12 @@ export const darkTheme = {
       primaryShadow: '0',
       primaryColor: zincColors[50],
     },
-    Link: {
-      colorText: orangeColors[500],
-    },
     Drawer: {
       colorIcon: orangeColors[500],
       colorIconHover: orangeColors[400],
+    },
+    Divider: {
+      colorSplit: orangeColors[100],
     },
   },
 };
