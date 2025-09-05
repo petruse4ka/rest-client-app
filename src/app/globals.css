@@ -49,3 +49,9 @@
   font-weight: 400;
   box-sizing: border-box;
 }
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
