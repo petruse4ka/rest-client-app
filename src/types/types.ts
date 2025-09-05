@@ -1,6 +1,6 @@
-export type Theme = 'light' | 'dark';
+export type ThemeValue = 'light' | 'dark';
 
 export type ThemeContextType = {
-  theme: Theme;
-  setTheme: (theme: Theme) => void;
+  themeValue: ThemeValue;
+  setThemeValue: (theme: ThemeValue) => void;
 };
