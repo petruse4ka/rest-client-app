@@ -8,9 +8,11 @@ import { useState, useEffect } from 'react';
 import getDefaultTheme from '@/shared/utils/get-default-theme';
 import { MoonOutlined, SunOutlined } from '@ant-design/icons';
 import { Theme } from '@/types/types';
+import { useTranslations } from 'next-intl';
 
 export default function Home() {
   const [theme, setTheme] = useState<Theme>('light');
+  const t = useTranslations('Main');
 
   useEffect(() => {
     setTheme(getDefaultTheme());
@@ -36,12 +38,9 @@ export default function Home() {
             <RocketOutlined style={{ fontSize: '4rem', color: '#d97706' }} className="mb-4" />
           </div>
           <h1 className="mb-6 text-4xl leading-relaxed font-bold text-zinc-800 md:text-6xl dark:text-zinc-100">
-            Something Great is Coming
+            {t('title')}
           </h1>
-          <p className="mb-8 text-xl text-zinc-600 dark:text-zinc-300">
-            We are building an amazing REST client application that will revolutionize how you test
-            and interact with APIs.
-          </p>
+          <p className="mb-8 text-xl text-zinc-600 dark:text-zinc-300">{t('subtitle')}</p>
           <Switch
             checked={theme === 'dark'}
             onChange={handleThemeChange}
