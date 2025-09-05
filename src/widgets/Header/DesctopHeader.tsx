@@ -1,6 +1,5 @@
 import { Col, Flex, Row } from 'antd';
 import InterfaceSettings from './InterfaceSettings';
-import Link from 'next/link';
 import Navigation from './Navigation';
 import AuthControls from './AuthControls';
 import Logo from './Logo';

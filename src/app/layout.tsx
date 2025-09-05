@@ -1,6 +1,6 @@
 'use client';
 
-import type { Metadata } from 'next';
+// import type { Metadata } from 'next';
 import { useEffect, useState, type ReactNode } from 'react';
 import { Inter } from 'next/font/google';
 import './globals.css';

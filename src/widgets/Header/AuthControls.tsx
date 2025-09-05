@@ -4,7 +4,7 @@ export default function AuthControls({ isLogin }: { isLogin: boolean }) {
   return (
     <>
       {isLogin ? (
-        <Button type="primary">Logout</Button>
+        <Button type="primary">Sign Out</Button>
       ) : (
         <Flex gap="middle">
           <Button type="primary">Sign In</Button>
