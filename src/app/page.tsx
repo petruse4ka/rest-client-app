@@ -3,7 +3,6 @@
 import '@ant-design/v5-patch-for-react-19';
 import { Select, theme } from 'antd';
 import { Content } from 'antd/es/layout/layout';
-import useToken from 'antd/es/theme/useToken';
 
 export default function Home() {
   const { token } = theme.useToken();

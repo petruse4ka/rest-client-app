@@ -1,11 +1,4 @@
-import { Button } from 'antd';
-
-const orange = {
-  100: '#f59e0b',
-  200: '#f1cb88ff',
-};
-
-// цвета храним так оранж и gray - уносим shared/style ?
+import { orangeColors } from '../style';
 
 export const lightTheme = {
   token: {
@@ -48,7 +41,7 @@ export const darkTheme = {
     },
     Dropdown: {
       colorBgElevated: '#979797ff',
-      colorText: orange[100],
+      colorText: orangeColors[100],
       controlItemBgHover: 'rgba(99, 99, 99, 1)',
     },
     Button: {
