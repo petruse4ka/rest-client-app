@@ -2,7 +2,6 @@
 
 // import type { Metadata } from 'next';
 import { useEffect, useState, type ReactNode } from 'react';
-import { Inter } from 'next/font/google';
 import './globals.css';
 import { ConfigProvider, Layout } from 'antd';
 import { ThemeValue } from '@/types/types';
@@ -10,12 +9,6 @@ import getDefaultTheme from '@/shared/utils/get-default-theme';
 import { darkTheme, lightTheme } from '@/shared/config/theme';
 import { ThemeContext } from '@/context/theme-context';
 import { FooterApp, HeaderApp } from '@/widgets';
-
-const inter = Inter({
-  subsets: ['latin', 'cyrillic'],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-inter',
-});
 
 // export const metadata: Metadata = {
 //   title: 'REST Client App - Professional API Testing Tool',
@@ -66,7 +59,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${inter.variable} antialiased`}>
+      <body>
         <ThemeContext value={{ themeValue, setThemeValue }}>
           <ConfigProvider theme={themeValue === 'dark' ? darkTheme : lightTheme}>
             <Layout>

@@ -3,7 +3,7 @@
 import { Grid, theme } from 'antd';
 import { Header } from 'antd/es/layout/layout';
 import { CSSProperties, useEffect, useState } from 'react';
-import DesctopHeader from './DesctopHeader';
+import DesktopHeader from './DesktopHeader';
 import MobileHeader from './MobileHeader';
 const { useBreakpoint } = Grid;
 
@@ -37,7 +37,7 @@ export function HeaderApp() {
         ...(scrolled && { borderBottom: `1px solid ${token.colorPrimary}` }),
       }}
     >
-      {screens.md ? <DesctopHeader isLogin={isLogin} /> : <MobileHeader isLogin={isLogin} />}
+      {screens.md ? <DesktopHeader isLogin={isLogin} /> : <MobileHeader isLogin={isLogin} />}
     </Header>
   );
 }
