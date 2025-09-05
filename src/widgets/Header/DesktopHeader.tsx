@@ -4,7 +4,7 @@ import Navigation from './Navigation';
 import AuthControls from './AuthControls';
 import Logo from './Logo';
 
-export default function DesctopHeader({ isLogin }: { isLogin: boolean }) {
+export default function DesktopHeader({ isLogin }: { isLogin: boolean }) {
   return (
     <Row align="middle" justify="space-between" style={{ height: '100%' }}>
       <Col>
