@@ -33,6 +33,10 @@ export default function NotFound() {
     setCurrentMessage(messages[randomIndex]);
   };
 
+  useEffect(() => {
+    getRandomMessage(notFoundMessages);
+  }, []);
+
   return (
     <Layout
       style={{
