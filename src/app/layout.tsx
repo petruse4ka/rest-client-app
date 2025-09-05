@@ -9,8 +9,7 @@ import { ThemeValue } from '@/types/types';
 import getDefaultTheme from '@/shared/utils/get-default-theme';
 import { darkTheme, lightTheme } from '@/shared/config/theme';
 import { ThemeContext } from '@/context/theme-context';
-import { HeaderApp } from '@/widgets';
-import { Footer } from 'antd/es/layout/layout';
+import { FooterApp, HeaderApp } from '@/widgets';
 
 const inter = Inter({
   subsets: ['latin', 'cyrillic'],
@@ -73,7 +72,7 @@ export default function RootLayout({
             <Layout>
               <HeaderApp />
               {children}
-              <Footer>Footer</Footer>
+              <FooterApp />
             </Layout>
           </ConfigProvider>
         </ThemeContext>
