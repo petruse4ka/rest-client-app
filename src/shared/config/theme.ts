@@ -47,6 +47,7 @@ export const darkTheme = {
     colorPrimary: orangeColors[500],
     colorBgBase: zincColors[800],
     fontSize: 16,
+    headerScroll: zincColors[700],
   },
   components: {
     Layout: {
