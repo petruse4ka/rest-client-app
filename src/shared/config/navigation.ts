@@ -1,10 +1,9 @@
 export const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/rest-client', label: 'REST Client' },
-  { href: '/history', label: 'History' },
-  { href: '/variables', label: 'Variables' },
+  { href: '/', label: 'home' },
+  { href: '/rest-client', label: 'restClient' },
+  { href: '/history', label: 'history' },
+  { href: '/variables', label: 'variables' },
 ];
-
 export const authorLinks = [
   { href: 'https://github.com/petruse4ka', label: 'Konstantin Petrov' },
   { href: 'https://github.com/NatashaSolntseva', label: 'Nataliia Shmatenko' },

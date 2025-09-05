@@ -1,0 +1,11 @@
+{
+  "Header": {
+    "home": "Home",
+    "restClient": "REST Client",
+    "history": "History",
+    "variables": "Variables",
+    "signOut": "Sign Out",
+    "signIn": "Sign In",
+    "signUp": "Sign Up"
+  }
+}

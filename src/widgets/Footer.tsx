@@ -1,3 +1,5 @@
+'use client';
+
 import { authorLinks } from '@/shared/config';
 import { GithubOutlined } from '@ant-design/icons';
 import { Divider, Flex, Grid, Space, Typography } from 'antd';

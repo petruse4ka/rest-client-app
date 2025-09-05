@@ -7,8 +7,4 @@ export const languages = [
     key: 'en',
     label: 'English',
   },
-  {
-    key: 'be',
-    label: 'Belarusian',
-  },
 ];

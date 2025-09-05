@@ -1,0 +1,11 @@
+{
+  "Header": {
+    "home": "Главная",
+    "restClient": "REST клиент",
+    "history": "История",
+    "variables": "Переменные",
+    "signOut": "Выйти",
+    "signIn": "Войти",
+    "signUp": "Регистрация"
+  }
+}
