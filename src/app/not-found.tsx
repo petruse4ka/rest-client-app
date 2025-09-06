@@ -29,7 +29,7 @@ const titleStyles: CSSProperties = {
 const logoStyles: CSSProperties = {
   animation: 'pulse 2s ease-in-out infinite',
   transition: 'transform 0.3s ease',
-  marginBottom: '40px',
+  marginBottom: '30px',
 };
 
 const messageStyles: CSSProperties = {
@@ -60,8 +60,8 @@ export default function NotFound() {
   const { themeValue } = useContext(ThemeContext);
 
   useEffect(() => {
-    setCurrentMessage(getRandomMessage(currentMessage, notFoundMessages));
-  }, []);
+    setCurrentMessage((prevMessage) => getRandomMessage(prevMessage, notFoundMessages));
+  }, [notFoundMessages]);
 
   return (
     <Layout
