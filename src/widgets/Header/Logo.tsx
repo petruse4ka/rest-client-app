@@ -1,9 +1,10 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Logo() {
   return (
     <Link href="/">
-      <img src="./logo.png" alt="Logo company" className="w-10" />
+      <Image src="/logo.png" alt="Logo company" width={40} height={40} />
     </Link>
   );
 }

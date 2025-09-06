@@ -1,16 +1,12 @@
 import type { Metadata } from 'next';
-import type { ReactNode } from 'react';
-import { Inter } from 'next/font/google';
+import { type ReactNode } from 'react';
 import './globals.css';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { routing } from '@/shared/i18n/routing';
-
-const inter = Inter({
-  subsets: ['latin', 'cyrillic'],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-inter',
-});
+import { FooterApp, HeaderApp } from '@/widgets';
+import { Layout } from 'antd';
+import { ThemeProvider } from '@/shared/provider';
 
 export const metadata: Metadata = {
   title: 'REST Client App - Professional API Testing Tool',
@@ -51,10 +47,10 @@ export const metadata: Metadata = {
 export default async function RootLayout({
   children,
   params,
-}: {
-  children: React.ReactNode;
+}: Readonly<{
+  children: ReactNode;
   params: Promise<{ locale: string }>;
-}) {
+}>) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) {
     notFound();
@@ -62,8 +58,16 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
-      <body className={`${inter.variable} antialiased`}>
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+      <body>
+        <NextIntlClientProvider>
+          <ThemeProvider>
+            <Layout>
+              <HeaderApp />
+              {children}
+              <FooterApp />
+            </Layout>
+          </ThemeProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );
