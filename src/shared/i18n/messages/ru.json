@@ -2,5 +2,18 @@
   "Main": {
     "title": "Скоро будет нечто великое",
     "subtitle": "Мы создаем потрясающий REST-клиент, который революционизирует процесс тестирования и взаимодействия с API."
+  },
+  "SignUpForm": {
+    "title": "Регистрация",
+    "tabs": { "login": "Вход", "signup": "Регистрация" },
+    "name": { "label": "Имя", "placeholder": "Ваше имя" },
+    "email": { "label": "Email", "placeholder": "Email" },
+    "password": { "label": "Пароль", "placeholder": "Пароль" },
+    "confirm": { "label": "Подтвердите пароль", "placeholder": "Подтвердите пароль" },
+    "submit": "Зарегистрироваться",
+    "haveAccount": "Уже есть аккаунт?",
+    "loginLink": "Нажмите здесь, чтобы войти",
+    "or": "или",
+    "continueWithGoogle": "Продолжить через Google"
   }
 }

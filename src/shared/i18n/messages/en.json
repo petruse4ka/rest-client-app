@@ -2,5 +2,18 @@
   "Main": {
     "title": "Something Great is Coming",
     "subtitle": "We are building an amazing REST client application that will revolutionize how you test and interact with APIs."
+  },
+  "SignUpForm": {
+    "title": "Registration",
+    "tabs": { "login": "Login", "signup": "Sign Up" },
+    "name": { "label": "Name", "placeholder": "Your name" },
+    "email": { "label": "Email address", "placeholder": "Email address" },
+    "password": { "label": "Password", "placeholder": "Password" },
+    "confirm": { "label": "Confirm password", "placeholder": "Confirm password" },
+    "submit": "Sign up",
+    "haveAccount": "Already have an account?",
+    "loginLink": "Click here to login",
+    "or": "or",
+    "continueWithGoogle": "Continue with Google"
   }
 }
