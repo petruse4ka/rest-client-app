@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import { type ReactNode } from 'react';
 import './globals.css';
-import { hasLocale, NextIntlClientProvider } from 'next-intl';
-import { notFound } from 'next/navigation';
-import { routing } from '@/shared/i18n/routing';
+import { NextIntlClientProvider } from 'next-intl';
+import { setRequestLocale } from 'next-intl/server';
+import { getMessages } from 'next-intl/server';
 import { FooterApp, HeaderApp } from '@/widgets';
 import { Layout } from 'antd';
 import { ThemeProvider } from '@/shared/provider';
@@ -44,22 +44,23 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({
+export default async function LocaleLayout({
   children,
   params,
-}: Readonly<{
+}: {
   children: ReactNode;
   params: Promise<{ locale: string }>;
-}>) {
+}) {
   const { locale } = await params;
-  if (!hasLocale(routing.locales, locale)) {
-    notFound();
-  }
+
+  setRequestLocale(locale);
+
+  const messages = await getMessages();
 
   return (
     <html lang={locale}>
       <body>
-        <NextIntlClientProvider>
+        <NextIntlClientProvider messages={messages}>
           <ThemeProvider>
             <Layout>
               <HeaderApp />

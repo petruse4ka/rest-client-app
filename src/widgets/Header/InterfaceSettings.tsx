@@ -1,6 +1,7 @@
 import { ThemeContext } from '@/context/theme-context';
 import { languages } from '@/shared/config';
 import { usePathname, useRouter } from '@/shared/i18n/navigation';
+import { useLocale } from 'next-intl';
 import { GlobalOutlined, MoonOutlined, SunOutlined } from '@ant-design/icons';
 import { Button, Dropdown, Flex, MenuProps, Switch } from 'antd';
 import { useContext } from 'react';
@@ -9,14 +10,21 @@ export default function InterfaceSettings() {
   const { themeValue, setThemeValue } = useContext(ThemeContext);
   const router = useRouter();
   const pathname = usePathname();
+  const locale = useLocale();
 
   const handleThemeChange = (checked: boolean) => {
     setThemeValue(checked ? 'dark' : 'light');
   };
 
+  const switchLocale = (newLocale: string) => {
+    if (newLocale !== locale) {
+      router.replace(pathname, { locale: newLocale });
+      router.refresh();
+    }
+  };
+
   const handleMenuClick: MenuProps['onClick'] = (e) => {
-    console.log('click', e.key);
-    router.push(pathname, { locale: e.key });
+    switchLocale(e.key);
   };
 
   return (
