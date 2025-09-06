@@ -38,7 +38,7 @@ export const lightTheme = {
       controlItemBgHover: zincColors[300],
     },
     Button: {
-      colorText: orangeColors[700],
+      colorText: orangeColors[400],
       primaryShadow: '0',
       primaryColor: zincColors[50],
     },
@@ -54,7 +54,7 @@ export const lightTheme = {
 
 export const darkTheme = {
   token: {
-    colorPrimary: orangeColors[500],
+    colorPrimary: orangeColors[400],
     colorBgBase: zincColors[800],
     colorTextBase: orangeColors[100],
     fontSize: 16,
@@ -90,7 +90,7 @@ export const darkTheme = {
       controlItemBgHover: zincColors[500],
     },
     Button: {
-      colorText: orangeColors[500],
+      colorText: orangeColors[400],
       primaryShadow: '0',
       primaryColor: zincColors[50],
     },
