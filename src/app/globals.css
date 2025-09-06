@@ -69,7 +69,7 @@
 }
 
 .link--dark {
-  color: #fc9129;
+  color: #fec073;
 }
 
 .link--light {
@@ -77,11 +77,45 @@
 }
 
 .link:hover {
-  color: #fec073;
+  color: #eb620b;
 }
 
 .link--active {
   font-weight: bold;
+}
+
+.btn-gradient {
+  background: linear-gradient(45deg, #fec073, #fc9129);
+  border: none;
+  color: white;
+  font-weight: 600;
+  border-radius: 25px;
+}
+
+.btn-gradient:hover {
+  background: linear-gradient(45deg, #fec073, #eb620b) !important;
+}
+
+.btn-secondary {
+  background: transparent;
+  font-weight: 500;
+  border-radius: 25px;
+}
+
+.btn-secondary--dark {
+  border: 1px solid #fec073;
+  color: #fec073;
+}
+
+.btn-secondary--light {
+  border: 1px solid #fc9129;
+  color: #fc9129;
+}
+
+.btn-secondary:hover {
+  background: transparent !important;
+  color: #eb620b !important;
+  border: 1px solid #eb620b !important;
 }
 
 @media (max-width: 768px) {

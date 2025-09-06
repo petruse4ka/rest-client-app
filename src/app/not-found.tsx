@@ -5,9 +5,10 @@ import { Button, Typography, Space, Layout, Flex, theme } from 'antd';
 import { HomeOutlined, ReloadOutlined } from '@ant-design/icons';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useEffect, CSSProperties } from 'react';
+import { useState, useEffect, CSSProperties, useContext } from 'react';
 import { useTranslations } from 'next-intl';
 import getRandomMessage from '@/shared/utils/get-random-message';
+import { ThemeContext } from '@/context/theme-context';
 
 const { Title, Text } = Typography;
 const { Content } = Layout;
@@ -54,6 +55,7 @@ export default function NotFound() {
   const [currentMessage, setCurrentMessage] = useState(notFoundMessages[0]);
   const { token } = theme.useToken();
   const customToken = token as unknown as Record<string, string | number>;
+  const { themeValue } = useContext(ThemeContext);
 
   useEffect(() => {
     setCurrentMessage(getRandomMessage(currentMessage, notFoundMessages));
@@ -99,11 +101,12 @@ export default function NotFound() {
             <Space direction="vertical" size="large" align="center">
               <Button
                 data-testid="random-message-button"
-                type="primary"
+                type="default"
                 icon={<ReloadOutlined />}
                 onClick={() =>
                   setCurrentMessage(getRandomMessage(currentMessage, notFoundMessages))
                 }
+                className={`btn-secondary ${themeValue === 'dark' ? 'btn-secondary--dark' : 'btn-secondary--light'}`}
                 style={randomButtonStyles}
               >
                 {t('tryAnotherMessage')}
@@ -115,6 +118,7 @@ export default function NotFound() {
                   type="primary"
                   size="large"
                   icon={<HomeOutlined />}
+                  className={`btn-gradient`}
                   style={homeButtonStyles}
                 >
                   {t('returnToHomepage')}
