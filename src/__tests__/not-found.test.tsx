@@ -1,5 +1,7 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
+import { render } from './test-utils/test-utils';
 import NotFound from '@/app/not-found';
+import enMessages from '@/shared/i18n/messages/en.json';
 
 describe('NotFound Page', () => {
   test('renders all components with test IDs', () => {
@@ -26,5 +28,22 @@ describe('NotFound Page', () => {
 
     expect(() => fireEvent.click(randomButton)).not.toThrow();
     expect(() => fireEvent.click(homepageButton)).not.toThrow();
+  });
+
+  test('displays translated content', () => {
+    render(<NotFound />);
+
+    expect(screen.getByText(enMessages.NotFound.title)).toBeInTheDocument();
+    expect(screen.getByText(enMessages.NotFound.tryAnotherMessage)).toBeInTheDocument();
+    expect(screen.getByText(enMessages.NotFound.returnToHomepage)).toBeInTheDocument();
+  });
+
+  test('displays one of the random messages', () => {
+    render(<NotFound />);
+
+    const messageElement = screen.getByTestId('not-found-message');
+    const messageText = messageElement.textContent;
+
+    expect(enMessages.NotFound.messages).toContain(messageText);
   });
 });
