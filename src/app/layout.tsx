@@ -62,7 +62,7 @@ export default async function LocaleLayout({
       <body>
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider>
-            <Layout>
+            <Layout style={{ minHeight: '100vh' }}>
               <HeaderApp />
               {children}
               <FooterApp />

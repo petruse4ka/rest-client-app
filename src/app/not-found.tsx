@@ -6,49 +6,43 @@ import { HomeOutlined, ReloadOutlined } from '@ant-design/icons';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
+import getRandomMessage from '@/shared/utils/get-random-message';
 
 const { Title, Text } = Typography;
 const { Content } = Layout;
 
-const notFoundMessages = [
-  'Oops! This page went on vacation 🏖️',
-  "404: The page you're looking for is in another castle 🏰",
-  'This page is playing hide and seek... and winning! 🫥',
-  'Error 404: Page not found (but we found this cool message instead!) 🎉',
-  "Houston, we have a problem... this page doesn't exist! 🚀",
-  "This page is so lost, even GPS can't find it! 🗺️",
-  '404: The page you seek has been abducted by aliens 👽',
-  'This page is currently attending a party in another dimension 🎭',
-];
-
 export default function NotFound() {
+  const t = useTranslations('NotFound');
+  const notFoundMessages: string[] = t.raw('messages');
   const [currentMessage, setCurrentMessage] = useState(notFoundMessages[0]);
 
-  const getRandomMessage = (messages: string[]) => {
-    const message = currentMessage;
-    const randomIndex = Math.floor(Math.random() * messages.length);
-    const randomMessage = messages[randomIndex];
-    if (randomMessage === message) {
-      return getRandomMessage(messages);
-    }
-    setCurrentMessage(messages[randomIndex]);
-  };
-
   useEffect(() => {
-    getRandomMessage(notFoundMessages);
+    setCurrentMessage(getRandomMessage(currentMessage, notFoundMessages));
   }, []);
 
   return (
     <Layout
       data-testid="not-found-layout"
       style={{
-        minHeight: '100vh',
+        flex: 1,
         background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
         position: 'relative',
         overflow: 'hidden',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}
     >
-      <Content>
+      <Content
+        style={{
+          height: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: 0,
+        }}
+      >
         <Flex
           data-testid="not-found-content"
           vertical
@@ -56,7 +50,6 @@ export default function NotFound() {
           justify="center"
           style={{
             padding: '15px',
-            minHeight: '100vh',
             position: 'relative',
           }}
         >
@@ -73,13 +66,13 @@ export default function NotFound() {
                 paddingBottom: '10px',
               }}
             >
-              Page Not Found
+              {t('title')}
             </Title>
             <Space direction="vertical" size="large" align="center">
               <Image
                 data-testid="not-found-logo"
                 src="/logo.png"
-                alt="REST Client App Logo"
+                alt={t('logoAlt')}
                 width={200}
                 height={200}
                 style={{
@@ -108,7 +101,9 @@ export default function NotFound() {
                 data-testid="random-message-button"
                 type="text"
                 icon={<ReloadOutlined />}
-                onClick={() => getRandomMessage(notFoundMessages)}
+                onClick={() =>
+                  setCurrentMessage(getRandomMessage(currentMessage, notFoundMessages))
+                }
                 style={{
                   color: 'white',
                   fontSize: '1rem',
@@ -117,7 +112,7 @@ export default function NotFound() {
                   borderRadius: '20px',
                 }}
               >
-                Try Another Message
+                {t('tryAnotherMessage')}
               </Button>
 
               <Link href="/" data-testid="homepage-link">
@@ -135,7 +130,7 @@ export default function NotFound() {
                     border: 'none',
                   }}
                 >
-                  Return to Homepage
+                  {t('returnToHomepage')}
                 </Button>
               </Link>
             </Space>
