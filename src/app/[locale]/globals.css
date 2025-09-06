@@ -67,3 +67,25 @@
     transform: scale(1);
   }
 }
+
+.link--dark {
+  color: #fa7d15;
+}
+
+.link--light {
+  color: #c3490b;
+}
+
+.link:hover {
+  color: #fec073;
+}
+
+.link--active {
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .link {
+    font-size: 20px;
+  }
+}
