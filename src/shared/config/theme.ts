@@ -2,10 +2,13 @@ import { orangeColors, zincColors } from '../style';
 
 export const lightTheme = {
   token: {
-    colorPrimary: orangeColors[700],
+    colorPrimary: orangeColors[400],
     colorBgBase: zincColors[100],
     colorTextBase: zincColors[800],
     fontSize: 16,
+    backgroundColorGradientStart: '#d1d5db',
+    backgroundColorGradientEnd: '#ddd6fe',
+    titleColor: orangeColors[400],
   },
   components: {
     Typography: {
@@ -15,8 +18,8 @@ export const lightTheme = {
       colorLinkHover: orangeColors[800],
     },
     Layout: {
-      headerBg: zincColors[200],
-      footerBg: zincColors[200],
+      headerBg: '#e0e7ff',
+      footerBg: '#e0e7ff',
       bodyBg: zincColors[100],
     },
     Select: {
@@ -55,6 +58,9 @@ export const darkTheme = {
     colorBgBase: zincColors[800],
     colorTextBase: orangeColors[100],
     fontSize: 16,
+    backgroundColorGradientStart: zincColors[700],
+    backgroundColorGradientEnd: zincColors[900],
+    titleColor: orangeColors[400],
   },
   components: {
     Typography: {
@@ -64,8 +70,8 @@ export const darkTheme = {
       colorLinkHover: orangeColors[200],
     },
     Layout: {
-      headerBg: zincColors[950],
-      footerBg: zincColors[900],
+      headerBg: zincColors[800],
+      footerBg: zincColors[800],
       bodyBg: zincColors[800],
     },
     Select: {

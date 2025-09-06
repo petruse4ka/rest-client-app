@@ -1,21 +1,59 @@
 'use client';
 
 import '@ant-design/v5-patch-for-react-19';
-import { Button, Typography, Space, Layout, Flex } from 'antd';
+import { Button, Typography, Space, Layout, Flex, theme } from 'antd';
 import { HomeOutlined, ReloadOutlined } from '@ant-design/icons';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, CSSProperties } from 'react';
 import { useTranslations } from 'next-intl';
 import getRandomMessage from '@/shared/utils/get-random-message';
 
 const { Title, Text } = Typography;
 const { Content } = Layout;
 
+const contentStyles: CSSProperties = {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  padding: 0,
+};
+
+const titleStyles: CSSProperties = {
+  fontSize: '4rem',
+  fontWeight: 'bold',
+  paddingBottom: '10px',
+};
+
+const logoStyles: CSSProperties = {
+  animation: 'pulse 2s ease-in-out infinite',
+  transition: 'transform 0.3s ease',
+};
+
+const messageStyles: CSSProperties = {
+  fontSize: '1.5rem',
+  color: 'white',
+  fontWeight: '500',
+  textShadow: '0 2px 4px rgba(0,0,0,0.3)',
+};
+
+const randomButtonStyles: CSSProperties = {
+  fontSize: '1rem',
+  borderRadius: '25px',
+};
+
+const homeButtonStyles: CSSProperties = {
+  fontSize: '1.1rem',
+  fontWeight: '600',
+  borderRadius: '25px',
+};
+
 export default function NotFound() {
   const t = useTranslations('NotFound');
   const notFoundMessages: string[] = t.raw('messages');
   const [currentMessage, setCurrentMessage] = useState(notFoundMessages[0]);
+  const { token } = theme.useToken();
+  const customToken = token as unknown as Record<string, string | number>;
 
   useEffect(() => {
     setCurrentMessage(getRandomMessage(currentMessage, notFoundMessages));
@@ -25,45 +63,18 @@ export default function NotFound() {
     <Layout
       data-testid="not-found-layout"
       style={{
-        flex: 1,
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-        position: 'relative',
-        overflow: 'hidden',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        background: `linear-gradient(135deg, ${customToken.backgroundColorGradientStart} 0%, ${customToken.backgroundColorGradientEnd} 100%)`,
       }}
     >
-      <Content
-        style={{
-          height: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: 0,
-        }}
-      >
-        <Flex
-          data-testid="not-found-content"
-          vertical
-          align="center"
-          justify="center"
-          style={{
-            padding: '15px',
-            position: 'relative',
-          }}
-        >
+      <Content style={contentStyles}>
+        <Flex data-testid="not-found-content" vertical align="center" justify="center">
           <Space direction="vertical" size="large" align="center">
             <Title
               data-testid="not-found-title"
               level={1}
               style={{
-                fontSize: '4rem',
-                fontWeight: 'bold',
-                background: 'linear-gradient(45deg,rgb(255, 186, 107),rgb(228, 123, 37))',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                paddingBottom: '10px',
+                ...titleStyles,
+                color: `${customToken.titleColor}`,
               }}
             >
               {t('title')}
@@ -75,23 +86,12 @@ export default function NotFound() {
                 alt={t('logoAlt')}
                 width={200}
                 height={200}
-                style={{
-                  animation: 'pulse 2s ease-in-out infinite',
-                  transition: 'transform 0.3s ease',
-                }}
+                style={logoStyles}
               />
             </Space>
 
             <Space direction="vertical" size="middle" align="center">
-              <Text
-                data-testid="not-found-message"
-                style={{
-                  fontSize: '1.5rem',
-                  color: 'white',
-                  fontWeight: '500',
-                  textShadow: '0 2px 4px rgba(0,0,0,0.3)',
-                }}
-              >
+              <Text data-testid="not-found-message" style={messageStyles}>
                 {currentMessage}
               </Text>
             </Space>
@@ -99,18 +99,12 @@ export default function NotFound() {
             <Space direction="vertical" size="large" align="center">
               <Button
                 data-testid="random-message-button"
-                type="text"
+                type="primary"
                 icon={<ReloadOutlined />}
                 onClick={() =>
                   setCurrentMessage(getRandomMessage(currentMessage, notFoundMessages))
                 }
-                style={{
-                  color: 'white',
-                  fontSize: '1rem',
-                  fontWeight: '500',
-                  border: '1px solid rgba(255, 255, 255, 0.3)',
-                  borderRadius: '20px',
-                }}
+                style={randomButtonStyles}
               >
                 {t('tryAnotherMessage')}
               </Button>
@@ -121,14 +115,7 @@ export default function NotFound() {
                   type="primary"
                   size="large"
                   icon={<HomeOutlined />}
-                  style={{
-                    height: '50px',
-                    fontSize: '1.1rem',
-                    fontWeight: '600',
-                    borderRadius: '25px',
-                    background: 'linear-gradient(45deg,rgb(255, 186, 107),rgb(228, 123, 37))',
-                    border: 'none',
-                  }}
+                  style={homeButtonStyles}
                 >
                   {t('returnToHomepage')}
                 </Button>
