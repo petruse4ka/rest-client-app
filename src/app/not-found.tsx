@@ -29,6 +29,7 @@ const titleStyles: CSSProperties = {
 const logoStyles: CSSProperties = {
   animation: 'pulse 2s ease-in-out infinite',
   transition: 'transform 0.3s ease',
+  marginBottom: '40px',
 };
 
 const messageStyles: CSSProperties = {
@@ -41,6 +42,7 @@ const messageStyles: CSSProperties = {
 const randomButtonStyles: CSSProperties = {
   fontSize: '1rem',
   borderRadius: '25px',
+  marginTop: '20px',
 };
 
 const homeButtonStyles: CSSProperties = {
