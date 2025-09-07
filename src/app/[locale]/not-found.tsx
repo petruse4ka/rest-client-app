@@ -1,11 +1,11 @@
 'use client';
 
 import '@ant-design/v5-patch-for-react-19';
-import { Button, Typography, Space, Layout, Flex, theme } from 'antd';
+import { Button, Typography, Space, Layout, Flex } from 'antd';
 import { HomeOutlined, ReloadOutlined } from '@ant-design/icons';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useEffect, CSSProperties, useContext } from 'react';
+import { useState, useEffect, CSSProperties } from 'react';
 import { useTranslations } from 'next-intl';
 import getRandomMessage from '@/shared/utils/get-random-message';
 
