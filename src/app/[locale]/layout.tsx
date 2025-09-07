@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
 import { type ReactNode } from 'react';
 import './globals.css';
-import { NextIntlClientProvider } from 'next-intl';
-import { setRequestLocale } from 'next-intl/server';
+import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { FooterApp, HeaderApp } from '@/widgets';
 import { Layout } from 'antd';
 import { ThemeProvider } from '@/shared/provider';
+import { routing } from '@/shared/i18n/routing';
+import { notFound } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: 'REST Client App - Professional API Testing Tool',
@@ -53,7 +54,9 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
 
-  setRequestLocale(locale);
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
 
   const messages = await getMessages();
 

@@ -1,6 +1,6 @@
 import { screen, fireEvent } from '@testing-library/react';
 import { render } from './test-utils/test-utils';
-import NotFound from '@/app/not-found';
+import NotFound from '@/app/[locale]/not-found';
 import enMessages from '@/shared/i18n/messages/en.json';
 
 describe('NotFound Page', () => {
