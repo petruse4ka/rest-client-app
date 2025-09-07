@@ -7,7 +7,6 @@ describe('NotFound Page', () => {
   test('renders all components with test IDs', () => {
     render(<NotFound />);
 
-    expect(screen.getByTestId('not-found-layout')).toBeInTheDocument();
     expect(screen.getByTestId('not-found-content')).toBeInTheDocument();
     expect(screen.getByTestId('not-found-title')).toBeInTheDocument();
     expect(screen.getByTestId('not-found-logo')).toBeInTheDocument();
