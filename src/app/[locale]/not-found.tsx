@@ -22,6 +22,8 @@ const textStyles: CSSProperties = {
   color: 'white',
   fontWeight: '500',
   textShadow: '0 2px 4px rgba(0,0,0,0.3)',
+  display: 'block',
+  textAlign: 'center',
 };
 
 const contentStyles: CSSProperties = {
@@ -29,6 +31,7 @@ const contentStyles: CSSProperties = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  padding: '0 20px',
 };
 
 export default function NotFound() {
@@ -44,7 +47,7 @@ export default function NotFound() {
     <Content style={contentStyles}>
       <Flex data-testid="not-found-content" vertical align="center" justify="center">
         <Space direction="vertical" size="large" align="center">
-          <Title data-testid="not-found-title" level={1}>
+          <Title data-testid="not-found-title" style={{ textAlign: 'center' }}>
             {t('title')}
           </Title>
           <Space direction="vertical" size="large" align="center">
