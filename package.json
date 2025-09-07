@@ -29,9 +29,7 @@
     "next": "15.5.2",
     "next-intl": "^4.3.6",
     "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "react-hook-form": "^7.62.0",
-    "yup": "^1.7.0"
+    "react-dom": "19.1.0"
   },
   "devDependencies": {
     "@ant-design/icons": "^6.0.0",
