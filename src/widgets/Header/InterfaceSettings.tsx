@@ -16,15 +16,13 @@ export default function InterfaceSettings() {
     setThemeValue(checked ? 'dark' : 'light');
   };
 
-  const switchLocale = (newLocale: string) => {
+  const handleMenuClick: MenuProps['onClick'] = (e) => {
+    const newLocale = e.key;
+
     if (newLocale !== locale) {
       router.replace(pathname, { locale: newLocale });
       router.refresh();
     }
-  };
-
-  const handleMenuClick: MenuProps['onClick'] = (e) => {
-    switchLocale(e.key);
   };
 
   return (

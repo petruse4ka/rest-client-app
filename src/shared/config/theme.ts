@@ -1,4 +1,4 @@
-import { orangeColors, zincColors } from '../style';
+import { orangeColors, zincColors, seanceColors } from '../style';
 
 export const lightTheme = {
   token: {
@@ -6,8 +6,8 @@ export const lightTheme = {
     colorBgBase: zincColors[100],
     colorTextBase: zincColors[800],
     fontSize: 16,
-    backgroundColorGradientStart: '#d1d5db',
-    backgroundColorGradientEnd: '#ddd6fe',
+    backgroundColorGradientStart: seanceColors[200],
+    backgroundColorGradientEnd: seanceColors[300],
     titleColor: orangeColors[400],
   },
   components: {
@@ -18,8 +18,8 @@ export const lightTheme = {
       colorLinkHover: orangeColors[800],
     },
     Layout: {
-      headerBg: '#e0e7ff',
-      footerBg: '#e0e7ff',
+      headerBg: seanceColors[100],
+      footerBg: seanceColors[100],
       bodyBg: zincColors[100],
     },
     Select: {

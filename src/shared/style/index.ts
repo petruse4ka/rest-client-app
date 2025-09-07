@@ -1,1 +1,1 @@
-export { orangeColors, zincColors } from './colors';
+export { orangeColors, zincColors, seanceColors } from './colors';
