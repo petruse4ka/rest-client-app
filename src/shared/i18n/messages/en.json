@@ -12,17 +12,40 @@
     "title": "Something Great is Coming",
     "subtitle": "We are building an amazing REST client application that will revolutionize how you test and interact with APIs."
   },
-  "SignUpForm": {
-    "title": "Registration",
+  "Auth": {
     "tabs": { "login": "Login", "signup": "Sign Up" },
+    "titles": { "login": "Sign In", "signup": "Registration" },
+    "cta": {
+      "noAccount": "Don't have an account?",
+      "signUpLink": "Click here to sign up",
+      "haveAccount": "Already have an account?",
+      "loginLink": "Click here to login"
+    },
+    "or": "or",
+    "continueWithGoogle": "Continue with Google"
+  },
+  "SignUpForm": {
     "name": { "label": "Name", "placeholder": "Your name" },
     "email": { "label": "Email address", "placeholder": "Email address" },
     "password": { "label": "Password", "placeholder": "Password" },
     "confirm": { "label": "Confirm password", "placeholder": "Confirm password" },
     "submit": "Sign up",
-    "haveAccount": "Already have an account?",
-    "loginLink": "Click here to login",
-    "or": "or",
-    "continueWithGoogle": "Continue with Google"
+    "errors": {
+      "nameRequired": "Name is required",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Enter a valid email address",
+      "passwordRequired": "Password is required",
+      "passwordPattern": "Min 8 chars, include a letter, a digit and a special character",
+      "confirmRequired": "Please confirm your password",
+      "passwordsDontMatch": "Passwords do not match"
+    },
+    "apiErrors": {
+      "emailInUse": "This email is already in use.",
+      "invalidEmail": "Please enter a valid email address.",
+      "weakPassword": "Password is too weak.",
+      "network": "Network error. Try again.",
+      "tooManyRequests": "Too many attempts. Please wait and try again.",
+      "generic": "Failed to sign up. Please try again."
+    }
   }
 }

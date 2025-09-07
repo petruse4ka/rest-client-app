@@ -1,7 +1,7 @@
-import { AuthWidget } from '@/widgets/';
 import { Content } from 'antd/es/layout/layout';
+import { AuthWidget } from '@/widgets';
 
-export default function SignUpPage() {
+export default function SignIpPage() {
   return (
     <Content className="flex h-svh items-center justify-center px-4">
       <AuthWidget />

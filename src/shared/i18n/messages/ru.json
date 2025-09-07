@@ -12,17 +12,40 @@
     "title": "Скоро будет нечто великое",
     "subtitle": "Мы создаем потрясающий REST-клиент, который революционизирует процесс тестирования и взаимодействия с API."
   },
-  "SignUpForm": {
-    "title": "Регистрация",
+  "Auth": {
     "tabs": { "login": "Вход", "signup": "Регистрация" },
+    "titles": { "login": "Вход", "signup": "Регистрация" },
+    "cta": {
+      "noAccount": "Нет аккаунта?",
+      "signUpLink": "Нажмите здесь, чтобы зарегистрироваться",
+      "haveAccount": "Уже есть аккаунт?",
+      "loginLink": "Нажмите здесь, чтобы войти"
+    },
+    "or": "или",
+    "continueWithGoogle": "Войти через Google"
+  },
+  "SignUpForm": {
     "name": { "label": "Имя", "placeholder": "Ваше имя" },
     "email": { "label": "Email", "placeholder": "Email" },
     "password": { "label": "Пароль", "placeholder": "Пароль" },
     "confirm": { "label": "Подтвердите пароль", "placeholder": "Подтвердите пароль" },
     "submit": "Зарегистрироваться",
-    "haveAccount": "Уже есть аккаунт?",
-    "loginLink": "Нажмите здесь, чтобы войти",
-    "or": "или",
-    "continueWithGoogle": "Продолжить через Google"
+    "errors": {
+      "nameRequired": "Имя обязательно",
+      "emailRequired": "Требуется email",
+      "emailInvalid": "Введите корректный адрес электронной почты",
+      "passwordRequired": "Требуется пароль",
+      "passwordPattern": "Минимум 8 символов, включите букву, цифру и специальный символ",
+      "confirmRequired": "Подтвердите пароль",
+      "passwordsDontMatch": "Пароли не совпадают"
+    },
+    "apiErrors": {
+      "emailInUse": "Этот адрес электронной почты уже используется.",
+      "invalidEmail": "Введите корректный адрес электронной почты.",
+      "weakPassword": "Пароль слишком простой.",
+      "network": "Сетевая ошибка. Попробуйте ещё раз.",
+      "tooManyRequests": "Слишком много попыток. Подождите и повторите.",
+      "generic": "Не удалось зарегистрироваться. Попробуйте ещё раз."
+    }
   }
 }

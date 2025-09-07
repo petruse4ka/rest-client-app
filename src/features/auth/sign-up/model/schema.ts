@@ -1,13 +1,35 @@
-import * as yup from 'yup';
+import type { Rule } from 'antd/es/form';
+import type { FormInstance } from 'antd/es/form';
 
-export const signUpSchema = yup.object({
-  name: yup.string().trim().required('Name is required'),
-  email: yup.string().email('Enter a valid email').required('Email is required'),
-  password: yup.string().min(8, 'Min 8 characters').required('Password is required'),
-  confirm: yup
-    .string()
-    .oneOf([yup.ref('password')], 'Passwords must match')
-    .required('Confirm your password'),
-});
+export type SignUpFields = 'username' | 'email' | 'password' | 'confirmPassword';
 
-export type SignUpFormValues = yup.InferType<typeof signUpSchema>;
+const PASSWORD_PATTERN = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[^\w\s]).{8,}$/;
+
+export function buildSignUpRules(
+  form: FormInstance,
+  t: (key: string) => string
+): Record<SignUpFields, Rule[]> {
+  return {
+    username: [{ required: true, message: t('errors.nameRequired') }],
+    email: [
+      { required: true, message: t('errors.emailRequired') },
+      { type: 'email', message: t('errors.emailInvalid') },
+    ],
+    password: [
+      { required: true, message: t('errors.passwordRequired') },
+      {
+        pattern: PASSWORD_PATTERN,
+        message: t('errors.passwordPattern'),
+      },
+    ],
+    confirmPassword: [
+      { required: true, message: t('errors.confirmRequired') },
+      {
+        validator(_, value) {
+          if (!value || form.getFieldValue('password') === value) return Promise.resolve();
+          return Promise.reject(new Error(t('errors.passwordsDontMatch')));
+        },
+      },
+    ],
+  };
+}

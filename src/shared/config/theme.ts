@@ -46,6 +46,9 @@ export const lightTheme = {
     Divider: {
       colorSplit: orangeColors[700],
     },
+    Card: {
+      colorBgContainer: zincColors[400],
+    },
   },
 };
 
@@ -94,6 +97,9 @@ export const darkTheme = {
     },
     Divider: {
       colorSplit: orangeColors[100],
+    },
+    Card: {
+      colorBgContainer: zincColors[900],
     },
   },
 };
