@@ -136,5 +136,8 @@ export const darkTheme = {
     Divider: {
       colorSplit: orangeColors[100],
     },
+    Card: {
+      colorBorderSecondary: orangeColors[500],
+    },
   },
 };

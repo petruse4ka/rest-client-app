@@ -4,7 +4,13 @@ import Link from 'next/link';
 
 export function HeroSection() {
   return (
-    <Flex align="center" justify="center" vertical gap={40}>
+    <Flex
+      align="center"
+      justify="center"
+      vertical
+      gap={40}
+      style={{ height: 'calc(100svh - 63px)' }}
+    >
       <Flex align="center" justify="center" vertical>
         <Title>REST Client App</Title>
         <Title level={2} type="secondary">
@@ -19,7 +25,7 @@ export function HeroSection() {
         </Link>
         <Link href="/">
           <Button type="primary" size="large">
-            Sign Out
+            Sign Up
           </Button>
         </Link>
       </Flex>
