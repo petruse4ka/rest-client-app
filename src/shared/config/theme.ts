@@ -73,11 +73,12 @@ export const darkTheme = {
   components: {
     Typography: {
       colorTextHeading: orangeColors[400],
-      colorTextDescription: orangeColors[300],
+      colorTextDescription: orangeColors[100],
       colorLink: orangeColors[100],
       colorLinkHover: orangeColors[200],
       fontSizeHeading1: 64,
       titleMarginBottom: 10,
+      titleMarginTop: 0,
       fontWeightStrong: 600,
     },
     Layout: {

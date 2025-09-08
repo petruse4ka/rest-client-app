@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { type ReactNode } from 'react';
+import { CSSProperties, type ReactNode } from 'react';
 import './globals.css';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { getMessages } from 'next-intl/server';
@@ -8,6 +8,7 @@ import { Layout } from 'antd';
 import { ThemeProvider } from '@/shared/provider';
 import { routing } from '@/shared/i18n/routing';
 import { notFound } from 'next/navigation';
+import { Content } from 'antd/es/layout/layout';
 
 export const metadata: Metadata = {
   title: 'REST Client App - Professional API Testing Tool',

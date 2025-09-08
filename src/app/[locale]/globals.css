@@ -62,6 +62,24 @@
   }
 }
 
+@keyframes bg-move {
+  0% {
+    background-position:
+      -100% -50%,
+      150% 400%;
+  }
+  50% {
+    background-position:
+      -50% 50%,
+      100% 100%;
+  }
+  100% {
+    background-position:
+      100% 80%,
+      0% -400%;
+  }
+}
+
 .link--dark {
   color: #fec073;
 }
@@ -76,6 +94,21 @@
 
 .link--active {
   font-weight: bold;
+}
+
+.bg-animate {
+  height: 100% !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-image: url('/orange-circle.png'), url('/orange-circle.png');
+  background-repeat: no-repeat, no-repeat;
+  background-size: 75%, 55%;
+  background-position:
+    -100% -50%,
+    150% 400%;
+  animation: bg-move 4s linear infinite alternate;
 }
 
 @media (max-width: 768px) {
