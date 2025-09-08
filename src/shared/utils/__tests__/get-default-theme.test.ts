@@ -1,5 +1,4 @@
 import { getDefaultTheme } from '@/shared/utils';
-import { test, expect, vi } from 'vitest';
 
 describe('getDefaultTheme', () => {
   test('returns dark when system prefers dark', () => {
