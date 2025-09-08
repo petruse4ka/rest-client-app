@@ -104,18 +104,30 @@ export const darkTheme = {
     Button: {
       colorPrimary: `linear-gradient(45deg, ${orangeColors[300]}, ${orangeColors[500]})`,
       colorPrimaryHover: `linear-gradient(45deg, ${orangeColors[400]}, ${orangeColors[600]})`,
-      primaryBorderColor: orangeColors[500],
+      primaryBorderColor: zincColors[600],
       primaryHoverBorderColor: orangeColors[600],
       defaultBg: 'transparent',
       defaultHoverBg: 'transparent',
-      defaultBorderColor: orangeColors[400],
+      defaultBorderColor: orangeColors[500],
       defaultHoverBorderColor: orangeColors[500],
       defaultColor: orangeColors[400],
       defaultHoverColor: orangeColors[500],
       primaryShadow: '0',
       borderRadius: 25,
+      fontWeight: 500,
+
+      borderRadiusSM: 25,
       borderRadiusLG: 25,
-      fontWeightLG: 500,
+      controlHeightSM: 33,
+      paddingInlineSM: 15,
+
+      controlHeight: 40,
+      paddingInline: 15,
+      contentFontSize: 18,
+
+      contentFontSizeLG: 25,
+      paddingInlineLG: 40,
+      controlHeightLG: 45,
     },
     Drawer: {
       colorIcon: orangeColors[500],

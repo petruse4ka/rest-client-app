@@ -6,11 +6,17 @@ export default function AuthControls({ isLogin }: { isLogin: boolean }) {
   return (
     <>
       {isLogin ? (
-        <Button type="primary">{t('signOut')}</Button>
+        <Button type="primary" size="small">
+          {t('signOut')}
+        </Button>
       ) : (
         <Flex gap="middle">
-          <Button type="primary">{t('signIn')}</Button>
-          <Button type="primary">{t('signUp')}</Button>
+          <Button type="primary" size="small">
+            {t('signIn')}
+          </Button>
+          <Button type="primary" size="small">
+            {t('signUp')}
+          </Button>
         </Flex>
       )}
     </>
