@@ -1,5 +1,4 @@
-import type { Rule } from 'antd/es/form';
-import type { FormInstance } from 'antd/es/form';
+import type { Rule, FormInstance } from 'antd/es/form';
 
 export type SignUpFields = 'username' | 'email' | 'password' | 'confirmPassword';
 

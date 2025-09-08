@@ -1,9 +1,18 @@
+import { CSSProperties } from 'react';
 import { Content } from 'antd/es/layout/layout';
 import { AuthWidget } from '@/widgets';
 
 export default function SignIpPage() {
+  const contentStyles: CSSProperties = {
+    height: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '40px 20px',
+  };
+
   return (
-    <Content className="flex h-svh items-center justify-center px-4">
+    <Content style={contentStyles}>
       <AuthWidget />
     </Content>
   );

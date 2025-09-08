@@ -24,6 +24,7 @@
     ]
   },
   "dependencies": {
+    "@ant-design/v5-patch-for-react-19": "^1.0.3",
     "@hookform/resolvers": "^5.2.1",
     "firebase": "^12.2.1",
     "next": "15.5.2",
@@ -33,7 +34,6 @@
   },
   "devDependencies": {
     "@ant-design/icons": "^6.0.0",
-    "@ant-design/v5-patch-for-react-19": "^1.0.3",
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "@eslint/eslintrc": "^3",

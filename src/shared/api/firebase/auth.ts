@@ -4,9 +4,12 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   type UserCredential,
+  signInWithEmailAndPassword,
+  signOut,
 } from 'firebase/auth';
 
 export type SignUpPayload = { email: string; password: string };
+export type SignInPayload = { email: string; password: string };
 
 export async function apiSignUp({ email, password }: SignUpPayload): Promise<UserCredential> {
   return createUserWithEmailAndPassword(auth, email, password);
@@ -16,4 +19,12 @@ export async function apiSignUpWithGooglePopup(): Promise<UserCredential> {
   const provider = new GoogleAuthProvider();
   provider.setCustomParameters({ prompt: 'select_account' });
   return signInWithPopup(auth, provider);
+}
+
+export async function apiSignIn({ email, password }: SignInPayload): Promise<UserCredential> {
+  return signInWithEmailAndPassword(auth, email, password);
+}
+
+export async function apiSignOut(): Promise<void> {
+  return signOut(auth);
 }

@@ -1,9 +1,18 @@
+import { CSSProperties } from 'react';
 import { AuthWidget } from '@/widgets/';
 import { Content } from 'antd/es/layout/layout';
 
 export default function SignUpPage() {
+  const contentStyles: CSSProperties = {
+    height: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '40px 20px',
+  };
+
   return (
-    <Content className="flex h-svh items-center justify-center px-4">
+    <Content style={contentStyles}>
       <AuthWidget />
     </Content>
   );

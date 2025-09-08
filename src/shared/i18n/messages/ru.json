@@ -33,12 +33,21 @@
     "titles": { "login": "Вход", "signup": "Регистрация" },
     "cta": {
       "noAccount": "Нет аккаунта?",
-      "signUpLink": "Нажмите здесь, чтобы зарегистрироваться",
       "haveAccount": "Уже есть аккаунт?",
-      "loginLink": "Нажмите здесь, чтобы войти"
+      "click": "Нажмите",
+      "here": "здесь",
+      "signUpSuffix": "чтобы зарегистрироваться",
+      "loginSuffix": "чтобы войти"
     },
     "or": "или",
-    "continueWithGoogle": "Войти через Google"
+    "continueWithGoogle": "Войти через Google",
+    "apiErrors": {
+      "popupClosed": "Окно авторизации было закрыто.",
+      "accountExists": "Уже есть аккаунт с другим методом входа.",
+      "network": "Сетевая ошибка. Попробуйте ещё раз.",
+      "tooManyRequests": "Слишком много попыток. Подождите и попробуйте снова.",
+      "generic": "Не удалось выполнить вход через Google."
+    }
   },
   "SignUpForm": {
     "name": { "label": "Имя", "placeholder": "Ваше имя" },
@@ -51,7 +60,7 @@
       "emailRequired": "Требуется email",
       "emailInvalid": "Введите корректный адрес электронной почты",
       "passwordRequired": "Требуется пароль",
-      "passwordPattern": "Минимум 8 символов, включите букву, цифру и специальный символ",
+      "passwordPattern": "Не менее 8 символов, включая букву, цифру и специальный знак",
       "confirmRequired": "Подтвердите пароль",
       "passwordsDontMatch": "Пароли не совпадают"
     },
@@ -62,6 +71,28 @@
       "network": "Сетевая ошибка. Попробуйте ещё раз.",
       "tooManyRequests": "Слишком много попыток. Подождите и повторите.",
       "generic": "Не удалось зарегистрироваться. Попробуйте ещё раз."
+    }
+  },
+  "SignInForm": {
+    "name": { "label": "Имя", "placeholder": "Ваше имя" },
+    "email": { "label": "Email", "placeholder": "Email" },
+    "password": { "label": "Пароль", "placeholder": "Пароль" },
+    "confirm": { "label": "Подтвердите пароль", "placeholder": "Подтвердите пароль" },
+    "submit": "Войти",
+    "errors": {
+      "nameRequired": "Имя обязательно",
+      "emailRequired": "Требуется email",
+      "emailInvalid": "Введите корректный адрес электронной почты",
+      "passwordRequired": "Требуется пароль"
+    },
+    "apiErrors": {
+      "userNotFound": "Пользователь с таким email не найден.",
+      "wrongPassword": "Неверный пароль.",
+      "invalidEmail": "Введите корректный адрес электронной почты.",
+      "invalidCredential": "Неверные учетные данные.",
+      "tooManyRequests": "Слишком много попыток. Подождите и повторите.",
+      "network": "Сетевая ошибка. Попробуйте ещё раз.",
+      "generic": "Не удалось выполнить вход. Попробуйте ещё раз."
     }
   }
 }

@@ -1,11 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import { Button, Form, Input, Typography } from 'antd';
 import { useTranslations } from 'next-intl';
+import { useRouter } from '@/shared/i18n/navigation';
 import { buildSignUpRules } from '../model/schema';
 import { useSignUp } from '../model/use-sign-up';
 import { mapSignUpError } from '@/shared/api/firebase/map-sign-up-error';
+
+import { Button, Form, Input, Typography } from 'antd';
 
 const { Item } = Form;
 
@@ -20,6 +22,8 @@ export function SignUpForm() {
   const t = useTranslations('SignUpForm');
   const [form] = Form.useForm<FieldType>();
   const rules = buildSignUpRules(form, t);
+  const router = useRouter();
+
   const { mutate, loading } = useSignUp();
   const [apiError, setApiError] = useState<string | null>(null);
 
@@ -33,6 +37,7 @@ export function SignUpForm() {
       });
 
       form.resetFields(['username', 'email', 'password', 'confirmPassword']);
+      router.push('/');
     } catch (e) {
       const { field, key } = mapSignUpError(e);
       const errorMsg = t(`apiErrors.${key}`);

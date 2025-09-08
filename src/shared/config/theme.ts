@@ -60,7 +60,7 @@ export const lightTheme = {
       colorSplit: orangeColors[700],
     },
     Card: {
-      colorBgContainer: zincColors[400],
+      colorBgContainer: seanceColors[100],
     },
   },
 };

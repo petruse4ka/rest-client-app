@@ -1,112 +1,88 @@
 'use client';
 
-import { type CSSProperties, useContext } from 'react';
+import { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { ThemeContext } from '@/context/theme-context';
-import { Link, usePathname } from '@/shared/i18n/navigation';
+import { Link, usePathname, useRouter } from '@/shared/i18n/navigation';
 import { apiSignUpWithGooglePopup } from '@/shared/api/firebase/auth';
+import { mapGoogleAuthError } from '@/shared/api/firebase/map-google-error';
 
 import { SignUpForm, SignInForm } from '@/features/auth/';
-import { Button, Card, Divider, Flex, Typography } from 'antd';
+import { Button, Card, Divider, Flex, Radio, Typography } from 'antd';
 
-import { orangeColors, zincColors } from '@/shared/style';
+import { cardStyles, flexWrapperStyles } from './auth-widget.styles';
 
 const { Title, Text } = Typography;
 
 export function AuthWidget() {
   const pathname = usePathname();
+  const router = useRouter();
 
   const t = useTranslations('Auth');
-
-  const { themeValue } = useContext(ThemeContext);
-
-  const TitleStyle: CSSProperties = {
-    color: themeValue === 'dark' ? orangeColors[500] : zincColors[900],
-  };
 
   const loginActive = pathname?.includes('/sign-in');
   const signupActive = pathname?.includes('/sign-up');
 
-  const tabBase: CSSProperties = {
-    border: '1px solid',
-    padding: '2px 12px',
-    cursor: 'pointer',
-  };
+  const value = pathname.includes('/sign-in') ? 'login' : 'signup';
 
-  const tabLogin: CSSProperties = {
-    ...tabBase,
-    borderTopLeftRadius: 6,
-    borderBottomLeftRadius: 6,
-    borderTopRightRadius: 0,
-    borderBottomRightRadius: 0,
-  };
+  const [apiError, setApiError] = useState<string | null>(null);
 
-  const tabSignup: CSSProperties = {
-    ...tabBase,
-    borderTopRightRadius: 6,
-    borderBottomRightRadius: 6,
-    borderTopLeftRadius: 0,
-    borderBottomLeftRadius: 0,
+  const handleGoogleAuth = async () => {
+    try {
+      setApiError(null);
+      await apiSignUpWithGooglePopup();
+      router.push('/');
+    } catch (e) {
+      const { key } = mapGoogleAuthError(e);
+      setApiError(t(`apiErrors.${key}`));
+    }
   };
-
   return (
     <Card
       style={{
-        maxWidth: 520,
-        width: '100%',
-        marginInline: 'auto',
-        borderRadius: 16,
-        boxShadow: '0 8px 24px rgba(0,0,0,.08)',
+        ...cardStyles,
       }}
     >
-      <Flex vertical style={{ maxWidth: 480, width: '100%', marginInline: 'auto' }}>
+      <Flex vertical style={{ ...flexWrapperStyles }}>
         <Flex justify="flex-end" style={{ marginBottom: 12 }}>
-          <Flex
-            style={{
-              ...tabLogin,
-              borderColor: loginActive ? orangeColors[500] : zincColors[300],
-              backgroundColor: loginActive ? orangeColors[500] : 'transparent',
+          <Radio.Group
+            value={value}
+            optionType="button"
+            buttonStyle="solid"
+            onChange={(e) => {
+              if (e.target.value === 'login') router.push('/sign-in');
+              else router.push('/sign-up');
             }}
           >
-            <Text type="secondary">
-              <Link href="/sign-in">{t('tabs.login')}</Link>
-            </Text>
-          </Flex>
-          <Flex
-            style={{
-              ...tabSignup,
-              borderColor: signupActive ? orangeColors[500] : zincColors[300],
-              backgroundColor: signupActive ? orangeColors[500] : 'transparent',
-            }}
-          >
-            <Text type="secondary">
-              <Link href="/sign-up">{t('tabs.signup')}</Link>
-            </Text>
-          </Flex>
+            <Radio.Button value="login">{t('tabs.login')}</Radio.Button>
+            <Radio.Button value="signup">{t('tabs.signup')}</Radio.Button>
+          </Radio.Group>
         </Flex>
 
-        <Title level={3} style={{ ...TitleStyle }}>
-          {t(loginActive ? 'titles.login' : 'titles.signup')}
-        </Title>
+        <Title level={3}>{t(loginActive ? 'titles.login' : 'titles.signup')}</Title>
 
         {signupActive ? <SignUpForm /> : <SignInForm />}
 
-        <div className="mt-4 text-center">
+        <Flex justify="center">
           <Text type="secondary">
-            {t(loginActive ? 'cta.noAccount' : 'cta.haveAccount')}{' '}
-            <Link href={loginActive ? '/sign-up' : '/sign-in'} className="underline">
-              {t(loginActive ? 'cta.signUpLink' : 'cta.loginLink')}
-            </Link>
+            {t(loginActive ? 'cta.noAccount' : 'cta.haveAccount')} {t('cta.click')}{' '}
+            <Link href={loginActive ? '/sign-up' : '/sign-in'}>{t('cta.here')}</Link>{' '}
+            {t(loginActive ? 'cta.signUpSuffix' : 'cta.loginSuffix')}
           </Text>
-        </div>
+        </Flex>
 
         <Divider plain>{t('or')}</Divider>
 
-        <div className="flex justify-center">
-          <Button size="large" onClick={() => apiSignUpWithGooglePopup()}>
+        {apiError && (
+          <Flex justify="center" style={{ marginBottom: 8 }}>
+            <Text type="danger">{apiError}</Text>
+          </Flex>
+        )}
+
+        <Flex justify="center">
+          <Button size="large" onClick={handleGoogleAuth}>
             {t('continueWithGoogle')}
           </Button>
-        </div>
+        </Flex>
       </Flex>
     </Card>
   );

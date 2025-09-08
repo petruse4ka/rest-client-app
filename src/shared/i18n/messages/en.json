@@ -33,12 +33,21 @@
     "titles": { "login": "Sign In", "signup": "Registration" },
     "cta": {
       "noAccount": "Don't have an account?",
-      "signUpLink": "Click here to sign up",
       "haveAccount": "Already have an account?",
-      "loginLink": "Click here to login"
+      "click": "Click",
+      "here": "here",
+      "signUpSuffix": "to sign up",
+      "loginSuffix": "to login"
     },
     "or": "or",
-    "continueWithGoogle": "Continue with Google"
+    "continueWithGoogle": "Continue with Google",
+    "apiErrors": {
+      "popupClosed": "The sign-in popup was closed.",
+      "accountExists": "An account already exists with a different sign-in method.",
+      "network": "Network error. Please try again.",
+      "tooManyRequests": "Too many attempts. Please wait and try again.",
+      "generic": "Google sign-in failed."
+    }
   },
   "SignUpForm": {
     "name": { "label": "Name", "placeholder": "Your name" },
@@ -62,6 +71,26 @@
       "network": "Network error. Try again.",
       "tooManyRequests": "Too many attempts. Please wait and try again.",
       "generic": "Failed to sign up. Please try again."
+    }
+  },
+  "SignInForm": {
+    "email": { "label": "Email address", "placeholder": "Email address" },
+    "password": { "label": "Password", "placeholder": "Password" },
+    "submit": "Sign in",
+    "errors": {
+      "nameRequired": "Name is required",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Enter a valid email address",
+      "passwordRequired": "Password is required"
+    },
+    "apiErrors": {
+      "userNotFound": "No user found with this email.",
+      "wrongPassword": "Incorrect password.",
+      "invalidEmail": "Please enter a valid email address.",
+      "invalidCredential": "Invalid credentials provided.",
+      "tooManyRequests": "Too many attempts. Please wait and try again.",
+      "network": "Network error. Please try again.",
+      "generic": "Failed to sign in. Please try again."
     }
   }
 }
