@@ -26,7 +26,7 @@ export function PersonCard({ person }: PersonCardProps) {
           <Title level={3}>{name}</Title>
         </Space>
       }
-      style={{ width: 300 }}
+      style={{ width: '100%', maxWidth: '400px' }}
     >
       <Flex vertical gap={15}>
         <Text>{description}</Text>

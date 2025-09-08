@@ -1,6 +1,6 @@
-import { Button, Flex } from 'antd';
-import Title from 'antd/es/typography/Title';
+import { Button, Flex, Typography } from 'antd';
 import Link from 'next/link';
+const { Title, Text } = Typography;
 
 export function HeroSection() {
   return (
@@ -13,9 +13,7 @@ export function HeroSection() {
     >
       <Flex align="center" justify="center" vertical>
         <Title>REST Client App</Title>
-        <Title level={2} type="secondary">
-          A tool for testing and sending HTTP requests
-        </Title>
+        <Text>A tool for testing and sending HTTP requests</Text>
       </Flex>
       <Flex gap={20}>
         <Link href="/">

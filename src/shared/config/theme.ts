@@ -77,6 +77,7 @@ export const darkTheme = {
       colorLink: orangeColors[100],
       colorLinkHover: orangeColors[200],
       fontSizeHeading1: 64,
+      fontSizeHeading2: 50,
       titleMarginBottom: 10,
       titleMarginTop: 0,
       fontWeightStrong: 600,
