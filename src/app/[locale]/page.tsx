@@ -6,7 +6,7 @@ import { Content } from 'antd/es/layout/layout';
 
 export default function Home() {
   return (
-    <Content className="h-svh">
+    <Content>
       <Flex>test</Flex>
     </Content>
   );

@@ -1,23 +1,27 @@
-import { orangeColors, zincColors } from '../style';
+import { orangeColors, zincColors, seanceColors } from '../style';
 
 export const lightTheme = {
   token: {
-    colorPrimary: orangeColors[700],
+    colorPrimary: orangeColors[400],
     colorBgBase: zincColors[100],
     colorTextBase: zincColors[800],
     fontSize: 16,
+    titleColor: orangeColors[400],
   },
   components: {
     Typography: {
-      colorTextHeading: zincColors[900],
+      colorTextHeading: orangeColors[400],
       colorTextDescription: orangeColors[300],
       colorLink: orangeColors[700],
       colorLinkHover: orangeColors[800],
+      fontSizeHeading1: 64,
+      titleMarginBottom: 10,
+      fontWeightStrong: 600,
     },
     Layout: {
-      headerBg: zincColors[200],
-      footerBg: zincColors[200],
-      bodyBg: zincColors[100],
+      headerBg: seanceColors[100],
+      footerBg: seanceColors[100],
+      bodyBg: `linear-gradient(45deg, ${seanceColors[200]}, ${seanceColors[300]})`,
     },
     Select: {
       activeOutlineColor: 'none',
@@ -35,9 +39,18 @@ export const lightTheme = {
       controlItemBgHover: zincColors[300],
     },
     Button: {
-      colorText: orangeColors[700],
+      colorPrimary: `linear-gradient(45deg, ${orangeColors[300]}, ${orangeColors[500]})`,
+      colorPrimaryHover: `linear-gradient(45deg, ${orangeColors[400]}, ${orangeColors[600]})`,
+      defaultBg: 'transparent',
+      defaultHoverBg: 'transparent',
+      defaultBorderColor: orangeColors[500],
+      defaultHoverBorderColor: orangeColors[600],
+      defaultColor: orangeColors[500],
+      defaultHoverColor: orangeColors[600],
       primaryShadow: '0',
-      primaryColor: zincColors[50],
+      borderRadius: 25,
+      borderRadiusLG: 25,
+      fontWeightLG: 500,
     },
     Drawer: {
       colorIcon: orangeColors[700],
@@ -54,22 +67,26 @@ export const lightTheme = {
 
 export const darkTheme = {
   token: {
-    colorPrimary: orangeColors[500],
+    colorPrimary: orangeColors[400],
     colorBgBase: zincColors[800],
     colorTextBase: orangeColors[100],
     fontSize: 16,
+    titleColor: orangeColors[400],
   },
   components: {
     Typography: {
-      colorTextHeading: zincColors[900],
+      colorTextHeading: orangeColors[400],
       colorTextDescription: orangeColors[300],
       colorLink: orangeColors[100],
       colorLinkHover: orangeColors[200],
+      fontSizeHeading1: 64,
+      titleMarginBottom: 10,
+      fontWeightStrong: 600,
     },
     Layout: {
-      headerBg: zincColors[950],
-      footerBg: zincColors[900],
-      bodyBg: zincColors[800],
+      headerBg: zincColors[800],
+      footerBg: zincColors[800],
+      bodyBg: `linear-gradient(45deg, ${zincColors[700]}, ${zincColors[900]})`,
     },
     Select: {
       activeOutlineColor: 'none',
@@ -87,9 +104,20 @@ export const darkTheme = {
       controlItemBgHover: zincColors[500],
     },
     Button: {
-      colorText: orangeColors[500],
+      colorPrimary: `linear-gradient(45deg, ${orangeColors[300]}, ${orangeColors[500]})`,
+      colorPrimaryHover: `linear-gradient(45deg, ${orangeColors[400]}, ${orangeColors[600]})`,
+      primaryBorderColor: orangeColors[500],
+      primaryHoverBorderColor: orangeColors[600],
+      defaultBg: 'transparent',
+      defaultHoverBg: 'transparent',
+      defaultBorderColor: orangeColors[400],
+      defaultHoverBorderColor: orangeColors[500],
+      defaultColor: orangeColors[400],
+      defaultHoverColor: orangeColors[500],
       primaryShadow: '0',
-      primaryColor: zincColors[50],
+      borderRadius: 25,
+      borderRadiusLG: 25,
+      fontWeightLG: 500,
     },
     Drawer: {
       colorIcon: orangeColors[500],

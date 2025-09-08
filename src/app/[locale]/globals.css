@@ -50,16 +50,28 @@
   box-sizing: border-box;
 }
 
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 .link--dark {
-  color: #fa7d15;
+  color: #fec073;
 }
 
 .link--light {
-  color: #c3490b;
+  color: #fc9129;
 }
 
 .link:hover {
-  color: #fec073;
+  color: #eb620b;
 }
 
 .link--active {

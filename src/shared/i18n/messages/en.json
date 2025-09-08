@@ -8,6 +8,22 @@
     "signIn": "Sign In",
     "signUp": "Sign Up"
   },
+  "NotFound": {
+    "title": "Page Not Found",
+    "messages": [
+      "Oops! This page went on vacation 🏖️",
+      "404: The page you're looking for is in another castle 🏰",
+      "This page is playing hide and seek... and winning! 🫥",
+      "Error 404: Page not found (but we found this cool message instead!) 🎉",
+      "Houston, we have a problem... this page doesn't exist! 🚀",
+      "This page is so lost, even GPS can't find it! 🗺️",
+      "404: The page you seek has been abducted by aliens 👽",
+      "This page is currently attending a party in another dimension 🎭"
+    ],
+    "tryAnotherMessage": "Test our creativity",
+    "returnToHomepage": "Return to Homepage",
+    "logoAlt": "REST Client App Logo"
+  },
   "Main": {
     "title": "Something Great is Coming",
     "subtitle": "We are building an amazing REST client application that will revolutionize how you test and interact with APIs."
