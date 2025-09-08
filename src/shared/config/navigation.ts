@@ -9,3 +9,18 @@ export const authorLinks = [
   { href: 'https://github.com/NatashaSolntseva', label: 'Nataliia Shmatenko' },
   { href: 'https://github.com/tearzday', label: 'Daniil Biver' },
 ];
+
+export const courseLinks = [
+  {
+    href: 'https://rs.school/',
+    label: 'Course website',
+  },
+  {
+    href: 'https://rs.school/docs/en',
+    label: 'Course docs',
+  },
+  {
+    href: 'https://github.com/rolling-scopes-school/tasks/blob/master/react/modules/tasks/final.md',
+    label: 'Course task',
+  },
+];
