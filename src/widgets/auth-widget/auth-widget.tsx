@@ -8,12 +8,11 @@ import { mapGoogleAuthError } from '@/shared/api/firebase/map-google-error';
 
 import { SignUpForm, SignInForm } from '@/features/auth/';
 import { Button, Card, Divider, Flex, Radio, Typography } from 'antd';
+import { Group } from 'antd/es/radio';
 
 import { cardStyles, flexWrapperStyles } from './auth-widget.styles';
 
 const { Title, Text } = Typography;
-
-const { Group } = Radio;
 
 export function AuthWidget() {
   const pathname = usePathname();
