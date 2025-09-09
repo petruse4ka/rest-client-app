@@ -3,8 +3,8 @@
 import { Grid, theme } from 'antd';
 import { Header } from 'antd/es/layout/layout';
 import { CSSProperties, useEffect, useState } from 'react';
-import DesktopHeader from './DesktopHeader';
-import MobileHeader from './MobileHeader';
+import DesktopHeader from './desktop-header';
+import MobileHeader from './mobile-header';
 const { useBreakpoint } = Grid;
 
 const HeaderStyle: CSSProperties = {
