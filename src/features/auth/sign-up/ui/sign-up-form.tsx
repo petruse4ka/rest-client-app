@@ -8,8 +8,10 @@ import { useSignUp } from '../model/use-sign-up';
 import { mapSignUpError } from '@/shared/api/firebase/map-sign-up-error';
 
 import { Button, Form, Input, Typography } from 'antd';
+import Password from 'antd/es/input/Password';
 
 const { Item } = Form;
+const { Text } = Typography;
 
 type FieldType = {
   username?: string;
@@ -53,7 +55,7 @@ export function SignUpForm() {
   return (
     <Form form={form} layout="vertical" autoComplete="off" onFinish={onFinish}>
       <Item>
-        <Typography.Text type="danger">{apiError || ' '}</Typography.Text>
+        <Text type="danger">{apiError || ' '}</Text>
       </Item>
       <Item<FieldType> label={t('name.label')} name="username" rules={rules.username}>
         <Input placeholder={t('name.placeholder')} />
@@ -64,7 +66,7 @@ export function SignUpForm() {
       </Item>
 
       <Item<FieldType> label={t('password.label')} name="password" rules={rules.password}>
-        <Input.Password placeholder={t('password.placeholder')} />
+        <Password placeholder={t('password.placeholder')} />
       </Item>
 
       <Item<FieldType>
@@ -73,7 +75,7 @@ export function SignUpForm() {
         dependencies={['password']}
         rules={rules.confirmPassword}
       >
-        <Input.Password placeholder={t('confirm.placeholder')} />
+        <Password placeholder={t('confirm.placeholder')} />
       </Item>
 
       <Item shouldUpdate>

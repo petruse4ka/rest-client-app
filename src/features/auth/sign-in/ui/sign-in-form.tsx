@@ -8,8 +8,10 @@ import { useSignIn } from '../model/use-sign-in';
 import { mapSignInError } from '@/shared/api/firebase/map-sign-in-errors';
 
 import { Button, Form, Input, Typography } from 'antd';
+import Password from 'antd/es/input/Password';
 
 const { Item } = Form;
+const { Text } = Typography;
 
 type FieldType = {
   email?: string;
@@ -50,13 +52,13 @@ export function SignInForm() {
   return (
     <Form form={form} layout="vertical" autoComplete="off" onFinish={onFinish}>
       <Item>
-        <Typography.Text type="danger">{apiError || ' '}</Typography.Text>
+        <Text type="danger">{apiError || ' '}</Text>
       </Item>
       <Item<FieldType> label={t('email.label')} name="email" rules={rules.email}>
         <Input placeholder={t('email.placeholder')} />
       </Item>
       <Item<FieldType> label={t('password.label')} name="password" rules={rules.password}>
-        <Input.Password placeholder={t('password.placeholder')} />
+        <Password placeholder={t('password.placeholder')} />
       </Item>
 
       <Item shouldUpdate>
