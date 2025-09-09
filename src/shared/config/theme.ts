@@ -15,7 +15,9 @@ export const lightTheme = {
       colorLink: orangeColors[700],
       colorLinkHover: orangeColors[800],
       fontSizeHeading1: 64,
+      fontSizeHeading2: 50,
       titleMarginBottom: 10,
+      titleMarginTop: 0,
       fontWeightStrong: 600,
     },
     Layout: {
@@ -51,6 +53,15 @@ export const lightTheme = {
       borderRadius: 25,
       borderRadiusLG: 25,
       fontWeightLG: 500,
+      borderRadiusSM: 25,
+      controlHeightSM: 33,
+      paddingInlineSM: 15,
+      controlHeight: 40,
+      paddingInline: 15,
+      contentFontSize: 18,
+      contentFontSizeLG: 25,
+      paddingInlineLG: 40,
+      controlHeightLG: 45,
     },
     Drawer: {
       colorIcon: orangeColors[700],
@@ -116,16 +127,13 @@ export const darkTheme = {
       primaryShadow: '0',
       borderRadius: 25,
       fontWeight: 500,
-
       borderRadiusSM: 25,
       borderRadiusLG: 25,
       controlHeightSM: 33,
       paddingInlineSM: 15,
-
       controlHeight: 40,
       paddingInline: 15,
       contentFontSize: 18,
-
       contentFontSizeLG: 25,
       paddingInlineLG: 40,
       controlHeightLG: 45,
