@@ -63,8 +63,8 @@ export const lightTheme = {
       colorBgContainer: seanceColors[100],
     },
     Input: {
-      activeShadow: 0,
-      errorActiveShadow: 0,
+      activeShadow: '0',
+      errorActiveShadow: '0',
     },
   },
 };
@@ -134,8 +134,8 @@ export const darkTheme = {
       colorBgContainer: zincColors[900],
     },
     Input: {
-      activeShadow: 0,
-      errorActiveShadow: 0,
+      activeShadow: '0',
+      errorActiveShadow: '0',
     },
   },
 };
