@@ -54,7 +54,7 @@ export function AuthWidget() {
           </Group>
         </Flex>
 
-        <Title level={3}>{t(loginActive ? 'titles.login' : 'titles.signup')}</Title>
+        <Title level={3}>{t(`titles.${value}`)}</Title>
 
         {loginActive ? <SignInForm /> : <SignUpForm />}
 
