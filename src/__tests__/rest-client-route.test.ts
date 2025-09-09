@@ -1,6 +1,5 @@
 import { POST } from '@/app/api/rest-client/route';
 import { NextRequest } from 'next/server';
-import { vi } from 'vitest';
 import axios from 'axios';
 import { HttpMethod } from '@/types/types';
 

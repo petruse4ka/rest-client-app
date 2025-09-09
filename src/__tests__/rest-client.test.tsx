@@ -2,7 +2,6 @@ import { screen, fireEvent, waitFor } from '@testing-library/react';
 import { render } from './test-utils/test-utils';
 import RestClientPage from '@/app/[locale]/rest-client/page';
 import enMessages from '@/shared/i18n/messages/en.json';
-import { vi } from 'vitest';
 import axios from 'axios';
 
 vi.mock('axios');
