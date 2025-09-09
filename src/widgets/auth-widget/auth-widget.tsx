@@ -38,12 +38,8 @@ export function AuthWidget() {
     }
   };
   return (
-    <Card
-      style={{
-        ...cardStyles,
-      }}
-    >
-      <Flex vertical style={{ ...flexWrapperStyles }}>
+    <Card style={cardStyles}>
+      <Flex vertical style={flexWrapperStyles}>
         <Flex justify="flex-end" style={{ marginBottom: 12 }}>
           <Group
             value={value}
