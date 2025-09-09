@@ -105,7 +105,9 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-image: url('/orange-circle.png'), url('/orange-circle.png'), url('/orange-circle.png');
+  background-image:
+    url('/image/orange-circle.png'), url('/image/orange-circle.png'),
+    url('/image/orange-circle.png');
   background-repeat: no-repeat, no-repeat;
   background-size: 75%, 55%, 100%;
   background-position:
@@ -114,6 +116,10 @@
     100% 100%;
   animation: bg-move 7s linear infinite alternate;
   padding: 0px 20px;
+}
+
+.ant-card-body {
+  height: calc(100% - 58px);
 }
 
 @media (max-width: 768px) {
