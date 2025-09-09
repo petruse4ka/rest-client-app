@@ -13,15 +13,15 @@ export const authorLinks = [
 export const courseLinks = [
   {
     href: 'https://rs.school/',
-    label: 'Course website',
+    label: 'courseLink',
   },
   {
     href: 'https://rs.school/docs/en',
-    label: 'Course docs',
+    label: 'courseDocs',
   },
   {
     href: 'https://github.com/rolling-scopes-school/tasks/blob/master/react/modules/tasks/final.md',
-    label: 'Course task',
+    label: 'courseTask',
   },
 ];
 

@@ -1,11 +1,14 @@
 import { courseLinks } from '@/shared/config/navigation';
 import { Button, Divider, Flex, Space, Typography } from 'antd';
 import Title from 'antd/es/typography/Title';
+import { useTranslations } from 'next-intl';
 import { CSSProperties } from 'react';
 import { Fragment } from 'react/jsx-runtime';
 const { Text, Link } = Typography;
 
 export function AboutCourseSection() {
+  const t = useTranslations('Course');
+
   return (
     <Flex
       vertical
@@ -18,16 +21,14 @@ export function AboutCourseSection() {
       }}
     >
       <Space direction="vertical" align="center">
-        <Title level={2}>About Course</Title>
-        <Text style={{ fontSize: '1.5rem' }}>
-          This web application was created during a React course at RSSchool.
-        </Text>
+        <Title level={2}>{t('title')}</Title>
+        <Text style={{ fontSize: '1.5rem' }}>{t('subtitle')}</Text>
       </Space>
       <Space>
         {courseLinks.map(({ href, label }, index) => (
           <Fragment key={label}>
             <Link href={href} style={{ fontSize: '1.2rem' }}>
-              {label}
+              {t(label)}
             </Link>
             {index < courseLinks.length - 1 && <Divider type="vertical" />}
           </Fragment>

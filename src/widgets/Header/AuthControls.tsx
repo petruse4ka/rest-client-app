@@ -2,7 +2,7 @@ import { Button, Flex } from 'antd';
 import { useTranslations } from 'next-intl';
 
 export default function AuthControls({ isLogin }: { isLogin: boolean }) {
-  const t = useTranslations('Header');
+  const t = useTranslations('NavInfo');
   return (
     <>
       {isLogin ? (

@@ -2,6 +2,7 @@
 
 import { authLinks, navLinks } from '@/shared/config/navigation';
 import { Button, Flex, Typography } from 'antd';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useState } from 'react';
 const { Title, Text } = Typography;
@@ -9,6 +10,9 @@ const { Title, Text } = Typography;
 export function HeroSection() {
   const [isLogin] = useState(true);
   const links = isLogin ? navLinks.slice(1) : authLinks;
+  const t = useTranslations('Hero');
+  const navt = useTranslations('NavInfo');
+
   return (
     <Flex
       align="center"
@@ -19,13 +23,13 @@ export function HeroSection() {
     >
       <Flex align="center" justify="center" vertical>
         <Title>REST Client App</Title>
-        <Text style={{ fontSize: '1.5rem' }}>A tool for testing and sending HTTP requests</Text>
+        <Text style={{ fontSize: '1.5rem' }}>{t('subtitle')}</Text>
       </Flex>
       <Flex gap={20} wrap justify="center">
         {links.map(({ href, label }) => (
           <Link key={href} href={href}>
             <Button type="primary" size="large">
-              {label}
+              {navt(label)}
             </Button>
           </Link>
         ))}
