@@ -5,7 +5,7 @@ import { FirebaseError } from 'firebase/app';
 import { updateProfile } from 'firebase/auth';
 import { apiSignUp } from '@/shared/api/firebase/auth';
 
-type Payload = { email: string; password: string; name?: string };
+type Payload = { email: string; password: string; name: string };
 
 export function useSignUp() {
   const [loading, setLoading] = useState(false);
@@ -16,9 +16,7 @@ export function useSignUp() {
     setError(null);
     try {
       const cred = await apiSignUp({ email, password });
-      if (name) {
-        await updateProfile(cred.user, { displayName: name });
-      }
+      await updateProfile(cred.user, { displayName: name });
       return cred.user;
     } catch (e) {
       const code = e instanceof FirebaseError ? e.code : undefined;

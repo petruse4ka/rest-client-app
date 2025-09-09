@@ -14,10 +14,10 @@ const { Item } = Form;
 const { Text } = Typography;
 
 type FieldType = {
-  username?: string;
-  email?: string;
-  password?: string;
-  confirmPassword?: string;
+  username: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
 };
 
 export function SignUpForm() {
