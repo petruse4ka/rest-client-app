@@ -9,11 +9,11 @@ export function HeroSection() {
       justify="center"
       vertical
       gap={40}
-      style={{ height: 'calc(100svh - 63px)' }}
+      style={{ height: 'calc(100svh - 63px)', textAlign: 'center' }}
     >
       <Flex align="center" justify="center" vertical>
         <Title>REST Client App</Title>
-        <Text>A tool for testing and sending HTTP requests</Text>
+        <Text style={{ fontSize: '1.5rem' }}>A tool for testing and sending HTTP requests</Text>
       </Flex>
       <Flex gap={20}>
         <Link href="/">

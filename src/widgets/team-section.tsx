@@ -8,7 +8,7 @@ export function TeamSection() {
   const screens = useBreakpoint();
 
   return (
-    <Flex vertical align="center" gap={30} className="!py-5">
+    <Flex vertical align="center" gap={30} style={{ minHeight: '100svh' }}>
       <Title level={2}>Our Team</Title>
       <Flex gap={20} vertical={!screens.lg}>
         {team.map((person) => (
