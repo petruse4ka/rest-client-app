@@ -1,8 +1,7 @@
 import { courseLinks } from '@/shared/config/navigation';
-import { Button, Divider, Flex, Space, Typography } from 'antd';
+import { Divider, Flex, Space, Typography } from 'antd';
 import Title from 'antd/es/typography/Title';
 import { useTranslations } from 'next-intl';
-import { CSSProperties } from 'react';
 import { Fragment } from 'react/jsx-runtime';
 const { Text, Link } = Typography;
 
