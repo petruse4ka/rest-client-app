@@ -8,6 +8,20 @@
     "signIn": "Войти",
     "signUp": "Регистрация"
   },
+  "RestClient": {
+    "title": "REST клиент",
+    "method": "Метод",
+    "methodRequired": "Пожалуйста, выберите метод",
+    "url": "URL",
+    "urlRequired": "Пожалуйста, введите URL",
+    "urlPlaceholder": "Введите URL API",
+    "sendRequest": "Отправить запрос",
+    "response": "Ответ",
+    "status": "Статус",
+    "loading": "Загрузка...",
+    "error": "Ошибка",
+    "errorMessage": "Запрос не выполнен"
+  },
   "NotFound": {
     "title": "Страница не найдена",
     "messages": [

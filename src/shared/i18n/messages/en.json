@@ -8,6 +8,20 @@
     "signIn": "Sign In",
     "signUp": "Sign Up"
   },
+  "RestClient": {
+    "title": "REST Client",
+    "method": "Method",
+    "methodRequired": "Please select a method",
+    "url": "URL",
+    "urlRequired": "Please enter a URL",
+    "urlPlaceholder": "Enter API endpoint URL",
+    "sendRequest": "Send Request",
+    "response": "Response",
+    "status": "Status",
+    "loading": "Loading...",
+    "error": "Error",
+    "errorMessage": "Request failed"
+  },
   "NotFound": {
     "title": "Page Not Found",
     "messages": [
