@@ -1,5 +1,5 @@
 import { beforeEach } from 'vitest';
-import { localStorageController } from '../localstorage-controller';
+import { localStorageController } from '../local-storage-controller';
 
 describe('Tests for localStorage controller', () => {
   beforeEach(() => {
@@ -46,7 +46,7 @@ describe('Tests for localStorage controller', () => {
 
     localStorage.setItem(key, 'test value');
 
-    localStorageController.delete(key);
+    localStorageController.remove(key);
     expect(localStorage.getItem(key)).toBeNull();
   });
 });

@@ -6,16 +6,21 @@ export const localStorageController = {
   },
 
   get(key: string) {
-    const value = window.localStorage.getItem(key);
+    try {
+      const value = window.localStorage.getItem(key);
 
-    if (value) {
-      return JSON.parse(value);
+      if (value) {
+        return JSON.parse(value);
+      }
+
+      return null;
+    } catch (e) {
+      console.error(e);
+      return null;
     }
-
-    return null;
   },
 
-  delete(key: string) {
+  remove(key: string) {
     window.localStorage.removeItem(key);
   },
 };
