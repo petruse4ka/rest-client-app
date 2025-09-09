@@ -117,7 +117,8 @@ export default function RestClientPage() {
             <Card data-testid="response-card">
               <Title level={2}>{t('response')}</Title>
               <Text>
-                {t('status')}: {response.status} {response.statusText}
+                {t('status')}: {(response.data as ApiResponse).status || response.status}{' '}
+                {(response.data as ApiResponse).statusText || response.statusText}
               </Text>
               <TextArea
                 value={JSON.stringify(response.data, null, 2)}

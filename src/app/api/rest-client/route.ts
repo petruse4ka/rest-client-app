@@ -34,20 +34,11 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    if (error instanceof SyntaxError) {
+    if (error instanceof SyntaxError || error instanceof TypeError) {
       return NextResponse.json({
-        error: 'Invalid JSON in request body',
+        error: error.message,
         status: 400,
-        statusText: 'Bad Request',
-        data: null,
-      });
-    }
-
-    if (error instanceof TypeError) {
-      return NextResponse.json({
-        error: 'Invalid request data format',
-        status: 400,
-        statusText: 'Bad Request',
+        statusText: error.name,
         data: null,
       });
     }
@@ -55,7 +46,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       error: error instanceof Error ? error.message : 'Unknown error occurred',
       status: 500,
-      statusText: 'Internal Server Error',
+      statusText: error instanceof Error ? error.name : 'Error',
       data: null,
     });
   }
