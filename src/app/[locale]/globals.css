@@ -83,11 +83,3 @@
     font-size: 20px;
   }
 }
-
-.ant-input:focus,
-.ant-input-focused,
-.ant-input-affix-wrapper:focus,
-.ant-input-affix-wrapper-focused {
-  box-shadow: none !important;
-  outline: none !important;
-}

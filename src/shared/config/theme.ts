@@ -62,6 +62,10 @@ export const lightTheme = {
     Card: {
       colorBgContainer: seanceColors[100],
     },
+    Input: {
+      activeShadow: 0,
+      errorActiveShadow: 0,
+    },
   },
 };
 
@@ -128,6 +132,10 @@ export const darkTheme = {
     },
     Card: {
       colorBgContainer: zincColors[900],
+    },
+    Input: {
+      activeShadow: 0,
+      errorActiveShadow: 0,
     },
   },
 };
