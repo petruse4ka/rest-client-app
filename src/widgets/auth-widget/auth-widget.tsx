@@ -21,7 +21,6 @@ export function AuthWidget() {
   const t = useTranslations('Auth');
 
   const loginActive = pathname?.includes('/sign-in');
-  const signupActive = pathname?.includes('/sign-up');
 
   const value = pathname.includes('/sign-in') ? 'login' : 'signup';
 
@@ -57,7 +56,7 @@ export function AuthWidget() {
 
         <Title level={3}>{t(loginActive ? 'titles.login' : 'titles.signup')}</Title>
 
-        {signupActive ? <SignUpForm /> : <SignInForm />}
+        {loginActive ? <SignInForm /> : <SignUpForm />}
 
         <Flex justify="center">
           <Text type="secondary">
