@@ -8,7 +8,7 @@ import { useState } from 'react';
 const { Title, Text } = Typography;
 
 export function HeroSection() {
-  const [isLogin] = useState(true);
+  const [isLogin] = useState(false);
   const links = isLogin ? navLinks.slice(1) : authLinks;
   const t = useTranslations('Hero');
   const navt = useTranslations('NavInfo');

@@ -27,11 +27,11 @@ export const courseLinks = [
 
 export const authLinks = [
   {
-    href: '/',
+    href: '/sign-in',
     label: 'signIn',
   },
   {
-    href: '/',
+    href: '/sign-up',
     label: 'signUp',
   },
 ];
