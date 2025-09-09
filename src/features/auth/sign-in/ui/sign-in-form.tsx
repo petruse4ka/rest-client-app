@@ -4,11 +4,12 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from '@/shared/i18n/navigation';
 import { buildSignInRules } from '../model/shema';
-import { useSignIn } from '../model/use-sign-in';
+
 import { mapSignInError } from '@/shared/api/firebase/map-sign-in-errors';
 
 import { Button, Form, Input, Typography } from 'antd';
 import Password from 'antd/es/input/Password';
+import { apiSignIn } from '@/shared/api/firebase/auth';
 
 const { Item } = Form;
 const { Text } = Typography;
@@ -24,13 +25,15 @@ export function SignInForm() {
   const rules = buildSignInRules(t);
   const router = useRouter();
 
-  const { mutate, loading } = useSignIn();
+  const [loading, setLoading] = useState(false);
   const [apiError, setApiError] = useState<string | null>(null);
 
   const onFinish = async (values: FieldType) => {
+    setApiError(null);
+    setLoading(true);
     try {
       setApiError(null);
-      await mutate({
+      await apiSignIn({
         email: values.email!,
         password: values.password!,
       });
@@ -46,6 +49,8 @@ export function SignInForm() {
       } else {
         setApiError(msg);
       }
+    } finally {
+      setLoading(false);
     }
   };
 

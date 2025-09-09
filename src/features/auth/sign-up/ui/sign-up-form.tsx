@@ -4,11 +4,13 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from '@/shared/i18n/navigation';
 import { buildSignUpRules } from '../model/schema';
-import { useSignUp } from '../model/use-sign-up';
+import { apiSignUp } from '@/shared/api/firebase/auth';
 import { mapSignUpError } from '@/shared/api/firebase/map-sign-up-error';
 
 import { Button, Form, Input, Typography } from 'antd';
 import Password from 'antd/es/input/Password';
+
+import { updateProfile } from 'firebase/auth';
 
 const { Item } = Form;
 const { Text } = Typography;
@@ -26,29 +28,23 @@ export function SignUpForm() {
   const rules = buildSignUpRules(form, t);
   const router = useRouter();
 
-  const { mutate, loading } = useSignUp();
+  const [loading, setLoading] = useState(false);
   const [apiError, setApiError] = useState<string | null>(null);
 
-  const onFinish = async (values: FieldType) => {
+  const onFinish = async (v: FieldType) => {
+    setApiError(null);
+    setLoading(true);
     try {
-      setApiError(null);
-      await mutate({
-        email: values.email!,
-        password: values.password!,
-        name: values.username,
-      });
-
+      const cred = await apiSignUp({ email: v.email!, password: v.password! });
+      await updateProfile(cred.user, { displayName: v.username });
       form.resetFields(['username', 'email', 'password', 'confirmPassword']);
       router.push('/');
     } catch (e) {
       const { field, key } = mapSignUpError(e);
-      const errorMsg = t(`apiErrors.${key}`);
-
-      if (field) {
-        form.setFields([{ name: field, errors: [errorMsg] }]);
-      } else {
-        setApiError(errorMsg);
-      }
+      const msg = t(`apiErrors.${key}`);
+      field ? form.setFields([{ name: field, errors: [msg] }]) : setApiError(msg);
+    } finally {
+      setLoading(false);
     }
   };
 
