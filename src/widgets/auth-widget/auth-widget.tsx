@@ -13,6 +13,8 @@ import { cardStyles, flexWrapperStyles } from './auth-widget.styles';
 
 const { Title, Text } = Typography;
 
+const { Group } = Radio;
+
 export function AuthWidget() {
   const pathname = usePathname();
   const router = useRouter();
@@ -44,7 +46,7 @@ export function AuthWidget() {
     >
       <Flex vertical style={{ ...flexWrapperStyles }}>
         <Flex justify="flex-end" style={{ marginBottom: 12 }}>
-          <Radio.Group
+          <Group
             value={value}
             optionType="button"
             buttonStyle="solid"
@@ -55,7 +57,7 @@ export function AuthWidget() {
           >
             <Radio.Button value="login">{t('tabs.login')}</Radio.Button>
             <Radio.Button value="signup">{t('tabs.signup')}</Radio.Button>
-          </Radio.Group>
+          </Group>
         </Flex>
 
         <Title level={3}>{t(loginActive ? 'titles.login' : 'titles.signup')}</Title>
