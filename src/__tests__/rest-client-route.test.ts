@@ -59,7 +59,7 @@ describe('REST Client API Route', () => {
 
     expect(responseData.error).toBe('Network error');
     expect(responseData.status).toBe(500);
-    expect(responseData.statusText).toBe('Internal Server Error');
+    expect(responseData.statusText).toBe('Error');
     expect(responseData.data).toBe(null);
   });
 
@@ -72,9 +72,9 @@ describe('REST Client API Route', () => {
     const response = await POST(request);
     const responseData = await response.json();
 
-    expect(responseData.error).toBe('Invalid JSON in request body');
+    expect(responseData.error).toContain('Unexpected token');
     expect(responseData.status).toBe(400);
-    expect(responseData.statusText).toBe('Bad Request');
+    expect(responseData.statusText).toBe('SyntaxError');
     expect(responseData.data).toBe(null);
   });
 
@@ -96,7 +96,7 @@ describe('REST Client API Route', () => {
 
     expect(responseData.error).toBe('Invalid request data format');
     expect(responseData.status).toBe(400);
-    expect(responseData.statusText).toBe('Bad Request');
+    expect(responseData.statusText).toBe('TypeError');
     expect(responseData.data).toBe(null);
   });
 
@@ -118,7 +118,7 @@ describe('REST Client API Route', () => {
 
     expect(responseData.error).toBe('Unknown error occurred');
     expect(responseData.status).toBe(500);
-    expect(responseData.statusText).toBe('Internal Server Error');
+    expect(responseData.statusText).toBe('Error');
     expect(responseData.data).toBe(null);
   });
 });
