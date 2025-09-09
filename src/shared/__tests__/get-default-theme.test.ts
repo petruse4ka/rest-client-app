@@ -1,4 +1,4 @@
-import getDefaultTheme from '@/shared/utils/get-default-theme';
+import { getDefaultTheme } from '@/shared/utils/get-default-theme';
 import { test, expect, vi } from 'vitest';
 
 describe('getDefaultTheme', () => {
