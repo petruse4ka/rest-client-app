@@ -40,7 +40,7 @@ export default function RestClientPage() {
     <Content>
       <Flex vertical align="center">
         <Space direction="vertical" size="large" align="center">
-          <Title>{t('title')}</Title>
+          <Title data-testid="rest-client-title">{t('title')}</Title>
 
           <Card>
             <Form
@@ -58,7 +58,7 @@ export default function RestClientPage() {
                   label={t('method')}
                   rules={[{ required: true, message: t('methodRequired') }]}
                 >
-                  <Select>
+                  <Select data-testid="method-select">
                     <Select.Option value={HttpMethod.GET}>{HttpMethod.GET}</Select.Option>
                     <Select.Option value={HttpMethod.POST}>{HttpMethod.POST}</Select.Option>
                     <Select.Option value={HttpMethod.PUT}>{HttpMethod.PUT}</Select.Option>
@@ -75,7 +75,7 @@ export default function RestClientPage() {
                   rules={[{ required: true, message: t('urlRequired') }]}
                   style={{ flex: 1 }}
                 >
-                  <Input placeholder={t('urlPlaceholder')} />
+                  <Input data-testid="url-input" placeholder={t('urlPlaceholder')} />
                 </Form.Item>
 
                 <Form.Item>
@@ -85,6 +85,7 @@ export default function RestClientPage() {
                     loading={loading}
                     icon={<SendOutlined />}
                     style={{ border: 'none' }}
+                    data-testid="send-button"
                   >
                     {t('sendRequest')}
                   </Button>
@@ -96,7 +97,7 @@ export default function RestClientPage() {
           {loading && (
             <Card>
               <Flex justify="center" align="center" style={{ padding: '50px' }}>
-                <Spin size="large" tip={t('loading')}>
+                <Spin size="large" tip={t('loading')} data-testid="loading-spinner">
                   <div style={{ padding: '50px' }} />
                 </Spin>
               </Flex>
@@ -104,7 +105,7 @@ export default function RestClientPage() {
           )}
 
           {error && (
-            <Card>
+            <Card data-testid="error-card">
               <Title level={2} style={{ color: '#ff4d4f' }}>
                 {t('error')}
               </Title>
@@ -113,7 +114,7 @@ export default function RestClientPage() {
           )}
 
           {response && (
-            <Card>
+            <Card data-testid="response-card">
               <Title level={2}>{t('response')}</Title>
               <Text>
                 {t('status')}: {response.status} {response.statusText}
