@@ -24,3 +24,14 @@ export const courseLinks = [
     label: 'Course task',
   },
 ];
+
+export const authLinks = [
+  {
+    href: '/',
+    label: 'signIn',
+  },
+  {
+    href: '/',
+    label: 'signUp',
+  },
+];
