@@ -1,4 +1,4 @@
-export default function getRandomMessage(currentMessage: string, messages: string[]) {
+export function getRandomMessage(currentMessage: string, messages: string[]) {
   if (messages.length === 0) {
     return currentMessage;
   }

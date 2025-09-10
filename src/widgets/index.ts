@@ -1,2 +1,2 @@
-export { HeaderApp } from './header-app';
-export { FooterApp } from './footer-app';
+export { HeaderApp } from './header';
+export { FooterApp } from './footer';

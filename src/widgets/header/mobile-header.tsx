@@ -1,7 +1,7 @@
 import { MenuOutlined } from '@ant-design/icons';
 import { Button, Drawer, Flex, Space } from 'antd';
 import InterfaceSettings from './interface-settings';
-import Navigation from './navigation-app';
+import Navigation from './navigation';
 import AuthControls from './auth-controls';
 import { useState } from 'react';
 import Logo from './logo';
