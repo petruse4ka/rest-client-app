@@ -82,7 +82,6 @@ export function SignUpForm() {
             <Button
               type="primary"
               htmlType="submit"
-              size="large"
               block
               loading={loading}
               disabled={!hasTouched || hasErrors}
