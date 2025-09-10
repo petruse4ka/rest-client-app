@@ -1,10 +1,10 @@
 import { MenuOutlined } from '@ant-design/icons';
 import { Button, Drawer, Flex, Space } from 'antd';
-import InterfaceSettings from './InterfaceSettings';
-import Navigation from './Navigation';
+import InterfaceSettings from './interface-settings';
+import Navigation from './navigation';
 import AuthControls from './auth-controls';
 import { useState } from 'react';
-import Logo from './Logo';
+import Logo from './logo';
 
 export default function MobileHeader({ isLogin }: { isLogin: boolean }) {
   const [drawer, setDrawer] = useState(false);

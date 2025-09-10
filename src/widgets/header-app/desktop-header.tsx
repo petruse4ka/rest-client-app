@@ -1,8 +1,8 @@
 import { Col, Flex, Row } from 'antd';
-import InterfaceSettings from './InterfaceSettings';
-import Navigation from './Navigation';
+import InterfaceSettings from './interface-settings';
+import Navigation from './navigation';
 import AuthControls from './auth-controls';
-import Logo from './Logo';
+import Logo from './logo';
 
 export default function DesktopHeader({ isLogin }: { isLogin: boolean }) {
   return (
