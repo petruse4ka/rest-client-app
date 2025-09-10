@@ -29,10 +29,9 @@ export function SignInForm() {
   const [apiError, setApiError] = useState<string | null>(null);
 
   const onFinish = async (values: FieldType) => {
-    setApiError(null);
-    setLoading(true);
     try {
       setApiError(null);
+      setLoading(true);
       await apiSignIn({
         email: values.email!,
         password: values.password!,

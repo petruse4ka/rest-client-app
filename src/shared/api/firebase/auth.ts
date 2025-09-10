@@ -8,10 +8,9 @@ import {
   signOut,
 } from 'firebase/auth';
 
-export type SignUpPayload = { email: string; password: string };
-export type SignInPayload = { email: string; password: string };
+export type AuthPayload = { email: string; password: string };
 
-export async function apiSignUp({ email, password }: SignUpPayload): Promise<UserCredential> {
+export async function apiSignUp({ email, password }: AuthPayload): Promise<UserCredential> {
   return createUserWithEmailAndPassword(auth, email, password);
 }
 
@@ -21,7 +20,7 @@ export async function apiSignUpWithGooglePopup(): Promise<UserCredential> {
   return signInWithPopup(auth, provider);
 }
 
-export async function apiSignIn({ email, password }: SignInPayload): Promise<UserCredential> {
+export async function apiSignIn({ email, password }: AuthPayload): Promise<UserCredential> {
   return signInWithEmailAndPassword(auth, email, password);
 }
 
