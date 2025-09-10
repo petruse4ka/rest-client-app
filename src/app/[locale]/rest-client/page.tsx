@@ -27,7 +27,12 @@ export default function RestClientPage() {
 
     try {
       const response = await axios.post('/api/rest-client', values);
-      setResponse(response);
+
+      if (response.data.error) {
+        setError(response.data.error);
+      } else {
+        setResponse(response);
+      }
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : t('errorMessage');
       setError(errorMessage);
@@ -117,8 +122,8 @@ export default function RestClientPage() {
             <Card data-testid="response-card">
               <Title level={2}>{t('response')}</Title>
               <Text>
-                {t('status')}: {(response.data as ApiResponse).status || response.status}{' '}
-                {(response.data as ApiResponse).statusText || response.statusText}
+                {t('status')}: {(response.data as ApiResponse).status}{' '}
+                {(response.data as ApiResponse).statusText}
               </Text>
               <TextArea
                 value={JSON.stringify(response.data, null, 2)}

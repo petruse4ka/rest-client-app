@@ -3,6 +3,7 @@
 import { RequestBody } from '@/types/interfaces';
 import { NextRequest, NextResponse } from 'next/server';
 import axios from 'axios';
+import getReadableErrorMessage from '@/shared/utils/get-readable-error-message';
 
 export async function POST(request: NextRequest) {
   try {
@@ -25,14 +26,16 @@ export async function POST(request: NextRequest) {
       statusText: response.statusText,
     });
   } catch (error) {
-    if (axios.isAxiosError(error)) {
+    if (axios.isAxiosError(error) && error.response !== undefined) {
       return NextResponse.json({
-        data: error.response?.data || null,
-        status: error.response?.status || 500,
-        statusText: error.response?.statusText || 'Internal Server Error',
+        data: error.response.data,
+        status: error.response.status,
+        statusText: error.response.statusText,
       });
     }
 
-    throw new Error(error instanceof Error ? error.message : 'Unknown error occurred');
+    return NextResponse.json({
+      error: getReadableErrorMessage(error),
+    });
   }
 }

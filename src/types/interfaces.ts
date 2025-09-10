@@ -8,8 +8,8 @@ export interface RequestBody {
 }
 
 export interface ApiResponse {
-  data: unknown;
-  status: number;
-  statusText: string;
+  data?: unknown;
+  status?: number;
+  statusText?: string;
   error?: string;
 }
