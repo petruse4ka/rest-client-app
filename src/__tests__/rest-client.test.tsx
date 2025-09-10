@@ -61,6 +61,9 @@ describe('REST Client Page', () => {
 
     render(<RestClientPage />);
 
+    const urlInput = screen.getByTestId('url-input');
+    fireEvent.change(urlInput, { target: { value: 'https://api.example.com/test' } });
+
     const sendButton = screen.getByTestId('send-button');
     fireEvent.click(sendButton);
 
@@ -77,6 +80,9 @@ describe('REST Client Page', () => {
 
     render(<RestClientPage />);
 
+    const urlInput = screen.getByTestId('url-input');
+    fireEvent.change(urlInput, { target: { value: 'https://api.example.com/test' } });
+
     const sendButton = screen.getByTestId('send-button');
     fireEvent.click(sendButton);
 
@@ -91,12 +97,36 @@ describe('REST Client Page', () => {
 
     render(<RestClientPage />);
 
+    const urlInput = screen.getByTestId('url-input');
+    fireEvent.change(urlInput, { target: { value: 'https://api.example.com/test' } });
+
     const sendButton = screen.getByTestId('send-button');
     fireEvent.click(sendButton);
 
     await waitFor(() => {
       expect(screen.getByTestId('error-card')).toBeInTheDocument();
       expect(screen.getByText(enMessages.RestClient.error)).toBeInTheDocument();
+    });
+  });
+
+  test('displays error when API returns error field in response', async () => {
+    const mockResponse = {
+      data: { error: 'API returned an error message' },
+    };
+    mockedAxios.post.mockResolvedValue(mockResponse);
+
+    render(<RestClientPage />);
+
+    const urlInput = screen.getByTestId('url-input');
+    fireEvent.change(urlInput, { target: { value: 'https://api.example.com/test' } });
+
+    const sendButton = screen.getByTestId('send-button');
+    fireEvent.click(sendButton);
+
+    await waitFor(() => {
+      expect(screen.getByTestId('error-card')).toBeInTheDocument();
+      expect(screen.getByText(enMessages.RestClient.error)).toBeInTheDocument();
+      expect(screen.getByDisplayValue('API returned an error message')).toBeInTheDocument();
     });
   });
 });

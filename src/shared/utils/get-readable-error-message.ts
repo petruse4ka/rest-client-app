@@ -1,32 +1,34 @@
+import { ERROR_MESSAGES } from '@/constants';
+
 export default function getReadableErrorMessage(error: unknown): string {
   if (!(error instanceof Error)) {
-    return 'Unknown error occurred';
+    return ERROR_MESSAGES.UNKNOWN_ERROR;
   }
 
   const message = error.message.toLowerCase();
 
   if (message.includes('enotfound') || message.includes('getaddrinfo')) {
-    return 'Unable to connect to the server. Please check the URL and try again.';
+    return ERROR_MESSAGES.DNS_ERROR;
   }
 
   if (message.includes('econnrefused') || message.includes('connection refused')) {
-    return 'Connection refused. The server may be down or the URL is incorrect.';
+    return ERROR_MESSAGES.CONNECTION_REFUSED_ERROR;
   }
 
   if (message.includes('timeout') || message.includes('etimedout')) {
-    return 'Request timed out. The server took too long to respond.';
+    return ERROR_MESSAGES.TIMEOUT_ERROR;
   }
 
   if (message.includes('cors') || message.includes('cross-origin')) {
-    return 'CORS error. The server does not allow requests from this domain.';
+    return ERROR_MESSAGES.CORS_ERROR;
   }
 
   if (message.includes('network error') || message.includes('err_network')) {
-    return 'Network error. Please check your internet connection.';
+    return ERROR_MESSAGES.NETWORK_ERROR;
   }
 
   if (message.includes('certificate') || message.includes('ssl') || message.includes('tls')) {
-    return "SSL/TLS error. There may be a problem with the server's security certificate.";
+    return ERROR_MESSAGES.SSL_ERROR;
   }
 
   return error.message;

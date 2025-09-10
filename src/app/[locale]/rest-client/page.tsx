@@ -54,7 +54,7 @@ export default function RestClientPage() {
               onFinish={handleSubmit}
               initialValues={{
                 method: HttpMethod.GET,
-                url: 'https://api.unsplash.com/search/photos?query=test&client_id=FxZY4UTxT-kJuANjPorZ5zeArfqlEpNCLEk4ejZHB-w&per_page=20&page=1',
+                url: '',
               }}
             >
               <Flex gap="large" align="end">

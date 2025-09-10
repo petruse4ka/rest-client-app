@@ -2,6 +2,7 @@ import { POST } from '@/app/api/rest-client/route';
 import { NextRequest } from 'next/server';
 import axios, { AxiosError, AxiosHeaders } from 'axios';
 import { HttpMethod } from '@/types/types';
+import { ERROR_MESSAGES } from '@/constants';
 
 vi.mock('axios');
 const mockedAxios = vi.mocked(axios);
@@ -44,7 +45,6 @@ describe('REST Client API Route', () => {
 
   test('handles axios errors without response', async () => {
     const error = new Error('Network error');
-    // Mock axios.isAxiosError to return true, but error has no response property
 
     vi.mocked(axios.isAxiosError).mockReturnValue(true);
     mockedAxios.mockImplementation(() => Promise.reject(error));
@@ -60,12 +60,11 @@ describe('REST Client API Route', () => {
     const response = await POST(request);
     const responseData = await response.json();
 
-    expect(responseData.error).toBe('Network error. Please check your internet connection.');
+    expect(responseData.error).toBe(ERROR_MESSAGES.NETWORK_ERROR);
   });
 
   test('handles DNS errors with readable message', async () => {
     const error = new Error('getaddrinfo ENOTFOUND api.unspsdflash.com');
-    // Mock axios.isAxiosError to return true, but error has no response property
 
     vi.mocked(axios.isAxiosError).mockReturnValue(true);
     mockedAxios.mockImplementation(() => Promise.reject(error));
@@ -81,9 +80,7 @@ describe('REST Client API Route', () => {
     const response = await POST(request);
     const responseData = await response.json();
 
-    expect(responseData.error).toBe(
-      'Unable to connect to the server. Please check the URL and try again.'
-    );
+    expect(responseData.error).toBe(ERROR_MESSAGES.DNS_ERROR);
   });
 
   test('handles axios errors with response (4xx/5xx)', async () => {
