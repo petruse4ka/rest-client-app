@@ -1,4 +1,4 @@
-import getRandomMessage from '../utils/get-random-message';
+import { getRandomMessage } from '../utils';
 
 describe('getRandomMessage', () => {
   const testMessages = ['Message 1', 'Message 2', 'Message 3', 'Message 4', 'Message 5'];

@@ -1,3 +1,3 @@
 export { HeaderApp } from './header';
-export { FooterApp } from './Footer';
+export { FooterApp } from './footer';
 export { AuthWidget } from './auth-widget/auth-widget';

@@ -7,6 +7,7 @@ import DesktopHeader from './desktop-header';
 import MobileHeader from './mobile-header';
 import { onAuthStateChanged, type User } from 'firebase/auth';
 import { auth } from '@/shared/config/firebase';
+
 const { useBreakpoint } = Grid;
 
 const HeaderStyle: CSSProperties = {
