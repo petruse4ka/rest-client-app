@@ -1,6 +1,6 @@
 'use client';
 
-import { Flex, Form, Input, Space } from 'antd';
+import { Flex, Form, Input, Popconfirm, Space } from 'antd';
 import { Content } from 'antd/es/layout/layout';
 import Table, { TableProps } from 'antd/es/table';
 import Title from 'antd/es/typography/Title';
@@ -68,6 +68,11 @@ export default function VariablesPage() {
     }
   };
 
+  const deleteItem = (key: React.Key) => {
+    const newData = data.filter((item) => item.key !== key);
+    setData(newData);
+  };
+
   const columns = [
     {
       title: 'Variable',
@@ -98,7 +103,9 @@ export default function VariablesPage() {
             <Link onClick={() => editItem(record)}>
               <EditOutlined />
             </Link>
-            <DeleteOutlined style={{ cursor: 'pointer' }} />
+            <Popconfirm title="Sure to delete?" onConfirm={() => deleteItem(record.key)}>
+              <DeleteOutlined style={{ cursor: 'pointer' }} />
+            </Popconfirm>
           </Space>
         );
       },
