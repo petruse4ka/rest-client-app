@@ -3,8 +3,11 @@
 import { Grid, theme } from 'antd';
 import { Header } from 'antd/es/layout/layout';
 import { CSSProperties, useEffect, useState } from 'react';
-import DesktopHeader from './DesktopHeader';
-import MobileHeader from './MobileHeader';
+import DesktopHeader from './desktop-header';
+import MobileHeader from './mobile-header';
+import { onAuthStateChanged, type User } from 'firebase/auth';
+import { auth } from '@/shared/config/firebase';
+
 const { useBreakpoint } = Grid;
 
 const HeaderStyle: CSSProperties = {
@@ -15,11 +18,22 @@ const HeaderStyle: CSSProperties = {
 };
 
 export function HeaderApp() {
-  const [isLogin] = useState<boolean>(false);
+  const [isLogin, setIsLogin] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+  console.log(user);
 
   const [scrolled, setScrolled] = useState(false);
   const { token } = theme.useToken();
   const screens = useBreakpoint();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      setUser(firebaseUser);
+      setIsLogin(!!firebaseUser);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   useEffect(() => {
     const onScroll = () => {

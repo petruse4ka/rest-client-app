@@ -7,7 +7,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect, CSSProperties } from 'react';
 import { useTranslations } from 'next-intl';
-import getRandomMessage from '@/shared/utils/get-random-message';
+import { getRandomMessage } from '@/shared/utils';
 
 const { Title, Text } = Typography;
 const { Content } = Layout;

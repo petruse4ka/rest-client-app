@@ -70,6 +70,13 @@ export const lightTheme = {
     Divider: {
       colorSplit: orangeColors[700],
     },
+    Card: {
+      colorBgContainer: seanceColors[100],
+    },
+    Input: {
+      activeShadow: '0',
+      errorActiveShadow: '0',
+    },
   },
 };
 
@@ -146,7 +153,11 @@ export const darkTheme = {
       colorSplit: orangeColors[100],
     },
     Card: {
-      colorBorderSecondary: orangeColors[500],
+      colorBgContainer: zincColors[900],
+    },
+    Input: {
+      activeShadow: '0',
+      errorActiveShadow: '0',
     },
   },
 };

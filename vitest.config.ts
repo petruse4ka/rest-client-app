@@ -7,8 +7,14 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  esbuild: {
+    jsx: 'automatic',
+  },
   test: {
     environment: 'jsdom',
+    typecheck: {
+      tsconfig: './tsconfig.test.json',
+    },
     globals: true,
     watch: false,
     setupFiles: ['./vitest.setup.ts'],
