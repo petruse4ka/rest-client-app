@@ -1,8 +1,10 @@
-import { Button, Flex } from 'antd';
+import { Button, Flex, Typography } from 'antd';
 import { useTranslations } from 'next-intl';
 import { useRouter } from '@/shared/i18n/navigation';
 import { useState } from 'react';
 import { apiSignOut } from '@/shared/api/firebase/auth';
+
+const { Text } = Typography;
 
 export default function AuthControls({ isLogin }: { isLogin: boolean }) {
   const t = useTranslations('NavInfo');
@@ -22,21 +24,24 @@ export default function AuthControls({ isLogin }: { isLogin: boolean }) {
     }
   };
   return (
-    <>
+    <Flex gap="middle" align="center">
       {isLogin ? (
-        <Button type="primary" onClick={handleSignOut} loading={loading}>
-          {t('signOut')}
-        </Button>
+        <>
+          <Text>User name</Text>
+          <Button size="small" type="primary" onClick={handleSignOut} loading={loading}>
+            {t('signOut')}
+          </Button>
+        </>
       ) : (
-        <Flex gap="middle">
-          <Button type="primary" onClick={goSignIn}>
+        <>
+          <Button size="small" type="primary" onClick={goSignIn}>
             {t('signIn')}
           </Button>
-          <Button type="primary" onClick={goSignUp}>
+          <Button size="small" type="primary" onClick={goSignUp}>
             {t('signUp')}
           </Button>
-        </Flex>
+        </>
       )}
-    </>
+    </Flex>
   );
 }
