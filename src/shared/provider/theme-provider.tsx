@@ -2,7 +2,7 @@
 
 import { ThemeContext } from '@/context/theme-context';
 import { ReactNode, useEffect, useState } from 'react';
-import getDefaultTheme from '../utils/get-default-theme';
+import { getDefaultTheme } from '../utils';
 import { ThemeValue } from '@/types/types';
 import { ConfigProvider } from 'antd';
 import { darkTheme, lightTheme } from '../config';

@@ -1,5 +1,4 @@
-import { getDefaultTheme } from '../utils';
-import { test, expect, vi } from 'vitest';
+import { getDefaultTheme } from '@/shared/utils';
 
 describe('getDefaultTheme', () => {
   test('returns dark when system prefers dark', () => {
@@ -14,10 +13,10 @@ describe('getDefaultTheme', () => {
     expect(result).toBe('dark');
   });
 
-  test('returns light when system does not prefer dark', () => {
+  test('returns light when system prefers light', () => {
     Object.defineProperty(window, 'matchMedia', {
       value: vi.fn().mockImplementation((query) => ({
-        matches: false,
+        matches: query === 'light',
       })),
       writable: true,
     });
