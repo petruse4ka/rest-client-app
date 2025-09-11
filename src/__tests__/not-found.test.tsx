@@ -17,19 +17,6 @@ describe('NotFound Page', () => {
     expect(screen.getByTestId('homepage-link')).toBeInTheDocument();
   });
 
-  test('buttons are clickable', () => {
-    render(<NotFound />);
-
-    const randomButton = screen.getByTestId('random-message-button');
-    const homepageButton = screen.getByTestId('homepage-button');
-
-    expect(randomButton).not.toBeDisabled();
-    expect(homepageButton).not.toBeDisabled();
-
-    expect(() => fireEvent.click(randomButton)).not.toThrow();
-    expect(() => fireEvent.click(homepageButton)).not.toThrow();
-  });
-
   test('displays translated content', () => {
     render(<NotFound />);
 
@@ -45,5 +32,18 @@ describe('NotFound Page', () => {
     const messageText = messageElement.textContent;
 
     expect(enMessages.NotFound.messages).toContain(messageText);
+  });
+
+  test('buttons are clickable', () => {
+    render(<NotFound />);
+
+    const randomButton = screen.getByTestId('random-message-button');
+    const homepageButton = screen.getByTestId('homepage-button');
+
+    expect(randomButton).not.toBeDisabled();
+    expect(homepageButton).not.toBeDisabled();
+
+    expect(() => fireEvent.click(randomButton)).not.toThrow();
+    expect(() => fireEvent.click(homepageButton)).not.toThrow();
   });
 });
