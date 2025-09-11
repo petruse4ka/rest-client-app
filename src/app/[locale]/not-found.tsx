@@ -79,12 +79,7 @@ export default function NotFound() {
             </Button>
 
             <Link href="/" data-testid="homepage-link">
-              <Button
-                data-testid="homepage-button"
-                type="primary"
-                icon={<HomeOutlined />}
-                style={{ border: 'none' }}
-              >
+              <Button data-testid="homepage-button" type="primary" icon={<HomeOutlined />}>
                 {t('returnToHomepage')}
               </Button>
             </Link>

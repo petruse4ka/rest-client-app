@@ -26,7 +26,7 @@ export function AboutCourseSection() {
       <Space>
         {courseLinks.map(({ href, label }, index) => (
           <Fragment key={label}>
-            <Link href={href} style={{ fontSize: '1.2rem' }}>
+            <Link target="_blank" href={href} style={{ fontSize: '1.2rem' }}>
               {t(label)}
             </Link>
             {index < courseLinks.length - 1 && <Divider type="vertical" />}

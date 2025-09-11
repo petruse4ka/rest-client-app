@@ -10,7 +10,7 @@ export function TeamSection() {
   const t = useTranslations('Team');
 
   return (
-    <Flex vertical align="center" gap={30} style={{ minHeight: '100svh' }}>
+    <Flex vertical align="center" justify="center" gap={30} style={{ minHeight: '100svh' }}>
       <Title level={2}>{t('title')}</Title>
       <Flex gap={20} vertical={!screens.lg}>
         {team.map((person) => (

@@ -118,6 +118,10 @@
   padding: 0px 20px;
 }
 
+.ant-btn-primary {
+  border: none;
+}
+
 .ant-card-body {
   height: calc(100% - 58px);
 }

@@ -33,7 +33,7 @@ export function HeroSection() {
       style={{ height: 'calc(100svh - 63px)', textAlign: 'center' }}
     >
       <Flex align="center" justify="center" vertical>
-        <Title>REST Client App</Title>
+        <Title>{t('title')}</Title>
         <Text style={{ fontSize: '1.5rem' }}>{t('subtitle')}</Text>
       </Flex>
       <Flex gap={20} wrap justify="center">
