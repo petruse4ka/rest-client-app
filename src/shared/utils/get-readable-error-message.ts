@@ -1,6 +1,6 @@
-import { ERROR_MESSAGES } from '@/constants';
+import { ERROR_MESSAGES } from '@/shared/constants';
 
-export default function getReadableErrorMessage(error: unknown): string {
+export function getReadableErrorMessage(error: unknown): string {
   if (!(error instanceof Error)) {
     return ERROR_MESSAGES.UNKNOWN_ERROR;
   }

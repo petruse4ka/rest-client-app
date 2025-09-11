@@ -3,13 +3,17 @@
 import { RequestBody } from '@/types/interfaces';
 import { NextRequest, NextResponse } from 'next/server';
 import axios from 'axios';
-import getReadableErrorMessage from '@/shared/utils/get-readable-error-message';
+import { getReadableErrorMessage } from '@/shared/utils';
 
 export async function POST(request: NextRequest) {
   try {
     const { method, url, headers = {}, data } = (await request.json()) as RequestBody;
 
-    const response = await axios({
+    const {
+      data: responseData,
+      status,
+      statusText,
+    } = await axios({
       method,
       url,
       headers: {
@@ -21,16 +25,18 @@ export async function POST(request: NextRequest) {
     });
 
     return NextResponse.json({
-      data: response.data,
-      status: response.status,
-      statusText: response.statusText,
+      data: responseData,
+      status,
+      statusText,
     });
   } catch (error) {
     if (axios.isAxiosError(error) && error.response !== undefined) {
+      const { data, status, statusText } = error.response;
+
       return NextResponse.json({
-        data: error.response.data,
-        status: error.response.status,
-        statusText: error.response.statusText,
+        data,
+        status,
+        statusText,
       });
     }
 

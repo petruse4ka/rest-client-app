@@ -12,6 +12,8 @@ import axios from 'axios';
 
 const { Title, Text } = Typography;
 const { TextArea } = Input;
+const { Option } = Select;
+const { Item } = Form;
 
 export default function RestClientPage() {
   const t = useTranslations('RestClient');
@@ -41,6 +43,8 @@ export default function RestClientPage() {
     }
   };
 
+  const httpMethods = Object.values(HttpMethod);
+
   return (
     <Content>
       <Flex vertical align="center">
@@ -58,32 +62,30 @@ export default function RestClientPage() {
               }}
             >
               <Flex gap="large" align="end">
-                <Form.Item
+                <Item
                   name="method"
                   label={t('method')}
                   rules={[{ required: true, message: t('methodRequired') }]}
                 >
                   <Select data-testid="method-select">
-                    <Select.Option value={HttpMethod.GET}>{HttpMethod.GET}</Select.Option>
-                    <Select.Option value={HttpMethod.POST}>{HttpMethod.POST}</Select.Option>
-                    <Select.Option value={HttpMethod.PUT}>{HttpMethod.PUT}</Select.Option>
-                    <Select.Option value={HttpMethod.DELETE}>{HttpMethod.DELETE}</Select.Option>
-                    <Select.Option value={HttpMethod.PATCH}>{HttpMethod.PATCH}</Select.Option>
-                    <Select.Option value={HttpMethod.HEAD}>{HttpMethod.HEAD}</Select.Option>
-                    <Select.Option value={HttpMethod.OPTIONS}>{HttpMethod.OPTIONS}</Select.Option>
+                    {httpMethods.map((method) => (
+                      <Option key={method} value={method}>
+                        {method}
+                      </Option>
+                    ))}
                   </Select>
-                </Form.Item>
+                </Item>
 
-                <Form.Item
+                <Item
                   name="url"
                   label={t('url')}
                   rules={[{ required: true, message: t('urlRequired') }]}
                   style={{ flex: 1 }}
                 >
                   <Input data-testid="url-input" placeholder={t('urlPlaceholder')} />
-                </Form.Item>
+                </Item>
 
-                <Form.Item>
+                <Item>
                   <Button
                     type="primary"
                     htmlType="submit"
@@ -94,7 +96,7 @@ export default function RestClientPage() {
                   >
                     {t('sendRequest')}
                   </Button>
-                </Form.Item>
+                </Item>
               </Flex>
             </Form>
           </Card>

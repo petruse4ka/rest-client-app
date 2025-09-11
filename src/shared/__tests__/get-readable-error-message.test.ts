@@ -1,5 +1,5 @@
 import getReadableErrorMessage from '../utils/get-readable-error-message';
-import { ERROR_MESSAGES } from '@/constants';
+import { ERROR_MESSAGES } from '@/shared/constants';
 
 describe('getReadableErrorMessage', () => {
   test('returns "Unknown error occurred" for non-Error objects', () => {

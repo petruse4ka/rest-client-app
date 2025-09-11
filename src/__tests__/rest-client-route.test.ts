@@ -2,7 +2,7 @@ import { POST } from '@/app/api/rest-client/route';
 import { NextRequest } from 'next/server';
 import axios, { AxiosError, AxiosHeaders } from 'axios';
 import { HttpMethod } from '@/types/types';
-import { ERROR_MESSAGES } from '@/constants';
+import { ERROR_MESSAGES } from '@/shared/constants';
 
 vi.mock('axios');
 const mockedAxios = vi.mocked(axios);
