@@ -71,6 +71,7 @@ export default function NotFound() {
             <Button
               data-testid="random-message-button"
               type="default"
+              size="small"
               icon={<ReloadOutlined />}
               onClick={() => setCurrentMessage(getRandomMessage(currentMessage, notFoundMessages))}
             >
@@ -78,13 +79,7 @@ export default function NotFound() {
             </Button>
 
             <Link href="/" data-testid="homepage-link">
-              <Button
-                data-testid="homepage-button"
-                type="primary"
-                size="large"
-                icon={<HomeOutlined />}
-                style={{ border: 'none' }}
-              >
+              <Button data-testid="homepage-button" type="primary" icon={<HomeOutlined />}>
                 {t('returnToHomepage')}
               </Button>
             </Link>

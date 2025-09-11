@@ -11,7 +11,7 @@ export default function Navigation() {
   const { themeValue } = useContext(ThemeContext);
   const pathname = usePathname();
   const screens = useBreakpoint();
-  const t = useTranslations('Header');
+  const t = useTranslations('NavInfo');
 
   return (
     <Flex gap="middle" vertical={!screens.md}>
