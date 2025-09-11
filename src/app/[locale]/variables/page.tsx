@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, Flex, Form, Input, Popconfirm, Space } from 'antd';
+import { Button, Empty, Flex, Form, Input, Popconfirm, Space, Typography } from 'antd';
 import { Content } from 'antd/es/layout/layout';
 import Table, { TableProps } from 'antd/es/table';
 import Title from 'antd/es/typography/Title';
@@ -32,7 +32,7 @@ const contentStyles: CSSProperties = {
 };
 
 export default function VariablesPage() {
-  const getInitialData = () => localStorageController.get('rest-variables');
+  const getInitialData = () => localStorageController.get('rest-variables') || [];
   const [form] = Form.useForm();
   const [data, setData] = useState<DataType[]>(getInitialData);
   const [isAddItem, setIsAddItem] = useState(false);
@@ -66,11 +66,15 @@ export default function VariablesPage() {
   };
 
   useEffect(() => {
-    const lastItem = data[data.length - 1];
-    const { variable, value } = lastItem;
-    const isNotEmpty = variable !== '' && value !== '';
-    if (isNotEmpty) {
-      localStorageController.set('rest-variables', data);
+    if (data.length > 0) {
+      const lastItem = data[data.length - 1];
+      const { variable, value } = lastItem;
+      const isNotEmpty = variable !== '' && value !== '';
+      if (isNotEmpty) {
+        localStorageController.set('rest-variables', data);
+      }
+    } else {
+      localStorage.removeItem('rest-variables');
     }
   }, [data]);
 
@@ -159,17 +163,27 @@ export default function VariablesPage() {
       <Flex vertical gap={20}>
         <Title>Variables</Title>
         <Form form={form}>
-          <Table
-            components={{
-              body: { cell: EditableCell },
-            }}
-            bordered
-            dataSource={data}
-            columns={mergedColumns}
-            pagination={false}
-          />
+          {data.length === 0 ? (
+            <Empty
+              description={<Typography.Text>List of variables is empty</Typography.Text>}
+            ></Empty>
+          ) : (
+            <Table
+              components={{
+                body: { cell: EditableCell },
+              }}
+              bordered
+              dataSource={data}
+              columns={mergedColumns}
+              pagination={false}
+            />
+          )}
         </Form>
-        <Button style={{ alignSelf: 'flex-end' }} onClick={addItem} disabled={isAddItem}>
+        <Button
+          style={data.length === 0 ? { alignSelf: 'center' } : { alignSelf: 'flex-end' }}
+          onClick={addItem}
+          disabled={isAddItem}
+        >
           Add new variable
         </Button>
       </Flex>
