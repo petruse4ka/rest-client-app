@@ -18,6 +18,8 @@ interface DataType {
 }
 
 interface EditableCellProps extends HTMLAttributes<HTMLElement> {
+  data: DataType[];
+  record: DataType;
   editing: boolean;
   dataIndex: string;
   title: string;
@@ -133,6 +135,7 @@ export default function VariablesPage() {
         dataIndex: col.dataIndex,
         title: col.title,
         editing: record.key === editingKey,
+        data,
       }),
     };
   });
@@ -175,7 +178,7 @@ export default function VariablesPage() {
 }
 
 function EditableCell(props: EditableCellProps) {
-  const { editing, dataIndex, title, children } = props;
+  const { data, record, editing, dataIndex, title, children } = props;
 
   return (
     <td>
@@ -187,6 +190,14 @@ function EditableCell(props: EditableCellProps) {
             {
               required: true,
               message: `Please Input ${title}!`,
+            },
+            {
+              validator: (_, value) => {
+                const isDuplicate = data.some(
+                  (item) => item.variable === value && item.key !== record.key
+                );
+                return isDuplicate ? Promise.reject('Variable must be unique') : Promise.resolve();
+              },
             },
           ]}
         >
