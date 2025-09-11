@@ -2,15 +2,15 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { updateProfile } from 'firebase/auth';
 import { useRouter } from '@/shared/i18n/navigation';
 import { buildSignUpRules } from '../model/schema';
 import { apiSignUp } from '@/shared/api/firebase/auth';
 import { mapSignUpError } from '@/shared/api/firebase/map-sign-up-error';
+import { finalizeLogin } from '@/shared/lib/auth/finalize-login';
 
 import { Button, Form, Input, Typography } from 'antd';
 import Password from 'antd/es/input/Password';
-
-import { updateProfile } from 'firebase/auth';
 
 const { Item } = Form;
 const { Text } = Typography;
@@ -37,6 +37,7 @@ export function SignUpForm() {
     try {
       const cred = await apiSignUp({ email: v.email!, password: v.password! });
       await updateProfile(cred.user, { displayName: v.username });
+      await finalizeLogin();
       form.resetFields(['username', 'email', 'password', 'confirmPassword']);
       router.push('/');
     } catch (e) {

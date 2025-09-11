@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { Link, usePathname, useRouter } from '@/shared/i18n/navigation';
 import { apiSignUpWithGooglePopup } from '@/shared/api/firebase/auth';
 import { mapGoogleAuthError } from '@/shared/api/firebase/map-google-error';
+import { finalizeLogin } from '@/shared/lib/auth/finalize-login';
 
 import { SignUpForm, SignInForm } from '@/features/auth/';
 import { Button, Card, Divider, Flex, Radio, Typography } from 'antd';
@@ -30,6 +31,7 @@ export function AuthWidget() {
     try {
       setApiError(null);
       await apiSignUpWithGooglePopup();
+      await finalizeLogin();
       router.push('/');
     } catch (e) {
       const { key } = mapGoogleAuthError(e);
