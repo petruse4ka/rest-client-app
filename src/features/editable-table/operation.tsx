@@ -1,6 +1,6 @@
 import { VariablesData } from '@/types/types';
 import { DeleteOutlined, EditOutlined, SaveOutlined } from '@ant-design/icons';
-import { Popconfirm, Space } from 'antd';
+import { Space } from 'antd';
 import Link from 'antd/es/typography/Link';
 
 interface TableOperationProps {
@@ -29,9 +29,7 @@ export default function TableOperation({
           <EditOutlined />
         </Link>
       )}
-      <Popconfirm title="Sure to delete?" onConfirm={() => deleteItem(record.key)}>
-        <DeleteOutlined style={{ cursor: 'pointer' }} />
-      </Popconfirm>
+      <DeleteOutlined style={{ cursor: 'pointer' }} onClick={() => deleteItem(record.key)} />
     </Space>
   );
 }

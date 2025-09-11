@@ -92,5 +92,15 @@
       "network": "Network error. Please try again.",
       "generic": "Failed to sign in. Please try again."
     }
+  },
+  "Variables": {
+    "title": "Variables",
+    "columns": {
+      "variable": "Variable",
+      "value": "Value",
+      "operation": "Operation"
+    },
+    "btn": "Add new variable",
+    "empty": "List of variables is empty"
   }
 }

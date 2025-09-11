@@ -4,9 +4,11 @@ import { Button, Empty, Flex, Form, Popconfirm, Space, Table, TableProps, Typogr
 import { useEffect, useState } from 'react';
 import EditableCell from './editable-cell';
 import TableOperation from './operation';
+import { useTranslations } from 'next-intl';
 const { Text } = Typography;
 
 export default function EditableTable() {
+  const t = useTranslations('Variables');
   const [form] = Form.useForm();
   const [data, setData] = useState<VariablesData[]>([]);
   const [isAddItem, setIsAddItem] = useState(false);
@@ -54,21 +56,21 @@ export default function EditableTable() {
 
   const columns = [
     {
-      title: 'Variable',
+      title: t('columns.variable'),
       dataIndex: 'variable',
       key: 'variable',
       width: '40%',
       editable: true,
     },
     {
-      title: 'Value',
+      title: t('columns.value'),
       dataIndex: 'value',
       key: 'value',
       width: '40%',
       editable: true,
     },
     {
-      title: 'Operation',
+      title: t('columns.operation'),
       dataIndex: 'operation',
       key: 'operation',
       width: '20%',
@@ -117,7 +119,7 @@ export default function EditableTable() {
     <Flex vertical gap={20}>
       <Form form={form}>
         {data.length === 0 ? (
-          <Empty description={<Text>List of variables is empty</Text>}></Empty>
+          <Empty description={<Text>{t('empty')}</Text>}></Empty>
         ) : (
           <Table
             components={{
@@ -135,7 +137,7 @@ export default function EditableTable() {
         onClick={addItem}
         disabled={isAddItem}
       >
-        Add new variable
+        {t('btn')}
       </Button>
     </Flex>
   );
