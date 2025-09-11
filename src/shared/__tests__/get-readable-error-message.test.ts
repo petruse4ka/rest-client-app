@@ -1,4 +1,4 @@
-import getReadableErrorMessage from '../utils/get-readable-error-message';
+import { getReadableErrorMessage } from '../utils';
 import { ERROR_MESSAGES } from '@/shared/constants';
 
 describe('getReadableErrorMessage', () => {

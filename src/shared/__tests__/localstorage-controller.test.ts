@@ -1,5 +1,5 @@
 import { beforeEach } from 'vitest';
-import { localStorageController } from '../local-storage-controller';
+import { localStorageController } from '../utils';
 
 describe('Tests for localStorage controller', () => {
   beforeEach(() => {
