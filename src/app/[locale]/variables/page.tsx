@@ -4,9 +4,10 @@ import { Button, Flex, Form, Input, Popconfirm, Space } from 'antd';
 import { Content } from 'antd/es/layout/layout';
 import Table, { TableProps } from 'antd/es/table';
 import Title from 'antd/es/typography/Title';
-import { CSSProperties, HTMLAttributes, useState } from 'react';
+import { CSSProperties, HTMLAttributes, useEffect, useState } from 'react';
 import { DeleteOutlined, EditOutlined, SaveOutlined } from '@ant-design/icons';
 import Link from 'antd/es/typography/Link';
+import { localStorageController } from '@/shared/utils';
 
 const { Item } = Form;
 
@@ -28,22 +29,10 @@ const contentStyles: CSSProperties = {
   textAlign: 'center',
 };
 
-const dataSource = [
-  {
-    key: 1,
-    variable: 'Mike',
-    value: '32',
-  },
-  {
-    key: 2,
-    variable: 'John',
-    value: '32',
-  },
-];
-
 export default function VariablesPage() {
+  const getInitialData = () => localStorageController.get('rest-variables');
   const [form] = Form.useForm();
-  const [data, setData] = useState<DataType[]>(dataSource);
+  const [data, setData] = useState<DataType[]>(getInitialData);
   const [isAddItem, setIsAddItem] = useState(false);
   const [editingKey, setEditingKey] = useState<number>(0);
 
@@ -53,23 +42,35 @@ export default function VariablesPage() {
   };
 
   const saveItem = async (key: React.Key) => {
-    const value = (await form.validateFields()) as DataType;
+    try {
+      const value = (await form.validateFields()) as DataType;
 
-    const newData = [...data];
-    console.log(newData);
-    const index = newData.findIndex((item) => key === item.key);
+      const newData = [...data];
+      const index = newData.findIndex((item) => key === item.key);
 
-    if (index > -1) {
-      const item = newData[index];
-      newData.splice(index, 1, {
-        ...item,
-        ...value,
-      });
-      setData(newData);
-      setEditingKey(0);
-      setIsAddItem(false);
+      if (index > -1) {
+        const item = newData[index];
+        newData.splice(index, 1, {
+          ...item,
+          ...value,
+        });
+        setData(newData);
+        setEditingKey(0);
+        setIsAddItem(false);
+      }
+    } catch (e) {
+      console.log(e);
     }
   };
+
+  useEffect(() => {
+    const lastItem = data[data.length - 1];
+    const { variable, value } = lastItem;
+    const isNotEmpty = variable !== '' && value !== '';
+    if (isNotEmpty) {
+      localStorageController.set('rest-variables', data);
+    }
+  }, [data]);
 
   const deleteItem = (key: React.Key) => {
     const newData = data.filter((item) => item.key !== key);
