@@ -1,7 +1,8 @@
 import { screen, fireEvent } from '@testing-library/react';
 import { render } from './test-utils/test-utils';
-import NotFound from '@/app/[locale]/not-found';
+
 import enMessages from '@/shared/i18n/messages/en.json';
+import NotFound from '@/app/[locale]/not-found';
 
 describe('NotFound Page', () => {
   test('renders all components with test IDs', () => {
