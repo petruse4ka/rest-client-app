@@ -1,6 +1,6 @@
 'use client';
 
-import { Flex, Form, Input, Popconfirm, Space } from 'antd';
+import { Button, Flex, Form, Input, Popconfirm, Space } from 'antd';
 import { Content } from 'antd/es/layout/layout';
 import Table, { TableProps } from 'antd/es/table';
 import Title from 'antd/es/typography/Title';
@@ -11,7 +11,7 @@ import Link from 'antd/es/typography/Link';
 const { Item } = Form;
 
 interface DataType {
-  key: string;
+  key: number;
   variable: string;
   value: string;
 }
@@ -30,12 +30,12 @@ const contentStyles: CSSProperties = {
 
 const dataSource = [
   {
-    key: '1',
+    key: 1,
     variable: 'Mike',
     value: '32',
   },
   {
-    key: '2',
+    key: 2,
     variable: 'John',
     value: '32',
   },
@@ -44,17 +44,19 @@ const dataSource = [
 export default function VariablesPage() {
   const [form] = Form.useForm();
   const [data, setData] = useState<DataType[]>(dataSource);
+  const [isAddItem, setIsAddItem] = useState(false);
+  const [editingKey, setEditingKey] = useState<number>(0);
 
-  const [editingKey, setEditingKey] = useState('');
-
-  const editItem = (record: Partial<DataType> & { key: React.Key }) => {
+  const editItem = async (record: Partial<DataType> & { key: number }) => {
     form.setFieldsValue(record);
     setEditingKey(record.key);
   };
 
-  const saveItem = (key: React.Key) => {
-    const value = form.getFieldsValue();
+  const saveItem = async (key: React.Key) => {
+    const value = (await form.validateFields()) as DataType;
+
     const newData = [...data];
+    console.log(newData);
     const index = newData.findIndex((item) => key === item.key);
 
     if (index > -1) {
@@ -64,13 +66,18 @@ export default function VariablesPage() {
         ...value,
       });
       setData(newData);
-      setEditingKey('');
+      setEditingKey(0);
+      setIsAddItem(false);
     }
   };
 
   const deleteItem = (key: React.Key) => {
     const newData = data.filter((item) => item.key !== key);
     setData(newData);
+
+    if (editingKey == key) {
+      setIsAddItem(false);
+    }
   };
 
   const columns = [
@@ -94,15 +101,17 @@ export default function VariablesPage() {
       key: 'operation',
       width: '20%',
       render: (_: unknown, record: DataType) => {
-        return record.key === editingKey ? (
-          <Link onClick={() => saveItem(record.key)}>
-            <SaveOutlined />
-          </Link>
-        ) : (
+        return (
           <Space size="large">
-            <Link onClick={() => editItem(record)}>
-              <EditOutlined />
-            </Link>
+            {record.key === editingKey ? (
+              <Link onClick={() => saveItem(record.key)}>
+                <SaveOutlined />
+              </Link>
+            ) : (
+              <Link disabled={editingKey !== 0} onClick={() => editItem(record)}>
+                <EditOutlined />
+              </Link>
+            )}
             <Popconfirm title="Sure to delete?" onConfirm={() => deleteItem(record.key)}>
               <DeleteOutlined style={{ cursor: 'pointer' }} />
             </Popconfirm>
@@ -127,6 +136,20 @@ export default function VariablesPage() {
     };
   });
 
+  const addItem = () => {
+    const newData = [...data];
+    const newItem = {
+      key: Date.now(),
+      variable: '',
+      value: '',
+    };
+
+    newData.push(newItem);
+    setData(newData);
+    editItem(newItem);
+    setIsAddItem(true);
+  };
+
   return (
     <Content style={contentStyles}>
       <Flex vertical gap={20}>
@@ -142,6 +165,9 @@ export default function VariablesPage() {
             pagination={false}
           />
         </Form>
+        <Button style={{ alignSelf: 'flex-end' }} onClick={addItem} disabled={isAddItem}>
+          Add new variable
+        </Button>
       </Flex>
     </Content>
   );
