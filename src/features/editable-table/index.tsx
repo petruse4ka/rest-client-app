@@ -48,6 +48,7 @@ export default function EditableTable() {
 
     if (editingKey == key) {
       setIsAddItem(false);
+      setEditingKey(0);
     }
   };
 

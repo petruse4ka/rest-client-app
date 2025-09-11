@@ -28,10 +28,16 @@ export default function EditableCell(props: EditableCellProps) {
             },
             {
               validator: (_, value) => {
-                const isDuplicate = data.some(
-                  (item) => item.variable === value && item.key !== record.key
-                );
-                return isDuplicate ? Promise.reject('Variable must be unique') : Promise.resolve();
+                if (dataIndex === 'variable') {
+                  const isDuplicate = data.some(
+                    (item) => item.variable === value && item.key !== record.key
+                  );
+                  return isDuplicate
+                    ? Promise.reject('Variable must be unique')
+                    : Promise.resolve();
+                }
+
+                return Promise.resolve();
               },
             },
           ]}
