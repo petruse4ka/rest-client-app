@@ -18,18 +18,23 @@ export default function TableOperation({
   editItem,
   deleteItem,
 }: TableOperationProps) {
+  const isEditing = record.key === editingKey;
+  const isNotEditable = editingKey !== 0;
+
   return (
     <Space size="large">
-      {record.key === editingKey ? (
+      {isEditing ? (
         <Link onClick={() => saveItem(record.key)}>
           <SaveOutlined />
         </Link>
       ) : (
-        <Link disabled={editingKey !== 0} onClick={() => editItem(record)}>
+        <Link disabled={isNotEditable} onClick={() => editItem(record)}>
           <EditOutlined />
         </Link>
       )}
-      <DeleteOutlined style={{ cursor: 'pointer' }} onClick={() => deleteItem(record.key)} />
+      <Link disabled={!isEditing && isNotEditable} onClick={() => deleteItem(record.key)}>
+        <DeleteOutlined />
+      </Link>
     </Space>
   );
 }

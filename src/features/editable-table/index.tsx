@@ -39,8 +39,6 @@ export default function EditableTable() {
       if (isNotEmpty) {
         localStorageController.set('rest-variables', data);
       }
-    } else {
-      localStorage.removeItem('rest-variables');
     }
   }, [data]);
 
@@ -51,6 +49,10 @@ export default function EditableTable() {
     if (editingKey == key) {
       setIsAddItem(false);
       setEditingKey(0);
+    }
+
+    if (newData.length === 0) {
+      localStorage.removeItem('rest-variables');
     }
   };
 
