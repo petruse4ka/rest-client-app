@@ -9,6 +9,7 @@ import { Content } from 'antd/es/layout/layout';
 import { RequestBody, ApiResponse } from '@/types/interfaces';
 import { HttpMethod } from '@/types/types';
 import axios from 'axios';
+import { CodeGeneration } from '@/widgets';
 
 const { Title, Text } = Typography;
 const { TextArea } = Input;
@@ -100,6 +101,8 @@ export default function RestClientPage() {
               </Flex>
             </Form>
           </Card>
+
+          <CodeGeneration />
 
           {loading && (
             <Card>
