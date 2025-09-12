@@ -65,7 +65,7 @@ export function AuthWidget() {
         {loginActive ? <SignInForm /> : <SignUpForm />}
 
         <Flex justify="center">
-          <Text type="secondary">
+          <Text type="secondary" data-testid="auth-cta">
             {t(loginActive ? 'cta.noAccount' : 'cta.haveAccount')} {t('cta.click')}{' '}
             <Link href={loginActive ? appRoutes.signUp : appRoutes.signIn}>{t('cta.here')}</Link>{' '}
             {t(loginActive ? 'cta.signUpSuffix' : 'cta.loginSuffix')}

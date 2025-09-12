@@ -25,9 +25,11 @@ export default defineConfig({
       exclude: [
         'src/**/*.test.{js,jsx,ts,tsx}',
         'src/**/*.spec.{js,jsx,ts,tsx}',
-        'src/index.{js,jsx,ts,tsx}',
+        'src/**/index.{js,jsx,ts,tsx}',
+        'src/shared/i18n/',
         'src/setupTests.{js,ts}',
         'src/**/*.d.ts',
+        'src/**/*.styles.{js,ts}',
         'src/__tests__/',
         'src/types/',
         'node_modules/',

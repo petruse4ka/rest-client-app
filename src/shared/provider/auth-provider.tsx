@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useMemo } from 'react';
+import { createContext, useContext } from 'react';
 import type { DecodedIdToken } from 'firebase-admin/auth';
 
 type AuthCtx = {
@@ -17,7 +17,7 @@ export function AuthProvider({
   initialUser: AuthCtx['user'];
   children: React.ReactNode;
 }) {
-  const value = useMemo(() => ({ user: initialUser, isLogin: !!initialUser }), [initialUser]);
+  const value = { user: initialUser, isLogin: !!initialUser };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
