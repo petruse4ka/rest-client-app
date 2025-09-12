@@ -132,5 +132,20 @@
       "network": "Network error. Please try again.",
       "generic": "Failed to sign in. Please try again."
     }
+  },
+  "Variables": {
+    "title": "Variables",
+    "columns": {
+      "variable": "Variable",
+      "value": "Value",
+      "controls": "Controls"
+    },
+    "btn": "Add new variable",
+    "empty": "List of variables is empty",
+    "inputErrors": {
+      "empty": "Please Input",
+      "unique": "Variable must be unique"
+    },
+    "placeholder": "Add"
   }
 }

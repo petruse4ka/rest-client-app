@@ -14,3 +14,9 @@ export enum HttpMethod {
   HEAD = 'HEAD',
   OPTIONS = 'OPTIONS',
 }
+
+export type VariablesData = {
+  key: number;
+  variable: string;
+  value: string;
+};
