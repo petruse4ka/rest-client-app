@@ -98,9 +98,14 @@
     "columns": {
       "variable": "Variable",
       "value": "Value",
-      "operation": "Operation"
+      "controls": "Controls"
     },
     "btn": "Add new variable",
-    "empty": "List of variables is empty"
+    "empty": "List of variables is empty",
+    "inputErrors": {
+      "empty": "Please Input",
+      "unique": "Variable must be unique"
+    },
+    "placeholder": "Add"
   }
 }

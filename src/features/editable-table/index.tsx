@@ -1,9 +1,9 @@
 import { localStorageController } from '@/shared/utils';
 import { VariablesData } from '@/types/types';
-import { Button, Empty, Flex, Form, Popconfirm, Space, Table, TableProps, Typography } from 'antd';
+import { Button, Empty, Flex, Form, Table, TableProps, Typography } from 'antd';
 import { useEffect, useState } from 'react';
 import EditableCell from './editable-cell';
-import TableOperation from './operation';
+import TableControls from './table-controls';
 import { useTranslations } from 'next-intl';
 const { Text } = Typography;
 
@@ -11,7 +11,6 @@ export default function EditableTable() {
   const t = useTranslations('Variables');
   const [form] = Form.useForm();
   const [data, setData] = useState<VariablesData[]>([]);
-  const [isAddItem, setIsAddItem] = useState(false);
   const [editingKey, setEditingKey] = useState<number>(0);
 
   const editItem = async (record: Partial<VariablesData> & { key: number }) => {
@@ -20,10 +19,11 @@ export default function EditableTable() {
   };
 
   const saveItem = async (key: React.Key) => {
-    const value = (await form.validateFields()) as VariablesData;
-    setData((prev) => prev.map((item) => (item.key === key ? { ...item, ...value } : item)));
-    setEditingKey(0);
-    setIsAddItem(false);
+    try {
+      const value = (await form.validateFields()) as VariablesData;
+      setData((prev) => prev.map((item) => (item.key === key ? { ...item, ...value } : item)));
+      setEditingKey(0);
+    } catch {}
   };
 
   useEffect(() => {
@@ -47,12 +47,11 @@ export default function EditableTable() {
     setData(newData);
 
     if (editingKey == key) {
-      setIsAddItem(false);
       setEditingKey(0);
     }
 
     if (newData.length === 0) {
-      localStorage.removeItem('rest-variables');
+      localStorageController.remove('rest-variables');
     }
   };
 
@@ -61,24 +60,24 @@ export default function EditableTable() {
       title: t('columns.variable'),
       dataIndex: 'variable',
       key: 'variable',
-      width: '40%',
+      ellipsis: true,
       editable: true,
     },
     {
       title: t('columns.value'),
       dataIndex: 'value',
       key: 'value',
-      width: '40%',
+      ellipsis: true,
       editable: true,
     },
     {
-      title: t('columns.operation'),
+      title: t('columns.controls'),
       dataIndex: 'operation',
       key: 'operation',
-      width: '20%',
+      width: 100,
       render: (_: unknown, record: VariablesData) => {
         return (
-          <TableOperation
+          <TableControls
             record={record}
             editingKey={editingKey}
             saveItem={saveItem}
@@ -114,7 +113,6 @@ export default function EditableTable() {
     };
     setData((prev) => [...prev, newItem]);
     editItem(newItem);
-    setIsAddItem(true);
   };
 
   return (
@@ -137,7 +135,7 @@ export default function EditableTable() {
       <Button
         style={data.length === 0 ? { alignSelf: 'center' } : { alignSelf: 'flex-end' }}
         onClick={addItem}
-        disabled={isAddItem}
+        disabled={editingKey !== 0}
       >
         {t('btn')}
       </Button>

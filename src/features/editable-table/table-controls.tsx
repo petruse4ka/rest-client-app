@@ -3,7 +3,7 @@ import { DeleteOutlined, EditOutlined, SaveOutlined } from '@ant-design/icons';
 import { Space } from 'antd';
 import Link from 'antd/es/typography/Link';
 
-interface TableOperationProps {
+interface TableControlsProps {
   record: VariablesData;
   editingKey: number;
   saveItem: (key: number) => void;
@@ -11,13 +11,13 @@ interface TableOperationProps {
   deleteItem: (key: number) => void;
 }
 
-export default function TableOperation({
+export default function TableControls({
   record,
   editingKey,
   saveItem,
   editItem,
   deleteItem,
-}: TableOperationProps) {
+}: TableControlsProps) {
   const isEditing = record.key === editingKey;
   const isNotEditable = editingKey !== 0;
 

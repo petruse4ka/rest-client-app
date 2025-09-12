@@ -1,5 +1,6 @@
 'use client';
 
+import '@ant-design/v5-patch-for-react-19';
 import { Flex } from 'antd';
 import { Content } from 'antd/es/layout/layout';
 import Title from 'antd/es/typography/Title';
@@ -9,7 +10,7 @@ import { useTranslations } from 'next-intl';
 
 const contentStyles: CSSProperties = {
   height: '100%',
-  padding: '0 20px',
+  padding: '20px',
   textAlign: 'center',
 };
 

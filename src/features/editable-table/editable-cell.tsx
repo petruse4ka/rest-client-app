@@ -1,5 +1,6 @@
 import { VariablesData } from '@/types/types';
 import { Form, Input } from 'antd';
+import { useTranslations } from 'next-intl';
 import { HTMLAttributes } from 'react';
 
 const { Item } = Form;
@@ -14,6 +15,7 @@ interface EditableCellProps extends HTMLAttributes<HTMLElement> {
 
 export default function EditableCell(props: EditableCellProps) {
   const { data, record, editing, dataIndex, title, children } = props;
+  const t = useTranslations('Variables');
 
   return (
     <td>
@@ -24,7 +26,7 @@ export default function EditableCell(props: EditableCellProps) {
           rules={[
             {
               required: true,
-              message: `Please Input ${title}!`,
+              message: t('inputErrors.empty'),
             },
             {
               validator: (_, value) => {
@@ -32,9 +34,7 @@ export default function EditableCell(props: EditableCellProps) {
                   const isDuplicate = data.some(
                     (item) => item.variable === value && item.key !== record.key
                   );
-                  return isDuplicate
-                    ? Promise.reject('Variable must be unique')
-                    : Promise.resolve();
+                  return isDuplicate ? Promise.reject(t('inputErrors.unique')) : Promise.resolve();
                 }
 
                 return Promise.resolve();
@@ -42,7 +42,7 @@ export default function EditableCell(props: EditableCellProps) {
             },
           ]}
         >
-          <Input />
+          <Input placeholder={t('placeholder')} />
         </Item>
       ) : (
         children
