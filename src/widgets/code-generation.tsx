@@ -5,7 +5,7 @@ import codegen from 'postman-code-generators';
 import sdk from 'postman-collection';
 import { Typography } from 'antd';
 import { LanguageItem } from '@/types/interfaces';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const { Text } = Typography;
 
@@ -48,6 +48,10 @@ export function CodeGeneration({ url, method }: CodeGenerationProps) {
       }
     );
   };
+
+  useEffect(() => {
+    handleChange(codeLanguages[0].value);
+  }, []);
 
   return (
     <Flex vertical>
