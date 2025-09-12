@@ -126,7 +126,7 @@ describe('REST Client Page', () => {
     await waitFor(() => {
       expect(screen.getByTestId('error-card')).toBeInTheDocument();
       expect(screen.getByText(enMessages.RestClient.error)).toBeInTheDocument();
-      expect(screen.getByDisplayValue('API returned an error message')).toBeInTheDocument();
+      expect(screen.getByText('API returned an error message')).toBeInTheDocument();
     });
   });
 });
