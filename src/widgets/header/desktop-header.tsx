@@ -3,8 +3,10 @@ import InterfaceSettings from './interface-settings';
 import Navigation from './navigation';
 import AuthControls from './auth-controls';
 import Logo from './logo';
+import { useAuth } from '@/shared/provider/auth-provider';
 
-export default function DesktopHeader({ isLogin }: { isLogin: boolean }) {
+export default function DesktopHeader() {
+  const { isLogin } = useAuth();
   return (
     <Row align="middle" justify="space-between" style={{ height: '100%' }}>
       <Col>
@@ -18,7 +20,7 @@ export default function DesktopHeader({ isLogin }: { isLogin: boolean }) {
       </Col>
 
       <Col>
-        <AuthControls isLogin={isLogin} />
+        <AuthControls />
       </Col>
     </Row>
   );

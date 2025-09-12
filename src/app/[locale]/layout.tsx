@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { type ReactNode } from 'react';
-import './globals.css';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { FooterApp, HeaderApp } from '@/widgets';
@@ -8,6 +7,9 @@ import { Layout } from 'antd';
 import { ThemeProvider } from '@/shared/provider';
 import { routing } from '@/shared/i18n/routing';
 import { notFound } from 'next/navigation';
+import { getServerUser } from '@/server/get-server-user';
+import { AuthProvider } from '@/shared/provider/auth-provider';
+import './globals.css';
 
 export const metadata: Metadata = {
   title: 'REST Client App - Professional API Testing Tool',
@@ -60,16 +62,21 @@ export default async function LocaleLayout({
 
   const messages = await getMessages();
 
+  const userServer = await getServerUser();
+  const initialUser = userServer ? { name: userServer.name } : null;
+
   return (
     <html lang={locale}>
       <body>
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider>
-            <Layout style={{ minHeight: '100vh' }}>
-              <HeaderApp />
-              {children}
-              <FooterApp />
-            </Layout>
+            <AuthProvider initialUser={initialUser}>
+              <Layout style={{ minHeight: '100vh' }}>
+                <HeaderApp />
+                {children}
+                <FooterApp />
+              </Layout>
+            </AuthProvider>
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>
