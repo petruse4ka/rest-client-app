@@ -10,8 +10,8 @@ import {
 export async function POST(req: Request) {
   const { idToken } = await req.json();
 
-  //const expiresIn = SESSION_LONG_TTL * 1000;
-  const expiresIn = SESSION_SHORT_TTL * 1000;
+  //const expiresIn = SESSION_LONG_TTL;
+  const expiresIn = SESSION_SHORT_TTL;
 
   try {
     const sessionCookie = await adminAuth.createSessionCookie(idToken, { expiresIn });
