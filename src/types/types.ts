@@ -20,3 +20,9 @@ export enum ContentType {
   TEXT = 'text',
   XML = 'xml',
 }
+
+export type VariablesData = {
+  key: number;
+  variable: string;
+  value: string;
+};
