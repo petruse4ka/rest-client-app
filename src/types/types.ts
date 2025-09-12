@@ -14,3 +14,9 @@ export enum HttpMethod {
   HEAD = 'HEAD',
   OPTIONS = 'OPTIONS',
 }
+
+export enum ContentType {
+  JSON = 'json',
+  TEXT = 'text',
+  XML = 'xml',
+}

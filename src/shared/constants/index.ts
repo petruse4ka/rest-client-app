@@ -7,3 +7,7 @@ export const ERROR_MESSAGES = {
   CONNECTION_REFUSED_ERROR: 'Connection refused. The server may be down or the URL is incorrect.',
   SSL_ERROR: "SSL/TLS error. There may be a problem with the server's security certificate.",
 };
+
+export const JSON_PLACEHOLDER = '{\n  "key": "value"\n}';
+export const XML_PLACEHOLDER =
+  '<?xml version="1.0" encoding="UTF-8"?>\n<root>\n  <item>value</item>\n</root>';
