@@ -75,9 +75,7 @@ export function AuthWidget() {
         )}
 
         <Flex justify="center">
-          <Button size="large" onClick={handleGoogleAuth}>
-            {t('continueWithGoogle')}
-          </Button>
+          <Button onClick={handleGoogleAuth}>{t('continueWithGoogle')}</Button>
         </Flex>
       </Flex>
     </Card>

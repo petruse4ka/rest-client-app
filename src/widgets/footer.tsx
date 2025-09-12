@@ -16,7 +16,7 @@ export function FooterApp() {
       <Flex justify="space-between" align="center" vertical={!screens.md} gap={10}>
         <Space size="middle">
           <Link href="https://rs.school/courses/reactjs" target="_blank">
-            <Image src="/rss-logo.svg" alt="RSS Logo" width={40} height={40} />
+            <Image src="image/rss-logo.svg" alt="RSS Logo" width={40} height={40} />
           </Link>
           <Text>© 2025</Text>
         </Space>

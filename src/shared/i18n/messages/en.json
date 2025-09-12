@@ -1,5 +1,5 @@
 {
-  "Header": {
+  "NavInfo": {
     "home": "Home",
     "restClient": "REST Client",
     "history": "History",
@@ -7,6 +7,20 @@
     "signOut": "Sign Out",
     "signIn": "Sign In",
     "signUp": "Sign Up"
+  },
+  "RestClient": {
+    "title": "REST Client",
+    "method": "Method",
+    "methodRequired": "Please select a method",
+    "url": "URL",
+    "urlRequired": "Please enter a URL",
+    "urlPlaceholder": "Enter API endpoint URL",
+    "sendRequest": "Send Request",
+    "response": "Response",
+    "status": "Status",
+    "loading": "Loading...",
+    "error": "Error",
+    "errorMessage": "Request failed"
   },
   "NotFound": {
     "title": "Page Not Found",
@@ -23,6 +37,32 @@
     "tryAnotherMessage": "Test our creativity",
     "returnToHomepage": "Return to Homepage",
     "logoAlt": "REST Client App Logo"
+  },
+  "Team": {
+    "title": "Our Team",
+    "Konstantin": {
+      "name": "Konstantin",
+      "description": "With a Master’s in Strategic Management and multiple years as a Lead Project Manager, Konstantin knows how to juggle deadlines, budgets, and teams like a pro. Now in React, he applies that same mastery - passing the right props and keeping the project state under control."
+    },
+    "Nataliia": {
+      "name": "Nataliia",
+      "description": "Natasha is a Frontend Developer who snaps React components together like Lego, juggling Redux, RTK Query, and Zod schemas with ease. She turns messy Figma dreams into pixel-perfect apps — sometimes even sprinkling in a bit of GSAP magic."
+    },
+    "Daniil": {
+      "name": "Daniil",
+      "description": "Daniil, with a degree in Applied Informatics, is a frontend developer who builds fast, clean, and bug-free solutions — and if a bug slips through, his go-to debugging tool is pretending he never saw it."
+    }
+  },
+  "Hero": {
+    "title": "REST Client App",
+    "subtitle": "A tool for testing and sending HTTP requests"
+  },
+  "Course": {
+    "title": "About Course",
+    "subtitle": "This web application was created during a React course at RSSchool.",
+    "courseLink": "Course website",
+    "courseDocs": "Course docs",
+    "courseTask": "Course task"
   },
   "Main": {
     "title": "Something Great is Coming",

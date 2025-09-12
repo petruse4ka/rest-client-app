@@ -5,6 +5,16 @@ export type ThemeContextType = {
   setThemeValue: (theme: ThemeValue) => void;
 };
 
+export enum HttpMethod {
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  DELETE = 'DELETE',
+  PATCH = 'PATCH',
+  HEAD = 'HEAD',
+  OPTIONS = 'OPTIONS',
+}
+
 export type VariablesData = {
   key: number;
   variable: string;
