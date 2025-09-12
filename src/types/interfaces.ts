@@ -13,3 +13,10 @@ export interface ApiResponse {
   statusText?: string;
   error?: string;
 }
+
+export interface LanguageItem {
+  key: string;
+  label: string;
+  syntax_mode: string;
+  variants: { key: string }[];
+}

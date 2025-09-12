@@ -102,7 +102,7 @@ export default function RestClientPage() {
             </Form>
           </Card>
 
-          <CodeGeneration />
+          <CodeGeneration method="GET" url="https://www.google.com" />
 
           {loading && (
             <Card>

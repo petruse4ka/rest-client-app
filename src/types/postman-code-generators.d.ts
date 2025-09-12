@@ -1,18 +1,16 @@
-interface Variant {
-  key: string;
-}
-
-interface LanguageItem {
-  key: string;
-  label: string;
-  syntax_mode: string;
-  variants: Variant[];
-}
-
 declare module 'postman-code-generators' {
-  const sdk: {
+  import { Request } from 'postman-collection';
+
+  const codegen: {
     getLanguageList(): LanguageItem[];
+    convert: (
+      language: string,
+      variant: string,
+      request: Request,
+      options: Record<string, unknown>,
+      callback: (error: Error | null, snippet: string) => void
+    ) => void;
   };
 
-  export default sdk;
+  export default codegen;
 }
