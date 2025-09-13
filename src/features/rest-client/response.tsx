@@ -1,5 +1,5 @@
 import { ApiResponse } from '@/types/interfaces';
-import { Card, Typography, Spin, Flex, Input } from 'antd';
+import { Card, Typography, Spin, Flex, Input, Space } from 'antd';
 import { useTranslations } from 'next-intl';
 
 const { Title, Text } = Typography;
@@ -11,12 +11,14 @@ interface ResponseProps {
   response: ApiResponse | null;
 }
 
+const cardStyle = { width: '100%', maxWidth: '90vw', marginBottom: '25px' };
+
 export function Response({ loading, error, response }: ResponseProps) {
   const t = useTranslations('RestClient');
 
   if (loading) {
     return (
-      <Card style={{ width: '100%', maxWidth: '90vw' }}>
+      <Card style={cardStyle}>
         <Flex justify="center" align="center" style={{ padding: '50px' }}>
           <Spin size="large" tip={t('loading')} data-testid="loading-spinner">
             <div style={{ padding: '50px' }} />
@@ -28,7 +30,7 @@ export function Response({ loading, error, response }: ResponseProps) {
 
   if (error) {
     return (
-      <Card data-testid="error-card" style={{ width: '100%', maxWidth: '90vw' }}>
+      <Card data-testid="error-card" style={cardStyle}>
         <Title level={2} style={{ color: '#ff4d4f' }}>
           {t('error')}
         </Title>
@@ -39,14 +41,14 @@ export function Response({ loading, error, response }: ResponseProps) {
 
   if (response) {
     return (
-      <Card data-testid="response-card" style={{ width: '100%', maxWidth: '90vw' }}>
+      <Card data-testid="response-card" style={cardStyle}>
         <Title level={2}>{t('response')}</Title>
         <Text strong>
           {t('status')}: {response.status} {response.statusText}
         </Text>
         <TextArea
           value={JSON.stringify(response.data, null, 2)}
-          rows={8}
+          rows={20}
           disabled
           style={{
             fontFamily: 'monospace',

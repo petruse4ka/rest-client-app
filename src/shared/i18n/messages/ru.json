@@ -10,6 +10,7 @@
   },
   "RestClient": {
     "title": "REST клиент",
+    "request": "Запрос",
     "method": "Метод",
     "methodRequired": "Пожалуйста, выберите метод",
     "url": "URL",

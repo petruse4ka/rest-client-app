@@ -10,6 +10,7 @@
   },
   "RestClient": {
     "title": "REST Client",
+    "request": "Request",
     "method": "Method",
     "methodRequired": "Please select a method",
     "url": "URL",
