@@ -2,16 +2,12 @@ import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 import { adminAuth } from '@/server/firebase-admin';
 import { appRoutes } from '@/shared/config/navigation';
-import {
-  SESSION_LONG_TTL,
-  //SESSION_SHORT_TTL,
-} from '@/shared/config/auth';
+import { SESSION_TTL } from '@/shared/config/auth';
 
 export async function POST(req: Request) {
   const { idToken } = await req.json();
 
-  const expiresIn = SESSION_LONG_TTL;
-  //const expiresIn = SESSION_SHORT_TTL;
+  const expiresIn = SESSION_TTL;
 
   try {
     const sessionCookie = await adminAuth.createSessionCookie(idToken, { expiresIn });
