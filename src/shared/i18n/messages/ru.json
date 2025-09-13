@@ -21,6 +21,10 @@
     "headerKey": "Ключ заголовка",
     "headerValue": "Значение заголовка",
     "removeHeader": "Удалить",
+    "columnsValue": "Значение",
+    "columnsControls": "Управление",
+    "placeholderKey": "Введите ключ заголовка",
+    "placeholderValue": "Введите значение заголовка",
     "body": "Тело запроса",
     "contentType": "Тип контента",
     "json": "JSON",
@@ -35,10 +39,7 @@
     "error": "Ошибка",
     "errorMessage": "Запрос не выполнен",
     "invalidJson": "Неверный формат JSON",
-    "action": "Действие",
-    "save": "Сохранить",
-    "cancel": "Отмена",
-    "edit": "Редактировать"
+    "required": "Значение обязательно"
   },
   "NotFound": {
     "title": "Страница не найдена",
@@ -155,17 +156,13 @@
   },
   "Variables": {
     "title": "Переменные",
-    "columns": {
-      "variable": "Переменная",
-      "value": "Значение",
-      "controls": "Управление"
-    },
+    "columnsVariable": "Переменная",
+    "columnsValue": "Значение",
+    "columnsControls": "Управление",
     "btn": "Добавить новую переменную",
     "empty": "Список переменных пуст",
-    "inputErrors": {
-      "empty": "Пожалуйста, заполните",
-      "unique": "Переменная должна быть уникальной"
-    },
+    "inputErrorsEmpty": "Пожалуйста, заполните",
+    "inputErrorsUnique": "Переменная должна быть уникальной",
     "placeholder": "Заполните"
   }
 }
