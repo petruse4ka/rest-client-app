@@ -10,7 +10,7 @@ const { Title, Text } = Typography;
 
 export function HeroSection() {
   const { isLogin } = useAuth();
-  console.log('isLogin', isLogin);
+
   const links = isLogin ? navLinks.slice(1) : authLinks;
   const t = useTranslations('Hero');
   const navt = useTranslations('NavInfo');
