@@ -1,5 +1,5 @@
 import { ContentType } from '@/types/types';
-import { Button, Flex, Input, Select, Space, Typography } from 'antd';
+import { Button, Flex, Input, Select, Space, Typography, Form } from 'antd';
 import { FormatPainterOutlined } from '@ant-design/icons';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
@@ -10,26 +10,23 @@ const { Text } = Typography;
 const { TextArea } = Input;
 const { Option } = Select;
 
-interface BodyEditorProps {
-  value: string;
-  contentType: ContentType;
-  handleBodyChange: (value: string, contentType: ContentType) => void;
-}
-
-export function BodyEditor({ value, contentType, handleBodyChange }: BodyEditorProps) {
+export function BodyEditor() {
   const t = useTranslations('RestClient');
+  const form = Form.useFormInstance();
   const [jsonIsValid, setJsonIsValid] = useState(true);
   const contentTypes = Object.values(ContentType);
+  const data = Form.useWatch('data', form) || '';
+  const contentType = Form.useWatch('contentType', form) || ContentType.JSON;
 
   const handleTextValueChange = (newValue: string) => {
-    handleBodyChange(newValue, contentType);
+    form.setFieldValue('data', newValue);
     const isValidJson = validateJson(newValue, contentType);
     setJsonIsValid(isValidJson);
   };
 
   const handleJsonValueChange = (newContentType: ContentType) => {
-    handleBodyChange(value, newContentType);
-    const isValidJson = validateJson(value, newContentType);
+    form.setFieldValue('contentType', newContentType);
+    const isValidJson = validateJson(data, newContentType);
     setJsonIsValid(isValidJson);
   };
 
@@ -41,8 +38,18 @@ export function BodyEditor({ value, contentType, handleBodyChange }: BodyEditorP
           {contentType === ContentType.JSON && (
             <Button
               icon={<FormatPainterOutlined />}
-              onClick={() => prettifyJson(value, contentType, handleBodyChange, setJsonIsValid)}
-              disabled={!value.trim() || !jsonIsValid}
+              onClick={() =>
+                prettifyJson(
+                  data,
+                  contentType,
+                  (value, contentType) => {
+                    form.setFieldValue('data', value);
+                    form.setFieldValue('contentType', contentType);
+                  },
+                  setJsonIsValid
+                )
+              }
+              disabled={!data.trim() || !jsonIsValid}
               size="small"
             >
               {t('prettify')}
@@ -63,7 +70,7 @@ export function BodyEditor({ value, contentType, handleBodyChange }: BodyEditorP
       </Flex>
 
       <TextArea
-        value={value}
+        value={data}
         onChange={(e) => handleTextValueChange(e.target.value)}
         placeholder={getBodyPlaceholder(contentType, t('bodyPlaceholder'))}
         rows={8}

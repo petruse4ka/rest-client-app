@@ -10,7 +10,7 @@ import { ContentType } from '@/types/types';
 import { HttpMethod } from '@/types/types';
 import { HeadersEditor, BodyEditor, HttpMethods, Response } from '@/features/rest-client';
 import axios from 'axios';
-import { getReadableErrorMessage } from '@/shared/utils';
+import { getReadableErrorMessage, validateJson } from '@/shared/utils';
 
 const { Title } = Typography;
 
@@ -20,17 +20,48 @@ export default function RestClientPage() {
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState<ApiResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [headers, setHeaders] = useState<Header[]>([]);
-  const [bodyContent, setBodyContent] = useState('');
-  const [bodyContentType, setBodyContentType] = useState<ContentType>(ContentType.JSON);
 
   const handleSubmit = async (values: RequestBody) => {
+    if (values.contentType === ContentType.JSON && values.data?.trim()) {
+      const isJsonValid = validateJson(values.data, values.contentType);
+      if (!isJsonValid) {
+        setError('Invalid JSON in request body');
+        return;
+      }
+    }
+
+    const headersArray = Array.isArray(values.headers) ? values.headers : [];
+    const invalidHeaders = headersArray.filter(
+      (header: Header) =>
+        (header.key.trim() && !header.value.trim()) || (!header.key.trim() && header.value.trim())
+    );
+
+    if (invalidHeaders.length > 0) {
+      setError('Headers must have both key and value, or be completely empty');
+      return;
+    }
+
     setLoading(true);
     setError(null);
     setResponse(null);
 
     try {
-      const response = await axios.post('/api/rest-client', values);
+      const headersObject: Record<string, string> = {};
+      headersArray.forEach((header: Header) => {
+        if (header.key.trim() && header.value.trim()) {
+          headersObject[header.key.trim()] = header.value.trim();
+        }
+      });
+
+      const requestData: RequestBody = {
+        method: values.method,
+        url: values.url,
+        headers: headersObject,
+        data: values.data?.trim() || undefined,
+        contentType: values.contentType,
+      };
+
+      const response = await axios.post('/api/rest-client', requestData);
 
       if (response.data.error) {
         setError(response.data.error);
@@ -64,20 +95,23 @@ export default function RestClientPage() {
             initialValues={{
               method: HttpMethod.GET,
               url: '',
+              headers: [],
+              data: '',
+              contentType: ContentType.JSON,
             }}
           >
             <HttpMethods loading={loading} />
             <Divider />
-            <HeadersEditor headers={headers} onChange={setHeaders} />
+            <Form.Item name="headers" style={{ marginBottom: 0 }}>
+              <HeadersEditor />
+            </Form.Item>
             <Divider />
-            <BodyEditor
-              value={bodyContent}
-              contentType={bodyContentType}
-              handleBodyChange={(value, contentType) => {
-                setBodyContent(value);
-                setBodyContentType(contentType);
-              }}
-            />
+            <Form.Item name="data" style={{ marginBottom: 0 }}>
+              <BodyEditor />
+            </Form.Item>
+            <Form.Item name="contentType" hidden>
+              <input type="hidden" />
+            </Form.Item>
           </Form>
         </Card>
         <Response loading={loading} error={error} response={response} />

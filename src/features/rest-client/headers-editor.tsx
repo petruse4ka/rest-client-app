@@ -1,5 +1,5 @@
 import { Header } from '@/types/interfaces';
-import { Button, Empty, Flex, Table, Typography } from 'antd';
+import { Button, Empty, Flex, Table, Typography, Form } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import HeadersCell from './headers-cell';
 import HeadersControls from './headers-controls';
@@ -7,13 +7,10 @@ import { useTranslations } from 'next-intl';
 
 const { Text } = Typography;
 
-type HeadersEditorProps = {
-  headers: Header[];
-  onChange: (headers: Header[]) => void;
-};
-
-export function HeadersEditor({ headers, onChange }: HeadersEditorProps) {
+export function HeadersEditor() {
   const t = useTranslations('RestClient');
+  const form = Form.useFormInstance();
+  const headers = Form.useWatch('headers', form) || [];
 
   const addHeader = () => {
     const newHeader: Header = {
@@ -21,19 +18,22 @@ export function HeadersEditor({ headers, onChange }: HeadersEditorProps) {
       value: '',
       id: Date.now(),
     };
-    onChange([...headers, newHeader]);
+    const currentHeaders = form.getFieldValue('headers') || [];
+    form.setFieldValue('headers', [...currentHeaders, newHeader]);
   };
 
   const updateHeader = (id: number, field: 'key' | 'value', value: string) => {
-    const updatedHeaders = headers.map((header) =>
+    const currentHeaders = form.getFieldValue('headers') || [];
+    const updatedHeaders = currentHeaders.map((header: Header) =>
       header.id === id ? { ...header, [field]: value } : header
     );
-    onChange(updatedHeaders);
+    form.setFieldValue('headers', updatedHeaders);
   };
 
   const deleteHeader = (id: number) => {
-    const updatedHeaders = headers.filter((header) => header.id !== id);
-    onChange(updatedHeaders);
+    const currentHeaders = form.getFieldValue('headers') || [];
+    const updatedHeaders = currentHeaders.filter((header: Header) => header.id !== id);
+    form.setFieldValue('headers', updatedHeaders);
   };
 
   const columns = [

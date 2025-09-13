@@ -11,7 +11,7 @@ interface ResponseProps {
   response: ApiResponse | null;
 }
 
-const cardStyle = { width: '100%', maxWidth: '90vw', marginBottom: '25px' };
+const cardStyle = { width: '100%', marginBottom: '25px' };
 
 export function Response({ loading, error, response }: ResponseProps) {
   const t = useTranslations('RestClient');
@@ -47,6 +47,7 @@ export function Response({ loading, error, response }: ResponseProps) {
           {t('status')}: {response.status} {response.statusText}
         </Text>
         <TextArea
+          id="response-data"
           value={JSON.stringify(response.data, null, 2)}
           rows={20}
           disabled
