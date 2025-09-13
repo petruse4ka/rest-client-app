@@ -1,7 +1,7 @@
 'use client';
 
 import '@ant-design/v5-patch-for-react-19';
-import { useState } from 'react';
+import { CSSProperties, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Card, Form, Typography, Flex, Divider } from 'antd';
 import { Content } from 'antd/es/layout/layout';
@@ -44,11 +44,19 @@ export default function RestClientPage() {
     }
   };
 
+  const contentStyles: CSSProperties = {
+    maxWidth: '1440px',
+    margin: '0 auto',
+    padding: '0 16px',
+  };
+
   return (
     <Content>
-      <Flex vertical align="center" gap="large">
-        <Title data-testid="rest-client-title">{t('title')}</Title>
-        <Card>
+      <Flex vertical align="center" gap="large" style={contentStyles}>
+        <Title data-testid="rest-client-title" style={{ textAlign: 'center' }}>
+          {t('title')}
+        </Title>
+        <Card style={{ width: '100%' }}>
           <Form
             form={form}
             layout="vertical"

@@ -1,4 +1,5 @@
 import { DeleteOutlined } from '@ant-design/icons';
+import { Flex } from 'antd';
 import Link from 'antd/es/typography/Link';
 
 interface HeadersControlsProps {
@@ -7,8 +8,10 @@ interface HeadersControlsProps {
 
 export default function HeadersControls({ deleteItem }: HeadersControlsProps) {
   return (
-    <Link onClick={() => deleteItem()}>
-      <DeleteOutlined />
-    </Link>
+    <Flex justify="center" align="center">
+      <Link onClick={() => deleteItem()}>
+        <DeleteOutlined />
+      </Link>
+    </Flex>
   );
 }

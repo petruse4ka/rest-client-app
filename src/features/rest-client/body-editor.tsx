@@ -33,29 +33,31 @@ export function BodyEditor({ value, contentType, handleContentTypeChange }: Body
   };
 
   return (
-    <Flex vertical justify="space-between" align="center" style={{ marginBottom: 16 }}>
-      <Text strong>{t('body')}</Text>
-      <Space>
-        <Select value={contentType} onChange={handleJsonValueChange}>
-          {contentTypes.map((contentType) => (
-            <Option key={contentType} value={contentType}>
-              {contentType}
-            </Option>
-          ))}
-        </Select>
-        {contentType === ContentType.JSON && (
-          <Button
-            icon={<FormatPainterOutlined />}
-            onClick={() => {
-              console.log('prettify later');
-            }}
-            disabled={!value.trim()}
-            size="small"
-          >
-            {t('prettify')}
-          </Button>
-        )}
-      </Space>
+    <Flex vertical style={{ marginBottom: 16 }}>
+      <Flex justify="space-between" align="center" style={{ marginBottom: 16 }}>
+        <Text strong>{t('body')}</Text>
+        <Space>
+          <Select value={contentType} onChange={handleJsonValueChange}>
+            {contentTypes.map((contentType) => (
+              <Option key={contentType} value={contentType}>
+                {contentType}
+              </Option>
+            ))}
+          </Select>
+          {contentType === ContentType.JSON && (
+            <Button
+              icon={<FormatPainterOutlined />}
+              onClick={() => {
+                console.log('prettify later');
+              }}
+              disabled={!value.trim()}
+              size="small"
+            >
+              {t('prettify')}
+            </Button>
+          )}
+        </Space>
+      </Flex>
 
       <TextArea
         value={value}

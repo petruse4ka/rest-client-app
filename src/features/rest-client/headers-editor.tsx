@@ -70,7 +70,7 @@ export function HeadersEditor({ headers, onChange }: HeadersEditorProps) {
     {
       title: '',
       key: 'operation',
-      width: 100,
+      width: 50,
       render: (_: unknown, record: Header) => (
         <HeadersControls deleteItem={() => deleteHeader(record.id as number)} />
       ),
@@ -79,6 +79,7 @@ export function HeadersEditor({ headers, onChange }: HeadersEditorProps) {
 
   return (
     <Flex vertical gap={20}>
+      <Text strong>{t('headers')}</Text>
       {headers.length === 0 ? (
         <Empty description={<Text>{t('noHeaders')}</Text>} />
       ) : (
@@ -95,6 +96,7 @@ export function HeadersEditor({ headers, onChange }: HeadersEditorProps) {
         icon={<PlusOutlined />}
         style={headers.length === 0 ? { alignSelf: 'center' } : { alignSelf: 'flex-end' }}
         onClick={addHeader}
+        size="small"
       >
         {t('addHeader')}
       </Button>

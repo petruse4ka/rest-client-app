@@ -1,8 +1,9 @@
 import { HttpMethod } from '@/types/types';
-import { Button, Form, Input, Select, Flex } from 'antd';
+import { Button, Form, Input, Select, Flex, Grid } from 'antd';
 import { SendOutlined } from '@ant-design/icons';
 import { useTranslations } from 'next-intl';
 
+const { useBreakpoint } = Grid;
 const { Option } = Select;
 const { Item } = Form;
 
@@ -14,13 +15,23 @@ interface HttpMethodsProps {
 export function HttpMethods({ loading, onMethodChange }: HttpMethodsProps) {
   const t = useTranslations('RestClient');
   const httpMethods = Object.values(HttpMethod);
+  const screens = useBreakpoint();
 
   return (
-    <Flex gap="large" align="end" style={{ marginBottom: 24 }}>
+    <Flex
+      gap={screens.md ? 'middle' : 'small'}
+      align="end"
+      wrap="nowrap"
+      style={{ marginBottom: 24 }}
+    >
       <Item
         name="method"
         label={t('method')}
         rules={[{ required: true, message: t('methodRequired') }]}
+        style={{
+          flex: '0 0 auto',
+          ...(screens.md ? { minWidth: '115px' } : { width: '100px' }),
+        }}
       >
         <Select data-testid="method-select" onChange={onMethodChange}>
           {httpMethods.map((method) => (
@@ -31,11 +42,21 @@ export function HttpMethods({ loading, onMethodChange }: HttpMethodsProps) {
         </Select>
       </Item>
 
-      <Item name="url" label={t('url')} rules={[{ required: true, message: t('urlRequired') }]}>
+      <Item
+        name="url"
+        label={t('url')}
+        rules={[{ required: true, message: t('urlRequired') }]}
+        style={{ flex: 1, minWidth: '130px' }}
+      >
         <Input data-testid="url-input" placeholder={t('urlPlaceholder')} />
       </Item>
 
-      <Item>
+      <Item
+        style={{
+          flex: '0 0 auto',
+          textAlign: 'center',
+        }}
+      >
         <Button
           type="primary"
           htmlType="submit"
@@ -43,7 +64,7 @@ export function HttpMethods({ loading, onMethodChange }: HttpMethodsProps) {
           icon={<SendOutlined />}
           data-testid="send-button"
         >
-          {t('sendRequest')}
+          {screens.md ? t('sendRequest') : ''}
         </Button>
       </Item>
     </Flex>

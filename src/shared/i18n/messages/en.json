@@ -18,8 +18,8 @@
     "headers": "Headers",
     "addHeader": "Add Header",
     "noHeaders": "No headers added",
-    "headerKey": "Header Key",
-    "headerValue": "Header Value",
+    "headerKey": "Key",
+    "headerValue": "Value",
     "removeHeader": "Remove",
     "columnsValue": "Value",
     "columnsControls": "Controls",
@@ -32,7 +32,7 @@
     "xml": "XML",
     "bodyPlaceholder": "Enter request body...",
     "prettify": "Prettify",
-    "sendRequest": "Send Request",
+    "sendRequest": "Send",
     "response": "Response",
     "status": "Status",
     "loading": "Loading...",
@@ -154,13 +154,17 @@
   },
   "Variables": {
     "title": "Variables",
-    "columnsVariable": "Variable",
-    "columnsValue": "Value",
-    "columnsControls": "Controls",
+    "columns": {
+      "variable": "Variable",
+      "value": "Value",
+      "controls": "Controls"
+    },
     "btn": "Add new variable",
     "empty": "List of variables is empty",
-    "inputErrorsEmpty": "Please Input",
-    "inputErrorsUnique": "Variable must be unique",
+    "inputErrors": {
+      "empty": "Please Input",
+      "unique": "Variable must be unique"
+    },
     "placeholder": "Add"
   }
 }

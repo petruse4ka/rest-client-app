@@ -18,21 +18,21 @@
     "headers": "Заголовки",
     "addHeader": "Добавить заголовок",
     "noHeaders": "Заголовки не добавлены",
-    "headerKey": "Ключ заголовка",
-    "headerValue": "Значение заголовка",
+    "headerKey": "Ключ",
+    "headerValue": "Значение",
     "removeHeader": "Удалить",
     "columnsValue": "Значение",
     "columnsControls": "Управление",
     "placeholderKey": "Введите ключ заголовка",
     "placeholderValue": "Введите значение заголовка",
-    "body": "Тело запроса",
+    "body": "Тело",
     "contentType": "Тип контента",
     "json": "JSON",
     "text": "Текст",
     "xml": "XML",
     "bodyPlaceholder": "Введите тело запроса...",
-    "prettify": "Форматировать",
-    "sendRequest": "Отправить запрос",
+    "prettify": "Prettify",
+    "sendRequest": "Отправить",
     "response": "Ответ",
     "status": "Статус",
     "loading": "Загрузка...",
@@ -156,13 +156,17 @@
   },
   "Variables": {
     "title": "Переменные",
-    "columnsVariable": "Переменная",
-    "columnsValue": "Значение",
-    "columnsControls": "Управление",
+    "columns": {
+      "variable": "Переменная",
+      "value": "Значение",
+      "controls": "Управление"
+    },
     "btn": "Добавить новую переменную",
     "empty": "Список переменных пуст",
-    "inputErrorsEmpty": "Пожалуйста, заполните",
-    "inputErrorsUnique": "Переменная должна быть уникальной",
+    "inputErrors": {
+      "empty": "Пожалуйста, заполните",
+      "unique": "Переменная должна быть уникальной"
+    },
     "placeholder": "Заполните"
   }
 }
