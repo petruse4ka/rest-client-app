@@ -4,6 +4,7 @@ import { FormatPainterOutlined } from '@ant-design/icons';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { getBodyPlaceholder, validateJson } from '@/shared/utils';
+import { prettifyJson } from '@/shared/utils';
 
 const { Text } = Typography;
 const { TextArea } = Input;
@@ -12,22 +13,22 @@ const { Option } = Select;
 interface BodyEditorProps {
   value: string;
   contentType: ContentType;
-  handleContentTypeChange: (value: string, contentType: ContentType) => void;
+  handleBodyChange: (value: string, contentType: ContentType) => void;
 }
 
-export function BodyEditor({ value, contentType, handleContentTypeChange }: BodyEditorProps) {
+export function BodyEditor({ value, contentType, handleBodyChange }: BodyEditorProps) {
   const t = useTranslations('RestClient');
   const [jsonIsValid, setJsonIsValid] = useState(true);
   const contentTypes = Object.values(ContentType);
 
   const handleTextValueChange = (newValue: string) => {
-    handleContentTypeChange(newValue, contentType);
+    handleBodyChange(newValue, contentType);
     const isValidJson = validateJson(newValue, contentType);
     setJsonIsValid(isValidJson);
   };
 
   const handleJsonValueChange = (newContentType: ContentType) => {
-    handleContentTypeChange(value, newContentType);
+    handleBodyChange(value, newContentType);
     const isValidJson = validateJson(value, newContentType);
     setJsonIsValid(isValidJson);
   };
@@ -37,25 +38,27 @@ export function BodyEditor({ value, contentType, handleContentTypeChange }: Body
       <Flex justify="space-between" align="center" style={{ marginBottom: 16 }}>
         <Text strong>{t('body')}</Text>
         <Space>
-          <Select value={contentType} onChange={handleJsonValueChange}>
+          {contentType === ContentType.JSON && (
+            <Button
+              icon={<FormatPainterOutlined />}
+              onClick={() => prettifyJson(value, contentType, handleBodyChange, setJsonIsValid)}
+              disabled={!value.trim() || !jsonIsValid}
+              size="small"
+            >
+              {t('prettify')}
+            </Button>
+          )}
+          <Select
+            value={contentType}
+            onChange={handleJsonValueChange}
+            style={{ minWidth: '75px', marginTop: '1px' }}
+          >
             {contentTypes.map((contentType) => (
               <Option key={contentType} value={contentType}>
                 {contentType}
               </Option>
             ))}
           </Select>
-          {contentType === ContentType.JSON && (
-            <Button
-              icon={<FormatPainterOutlined />}
-              onClick={() => {
-                console.log('prettify later');
-              }}
-              disabled={!value.trim()}
-              size="small"
-            >
-              {t('prettify')}
-            </Button>
-          )}
         </Space>
       </Flex>
 

@@ -73,7 +73,7 @@ export default function RestClientPage() {
             <BodyEditor
               value={bodyContent}
               contentType={bodyContentType}
-              handleContentTypeChange={(value, contentType) => {
+              handleBodyChange={(value, contentType) => {
                 setBodyContent(value);
                 setBodyContentType(contentType);
               }}
