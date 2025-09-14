@@ -11,6 +11,7 @@ import { HttpMethod } from '@/types/types';
 import { HeadersEditor, BodyEditor, HttpMethods, Response } from '@/features/rest-client';
 import axios from 'axios';
 import { getReadableErrorMessage, validateJson } from '@/shared/utils';
+import { DEFAULT_HEADERS, ERROR_MESSAGES } from '@/shared/constants';
 
 const { Title } = Typography;
 
@@ -25,7 +26,7 @@ export default function RestClientPage() {
     if (values.contentType === ContentType.JSON && values.data?.trim()) {
       const isJsonValid = validateJson(values.data, values.contentType);
       if (!isJsonValid) {
-        setError('Invalid JSON in request body');
+        setError(ERROR_MESSAGES.INVALID_JSON);
         return;
       }
     }
@@ -37,7 +38,7 @@ export default function RestClientPage() {
     );
 
     if (invalidHeaders.length > 0) {
-      setError('Headers must have both key and value, or be completely empty');
+      setError(ERROR_MESSAGES.KEY_AND_VALUE);
       return;
     }
 
@@ -95,7 +96,7 @@ export default function RestClientPage() {
             initialValues={{
               method: HttpMethod.GET,
               url: '',
-              headers: [],
+              headers: DEFAULT_HEADERS,
               data: '',
               contentType: ContentType.JSON,
             }}
