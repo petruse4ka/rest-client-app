@@ -21,7 +21,12 @@ export default function HeadersCell(props: HeadersCellProps) {
       initialValue={value}
       rules={[{ required: true, message: t('required') }]}
     >
-      <Input placeholder={placeholder} size="small" onChange={(e) => onChange(e.target.value)} />
+      <Input
+        placeholder={placeholder}
+        allowClear
+        size="small"
+        onChange={(e) => onChange(e.target.value)}
+      />
     </Item>
   );
 }

@@ -51,7 +51,7 @@ export function HttpMethods({ loading, onMethodChange }: HttpMethodsProps) {
           rules={[{ required: true, message: t('urlRequired') }]}
           style={{ flex: 1, minWidth: '130px' }}
         >
-          <Input data-testid="url-input" placeholder={t('urlPlaceholder')} />
+          <Input data-testid="url-input" allowClear placeholder={t('urlPlaceholder')} />
         </Item>
 
         <Item

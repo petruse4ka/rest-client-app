@@ -41,7 +41,7 @@ export default function EditableCell(props: EditableCellProps) {
             },
           ]}
         >
-          <Input placeholder={t('placeholder')} />
+          <Input allowClear placeholder={t('placeholder')} />
         </Item>
       ) : (
         children

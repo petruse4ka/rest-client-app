@@ -163,7 +163,7 @@
     "btn": "Add new variable",
     "empty": "List of variables is empty",
     "inputErrors": {
-      "empty": "Please Input",
+      "empty": "Please add value",
       "unique": "Variable must be unique"
     },
     "placeholder": "Add"
