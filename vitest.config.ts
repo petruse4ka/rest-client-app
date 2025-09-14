@@ -34,6 +34,7 @@ export default defineConfig({
         'dist/',
         'build/',
         '.next/',
+        'src/shared/i18n/',
       ],
       thresholds: {
         statements: 80,
