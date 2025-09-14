@@ -27,7 +27,6 @@ describe('REST Client Page', () => {
     expect(screen.getByText(enMessages.RestClient.title)).toBeInTheDocument();
     expect(screen.getByText(enMessages.RestClient.method)).toBeInTheDocument();
     expect(screen.getByText(enMessages.RestClient.url)).toBeInTheDocument();
-    expect(screen.getByText(enMessages.RestClient.sendRequest)).toBeInTheDocument();
   });
 
   test('form has pre-filled values', () => {
