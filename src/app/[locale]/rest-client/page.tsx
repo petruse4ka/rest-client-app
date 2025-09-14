@@ -23,8 +23,13 @@ export default function RestClientPage() {
   const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (values: RequestBody) => {
+    setLoading(true);
+    setError(null);
+    setResponse(null);
+
     if (values.contentType === ContentType.JSON && values.data?.trim()) {
       const isJsonValid = validateJson(values.data, values.contentType);
+
       if (!isJsonValid) {
         setError(ERROR_MESSAGES.INVALID_JSON);
         return;
@@ -32,6 +37,7 @@ export default function RestClientPage() {
     }
 
     const headersArray = Array.isArray(values.headers) ? values.headers : [];
+
     const invalidHeaders = headersArray.filter(
       (header: Header) =>
         (header.key.trim() && !header.value.trim()) || (!header.key.trim() && header.value.trim())
@@ -41,13 +47,9 @@ export default function RestClientPage() {
       setError(ERROR_MESSAGES.KEY_AND_VALUE);
       return;
     }
-
-    setLoading(true);
-    setError(null);
-    setResponse(null);
-
     try {
       const headersObject: Record<string, string> = {};
+
       headersArray.forEach((header: Header) => {
         if (header.key.trim() && header.value.trim()) {
           headersObject[header.key.trim()] = header.value.trim();

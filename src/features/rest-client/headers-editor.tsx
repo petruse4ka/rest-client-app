@@ -19,6 +19,7 @@ export function HeadersEditor() {
       id: Date.now(),
     };
     const currentHeaders = form.getFieldValue('headers') || [];
+
     form.setFieldValue('headers', [...currentHeaders, newHeader]);
   };
 
@@ -27,12 +28,14 @@ export function HeadersEditor() {
     const updatedHeaders = currentHeaders.map((header: Header) =>
       header.id === id ? { ...header, [field]: value } : header
     );
+
     form.setFieldValue('headers', updatedHeaders);
   };
 
   const deleteHeader = (id: number) => {
     const currentHeaders = form.getFieldValue('headers') || [];
     const updatedHeaders = currentHeaders.filter((header: Header) => header.id !== id);
+
     form.setFieldValue('headers', updatedHeaders);
   };
 

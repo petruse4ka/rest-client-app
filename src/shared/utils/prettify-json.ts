@@ -1,19 +1,13 @@
 import { ContentType } from '@/types/types';
 
-export const prettifyJson = (
-  value: string,
-  contentType: ContentType,
-  handleJsonChange: (value: string, contentType: ContentType) => void,
-  setComponentState: (value: boolean) => void
-) => {
+export const prettifyJson = (value: string, contentType: ContentType): string | null => {
   if (contentType === ContentType.JSON && value.trim()) {
     try {
-      const parsed = JSON.parse(value);
-      const prettified = JSON.stringify(parsed, null, 2);
-      handleJsonChange(prettified, contentType);
-      setComponentState(true);
+      const parsedValue = JSON.parse(value);
+      return JSON.stringify(parsedValue, null, 2);
     } catch (error) {
-      setComponentState(false);
+      return null;
     }
   }
+  return value;
 };

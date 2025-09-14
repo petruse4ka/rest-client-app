@@ -10,11 +10,10 @@ interface EditableCellProps extends HTMLAttributes<HTMLElement> {
   record: VariablesData;
   editing: boolean;
   dataIndex: string;
-  title: string;
 }
 
 export default function EditableCell(props: EditableCellProps) {
-  const { data, record, editing, dataIndex, title, children } = props;
+  const { data, record, editing, dataIndex, children } = props;
   const t = useTranslations('Variables');
 
   return (

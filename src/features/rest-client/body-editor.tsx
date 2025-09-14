@@ -18,16 +18,26 @@ export function BodyEditor() {
   const data = Form.useWatch('data', form) || '';
   const contentType = Form.useWatch('contentType', form) || ContentType.JSON;
 
-  const handleTextValueChange = (newValue: string) => {
+  const handleBodyValueChange = (newValue: string) => {
     form.setFieldValue('data', newValue);
     const isValidJson = validateJson(newValue, contentType);
     setJsonIsValid(isValidJson);
   };
 
-  const handleJsonValueChange = (newContentType: ContentType) => {
+  const handleBodyTypeChange = (newContentType: ContentType) => {
     form.setFieldValue('contentType', newContentType);
     const isValidJson = validateJson(data, newContentType);
     setJsonIsValid(isValidJson);
+  };
+
+  const handlePrettifyJson = () => {
+    const prettifiedValue = prettifyJson(data, contentType);
+    if (prettifiedValue !== null) {
+      form.setFieldValue('data', prettifiedValue);
+      setJsonIsValid(true);
+    } else {
+      setJsonIsValid(false);
+    }
   };
 
   return (
@@ -38,17 +48,7 @@ export function BodyEditor() {
           {contentType === ContentType.JSON && (
             <Button
               icon={<FormatPainterOutlined />}
-              onClick={() =>
-                prettifyJson(
-                  data,
-                  contentType,
-                  (value, contentType) => {
-                    form.setFieldValue('data', value);
-                    form.setFieldValue('contentType', contentType);
-                  },
-                  setJsonIsValid
-                )
-              }
+              onClick={handlePrettifyJson}
               disabled={!data.trim() || !jsonIsValid}
               size="small"
             >
@@ -57,7 +57,7 @@ export function BodyEditor() {
           )}
           <Select
             value={contentType}
-            onChange={handleJsonValueChange}
+            onChange={handleBodyTypeChange}
             style={{ minWidth: '75px', marginTop: '1px' }}
           >
             {contentTypes.map((contentType) => (
@@ -71,7 +71,7 @@ export function BodyEditor() {
 
       <TextArea
         value={data}
-        onChange={(e) => handleTextValueChange(e.target.value)}
+        onChange={(e) => handleBodyValueChange(e.target.value)}
         placeholder={getBodyPlaceholder(contentType, t('bodyPlaceholder'))}
         rows={8}
         style={{
