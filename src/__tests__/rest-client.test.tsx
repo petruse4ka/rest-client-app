@@ -32,7 +32,6 @@ describe('REST Client Page', () => {
   test('form has pre-filled values', () => {
     render(<RestClientPage />);
 
-    // Check that the method select has GET as the selected value
     expect(screen.getByText('GET')).toBeInTheDocument();
   });
 
