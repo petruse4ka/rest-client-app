@@ -10,6 +10,7 @@
   },
   "RestClient": {
     "title": "REST Client",
+    "generatedCode": "Show Generated Code",
     "request": "Request",
     "method": "Method",
     "methodRequired": "Please select a method",

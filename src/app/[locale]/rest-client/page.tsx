@@ -3,7 +3,7 @@
 import '@ant-design/v5-patch-for-react-19';
 import { CSSProperties, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { Card, Form, Typography, Flex, Divider } from 'antd';
+import { Card, Form, Typography, Flex, Divider, Button } from 'antd';
 import { Content } from 'antd/es/layout/layout';
 import { RequestBody, ApiResponse, Header } from '@/types/interfaces';
 import { ContentType } from '@/types/types';
@@ -89,7 +89,7 @@ export default function RestClientPage() {
   const contentStyles: CSSProperties = {
     maxWidth: '1440px',
     margin: '0 auto',
-    padding: '0 16px',
+    padding: '20px 16px',
   };
 
   return (
@@ -125,6 +125,11 @@ export default function RestClientPage() {
             </Item>
           </Form>
         </Card>
+
+        <Button type="primary" data-testid="generated-code-button" style={{ width: '100%' }}>
+          {t('generatedCode')}
+        </Button>
+
         <Response loading={loading} error={error} response={response} />
       </Flex>
     </Content>

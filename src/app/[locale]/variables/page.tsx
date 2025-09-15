@@ -11,7 +11,7 @@ import { useTranslations } from 'next-intl';
 const contentStyles: CSSProperties = {
   maxWidth: '1440px',
   margin: '0 auto',
-  padding: '0 16px',
+  padding: '20px 16px',
   height: '100%',
   textAlign: 'center',
 };

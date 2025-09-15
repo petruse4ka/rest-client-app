@@ -10,6 +10,7 @@
   },
   "RestClient": {
     "title": "REST клиент",
+    "generatedCode": "Показать сгенерированный код",
     "request": "Запрос",
     "method": "Метод",
     "methodRequired": "Пожалуйста, выберите метод",
