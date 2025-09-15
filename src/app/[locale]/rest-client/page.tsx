@@ -13,6 +13,7 @@ import axios from 'axios';
 import { getReadableErrorMessage, validateJson } from '@/shared/utils';
 import { DEFAULT_HEADERS, ERROR_MESSAGES } from '@/shared/constants';
 
+const { Item } = Form;
 const { Title } = Typography;
 
 export default function RestClientPage() {
@@ -23,12 +24,14 @@ export default function RestClientPage() {
   const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (values: RequestBody) => {
+    const { method, url, headers, contentType, data } = values;
+
     setLoading(true);
     setError(null);
     setResponse(null);
 
-    if (values.contentType === ContentType.JSON && values.data?.trim()) {
-      const isJsonValid = validateJson(values.data, values.contentType);
+    if (contentType === ContentType.JSON && data?.trim()) {
+      const isJsonValid = validateJson(data, contentType);
 
       if (!isJsonValid) {
         setError(ERROR_MESSAGES.INVALID_JSON);
@@ -36,12 +39,14 @@ export default function RestClientPage() {
       }
     }
 
-    const headersArray = Array.isArray(values.headers) ? values.headers : [];
+    const headersArray = Array.isArray(headers) ? headers : [];
 
-    const invalidHeaders = headersArray.filter(
-      (header: Header) =>
-        (header.key.trim() && !header.value.trim()) || (!header.key.trim() && header.value.trim())
-    );
+    const invalidHeaders = headersArray.filter(({ key, value }: Header) => {
+      const keyTrim = key.trim();
+      const valueTrim = value.trim();
+
+      (keyTrim && !valueTrim) || (!keyTrim && valueTrim);
+    });
 
     if (invalidHeaders.length > 0) {
       setError(ERROR_MESSAGES.KEY_AND_VALUE);
@@ -50,18 +55,21 @@ export default function RestClientPage() {
     try {
       const headersObject: Record<string, string> = {};
 
-      headersArray.forEach((header: Header) => {
-        if (header.key.trim() && header.value.trim()) {
-          headersObject[header.key.trim()] = header.value.trim();
+      headersArray.forEach(({ key, value }: Header) => {
+        const keyTrim = key.trim();
+        const valueTrim = value.trim();
+
+        if (keyTrim && valueTrim) {
+          headersObject[keyTrim] = valueTrim;
         }
       });
 
       const requestData: RequestBody = {
-        method: values.method,
-        url: values.url,
+        method,
+        url,
         headers: headersObject,
-        data: values.data?.trim() || undefined,
-        contentType: values.contentType,
+        data: data?.trim() || undefined,
+        contentType,
       };
 
       const response = await axios.post('/api/rest-client', requestData);
@@ -105,16 +113,16 @@ export default function RestClientPage() {
           >
             <HttpMethods loading={loading} />
             <Divider />
-            <Form.Item name="headers" style={{ marginBottom: 0 }}>
+            <Item name="headers" style={{ marginBottom: 0 }}>
               <HeadersEditor />
-            </Form.Item>
+            </Item>
             <Divider />
-            <Form.Item name="data" style={{ marginBottom: 0 }}>
+            <Item name="data" style={{ marginBottom: 0 }}>
               <BodyEditor />
-            </Form.Item>
-            <Form.Item name="contentType" hidden>
+            </Item>
+            <Item name="contentType" hidden>
               <input type="hidden" />
-            </Form.Item>
+            </Item>
           </Form>
         </Card>
         <Response loading={loading} error={error} response={response} />
