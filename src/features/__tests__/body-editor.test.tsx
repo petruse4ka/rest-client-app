@@ -47,7 +47,7 @@ describe('BodyEditor', () => {
       </TestWrapper>
     );
 
-    const prettifyButton = screen.getByText(enMessages.RestClient.prettify).closest('button');
+    const prettifyButton = screen.getByTestId('prettify-button');
     expect(prettifyButton).toBeInTheDocument();
   });
 
@@ -58,7 +58,7 @@ describe('BodyEditor', () => {
       </TestWrapper>
     );
 
-    const textArea = screen.getByRole('textbox');
+    const textArea = screen.getByTestId('body-textarea');
     fireEvent.change(textArea, { target: { value: '{"test": "value"}' } });
 
     expect(mockedValidateJson).toHaveBeenCalledWith('{"test": "value"}', ContentType.JSON);
@@ -71,9 +71,9 @@ describe('BodyEditor', () => {
       </TestWrapper>
     );
 
-    const prettifyButton = screen.getByText(enMessages.RestClient.prettify).closest('button');
+    const prettifyButton = screen.getByTestId('prettify-button');
     expect(prettifyButton).toBeInTheDocument();
-    expect(() => fireEvent.click(prettifyButton as Element)).not.toThrow();
+    expect(() => fireEvent.click(prettifyButton)).not.toThrow();
   });
 
   test('shows danger text when JSON is invalid', () => {
@@ -85,10 +85,10 @@ describe('BodyEditor', () => {
       </TestWrapper>
     );
 
-    const textArea = screen.getByRole('textbox');
+    const textArea = screen.getByTestId('body-textarea');
     fireEvent.change(textArea, { target: { value: '{"invalid": json}' } });
 
-    expect(screen.getByText(enMessages.RestClient.invalidJson)).toBeInTheDocument();
+    expect(screen.getByTestId('invalid-json-error')).toBeInTheDocument();
   });
 
   test('shows red border when JSON is invalid', () => {
@@ -100,7 +100,7 @@ describe('BodyEditor', () => {
       </TestWrapper>
     );
 
-    const textArea = screen.getByRole('textbox');
+    const textArea = screen.getByTestId('body-textarea');
     fireEvent.change(textArea, { target: { value: '{"invalid": json}' } });
 
     expect(textArea).toHaveStyle('border-color: #ff4d4f');

@@ -30,9 +30,8 @@ describe('HeadersEditor', () => {
       </TestWrapper>
     );
 
-    const addButton = screen.getByText(enMessages.RestClient.addHeader);
+    const addButton = screen.getByTestId('add-header-button');
     expect(addButton).toBeInTheDocument();
-    expect(addButton.closest('button')).toBeInTheDocument();
   });
 
   test('adds new header when add button is clicked', () => {
@@ -42,7 +41,7 @@ describe('HeadersEditor', () => {
       </TestWrapper>
     );
 
-    const addButton = screen.getByText(enMessages.RestClient.addHeader);
+    const addButton = screen.getByTestId('add-header-button');
     expect(() => fireEvent.click(addButton)).not.toThrow();
   });
 });

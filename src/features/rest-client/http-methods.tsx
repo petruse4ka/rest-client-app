@@ -26,6 +26,7 @@ export function HttpMethods({ loading, onMethodChange }: HttpMethodsProps) {
         align="end"
         wrap="nowrap"
         style={{ marginBottom: 24 }}
+        data-testid="http-methods-container"
       >
         <Item
           name="method"
@@ -35,8 +36,9 @@ export function HttpMethods({ loading, onMethodChange }: HttpMethodsProps) {
             flex: '0 0 auto',
             ...(screens.md ? { minWidth: '115px' } : { width: '100px' }),
           }}
+          data-testid="method-field"
         >
-          <Select data-testid="method-select" onChange={onMethodChange}>
+          <Select onChange={onMethodChange}>
             {httpMethods.map((method) => (
               <Option key={method} value={method}>
                 {method}

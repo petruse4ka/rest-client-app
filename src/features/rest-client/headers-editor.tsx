@@ -100,6 +100,7 @@ export function HeadersEditor() {
         style={headers.length === 0 ? { alignSelf: 'center' } : { alignSelf: 'flex-end' }}
         onClick={addHeader}
         size="small"
+        data-testid="add-header-button"
       >
         {t('addHeader')}
       </Button>

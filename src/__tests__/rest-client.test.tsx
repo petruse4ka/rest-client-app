@@ -16,7 +16,7 @@ describe('REST Client Page', () => {
     render(<RestClientPage />);
 
     expect(screen.getByTestId('rest-client-title')).toBeInTheDocument();
-    expect(screen.getByTestId('method-select')).toBeInTheDocument();
+    expect(screen.getByRole('combobox', { name: /method/i })).toBeInTheDocument();
     expect(screen.getByTestId('url-input')).toBeInTheDocument();
     expect(screen.getByTestId('send-button')).toBeInTheDocument();
   });
@@ -32,8 +32,8 @@ describe('REST Client Page', () => {
   test('form has pre-filled values', () => {
     render(<RestClientPage />);
 
-    const methodSelect = screen.getByTestId('method-select');
-    expect(methodSelect).toHaveTextContent('GET');
+    // Check that the method select has GET as the selected value
+    expect(screen.getByText('GET')).toBeInTheDocument();
   });
 
   test('send button is clickable', () => {

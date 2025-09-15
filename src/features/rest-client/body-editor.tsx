@@ -51,6 +51,7 @@ export function BodyEditor() {
               onClick={handlePrettifyJson}
               disabled={!data.trim() || !jsonIsValid}
               size="small"
+              data-testid="prettify-button"
             >
               {t('prettify')}
             </Button>
@@ -59,6 +60,7 @@ export function BodyEditor() {
             value={contentType}
             onChange={handleBodyTypeChange}
             style={{ minWidth: '75px', marginTop: '1px' }}
+            data-testid="content-type-select"
           >
             {contentTypes.map((contentType) => (
               <Option key={contentType} value={contentType}>
@@ -78,9 +80,14 @@ export function BodyEditor() {
           fontFamily: 'monospace',
           borderColor: !jsonIsValid ? '#ff4d4f' : undefined,
         }}
+        data-testid="body-textarea"
       />
 
-      {!jsonIsValid && <Text type="danger">{t('invalidJson')}</Text>}
+      {!jsonIsValid && (
+        <Text type="danger" data-testid="invalid-json-error">
+          {t('invalidJson')}
+        </Text>
+      )}
     </Flex>
   );
 }
