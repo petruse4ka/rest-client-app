@@ -14,7 +14,7 @@ vi.mock('next/headers', () => ({
   cookies: (...args: unknown[]) => cookiesMock(...args),
 }));
 vi.mock('@/shared/config/auth', () => ({
-  SESSION_TTL: 3600000,
+  SESSION_SHORT_TTL: 3600000,
 }));
 
 vi.mock('@/server/firebase-admin', () => ({

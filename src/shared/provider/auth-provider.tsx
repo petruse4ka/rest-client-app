@@ -41,7 +41,7 @@ export function AuthProvider({
           clearInterval(interval.current!);
           interval.current = null;
         }
-      }, 1000);
+      }, CHECK_TOKEN_SHORT);
     }
 
     return () => {
