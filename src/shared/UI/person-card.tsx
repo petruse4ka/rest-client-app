@@ -1,6 +1,6 @@
 'use client';
 
-import { GithubOutlined, UserOutlined } from '@ant-design/icons';
+import { GithubOutlined } from '@ant-design/icons';
 import { Avatar, Card, Flex, Space, Typography } from 'antd';
 import Title from 'antd/es/typography/Title';
 import { useTranslations } from 'next-intl';

@@ -15,7 +15,7 @@ describe('getDefaultTheme', () => {
 
   test('returns light when system does not prefer dark', () => {
     Object.defineProperty(window, 'matchMedia', {
-      value: vi.fn().mockImplementation((query) => ({
+      value: vi.fn().mockImplementation(() => ({
         matches: false,
       })),
       writable: true,

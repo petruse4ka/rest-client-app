@@ -27,15 +27,18 @@
   ::-webkit-scrollbar-track {
     background: #e4e4e7;
     border-radius: 9999px;
+    cursor: default;
   }
 
   ::-webkit-scrollbar-thumb {
     background: #f59e0b;
     border-radius: 9999px;
+    cursor: default;
   }
 
   ::-webkit-scrollbar-thumb:hover {
     background: #d97706;
+    cursor: default;
   }
 
   .dark ::-webkit-scrollbar-track {

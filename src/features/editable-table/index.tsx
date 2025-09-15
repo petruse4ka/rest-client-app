@@ -119,7 +119,7 @@ export default function EditableTable() {
     <Flex vertical gap={20}>
       <Form form={form}>
         {data.length === 0 ? (
-          <Empty description={<Text>{t('empty')}</Text>}></Empty>
+          <Empty description={<Text>{t('empty')}</Text>} />
         ) : (
           <Table
             components={{
