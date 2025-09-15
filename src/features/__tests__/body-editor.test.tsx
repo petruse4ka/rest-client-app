@@ -75,4 +75,34 @@ describe('BodyEditor', () => {
     expect(prettifyButton).toBeInTheDocument();
     expect(() => fireEvent.click(prettifyButton as Element)).not.toThrow();
   });
+
+  test('shows danger text when JSON is invalid', () => {
+    mockedValidateJson.mockReturnValue(false);
+
+    render(
+      <TestWrapper>
+        <BodyEditor />
+      </TestWrapper>
+    );
+
+    const textArea = screen.getByRole('textbox');
+    fireEvent.change(textArea, { target: { value: '{"invalid": json}' } });
+
+    expect(screen.getByText(enMessages.RestClient.invalidJson)).toBeInTheDocument();
+  });
+
+  test('shows red border when JSON is invalid', () => {
+    mockedValidateJson.mockReturnValue(false);
+
+    render(
+      <TestWrapper>
+        <BodyEditor />
+      </TestWrapper>
+    );
+
+    const textArea = screen.getByRole('textbox');
+    fireEvent.change(textArea, { target: { value: '{"invalid": json}' } });
+
+    expect(textArea).toHaveStyle('border-color: #ff4d4f');
+  });
 });
