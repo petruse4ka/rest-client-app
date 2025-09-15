@@ -2,7 +2,7 @@
 
 import '@ant-design/v5-patch-for-react-19';
 import { CSSProperties, useContext, useEffect, useState } from 'react';
-import { Button, Card, Col, Collapse, Flex, Row, Typography } from 'antd';
+import { Button, Card, Col, Collapse, Empty, Flex, Row, Typography } from 'antd';
 import { Content } from 'antd/es/layout/layout';
 import { RequestHistoryItem } from './request-history.type';
 import { mockHistory } from './mock-data';
@@ -36,24 +36,31 @@ export default function HistoryView() {
           {t('title')}
         </Title>
 
-        <Card
-          style={{
-            width: '100%',
-            margin: '0 auto',
-            padding: 20,
-          }}
-        >
-          {history.length === 0 ? (
-            <Flex vertical align="center" gap={12}>
-              <Text strong>{t('emptyTitle')}</Text>
-              <Text type="secondary">{t('emptySubtitle')}</Text>
-              <Link href="/rest-client">
-                <Button type="primary" style={{ marginTop: 20 }}>
-                  {t('goRestClient')}
-                </Button>
-              </Link>
-            </Flex>
-          ) : (
+        {history.length === 0 ? (
+          <Flex vertical align="center" gap={12}>
+            <Empty
+              description={
+                <Flex vertical align="center">
+                  <Text>{t('emptyTitle')}</Text>
+                  <Text type="secondary">{t('emptySubtitle')}</Text>
+                </Flex>
+              }
+            ></Empty>
+
+            <Link href="/rest-client">
+              <Button type="primary" style={{ marginTop: 20 }}>
+                {t('goRestClient')}
+              </Button>
+            </Link>
+          </Flex>
+        ) : (
+          <Card
+            style={{
+              width: '100%',
+              margin: '0 auto',
+              padding: 20,
+            }}
+          >
             <Collapse
               accordion
               items={history.map((item) => ({
@@ -103,8 +110,8 @@ export default function HistoryView() {
                 ),
               }))}
             />
-          )}
-        </Card>
+          </Card>
+        )}
       </Flex>
     </Content>
   );
