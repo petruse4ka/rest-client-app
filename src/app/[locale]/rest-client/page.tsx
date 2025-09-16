@@ -10,7 +10,7 @@ import { ContentType } from '@/types/types';
 import { HttpMethod } from '@/types/types';
 import { HeadersEditor, BodyEditor, HttpMethods, Response } from '@/features/rest-client';
 import axios from 'axios';
-import { getReadableErrorMessage, validateJson } from '@/shared/utils';
+import { getReadableErrorMessage, validateJson, encodeRestClientUrl } from '@/shared/utils';
 import { DEFAULT_HEADERS, ERROR_MESSAGES } from '@/shared/constants';
 
 const { Item } = Form;
@@ -52,6 +52,10 @@ export default function RestClientPage() {
       setError(ERROR_MESSAGES.KEY_AND_VALUE);
       return;
     }
+
+    const encodedUrl = encodeRestClientUrl(values);
+    window.history.replaceState(null, '', encodedUrl);
+
     try {
       const headersObject: Record<string, string> = {};
 
