@@ -3,7 +3,7 @@ import { Form } from 'antd';
 import { BodyEditor } from '../rest-client/body-editor';
 import { ContentType } from '@/types/types';
 import enMessages from '@/shared/i18n/messages/en.json';
-import { render } from '../../__tests__/test-utils/test-utils';
+import { render } from '@/__tests__/test-utils/test-utils';
 import { validateJson } from '@/shared/utils';
 import type { ReactNode } from 'react';
 
@@ -12,6 +12,16 @@ vi.mock('@/shared/utils', async () => {
   return {
     ...actual,
     validateJson: vi.fn(() => true),
+  };
+});
+
+vi.mock('@/shared/i18n/navigation', () => {
+  return {
+    useRouter: () => ({
+      push: vi.fn(),
+      replace: vi.fn(),
+      refresh: vi.fn(),
+    }),
   };
 });
 
