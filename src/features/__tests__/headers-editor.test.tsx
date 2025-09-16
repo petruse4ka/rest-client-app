@@ -2,13 +2,23 @@ import { screen, fireEvent } from '@testing-library/react';
 import { Form } from 'antd';
 import { HeadersEditor } from '../rest-client/headers-editor';
 import enMessages from '@/shared/i18n/messages/en.json';
-import { render } from '../../__tests__/test-utils/test-utils';
+import { render } from '@/__tests__/test-utils/test-utils';
 import type { ReactNode } from 'react';
 
 const TestWrapper = ({ children }: { children: ReactNode }) => {
   const [form] = Form.useForm();
   return <Form form={form}>{children}</Form>;
 };
+
+vi.mock('@/shared/i18n/navigation', () => {
+  return {
+    useRouter: () => ({
+      push: vi.fn(),
+      replace: vi.fn(),
+      refresh: vi.fn(),
+    }),
+  };
+});
 
 describe('HeadersEditor', () => {
   test('renders headers editor with all elements', () => {
