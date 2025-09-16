@@ -20,7 +20,7 @@ export default function HistoryView() {
   const contentStyles: CSSProperties = {
     maxWidth: '1440px',
     margin: '0 auto',
-    padding: '40px 20px',
+    padding: '20px 16px',
   };
 
   const [history, setHistory] = useState<RequestHistoryItem[]>([]);
@@ -32,7 +32,7 @@ export default function HistoryView() {
   return (
     <Content style={contentStyles}>
       <Flex vertical align="center" style={{ width: '100%' }}>
-        <Title level={3} style={{ marginBottom: 16 }}>
+        <Title level={1} style={{ marginBottom: '16px' }}>
           {t('title')}
         </Title>
 
@@ -48,7 +48,7 @@ export default function HistoryView() {
             ></Empty>
 
             <Link href="/rest-client">
-              <Button type="primary" style={{ marginTop: 20 }}>
+              <Button type="primary" style={{ marginTop: '20px' }}>
                 {t('goRestClient')}
               </Button>
             </Link>
@@ -58,7 +58,7 @@ export default function HistoryView() {
             style={{
               width: '100%',
               margin: '0 auto',
-              padding: 20,
+              padding: '20px',
             }}
           >
             <Collapse

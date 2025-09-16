@@ -1,17 +1,16 @@
-//TODO : delete this file after fetch data
 export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'HEAD' | 'OPTIONS';
 
 export interface RequestHistoryItem {
   id: string;
-  url: string; // Endpoint/URL
-  method: HttpMethod; // HTTP метод
+  url: string;
+  method: HttpMethod;
 
-  timestamp: string; // ISO-строка времени запроса
-  durationMs: number; // Request Duration (Latency) в миллисекундах
-  statusCode: number; // Response Status Code
+  timestamp: string;
+  durationMs: number;
+  statusCode: number;
 
-  requestSize: number; // размер запроса в байтах
-  responseSize: number; // размер ответа в байтах
+  requestSize: number;
+  responseSize: number;
 
-  errorDetails?: string; // описание ошибки (если была)
+  errorDetails?: string;
 }

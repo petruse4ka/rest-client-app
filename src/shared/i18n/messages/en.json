@@ -151,7 +151,7 @@
   "History": {
     "title": "History and Analytics",
     "emptyTitle": "You haven't executed any requests yet. ",
-    "emptySubtitle": "It's empty here. Try ti make a request:",
+    "emptySubtitle": "It's empty here. Try to make a request",
     "goRestClient": "Go to REST client",
     "timestamp": "Timestamp",
     "duration": "Duration",
