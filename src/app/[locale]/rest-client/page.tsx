@@ -3,7 +3,7 @@
 import '@ant-design/v5-patch-for-react-19';
 import { CSSProperties, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { Card, Form, Typography, Flex, Divider, Button } from 'antd';
+import { Card, Form, Typography, Flex, Divider, Button, Modal } from 'antd';
 import { Content } from 'antd/es/layout/layout';
 import { RequestBody, ApiResponse, Header } from '@/types/interfaces';
 import { ContentType } from '@/types/types';
@@ -20,9 +20,11 @@ const { Title } = Typography;
 export default function RestClientPage() {
   const t = useTranslations('RestClient');
   const [form] = Form.useForm();
+  const formValues = Form.useWatch([], form);
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState<ApiResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const handleSubmit = async (values: RequestBody) => {
     const { method, url, headers, contentType, data } = values;
@@ -127,12 +129,31 @@ export default function RestClientPage() {
           </Form>
         </Card>
 
-        <Button type="primary" data-testid="generated-code-button" style={{ width: '100%' }}>
+        <Button
+          type="primary"
+          data-testid="generated-code-button"
+          style={{ width: '100%' }}
+          onClick={() => {
+            setModalOpen(true);
+            console.log(formValues);
+          }}
+        >
           {t('generatedCode')}
         </Button>
 
         <Response loading={loading} error={error} response={response} />
       </Flex>
+      <Modal
+        title="Vertically centered modal dialog"
+        centered
+        open={modalOpen}
+        onOk={() => setModalOpen(false)}
+        onCancel={() => setModalOpen(false)}
+      >
+        <p>some contents...</p>
+        <p>some contents...</p>
+        <p>some contents...</p>
+      </Modal>
     </Content>
   );
 }
