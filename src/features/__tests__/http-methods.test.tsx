@@ -2,8 +2,18 @@ import { screen } from '@testing-library/react';
 import { Form } from 'antd';
 import { HttpMethods } from '../rest-client/http-methods';
 import enMessages from '@/shared/i18n/messages/en.json';
-import { render } from '../../__tests__/test-utils/test-utils';
+import { render } from '@/__tests__/test-utils/test-utils';
 import type { ReactNode } from 'react';
+
+vi.mock('@/shared/i18n/navigation', () => {
+  return {
+    useRouter: () => ({
+      push: vi.fn(),
+      replace: vi.fn(),
+      refresh: vi.fn(),
+    }),
+  };
+});
 
 vi.mock('antd', async () => {
   const actual = await vi.importActual('antd');
