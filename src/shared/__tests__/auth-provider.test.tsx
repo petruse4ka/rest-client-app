@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, test, expect } from 'vitest';
-import { AuthProvider, useAuth } from '@/shared/provider/auth-provider';
+import { AuthProvider, useAuth } from '@/shared/provider/';
 
 function TestConsumer() {
   const { user, isLogin } = useAuth();

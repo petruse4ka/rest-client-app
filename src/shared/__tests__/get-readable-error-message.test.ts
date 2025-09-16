@@ -2,12 +2,17 @@ import { getReadableErrorMessage } from '../utils';
 import { ERROR_MESSAGES } from '@/shared/constants';
 
 describe('getReadableErrorMessage', () => {
-  test('returns "Unknown error occurred" for non-Error objects', () => {
+  test('returns "Unknown error occurred" for non-Error and non-string objects', () => {
     expect(getReadableErrorMessage(null)).toBe(ERROR_MESSAGES.UNKNOWN_ERROR);
     expect(getReadableErrorMessage(undefined)).toBe(ERROR_MESSAGES.UNKNOWN_ERROR);
-    expect(getReadableErrorMessage('string error')).toBe(ERROR_MESSAGES.UNKNOWN_ERROR);
     expect(getReadableErrorMessage(123)).toBe(ERROR_MESSAGES.UNKNOWN_ERROR);
     expect(getReadableErrorMessage({})).toBe(ERROR_MESSAGES.UNKNOWN_ERROR);
+  });
+
+  test('handles string errors', () => {
+    expect(getReadableErrorMessage('string error')).toBe('string error');
+    expect(getReadableErrorMessage('Network Error')).toBe(ERROR_MESSAGES.NETWORK_ERROR);
+    expect(getReadableErrorMessage('timeout exceeded')).toBe(ERROR_MESSAGES.TIMEOUT_ERROR);
   });
 
   test('handles DNS errors with ENOTFOUND', () => {
@@ -77,6 +82,6 @@ describe('getReadableErrorMessage', () => {
 
   test('returns original message for unrecognized errors', () => {
     const error = new Error('Custom error message');
-    expect(getReadableErrorMessage(error)).toBe('Custom error message');
+    expect(getReadableErrorMessage(error)).toBe('custom error message');
   });
 });

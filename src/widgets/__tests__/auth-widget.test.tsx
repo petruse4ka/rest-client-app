@@ -12,7 +12,7 @@ const refresh = vi.fn();
 const push = vi.fn();
 
 vi.mock('@/shared/i18n/navigation', () => ({
-  Link: ({ href, children }: { href?: string; children?: React.ReactNode }) => (
+  Link: ({ href, children }: { href?: string; children?: ReactNode }) => (
     <a href={href}>{children}</a>
   ),
   usePathname: () => __pathname,
@@ -33,6 +33,7 @@ vi.mock('@/features/auth/', () => ({
 }));
 
 import { AuthWidget } from '@/widgets/auth-widget/auth-widget';
+import { ReactNode } from 'react';
 
 describe('AuthWidget', () => {
   beforeEach(() => {

@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useEffect, useRef } from 'react';
+import { type ReactNode, createContext, useContext, useEffect, useRef } from 'react';
 import type { DecodedIdToken } from 'firebase-admin/auth';
 import { CHECK_TOKEN_INTERVAL } from '../config/auth';
 import { useRouter } from '@/shared/i18n/navigation';
@@ -19,7 +19,7 @@ export function AuthProvider({
   children,
 }: {
   initialUser: AuthCtx['user'];
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   const router = useRouter();
   const interval = useRef<NodeJS.Timeout | null>(null);
