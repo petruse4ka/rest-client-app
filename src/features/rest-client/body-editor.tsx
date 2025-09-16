@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { getBodyPlaceholder, validateJson } from '@/shared/utils';
 import { prettifyJson } from '@/shared/utils';
+import { substituteVariables } from '@/shared/utils';
 
 const { Text } = Typography;
 const { TextArea } = Input;
@@ -20,18 +21,18 @@ export function BodyEditor() {
 
   const handleBodyValueChange = (newValue: string) => {
     form.setFieldValue('data', newValue);
-    const isValidJson = validateJson(newValue, contentType);
+    const isValidJson = validateJson(substituteVariables(newValue), contentType);
     setJsonIsValid(isValidJson);
   };
 
   const handleBodyTypeChange = (newContentType: ContentType) => {
     form.setFieldValue('contentType', newContentType);
-    const isValidJson = validateJson(data, newContentType);
+    const isValidJson = validateJson(substituteVariables(data), newContentType);
     setJsonIsValid(isValidJson);
   };
 
   const handlePrettifyJson = () => {
-    const prettifiedValue = prettifyJson(data, contentType);
+    const prettifiedValue = prettifyJson(substituteVariables(data), contentType);
     if (prettifiedValue !== null) {
       form.setFieldValue('data', prettifiedValue);
       setJsonIsValid(true);
@@ -49,7 +50,7 @@ export function BodyEditor() {
             <Button
               icon={<FormatPainterOutlined />}
               onClick={handlePrettifyJson}
-              disabled={!data.trim() || !jsonIsValid}
+              disabled={!substituteVariables(data).trim() || !jsonIsValid}
               size="small"
               data-testid="prettify-button"
             >

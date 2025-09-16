@@ -14,6 +14,7 @@ import {
   validateJson,
   encodeRestClientUrl,
   getInitialFormValues,
+  substituteVariables,
 } from '@/shared/utils';
 import { ERROR_MESSAGES } from '@/shared/constants';
 import { useSearchParams, useParams } from 'next/navigation';
@@ -40,8 +41,18 @@ export default function RestClientPageDefault() {
     setError(null);
     setResponse(null);
 
-    if (contentType === ContentType.JSON && data?.trim()) {
-      const isJsonValid = validateJson(data, contentType);
+    const substitutedUrl = substituteVariables(url);
+    const headersArray = Array.isArray(headers) ? headers : [];
+
+    const substitutedHeaders = headersArray.map(({ key, value }: Header) => ({
+      key: substituteVariables(key),
+      value: substituteVariables(value),
+    }));
+
+    const substitutedData = data ? substituteVariables(data.trim()) : undefined;
+
+    if (contentType === ContentType.JSON && substitutedData?.trim()) {
+      const isJsonValid = validateJson(substitutedData, contentType);
 
       if (!isJsonValid) {
         setError(ERROR_MESSAGES.INVALID_JSON);
@@ -49,9 +60,7 @@ export default function RestClientPageDefault() {
       }
     }
 
-    const headersArray = Array.isArray(headers) ? headers : [];
-
-    const invalidHeaders = headersArray.filter(({ key, value }: Header) => {
+    const invalidHeaders = substitutedHeaders.filter(({ key, value }: Header) => {
       const keyTrim = key.trim();
       const valueTrim = value.trim();
 
@@ -63,26 +72,32 @@ export default function RestClientPageDefault() {
       return;
     }
 
-    const encodedUrl = encodeRestClientUrl(values);
+    const headersObject: Record<string, string> = {};
+    substitutedHeaders.forEach(({ key, value }: Header) => {
+      const keyTrim = key.trim();
+      const valueTrim = value.trim();
+
+      if (keyTrim && valueTrim) {
+        headersObject[keyTrim] = valueTrim;
+      }
+    });
+
+    const substitutedValues = {
+      ...values,
+      url: substitutedUrl,
+      headers: headersObject,
+      data: substitutedData,
+    };
+
+    const encodedUrl = encodeRestClientUrl(substitutedValues);
     window.history.replaceState(null, '', encodedUrl);
 
     try {
-      const headersObject: Record<string, string> = {};
-
-      headersArray.forEach(({ key, value }: Header) => {
-        const keyTrim = key.trim();
-        const valueTrim = value.trim();
-
-        if (keyTrim && valueTrim) {
-          headersObject[keyTrim] = valueTrim;
-        }
-      });
-
       const requestData: RequestBody = {
         method,
-        url,
+        url: substitutedUrl,
         headers: headersObject,
-        data: data?.trim() || undefined,
+        data: substitutedData,
         contentType,
       };
 
