@@ -2,11 +2,14 @@ import { RequestBody, Header } from '@/types/interfaces';
 
 export function encodeRestClientUrl(formData: RequestBody): string {
   const { method, url, headers, data } = formData;
-  const encodedUrl = btoa(encodeURIComponent(url));
+
+  const base64Url = btoa(url);
+  const encodedUrl = encodeURIComponent(base64Url);
   const pathParts = ['rest-client', method, encodedUrl];
 
   if (data?.trim()) {
-    const encodedBody = btoa(encodeURIComponent(data.trim()));
+    const base64Body = btoa(data.trim());
+    const encodedBody = encodeURIComponent(base64Body);
     pathParts.push(encodedBody);
   }
 

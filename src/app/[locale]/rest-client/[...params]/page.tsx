@@ -7,29 +7,31 @@ import { Card, Form, Typography, Flex, Divider, Button } from 'antd';
 import { Content } from 'antd/es/layout/layout';
 import { RequestBody, ApiResponse, Header } from '@/types/interfaces';
 import { ContentType } from '@/types/types';
-import { HttpMethod } from '@/types/types';
 import { HeadersEditor, BodyEditor, HttpMethods, Response } from '@/features/rest-client';
 import axios from 'axios';
-import { getReadableErrorMessage, validateJson, encodeRestClientUrl } from '@/shared/utils';
-import { DEFAULT_HEADERS, ERROR_MESSAGES } from '@/shared/constants';
+import {
+  getReadableErrorMessage,
+  validateJson,
+  encodeRestClientUrl,
+  getInitialFormValues,
+} from '@/shared/utils';
+import { ERROR_MESSAGES } from '@/shared/constants';
+import { useSearchParams, useParams } from 'next/navigation';
 
 const { Item } = Form;
 const { Title } = Typography;
 
 export default function RestClientPage() {
   const t = useTranslations('RestClient');
+  const searchParams = useSearchParams();
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState<ApiResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const initialFormValues = {
-    method: HttpMethod.GET,
-    url: '',
-    headers: DEFAULT_HEADERS,
-    data: '',
-    contentType: ContentType.JSON,
-  };
+  const urlParameters = useParams();
+  const urlParts = Array.isArray(urlParameters.params) ? urlParameters.params : [];
+  const initialFormValues = getInitialFormValues(urlParts, searchParams);
 
   const handleSubmit = async (values: RequestBody) => {
     const { method, url, headers, contentType, data } = values;

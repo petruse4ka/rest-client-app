@@ -20,3 +20,10 @@ export interface ApiResponse {
   statusText?: string;
   error?: string;
 }
+
+export interface DecodedUrlData {
+  method: HttpMethod;
+  url: string;
+  body?: string;
+  headers: Header[];
+}

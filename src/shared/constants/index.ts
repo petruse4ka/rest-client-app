@@ -15,6 +15,6 @@ export const XML_PLACEHOLDER =
   '<?xml version="1.0" encoding="UTF-8"?>\n<root>\n  <item>value</item>\n</root>';
 
 export const DEFAULT_HEADERS = [
-  { id: 1, key: 'User-Agent', value: 'REST-Client-App/1.0', isDefault: true },
-  { id: 2, key: 'Accept', value: 'application/json', isDefault: true },
+  { id: 1, key: 'User-Agent', value: 'REST-Client-App/1.0' },
+  { id: 2, key: 'Accept', value: 'application/json' },
 ];
