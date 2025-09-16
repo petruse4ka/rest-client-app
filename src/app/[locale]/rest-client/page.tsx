@@ -144,15 +144,13 @@ export default function RestClientPage() {
         <Response loading={loading} error={error} response={response} />
       </Flex>
       <Modal
-        title="Vertically centered modal dialog"
+        title={t('modalTitle')}
         centered
         open={modalOpen}
-        onOk={() => setModalOpen(false)}
+        footer={null}
         onCancel={() => setModalOpen(false)}
       >
-        <p>some contents...</p>
-        <p>some contents...</p>
-        <p>some contents...</p>
+        <CodeGeneration request={formValues} />
       </Modal>
     </Content>
   );
