@@ -1,9 +1,8 @@
 'use client';
 
-import { AboutCourseSection, HeroSection, TeamSection } from '@/widgets';
 import '@ant-design/v5-patch-for-react-19';
-import { Typography } from 'antd';
 import { Content } from 'antd/es/layout/layout';
+import { AboutCourseSection, HeroSection, TeamSection } from '@/widgets';
 
 export default function Home() {
   return (

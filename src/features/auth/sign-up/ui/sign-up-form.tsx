@@ -2,15 +2,17 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import '@ant-design/v5-patch-for-react-19';
+import { updateProfile } from 'firebase/auth';
 import { useRouter } from '@/shared/i18n/navigation';
 import { buildSignUpRules } from '../model/schema';
 import { apiSignUp } from '@/shared/api/firebase/auth';
 import { mapSignUpError } from '@/shared/api/firebase/map-sign-up-error';
+import { finalizeLogin } from '@/shared/lib/auth/finalize-login';
 
 import { Button, Form, Input, Typography } from 'antd';
 import Password from 'antd/es/input/Password';
-
-import { updateProfile } from 'firebase/auth';
+import { appRoutes } from '@/shared/config/navigation';
 
 const { Item } = Form;
 const { Text } = Typography;
@@ -37,8 +39,10 @@ export function SignUpForm() {
     try {
       const cred = await apiSignUp({ email: v.email!, password: v.password! });
       await updateProfile(cred.user, { displayName: v.username });
+      await finalizeLogin();
       form.resetFields(['username', 'email', 'password', 'confirmPassword']);
-      router.push('/');
+      router.replace(appRoutes.home);
+      router.refresh();
     } catch (e) {
       const { field, key } = mapSignUpError(e);
       const msg = t(`apiErrors.${key}`);

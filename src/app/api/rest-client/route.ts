@@ -16,11 +16,7 @@ export async function POST(request: NextRequest) {
     } = await axios({
       method,
       url,
-      headers: {
-        'User-Agent': 'REST-Client-App/1.0',
-        Accept: 'application/json',
-        ...headers,
-      },
+      headers,
       data,
     });
 

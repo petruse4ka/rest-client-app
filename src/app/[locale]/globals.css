@@ -27,15 +27,18 @@
   ::-webkit-scrollbar-track {
     background: #e4e4e7;
     border-radius: 9999px;
+    cursor: default;
   }
 
   ::-webkit-scrollbar-thumb {
     background: #f59e0b;
     border-radius: 9999px;
+    cursor: default;
   }
 
   ::-webkit-scrollbar-thumb:hover {
     background: #d97706;
+    cursor: default;
   }
 
   .dark ::-webkit-scrollbar-track {
@@ -126,9 +129,17 @@
   height: calc(100% - 58px);
 }
 
+.ant-table-row {
+  vertical-align: top;
+}
+
 @media (max-width: 768px) {
   .link {
     font-size: 20px;
+  }
+
+  .link-font_size_small {
+    font-size: 16px;
   }
 
   .bg-animate {
