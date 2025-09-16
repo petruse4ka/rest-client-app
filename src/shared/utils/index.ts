@@ -8,3 +8,4 @@ export { prettifyJson } from './prettify-json';
 export { encodeRestClientUrl } from './url-encoder';
 export { decodeRestClientUrl } from './url-decoder';
 export { getInitialFormValues } from './get-initial-form-values';
+export { substituteVariables } from './variable-substitution';
