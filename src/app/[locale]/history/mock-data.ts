@@ -1,11 +1,13 @@
 //TODO : delete this file after fetch data
-import { RequestHistoryItem } from './request-history.type';
+
+import { RequestHistoryItem } from '@/types/interfaces';
+import { HttpMethod } from '@/types/types';
 
 export const mockHistory: RequestHistoryItem[] = [
   {
     id: '1',
     url: 'https://api.example.com/users',
-    method: 'GET',
+    method: HttpMethod.GET,
     timestamp: new Date().toISOString(),
     durationMs: 120,
     statusCode: 200,
@@ -15,7 +17,7 @@ export const mockHistory: RequestHistoryItem[] = [
   {
     id: '2',
     url: 'https://api.example.com/users',
-    method: 'POST',
+    method: HttpMethod.POST,
     timestamp: new Date(Date.now() - 1000 * 60 * 5).toISOString(),
     durationMs: 340,
     statusCode: 201,
@@ -25,7 +27,7 @@ export const mockHistory: RequestHistoryItem[] = [
   {
     id: '3',
     url: 'https://api.example.com/users/123',
-    method: 'PUT',
+    method: HttpMethod.PUT,
     timestamp: new Date(Date.now() - 1000 * 60 * 15).toISOString(),
     durationMs: 210,
     statusCode: 200,
@@ -35,7 +37,7 @@ export const mockHistory: RequestHistoryItem[] = [
   {
     id: '4',
     url: 'https://api.example.com/users/123/api.example.com/users/123/api.example.com/users/123',
-    method: 'DELETE',
+    method: HttpMethod.DELETE,
     timestamp: new Date(Date.now() - 1000 * 60 * 30).toISOString(),
     durationMs: 180,
     statusCode: 204,
@@ -45,7 +47,7 @@ export const mockHistory: RequestHistoryItem[] = [
   {
     id: '5',
     url: 'https://api.example.com/health',
-    method: 'PATCH',
+    method: HttpMethod.PATCH,
     timestamp: new Date(Date.now() - 1000 * 60 * 60).toISOString(),
     durationMs: 500,
     statusCode: 500,
@@ -56,7 +58,7 @@ export const mockHistory: RequestHistoryItem[] = [
   {
     id: '6',
     url: 'https://api.example.com/users',
-    method: 'GET',
+    method: HttpMethod.GET,
     timestamp: new Date().toISOString(),
     durationMs: 120,
     statusCode: 200,
@@ -66,7 +68,7 @@ export const mockHistory: RequestHistoryItem[] = [
   {
     id: '7',
     url: 'https://api.example.com/users',
-    method: 'POST',
+    method: HttpMethod.POST,
     timestamp: new Date(Date.now() - 1000 * 60 * 5).toISOString(),
     durationMs: 340,
     statusCode: 201,
@@ -76,7 +78,7 @@ export const mockHistory: RequestHistoryItem[] = [
   {
     id: '8',
     url: 'https://api.example.com/users/123',
-    method: 'PUT',
+    method: HttpMethod.PUT,
     timestamp: new Date(Date.now() - 1000 * 60 * 15).toISOString(),
     durationMs: 210,
     statusCode: 200,
@@ -86,7 +88,7 @@ export const mockHistory: RequestHistoryItem[] = [
   {
     id: '9',
     url: 'https://api.example.com/users/123/api.example.com/users/123/api.example.com/users/123',
-    method: 'DELETE',
+    method: HttpMethod.DELETE,
     timestamp: new Date(Date.now() - 1000 * 60 * 30).toISOString(),
     durationMs: 180,
     statusCode: 204,
@@ -96,7 +98,7 @@ export const mockHistory: RequestHistoryItem[] = [
   {
     id: '10',
     url: 'https://api.example.com/health',
-    method: 'PATCH',
+    method: HttpMethod.PATCH,
     timestamp: new Date(Date.now() - 1000 * 60 * 60).toISOString(),
     durationMs: 500,
     statusCode: 500,
