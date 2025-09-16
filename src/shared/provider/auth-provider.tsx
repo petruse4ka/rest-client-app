@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useRef } from 'react';
 import type { DecodedIdToken } from 'firebase-admin/auth';
-import { CHECK_TOKEN_SHORT } from '../config/auth';
+import { CHECK_TOKEN_INTERVAL } from '../config/auth';
 import { useRouter } from '@/shared/i18n/navigation';
 import axios from 'axios';
 import { appRoutes } from '../config/navigation';
@@ -41,7 +41,7 @@ export function AuthProvider({
           clearInterval(interval.current!);
           interval.current = null;
         }
-      }, CHECK_TOKEN_SHORT);
+      }, CHECK_TOKEN_INTERVAL);
     }
 
     return () => {
