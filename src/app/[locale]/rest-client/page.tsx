@@ -1,19 +1,20 @@
 'use client';
 
 import '@ant-design/v5-patch-for-react-19';
-import { useState } from 'react';
+import { CSSProperties, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { Button, Card, Form, Input, Select, Space, Typography, Spin, Flex } from 'antd';
-import { SendOutlined } from '@ant-design/icons';
+import { Card, Form, Typography, Flex, Divider, Button } from 'antd';
 import { Content } from 'antd/es/layout/layout';
-import { RequestBody, ApiResponse } from '@/types/interfaces';
+import { RequestBody, ApiResponse, Header } from '@/types/interfaces';
+import { ContentType } from '@/types/types';
 import { HttpMethod } from '@/types/types';
+import { HeadersEditor, BodyEditor, HttpMethods, Response } from '@/features/rest-client';
 import axios from 'axios';
+import { getReadableErrorMessage, validateJson } from '@/shared/utils';
+import { DEFAULT_HEADERS, ERROR_MESSAGES } from '@/shared/constants';
 
-const { Title, Text } = Typography;
-const { TextArea } = Input;
-const { Option } = Select;
 const { Item } = Form;
+const { Title } = Typography;
 
 export default function RestClientPage() {
   const t = useTranslations('RestClient');
@@ -23,119 +24,113 @@ export default function RestClientPage() {
   const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (values: RequestBody) => {
+    const { method, url, headers, contentType, data } = values;
+
     setLoading(true);
     setError(null);
     setResponse(null);
 
+    if (contentType === ContentType.JSON && data?.trim()) {
+      const isJsonValid = validateJson(data, contentType);
+
+      if (!isJsonValid) {
+        setError(ERROR_MESSAGES.INVALID_JSON);
+        return;
+      }
+    }
+
+    const headersArray = Array.isArray(headers) ? headers : [];
+
+    const invalidHeaders = headersArray.filter(({ key, value }: Header) => {
+      const keyTrim = key.trim();
+      const valueTrim = value.trim();
+
+      (keyTrim && !valueTrim) || (!keyTrim && valueTrim);
+    });
+
+    if (invalidHeaders.length > 0) {
+      setError(ERROR_MESSAGES.KEY_AND_VALUE);
+      return;
+    }
     try {
-      const response = await axios.post('/api/rest-client', values);
+      const headersObject: Record<string, string> = {};
+
+      headersArray.forEach(({ key, value }: Header) => {
+        const keyTrim = key.trim();
+        const valueTrim = value.trim();
+
+        if (keyTrim && valueTrim) {
+          headersObject[keyTrim] = valueTrim;
+        }
+      });
+
+      const requestData: RequestBody = {
+        method,
+        url,
+        headers: headersObject,
+        data: data?.trim() || undefined,
+        contentType,
+      };
+
+      const response = await axios.post('/api/rest-client', requestData);
 
       if (response.data.error) {
         setError(response.data.error);
       } else {
-        setResponse(response);
+        setResponse(response.data);
       }
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : t('errorMessage');
-      setError(errorMessage);
+    } catch (error) {
+      setError(getReadableErrorMessage(error));
     } finally {
       setLoading(false);
     }
   };
 
-  const httpMethods = Object.values(HttpMethod);
+  const contentStyles: CSSProperties = {
+    maxWidth: '1440px',
+    margin: '0 auto',
+    padding: '20px 16px',
+  };
 
   return (
     <Content>
-      <Flex vertical align="center">
-        <Space direction="vertical" size="large" align="center">
-          <Title data-testid="rest-client-title">{t('title')}</Title>
+      <Flex vertical align="center" gap="large" style={contentStyles}>
+        <Title data-testid="rest-client-title" style={{ textAlign: 'center' }}>
+          {t('title')}
+        </Title>
+        <Card style={{ width: '100%' }}>
+          <Form
+            form={form}
+            layout="vertical"
+            onFinish={handleSubmit}
+            initialValues={{
+              method: HttpMethod.GET,
+              url: '',
+              headers: DEFAULT_HEADERS,
+              data: '',
+              contentType: ContentType.JSON,
+            }}
+          >
+            <HttpMethods loading={loading} />
+            <Divider />
+            <Item name="headers" style={{ marginBottom: 0 }}>
+              <HeadersEditor />
+            </Item>
+            <Divider />
+            <Item name="data" style={{ marginBottom: 0 }}>
+              <BodyEditor />
+            </Item>
+            <Item name="contentType" hidden>
+              <input type="hidden" />
+            </Item>
+          </Form>
+        </Card>
 
-          <Card>
-            <Form
-              form={form}
-              layout="vertical"
-              onFinish={handleSubmit}
-              initialValues={{
-                method: HttpMethod.GET,
-                url: '',
-              }}
-            >
-              <Flex gap="large" align="end">
-                <Item
-                  name="method"
-                  label={t('method')}
-                  rules={[{ required: true, message: t('methodRequired') }]}
-                >
-                  <Select data-testid="method-select">
-                    {httpMethods.map((method) => (
-                      <Option key={method} value={method}>
-                        {method}
-                      </Option>
-                    ))}
-                  </Select>
-                </Item>
+        <Button type="primary" data-testid="generated-code-button" style={{ width: '100%' }}>
+          {t('generatedCode')}
+        </Button>
 
-                <Item
-                  name="url"
-                  label={t('url')}
-                  rules={[{ required: true, message: t('urlRequired') }]}
-                  style={{ flex: 1 }}
-                >
-                  <Input data-testid="url-input" placeholder={t('urlPlaceholder')} />
-                </Item>
-
-                <Item>
-                  <Button
-                    type="primary"
-                    htmlType="submit"
-                    loading={loading}
-                    icon={<SendOutlined />}
-                    style={{ border: 'none' }}
-                    data-testid="send-button"
-                  >
-                    {t('sendRequest')}
-                  </Button>
-                </Item>
-              </Flex>
-            </Form>
-          </Card>
-
-          {loading && (
-            <Card>
-              <Flex justify="center" align="center" style={{ padding: '50px' }}>
-                <Spin size="large" tip={t('loading')} data-testid="loading-spinner">
-                  <div style={{ padding: '50px' }} />
-                </Spin>
-              </Flex>
-            </Card>
-          )}
-
-          {error && (
-            <Card data-testid="error-card">
-              <Title level={2} style={{ color: '#ff4d4f' }}>
-                {t('error')}
-              </Title>
-              <TextArea value={error} readOnly rows={4} />
-            </Card>
-          )}
-
-          {response && (
-            <Card data-testid="response-card">
-              <Title level={2}>{t('response')}</Title>
-              <Text>
-                {t('status')}: {(response.data as ApiResponse).status}{' '}
-                {(response.data as ApiResponse).statusText}
-              </Text>
-              <TextArea
-                value={JSON.stringify(response.data, null, 2)}
-                readOnly
-                rows={20}
-                style={{ fontFamily: 'monospace' }}
-              />
-            </Card>
-          )}
-        </Space>
+        <Response loading={loading} error={error} response={response} />
       </Flex>
     </Content>
   );

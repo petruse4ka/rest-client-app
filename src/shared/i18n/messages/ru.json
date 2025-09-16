@@ -10,17 +10,38 @@
   },
   "RestClient": {
     "title": "REST клиент",
+    "generatedCode": "Показать сгенерированный код",
+    "request": "Запрос",
     "method": "Метод",
     "methodRequired": "Пожалуйста, выберите метод",
     "url": "URL",
     "urlRequired": "Пожалуйста, введите URL",
     "urlPlaceholder": "Введите URL API",
-    "sendRequest": "Отправить запрос",
+    "headers": "Заголовки",
+    "addHeader": "Добавить заголовок",
+    "noHeaders": "Заголовки не добавлены",
+    "headerKey": "Ключ",
+    "headerValue": "Значение",
+    "removeHeader": "Удалить",
+    "columnsValue": "Значение",
+    "columnsControls": "Управление",
+    "placeholderKey": "Введите ключ заголовка",
+    "placeholderValue": "Введите значение заголовка",
+    "body": "Тело",
+    "contentType": "Тип контента",
+    "json": "JSON",
+    "text": "Текст",
+    "xml": "XML",
+    "bodyPlaceholder": "Введите тело запроса...",
+    "prettify": "Prettify",
+    "sendRequest": "Отправить",
     "response": "Ответ",
     "status": "Статус",
     "loading": "Загрузка...",
     "error": "Ошибка",
-    "errorMessage": "Запрос не выполнен"
+    "errorMessage": "Запрос не выполнен",
+    "invalidJson": "Неверный формат JSON",
+    "required": "Значение обязательно"
   },
   "NotFound": {
     "title": "Страница не найдена",
@@ -145,9 +166,20 @@
     "btn": "Добавить новую переменную",
     "empty": "Список переменных пуст",
     "inputErrors": {
-      "empty": "Пожалуйста, заполните",
+      "empty": "Пожалуйста, укажите значение",
       "unique": "Переменная должна быть уникальной"
     },
     "placeholder": "Заполните"
+  },
+  "History": {
+    "title": "История и Аналитика",
+    "emptyTitle": "Вы ещё не выполняли запросов. ",
+    "emptySubtitle": "Здесь пусто. Попробуйте сделать запрос",
+    "goRestClient": "Перейти в REST клиент",
+    "timestamp": "Время запроса",
+    "duration": "Длительность",
+    "requestSize": "Размер запроса",
+    "responseSize": "Размер ответа",
+    "error": "Ошибка"
   }
 }

@@ -15,6 +15,12 @@ export enum HttpMethod {
   OPTIONS = 'OPTIONS',
 }
 
+export enum ContentType {
+  JSON = 'json',
+  TEXT = 'text',
+  XML = 'xml',
+}
+
 export type VariablesData = {
   key: number;
   variable: string;
