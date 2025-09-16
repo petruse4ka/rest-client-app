@@ -47,6 +47,7 @@
     "antd": "^5.27.2",
     "eslint": "^9",
     "eslint-config-next": "15.5.2",
+    "firebase-admin": "^13.5.0",
     "husky": "^9.1.7",
     "jsdom": "^26.1.0",
     "lint-staged": "^16.1.6",

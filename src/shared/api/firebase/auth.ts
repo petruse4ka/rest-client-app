@@ -5,7 +5,6 @@ import {
   GoogleAuthProvider,
   type UserCredential,
   signInWithEmailAndPassword,
-  signOut,
 } from 'firebase/auth';
 
 export type AuthPayload = { email: string; password: string };
@@ -22,8 +21,4 @@ export async function apiSignUpWithGooglePopup(): Promise<UserCredential> {
 
 export async function apiSignIn({ email, password }: AuthPayload): Promise<UserCredential> {
   return signInWithEmailAndPassword(auth, email, password);
-}
-
-export async function apiSignOut(): Promise<void> {
-  return signOut(auth);
 }
