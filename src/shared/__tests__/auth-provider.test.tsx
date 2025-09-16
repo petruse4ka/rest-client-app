@@ -11,6 +11,17 @@ function TestConsumer() {
     </div>
   );
 }
+
+vi.mock('@/shared/i18n/navigation', () => {
+  return {
+    useRouter: () => ({
+      push: vi.fn(),
+      replace: vi.fn(),
+      refresh: vi.fn(),
+    }),
+  };
+});
+
 describe('AuthProvider', () => {
   test('provides null user and isLogin=false by default', () => {
     render(
