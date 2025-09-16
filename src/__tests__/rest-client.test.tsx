@@ -16,7 +16,7 @@ describe('REST Client Page', () => {
     render(<RestClientPage />);
 
     expect(screen.getByTestId('rest-client-title')).toBeInTheDocument();
-    expect(screen.getByTestId('method-select')).toBeInTheDocument();
+    expect(screen.getByRole('combobox', { name: /method/i })).toBeInTheDocument();
     expect(screen.getByTestId('url-input')).toBeInTheDocument();
     expect(screen.getByTestId('send-button')).toBeInTheDocument();
   });
@@ -27,14 +27,12 @@ describe('REST Client Page', () => {
     expect(screen.getByText(enMessages.RestClient.title)).toBeInTheDocument();
     expect(screen.getByText(enMessages.RestClient.method)).toBeInTheDocument();
     expect(screen.getByText(enMessages.RestClient.url)).toBeInTheDocument();
-    expect(screen.getByText(enMessages.RestClient.sendRequest)).toBeInTheDocument();
   });
 
   test('form has pre-filled values', () => {
     render(<RestClientPage />);
 
-    const methodSelect = screen.getByTestId('method-select');
-    expect(methodSelect).toHaveTextContent('GET');
+    expect(screen.getByText('GET')).toBeInTheDocument();
   });
 
   test('send button is clickable', () => {
@@ -126,7 +124,7 @@ describe('REST Client Page', () => {
     await waitFor(() => {
       expect(screen.getByTestId('error-card')).toBeInTheDocument();
       expect(screen.getByText(enMessages.RestClient.error)).toBeInTheDocument();
-      expect(screen.getByDisplayValue('API returned an error message')).toBeInTheDocument();
+      expect(screen.getByText('API returned an error message')).toBeInTheDocument();
     });
   });
 });

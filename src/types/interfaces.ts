@@ -1,10 +1,17 @@
-import { HttpMethod } from './types';
+import { HttpMethod, ContentType } from './types';
+
+export interface Header {
+  key: string;
+  value: string;
+  id?: number;
+}
 
 export interface RequestBody {
   method: HttpMethod;
   url: string;
   headers?: Record<string, string>;
   data?: string;
+  contentType?: ContentType;
 }
 
 export interface ApiResponse {

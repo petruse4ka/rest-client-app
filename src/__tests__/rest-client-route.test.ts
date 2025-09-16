@@ -35,10 +35,8 @@ describe('REST Client API Route', () => {
       expect(mockedAxios).toHaveBeenCalledWith({
         method,
         url: 'https://api.example.com/test',
-        headers: {
-          'User-Agent': 'REST-Client-App/1.0',
-          Accept: 'application/json',
-        },
+        headers: {},
+        data: undefined,
       });
     }
   });
