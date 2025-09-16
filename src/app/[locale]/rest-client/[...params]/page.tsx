@@ -21,7 +21,7 @@ import { useSearchParams, useParams } from 'next/navigation';
 const { Item } = Form;
 const { Title } = Typography;
 
-export default function RestClientPage() {
+export default function RestClientPageDefault() {
   const t = useTranslations('RestClient');
   const searchParams = useSearchParams();
   const [form] = Form.useForm();
