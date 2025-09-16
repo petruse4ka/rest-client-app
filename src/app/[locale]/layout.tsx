@@ -4,11 +4,10 @@ import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { FooterApp, HeaderApp } from '@/widgets';
 import { Layout } from 'antd';
-import { ThemeProvider } from '@/shared/provider';
+import { ThemeProvider, AuthProvider } from '@/shared/provider';
 import { routing } from '@/shared/i18n/routing';
 import { notFound } from 'next/navigation';
 import { getServerUser } from '@/server/get-server-user';
-import { AuthProvider } from '@/shared/provider/auth-provider';
 import './globals.css';
 
 export const metadata: Metadata = {
