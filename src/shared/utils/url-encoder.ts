@@ -1,4 +1,6 @@
 import { RequestBody, Header } from '@/types/interfaces';
+import { ContentType } from '@/types/types';
+import { prettifyJson } from './prettify-json';
 
 export function encodeRestClientUrl(formData: RequestBody): string {
   const { method, url, headers, data } = formData;
@@ -8,7 +10,8 @@ export function encodeRestClientUrl(formData: RequestBody): string {
   const pathParts = ['rest-client', method, encodedUrl];
 
   if (data?.trim()) {
-    const base64Body = btoa(data.trim());
+    const stringifiedData = prettifyJson(data.trim(), ContentType.JSON) || data.trim();
+    const base64Body = btoa(stringifiedData);
     const encodedBody = encodeURIComponent(base64Body);
     pathParts.push(encodedBody);
   }
