@@ -2,7 +2,8 @@ import { screen, waitFor, within } from '@testing-library/react';
 import { render } from './test-utils/test-utils';
 import { describe, test, beforeEach, vi, expect } from 'vitest';
 import enMessages from '@/shared/i18n/messages/en.json';
-import type { RequestHistoryItem } from '@/app/[locale]/history/request-history.type';
+import type { RequestHistoryItem } from '@/types/interfaces';
+import { HttpMethod } from '../types/types';
 
 vi.mock('@ant-design/v5-patch-for-react-19', () => ({}));
 vi.mock('@/shared/i18n/navigation', () => ({
@@ -19,7 +20,7 @@ const makeItem = (
   id: string,
   ts: string,
   status = 200,
-  method: 'GET' | 'POST' = 'GET'
+  method: HttpMethod = HttpMethod.GET
 ): RequestHistoryItem => ({
   id,
   url: `/api/${id}`,
@@ -62,9 +63,9 @@ describe('HistoryView', () => {
 
   test('renders list and sorts by timestamp desc ', async () => {
     const items = [
-      makeItem('1', '2024-02-01T10:00:00Z', 200, 'GET'),
-      makeItem('2', '2024-03-01T10:00:00Z', 404, 'POST'),
-      makeItem('3', '2024-01-01T10:00:00Z', 200, 'GET'),
+      makeItem('1', '2024-02-01T10:00:00Z', 200),
+      makeItem('2', '2024-03-01T10:00:00Z', 404, HttpMethod.POST),
+      makeItem('3', '2024-01-01T10:00:00Z', 200),
     ];
     vi.doMock('@/app/[locale]/history/mock-data', () => ({ mockHistory: items }));
 
@@ -85,7 +86,7 @@ describe('HistoryView', () => {
   });
 
   test('expands panel and shows details with translated labels', async () => {
-    const items = [makeItem('a', '2024-05-01T12:00:00Z', 500, 'GET')];
+    const items = [makeItem('a', '2024-05-01T12:00:00Z', 500)];
     vi.doMock('@/app/[locale]/history/mock-data', () => ({ mockHistory: items }));
 
     const { default: HistoryView } = await import('@/app/[locale]/history/history-client');

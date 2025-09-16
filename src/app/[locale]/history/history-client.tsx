@@ -4,12 +4,13 @@ import '@ant-design/v5-patch-for-react-19';
 import { CSSProperties, useContext, useEffect, useState } from 'react';
 import { Button, Card, Col, Collapse, Empty, Flex, Row, Typography } from 'antd';
 import { Content } from 'antd/es/layout/layout';
-import { RequestHistoryItem } from './request-history.type';
+
 import { mockHistory } from './mock-data';
 import { Link } from '@/shared/i18n/navigation';
 import { ThemeContext } from '@/context/theme-context';
 import { sortByTimestamp } from '@/shared/utils/sort-by-timestamp';
 import { useTranslations } from 'next-intl';
+import { RequestHistoryItem } from '@/types/interfaces';
 
 const { Title, Text } = Typography;
 

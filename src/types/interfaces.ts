@@ -20,3 +20,18 @@ export interface ApiResponse {
   statusText?: string;
   error?: string;
 }
+
+export interface RequestHistoryItem {
+  id: string;
+  url: string;
+  method: HttpMethod;
+
+  timestamp: string;
+  durationMs: number;
+  statusCode: number;
+
+  requestSize: number;
+  responseSize: number;
+
+  errorDetails?: string;
+}
