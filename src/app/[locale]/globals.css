@@ -138,6 +138,10 @@
     font-size: 20px;
   }
 
+  .link-font_size_small {
+    font-size: 16px;
+  }
+
   .bg-animate {
     background-size: auto;
   }

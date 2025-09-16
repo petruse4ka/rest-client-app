@@ -77,10 +77,14 @@ export default function HistoryView() {
                       </Text>
                     </Col>
 
-                    <Col xs={24} md={16}>
+                    <Col
+                      xs={24}
+                      md={16}
+                      style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
+                    >
                       <Link
                         href="/rest-client"
-                        className={`link ${themeValue === 'dark' ? 'link--dark' : 'link--light'}`}
+                        className={`link link-font_size_small ${themeValue === 'dark' ? 'link--dark' : 'link--light'}`}
                       >
                         {item.url}
                       </Link>
