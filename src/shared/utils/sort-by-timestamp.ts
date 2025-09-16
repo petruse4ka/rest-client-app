@@ -1,4 +1,4 @@
-import { RequestHistoryItem } from '@/app/[locale]/history/request-history.type';
+import { RequestHistoryItem } from '@/types/interfaces';
 
 export function sortByTimestamp(items: RequestHistoryItem[]): RequestHistoryItem[] {
   return [...items].sort(

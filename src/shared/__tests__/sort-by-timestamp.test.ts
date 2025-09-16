@@ -1,12 +1,13 @@
 import { describe, test, expect } from 'vitest';
 import { sortByTimestamp } from '@/shared/utils/sort-by-timestamp';
-import type { RequestHistoryItem } from '@/app/[locale]/history/request-history.type';
+import { RequestHistoryItem } from '@/types/interfaces';
+import { HttpMethod } from '@/types/types';
 
 const makeItem = (id: string, timestamp: string): RequestHistoryItem => ({
   id,
   timestamp,
   url: '/api/test',
-  method: 'GET',
+  method: HttpMethod.GET,
   durationMs: 100,
   statusCode: 200,
   requestSize: 10,
