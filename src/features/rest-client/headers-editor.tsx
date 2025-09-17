@@ -16,11 +16,12 @@ export function HeadersEditor() {
     const newHeader: Header = {
       key: '',
       value: '',
-      id: Date.now(),
+      id: Date.now() + Math.random(),
     };
     const currentHeaders = form.getFieldValue('headers') || [];
 
-    form.setFieldValue('headers', [...currentHeaders, newHeader]);
+    const newHeaders = [...currentHeaders, { ...newHeader }];
+    form.setFieldValue('headers', newHeaders);
   };
 
   const updateHeader = (id: number, field: 'key' | 'value', value: string) => {

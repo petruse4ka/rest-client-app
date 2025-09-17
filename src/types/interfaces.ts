@@ -25,5 +25,5 @@ export interface DecodedUrlData {
   method: HttpMethod;
   url: string;
   body?: string;
-  headers: Header[];
+  headers?: Header[];
 }
