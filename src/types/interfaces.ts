@@ -21,6 +21,13 @@ export interface ApiResponse {
   error?: string;
 }
 
+export interface DecodedUrlData {
+  method: HttpMethod;
+  url: string;
+  body?: string;
+  headers?: Header[];
+}
+
 export interface RequestHistoryItem {
   id: string;
   url: string;

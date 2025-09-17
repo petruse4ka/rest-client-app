@@ -12,7 +12,6 @@ import { sortByTimestamp } from '@/shared/utils/sort-by-timestamp';
 import { useTranslations } from 'next-intl';
 import { RequestHistoryItem } from '@/types/interfaces';
 
-
 const { Title, Text } = Typography;
 
 export default function HistoryView() {
