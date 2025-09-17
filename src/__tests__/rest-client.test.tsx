@@ -17,6 +17,14 @@ vi.mock('@/shared/i18n/navigation', () => {
   };
 });
 
+vi.mock('@/shared/config/firebase', () => {
+  return {
+    auth: {
+      currentUser: null,
+    },
+  };
+});
+
 describe('REST Client Page', () => {
   beforeEach(() => {
     vi.clearAllMocks();
