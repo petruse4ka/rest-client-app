@@ -1,6 +1,7 @@
 import { vi } from 'vitest';
 import { substituteVariables } from '../utils';
 import { VariablesData } from '@/types/types';
+import { LOCAL_STORAGE_KEY } from '../constants';
 
 const mockLocalStorage = {
   getItem: vi.fn(),
@@ -27,30 +28,6 @@ describe('substituteVariables', () => {
 
   test('returns original text when text is empty string', () => {
     const text = '';
-
-    const result = substituteVariables(text);
-
-    expect(result).toBe(text);
-  });
-
-  test('returns original text when text is null', () => {
-    const text = null as unknown as string;
-
-    const result = substituteVariables(text);
-
-    expect(result).toBe(text);
-  });
-
-  test('returns original text when text is undefined', () => {
-    const text = undefined as unknown as string;
-
-    const result = substituteVariables(text);
-
-    expect(result).toBe(text);
-  });
-
-  test('returns original text when text is not a string', () => {
-    const text = 123 as unknown as string;
 
     const result = substituteVariables(text);
 
@@ -88,7 +65,7 @@ describe('substituteVariables', () => {
 
     const result = substituteVariables(text);
 
-    expect(mockLocalStorage.getItem).toHaveBeenCalledWith('rest-variables');
+    expect(mockLocalStorage.getItem).toHaveBeenCalledWith(LOCAL_STORAGE_KEY);
     expect(result).toBe('https://api.example.com/users');
   });
 

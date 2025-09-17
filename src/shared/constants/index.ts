@@ -18,3 +18,5 @@ export const DEFAULT_HEADERS = [
   { id: 1, key: 'User-Agent', value: 'REST-Client-App/1.0' },
   { id: 2, key: 'Accept', value: 'application/json' },
 ];
+
+export const LOCAL_STORAGE_KEY = 'rest-variables';

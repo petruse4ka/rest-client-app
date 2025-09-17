@@ -1,12 +1,9 @@
 import { localStorageController } from './local-storage-controller';
 import { VariablesData } from '@/types/types';
+import { LOCAL_STORAGE_KEY } from '../constants';
 
 export function substituteVariables(text: string): string {
-  if (!text || typeof text !== 'string') {
-    return text;
-  }
-
-  const storedVariables = localStorageController.get('rest-variables') || [];
+  const storedVariables = localStorageController.get(LOCAL_STORAGE_KEY) || [];
 
   const substitutedText = text.replace(/\{\{([^}]+)\}\}/g, (match, variableName) => {
     const variable = storedVariables.find(
