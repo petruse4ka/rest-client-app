@@ -1,21 +1,18 @@
 'use client';
 
 import '@ant-design/v5-patch-for-react-19';
-import { CSSProperties, useContext, useEffect, useState } from 'react';
+import { CSSProperties, useContext } from 'react';
 import { Button, Card, Col, Collapse, Empty, Flex, Row, Typography } from 'antd';
 import { Content } from 'antd/es/layout/layout';
-
-import { mockHistory } from './mock-data';
 import { Link } from '@/shared/i18n/navigation';
 import { ThemeContext } from '@/context/theme-context';
-import { sortByTimestamp } from '@/shared/utils/sort-by-timestamp';
 import { useTranslations } from 'next-intl';
 import { RequestHistoryItem } from '@/types/interfaces';
-
+import { useFormatters } from '@/shared/utils/translate-formatter';
 
 const { Title, Text } = Typography;
 
-export default function HistoryView() {
+export default function HistoryView({ items }: { items: RequestHistoryItem[] }) {
   const t = useTranslations('History');
   const { themeValue } = useContext(ThemeContext);
 
@@ -25,20 +22,16 @@ export default function HistoryView() {
     padding: '20px 16px',
   };
 
-  const [history, setHistory] = useState<RequestHistoryItem[]>([]);
-
-  useEffect(() => {
-    setHistory(sortByTimestamp(mockHistory));
-  }, []);
+  const { formatMs, formatBytes } = useFormatters();
 
   return (
     <Content style={contentStyles}>
-      <Flex vertical align="center" style={{ width: '100%' }}>
+      <Flex vertical align="center" style={contentStyles}>
         <Title level={1} style={{ marginBottom: '16px' }}>
           {t('title')}
         </Title>
 
-        {history.length === 0 ? (
+        {items.length === 0 ? (
           <Flex vertical align="center" gap={12}>
             <Empty
               description={
@@ -59,13 +52,11 @@ export default function HistoryView() {
           <Card
             style={{
               width: '100%',
-              margin: '0 auto',
-              padding: '20px',
             }}
           >
             <Collapse
               accordion
-              items={history.map((item) => ({
+              items={items.map((item) => ({
                 key: item.id,
                 label: (
                   <Row gutter={16} wrap style={{ width: '100%' }}>
@@ -74,8 +65,18 @@ export default function HistoryView() {
                     </Col>
 
                     <Col xs={12} md={4} style={{ textAlign: 'right' }}>
-                      <Text type={item.statusCode >= 400 ? 'danger' : 'secondary'}>
-                        {item.statusCode}
+                      <Text
+                        type={
+                          item.statusCode === 0
+                            ? 'danger'
+                            : item.statusCode >= 400
+                              ? 'danger'
+                              : item.statusCode >= 200 && item.statusCode < 300
+                                ? 'success'
+                                : 'secondary'
+                        }
+                      >
+                        {item.statusCode === 0 ? t('error') : item.statusCode}
                       </Text>
                     </Col>
 
@@ -99,19 +100,20 @@ export default function HistoryView() {
                       <b>{t('timestamp')}:</b> {new Date(item.timestamp).toLocaleString()}
                     </p>
                     <p>
-                      <b>{t('duration')}:</b> {item.durationMs} ms
+                      <b>{t('duration')}:</b> {formatMs(item.durationMs)}
                     </p>
                     <p>
-                      <b>{t('requestSize')}:</b> {item.requestSize} bytes
+                      <b>{t('requestSize')}:</b> {formatBytes(item.requestSize)}
                     </p>
                     <p>
-                      <b>{t('responseSize')}:</b> {item.responseSize} bytes
+                      <b>{t('responseSize')}:</b> {formatBytes(item.responseSize)}
                     </p>
-                    {item.errorDetails && (
-                      <p>
-                        <b>{t('error')}:</b> {item.errorDetails}
-                      </p>
-                    )}
+                    <p>
+                      <b>{t('error')}:</b>{' '}
+                      {item.errorDetails && item.errorDetails.trim() !== ''
+                        ? item.errorDetails
+                        : t('noError')}
+                    </p>
                   </div>
                 ),
               }))}

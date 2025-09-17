@@ -178,6 +178,11 @@
     "duration": "Duration",
     "requestSize": "Request Size",
     "responseSize": "Response Size",
-    "error": "Error"
+    "error": "Error",
+    "noError": "Request completed without errors",
+    "ms": "ms",
+    "bytes_one": "byte",
+    "bytes_few": "bytes",
+    "bytes_many": "bytes"
   }
 }

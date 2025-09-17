@@ -12,6 +12,7 @@ import { HeadersEditor, BodyEditor, HttpMethods, Response } from '@/features/res
 import axios from 'axios';
 import { getReadableErrorMessage, validateJson } from '@/shared/utils';
 import { DEFAULT_HEADERS, ERROR_MESSAGES } from '@/shared/constants';
+import { getSize, measureDuration } from '@/shared/lib/auth/request-log-metrics';
 
 const { Item } = Form;
 const { Title } = Typography;
@@ -45,13 +46,14 @@ export default function RestClientPage() {
       const keyTrim = key.trim();
       const valueTrim = value.trim();
 
-      (keyTrim && !valueTrim) || (!keyTrim && valueTrim);
+      return (keyTrim && !valueTrim) || (!keyTrim && valueTrim);
     });
 
     if (invalidHeaders.length > 0) {
       setError(ERROR_MESSAGES.KEY_AND_VALUE);
       return;
     }
+
     try {
       const headersObject: Record<string, string> = {};
 
@@ -72,12 +74,34 @@ export default function RestClientPage() {
         contentType,
       };
 
-      const response = await axios.post('/api/rest-client', requestData);
+      const { response, durationMs } = await measureDuration(() =>
+        axios.post('/api/rest-client', requestData)
+      );
+      const statusCode = response.data.status;
+      const requestSize = getSize(requestData);
+      const responseSize = getSize(response?.data);
 
       if (response.data.error) {
         setError(response.data.error);
+        await axios.post('/api/request-logs', {
+          url,
+          method,
+          requestSize,
+          responseSize,
+          durationMs,
+          errorDetails: response.data.error,
+        });
       } else {
         setResponse(response.data);
+        await axios.post('/api/request-logs', {
+          url,
+          method,
+          statusCode,
+          requestSize,
+          responseSize,
+          durationMs,
+          errorDetails: '',
+        });
       }
     } catch (error) {
       setError(getReadableErrorMessage(error));
