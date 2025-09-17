@@ -12,6 +12,16 @@ vi.mock('next/navigation', () => ({
   useSearchParams: () => new URLSearchParams(),
 }));
 
+vi.mock('@/shared/i18n/navigation', () => {
+  return {
+    useRouter: () => ({
+      push: vi.fn(),
+      replace: vi.fn(),
+      refresh: vi.fn(),
+    }),
+  };
+});
+
 describe('REST Client Page', () => {
   beforeEach(() => {
     vi.clearAllMocks();
