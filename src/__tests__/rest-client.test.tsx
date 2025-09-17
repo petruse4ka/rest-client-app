@@ -7,6 +7,11 @@ import axios from 'axios';
 vi.mock('axios');
 const mockedAxios = vi.mocked(axios, true);
 
+vi.mock('next/navigation', () => ({
+  useParams: () => ({ params: [] }),
+  useSearchParams: () => new URLSearchParams(),
+}));
+
 describe('REST Client Page', () => {
   beforeEach(() => {
     vi.clearAllMocks();
