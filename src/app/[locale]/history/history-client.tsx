@@ -8,7 +8,7 @@ import { Link } from '@/shared/i18n/navigation';
 import { ThemeContext } from '@/context/theme-context';
 import { useTranslations } from 'next-intl';
 import { RequestHistoryItem } from '@/types/interfaces';
-import { useFormatters } from '@/shared/utils/translate-formatter';
+import { useFormatters } from '@/shared/utils/';
 
 const { Title, Text } = Typography;
 
