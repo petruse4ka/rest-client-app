@@ -18,6 +18,7 @@ import {
 } from '@/shared/utils';
 import { ERROR_MESSAGES } from '@/shared/constants';
 import { useSearchParams, useParams } from 'next/navigation';
+import { getSize, measureDuration } from '@/shared/lib/auth/request-log-metrics';
 
 const { Item } = Form;
 const { Title } = Typography;
@@ -101,12 +102,36 @@ export default function RestClientPageDefault() {
         contentType,
       };
 
-      const response = await axios.post('/api/rest-client', requestData);
+      const { response, durationMs } = await measureDuration(() =>
+        axios.post('/api/rest-client', requestData)
+      );
+      const statusCode = response.data.status;
+      const requestSize = getSize(requestData);
+      const responseSize = getSize(response?.data);
 
       if (response.data.error) {
         setError(response.data.error);
+        await axios.post('/api/request-logs', {
+          url: requestData.url,
+          appRouterURL: encodedUrl,
+          method,
+          requestSize,
+          responseSize,
+          durationMs,
+          errorDetails: response.data.error,
+        });
       } else {
         setResponse(response.data);
+        await axios.post('/api/request-logs', {
+          url: requestData.url,
+          appRouterURL: encodedUrl,
+          method,
+          statusCode,
+          requestSize,
+          responseSize,
+          durationMs,
+          errorDetails: '',
+        });
       }
     } catch (error) {
       setError(getReadableErrorMessage(error));

@@ -29,25 +29,24 @@ export interface DecodedUrlData {
   headers?: Header[];
 }
 
-export interface RequestHistoryItem {
-  id: string;
+export interface RequestLogBase {
   url: string;
+  appRouterURL: string;
   method: HttpMethod;
-  timestamp: string;
-  durationMs: number;
   statusCode: number;
   requestSize: number;
   responseSize: number;
+  durationMs: number;
   errorDetails: string;
 }
 
-export type FirestoreDoc = {
-  url: string;
-  method: HttpMethod;
+export type FirestoreDoc = RequestLogBase & {
   createdAt: Timestamp | Date;
-  statusCode: number;
-  requestSize: number;
-  responseSize: number;
-  durationMs: number;
-  errorDetails: string;
 };
+
+export type RequestHistoryItem = RequestLogBase & {
+  id: string;
+  timestamp: string;
+};
+
+export type LogRequestPayload = RequestLogBase;

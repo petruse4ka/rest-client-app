@@ -4,16 +4,12 @@ import { db } from '@/server/firebase-admin';
 
 function mapDoc(doc: QueryDocumentSnapshot<FirestoreDoc>): RequestHistoryItem {
   const data = doc.data();
-  const createdAt =
-    data.createdAt instanceof Timestamp
-      ? data.createdAt.toDate()
-      : data.createdAt
-        ? new Date(data.createdAt)
-        : new Date();
+  const createdAt = data.createdAt instanceof Timestamp ? data.createdAt.toDate() : data.createdAt;
 
   return {
     id: doc.id,
     url: data.url,
+    appRouterURL: data.appRouterURL,
     method: data.method,
     statusCode: data.statusCode ?? 0,
     requestSize: data.requestSize ?? 0,

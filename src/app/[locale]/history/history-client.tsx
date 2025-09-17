@@ -86,7 +86,7 @@ export default function HistoryView({ items }: { items: RequestHistoryItem[] }) 
                       style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
                     >
                       <Link
-                        href="/rest-client"
+                        href={item.appRouterURL}
                         className={`link link-font_size_small ${themeValue === 'dark' ? 'link--dark' : 'link--light'}`}
                       >
                         {item.url}

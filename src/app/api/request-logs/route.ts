@@ -11,10 +11,18 @@ export async function POST(req: NextRequest) {
     const uid = decoded.uid;
 
     const body = await req.json();
-    const { method, url, statusCode, requestSize, responseSize, durationMs, errorDetails } =
-      body ?? {};
+    const {
+      method,
+      url,
+      appRouterURL,
+      statusCode,
+      requestSize,
+      responseSize,
+      durationMs,
+      errorDetails,
+    } = body ?? {};
 
-    if (!method || !url) {
+    if (!url || !appRouterURL || !method) {
       return NextResponse.json({ error: 'Invalid payload' }, { status: 400 });
     }
 
@@ -22,6 +30,7 @@ export async function POST(req: NextRequest) {
       uid,
       method,
       url,
+      appRouterURL,
       statusCode: Number(statusCode) || 0,
       requestSize: Number(requestSize) || 0,
       responseSize: Number(responseSize) || 0,

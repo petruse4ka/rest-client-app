@@ -1,26 +1,15 @@
 import { db } from '@/server/firebase-admin';
-import { HttpMethod } from '@/types/types';
+import { LogRequestPayload } from '@/types/interfaces';
 
-export async function saveRequestLog(params: {
-  uid: string;
-  url: string;
-  method: HttpMethod;
-  statusCode: number;
-  requestSize: number;
-  responseSize: number;
-  durationMs: number;
-  errorDetails: string;
-}) {
+export async function saveRequestLog(params: { uid: string } & LogRequestPayload) {
   const { uid, ...rest } = params;
-
-  const clean = Object.fromEntries(Object.entries(rest).filter(([, v]) => v !== undefined));
 
   await db
     .collection('users')
     .doc(uid)
     .collection('requestLogs')
     .add({
-      ...clean,
+      ...rest,
       createdAt: new Date(),
     });
 }
