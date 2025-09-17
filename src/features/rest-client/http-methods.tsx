@@ -2,6 +2,7 @@ import { HttpMethod } from '@/types/types';
 import { Button, Form, Input, Select, Flex, Grid, Typography } from 'antd';
 import { SendOutlined } from '@ant-design/icons';
 import { useTranslations } from 'next-intl';
+import { useCallback } from 'react';
 
 const { useBreakpoint } = Grid;
 const { Option } = Select;
@@ -17,6 +18,13 @@ export function HttpMethods({ loading, onMethodChange }: HttpMethodsProps) {
   const t = useTranslations('RestClient');
   const httpMethods = Object.values(HttpMethod);
   const screens = useBreakpoint();
+
+  const handleMethodChange = useCallback(
+    (method: HttpMethod) => {
+      onMethodChange?.(method);
+    },
+    [onMethodChange]
+  );
 
   return (
     <Flex vertical>
@@ -38,7 +46,7 @@ export function HttpMethods({ loading, onMethodChange }: HttpMethodsProps) {
           }}
           data-testid="method-field"
         >
-          <Select onChange={onMethodChange}>
+          <Select onChange={handleMethodChange}>
             {httpMethods.map((method) => (
               <Option key={method} value={method}>
                 {method}
