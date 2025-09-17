@@ -42,8 +42,8 @@ export default function RestClientPageDefault() {
     setResponse(null);
 
     const substitutedUrl = substituteVariables(url);
-    const headersArray = Array.isArray(headers) ? headers : [];
 
+    const headersArray = Array.isArray(headers) ? headers : [];
     const substitutedHeaders = headersArray.map(({ key, value }: Header) => ({
       key: substituteVariables(key),
       value: substituteVariables(value),
