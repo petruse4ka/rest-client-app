@@ -12,7 +12,7 @@ export function getInitialFormValues(urlParts: string[], searchParams: URLSearch
       return {
         method,
         url,
-        headers: headers.length > 0 ? headers : DEFAULT_HEADERS,
+        headers: headers && headers.length > 0 ? headers : DEFAULT_HEADERS,
         data: body || '',
         contentType: ContentType.JSON,
       };

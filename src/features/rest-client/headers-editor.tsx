@@ -4,6 +4,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import HeadersCell from './headers-cell';
 import HeadersControls from './headers-controls';
 import { useTranslations } from 'next-intl';
+import { useCallback, useMemo } from 'react';
 
 const { Text } = Typography;
 
@@ -12,7 +13,7 @@ export function HeadersEditor() {
   const form = Form.useFormInstance();
   const headers = Form.useWatch('headers', form) || [];
 
-  const addHeader = () => {
+  const addHeader = useCallback(() => {
     const newHeader: Header = {
       key: '',
       value: '',
@@ -22,64 +23,73 @@ export function HeadersEditor() {
 
     const newHeaders = [...currentHeaders, { ...newHeader }];
     form.setFieldValue('headers', newHeaders);
-  };
+  }, [form]);
 
-  const updateHeader = (id: number, field: 'key' | 'value', value: string) => {
-    const currentHeaders = form.getFieldValue('headers') || [];
-    const updatedHeaders = currentHeaders.map((header: Header) =>
-      header.id === id ? { ...header, [field]: value } : header
-    );
+  const updateHeader = useCallback(
+    (id: number, field: 'key' | 'value', value: string) => {
+      const currentHeaders = form.getFieldValue('headers') || [];
+      const updatedHeaders = currentHeaders.map((header: Header) =>
+        header.id === id ? { ...header, [field]: value } : { ...header }
+      );
 
-    form.setFieldValue('headers', updatedHeaders);
-  };
-
-  const deleteHeader = (id: number) => {
-    const currentHeaders = form.getFieldValue('headers') || [];
-    const updatedHeaders = currentHeaders.filter((header: Header) => header.id !== id);
-
-    form.setFieldValue('headers', updatedHeaders);
-  };
-
-  const columns = [
-    {
-      title: t('headerKey'),
-      dataIndex: 'key',
-      key: 'key',
-      ellipsis: true,
-      editable: true,
-      render: (value: string, record: Header) => (
-        <HeadersCell
-          value={value}
-          onChange={(newValue) => updateHeader(record.id as number, 'key', newValue)}
-          placeholder={t('placeholderKey')}
-          dataIndex={`headers[${record.id}].key`}
-        />
-      ),
+      form.setFieldValue('headers', updatedHeaders);
     },
-    {
-      title: t('headerValue'),
-      dataIndex: 'value',
-      key: 'value',
-      ellipsis: true,
-      editable: true,
-      render: (value: string, record: Header) => (
-        <HeadersCell
-          value={value}
-          onChange={(newValue) => updateHeader(record.id as number, 'value', newValue)}
-          placeholder={t('placeholderValue')}
-          dataIndex={`headers[${record.id}].value`}
-        />
-      ),
+    [form]
+  );
+
+  const deleteHeader = useCallback(
+    (id: number) => {
+      const currentHeaders = form.getFieldValue('headers') || [];
+      const updatedHeaders = currentHeaders.filter((header: Header) => header.id !== id);
+
+      form.setFieldValue('headers', updatedHeaders);
     },
-    {
-      title: '',
-      key: 'operation',
-      width: 50,
-      render: (_: unknown, record: Header) => (
-        <HeadersControls deleteItem={() => deleteHeader(record.id as number)} />
-      ),
-    },
-  ];
+    [form]
+  );
+
+  const columns = useMemo(
+    () => [
+      {
+        title: t('headerKey'),
+        dataIndex: 'key',
+        key: 'key',
+        ellipsis: true,
+        editable: true,
+        render: (value: string, record: Header) => (
+          <HeadersCell
+            value={value}
+            onChange={(newValue) => updateHeader(record.id as number, 'key', newValue)}
+            placeholder={t('placeholderKey')}
+            dataIndex={`headers[${record.id}].key`}
+          />
+        ),
+      },
+      {
+        title: t('headerValue'),
+        dataIndex: 'value',
+        key: 'value',
+        ellipsis: true,
+        editable: true,
+        render: (value: string, record: Header) => (
+          <HeadersCell
+            value={value}
+            onChange={(newValue) => updateHeader(record.id as number, 'value', newValue)}
+            placeholder={t('placeholderValue')}
+            dataIndex={`headers[${record.id}].value`}
+          />
+        ),
+      },
+      {
+        title: '',
+        key: 'operation',
+        width: 50,
+        render: (_: unknown, record: Header) => (
+          <HeadersControls deleteItem={() => deleteHeader(record.id as number)} />
+        ),
+      },
+    ],
+    [t, updateHeader, deleteHeader]
+  );
 
   return (
     <Flex vertical gap={20}>
