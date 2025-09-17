@@ -17,16 +17,6 @@ vi.mock('@/shared/config/firebase', () => {
   };
 });
 
-vi.mock('@/shared/i18n/navigation', () => {
-  return {
-    useRouter: () => ({
-      push: vi.fn(),
-      replace: vi.fn(),
-      refresh: vi.fn(),
-    }),
-  };
-});
-
 describe('Test for Hero Section', () => {
   test('Render', () => {
     render(<HeroSection />);

@@ -15,16 +15,6 @@ vi.mock('@/shared/utils', async () => {
   };
 });
 
-vi.mock('@/shared/i18n/navigation', () => {
-  return {
-    useRouter: () => ({
-      push: vi.fn(),
-      replace: vi.fn(),
-      refresh: vi.fn(),
-    }),
-  };
-});
-
 const mockedValidateJson = vi.mocked(validateJson);
 
 const TestWrapper = ({ children }: { children: ReactNode }) => {

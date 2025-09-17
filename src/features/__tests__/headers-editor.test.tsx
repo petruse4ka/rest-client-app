@@ -10,16 +10,6 @@ const TestWrapper = ({ children }: { children: ReactNode }) => {
   return <Form form={form}>{children}</Form>;
 };
 
-vi.mock('@/shared/i18n/navigation', () => {
-  return {
-    useRouter: () => ({
-      push: vi.fn(),
-      replace: vi.fn(),
-      refresh: vi.fn(),
-    }),
-  };
-});
-
 describe('HeadersEditor', () => {
   test('renders headers editor with all elements', () => {
     render(

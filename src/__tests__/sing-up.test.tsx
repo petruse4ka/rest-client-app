@@ -3,16 +3,6 @@ import { render } from './test-utils/test-utils';
 import { describe, test, beforeEach, vi, expect } from 'vitest';
 import SignUpPage from '@/app/[locale]/(auth)/sign-up/page';
 
-vi.mock('@/shared/i18n/navigation', () => {
-  return {
-    useRouter: () => ({
-      push: vi.fn(),
-      replace: vi.fn(),
-      refresh: vi.fn(),
-    }),
-  };
-});
-
 vi.mock('@/widgets', () => ({
   AuthWidget: () => <div data-testid="auth-widget">AuthWidget</div>,
 }));

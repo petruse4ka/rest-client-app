@@ -4,16 +4,6 @@ import { render } from './test-utils/test-utils';
 import enMessages from '@/shared/i18n/messages/en.json';
 import NotFound from '@/app/[locale]/not-found';
 
-vi.mock('@/shared/i18n/navigation', () => {
-  return {
-    useRouter: () => ({
-      push: vi.fn(),
-      replace: vi.fn(),
-      refresh: vi.fn(),
-    }),
-  };
-});
-
 describe('NotFound Page', () => {
   test('renders all components with test IDs', () => {
     render(<NotFound />);
