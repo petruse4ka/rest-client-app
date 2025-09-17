@@ -179,5 +179,10 @@
     "requestSize": "Request Size",
     "responseSize": "Response Size",
     "error": "Error"
+  },
+  "ErrorBoundary": {
+    "title": "Something went wrong",
+    "message": "An unexpected error occurred. Please try refreshing the page.",
+    "buttonText": "Refresh page"
   }
 }

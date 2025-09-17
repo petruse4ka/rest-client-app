@@ -42,3 +42,9 @@ export interface RequestHistoryItem {
 
   errorDetails?: string;
 }
+
+export interface ErrorTexts {
+  title: string;
+  message: string;
+  buttonText: string;
+}
