@@ -6,6 +6,7 @@ import sdk from 'postman-collection';
 import { Typography } from 'antd';
 import { LanguageItem } from '@/types/interfaces';
 import { useEffect, useState } from 'react';
+import { substituteVariables } from '@/shared/utils';
 
 const { Text } = Typography;
 
@@ -29,12 +30,17 @@ export function CodeGeneration({ request }: CodeGenerationProps) {
 
   const handleChange = (value: string) => {
     setSelectedLang(value);
+
     const { key: language, variant } = JSON.parse(value);
     const request = new sdk.Request({
-        url,
+        url: substituteVariables(url),
         method,
-        header: headers?.map(({ key, value }) => ({ key, value })) || [],
-        body: data ? { mode: 'raw', raw: data } : undefined,
+        header:
+          headers?.map(({ key, value }) => ({
+            key: substituteVariables(key),
+            value: substituteVariables(value),
+          })) || [],
+        body: data ? { mode: 'raw', raw: substituteVariables(data.trim()) } : undefined,
       }),
       options = {
         indentCount: 3,
@@ -70,7 +76,7 @@ export function CodeGeneration({ request }: CodeGenerationProps) {
         onChange={handleChange}
         options={codeLanguages}
       />
-      <Text copyable style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+      <Text copyable>
         <pre style={{ margin: 0 }}>{code}</pre>
       </Text>
     </Flex>
