@@ -1,12 +1,14 @@
+import { useState } from 'react';
 import { MenuOutlined } from '@ant-design/icons';
 import { Button, Drawer, Flex, Space } from 'antd';
 import InterfaceSettings from './interface-settings';
 import Navigation from './navigation';
 import AuthControls from './auth-controls';
-import { useState } from 'react';
 import Logo from './logo';
+import { useAuth } from '@/shared/provider/auth-provider';
 
-export default function MobileHeader({ isLogin }: { isLogin: boolean }) {
+export default function MobileHeader() {
+  const { isLogin } = useAuth();
   const [drawer, setDrawer] = useState(false);
 
   const showDrawer = () => {
@@ -35,7 +37,7 @@ export default function MobileHeader({ isLogin }: { isLogin: boolean }) {
       >
         <Space direction="vertical" size="large">
           {isLogin && <Navigation />}
-          <AuthControls isLogin={isLogin} />
+          <AuthControls />
         </Space>
       </Drawer>
     </>

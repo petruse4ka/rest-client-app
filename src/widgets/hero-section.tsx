@@ -4,25 +4,16 @@ import { authLinks, navLinks } from '@/shared/config/navigation';
 import { Button, Flex, Typography } from 'antd';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '@/shared/config/firebase';
+import { useAuth } from '../shared/provider/auth-provider';
 
 const { Title, Text } = Typography;
 
 export function HeroSection() {
-  const [isLogin, setIsLogin] = useState(false);
+  const { isLogin } = useAuth();
+
   const links = isLogin ? navLinks.slice(1) : authLinks;
   const t = useTranslations('Hero');
   const navt = useTranslations('NavInfo');
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
-      setIsLogin(!!firebaseUser);
-    });
-
-    return () => unsubscribe();
-  }, []);
 
   return (
     <Flex
