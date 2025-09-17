@@ -7,6 +7,21 @@ import axios from 'axios';
 vi.mock('axios');
 const mockedAxios = vi.mocked(axios, true);
 
+vi.mock('next/navigation', () => ({
+  useParams: () => ({ params: [] }),
+  useSearchParams: () => new URLSearchParams(),
+}));
+
+vi.mock('@/shared/i18n/navigation', () => {
+  return {
+    useRouter: () => ({
+      push: vi.fn(),
+      replace: vi.fn(),
+      refresh: vi.fn(),
+    }),
+  };
+});
+
 describe('REST Client Page', () => {
   beforeEach(() => {
     vi.clearAllMocks();

@@ -2,9 +2,10 @@ import { ContentType } from '@/types/types';
 import { Button, Flex, Input, Select, Space, Typography, Form } from 'antd';
 import { FormatPainterOutlined } from '@ant-design/icons';
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { getBodyPlaceholder, validateJson } from '@/shared/utils';
 import { prettifyJson } from '@/shared/utils';
+import { substituteVariables } from '@/shared/utils';
 
 const { Text } = Typography;
 const { TextArea } = Input;
@@ -18,27 +19,33 @@ export function BodyEditor() {
   const data = Form.useWatch('data', form) || '';
   const contentType = Form.useWatch('contentType', form) || ContentType.JSON;
 
-  const handleBodyValueChange = (newValue: string) => {
-    form.setFieldValue('data', newValue);
-    const isValidJson = validateJson(newValue, contentType);
-    setJsonIsValid(isValidJson);
-  };
+  const handleBodyValueChange = useCallback(
+    (newValue: string) => {
+      form.setFieldValue('data', newValue);
+      const isValidJson = validateJson(substituteVariables(newValue), contentType);
+      setJsonIsValid(isValidJson);
+    },
+    [form, contentType]
+  );
 
-  const handleBodyTypeChange = (newContentType: ContentType) => {
-    form.setFieldValue('contentType', newContentType);
-    const isValidJson = validateJson(data, newContentType);
-    setJsonIsValid(isValidJson);
-  };
+  const handleBodyTypeChange = useCallback(
+    (newContentType: ContentType) => {
+      form.setFieldValue('contentType', newContentType);
+      const isValidJson = validateJson(substituteVariables(data), newContentType);
+      setJsonIsValid(isValidJson);
+    },
+    [form, data]
+  );
 
-  const handlePrettifyJson = () => {
-    const prettifiedValue = prettifyJson(data, contentType);
+  const handlePrettifyJson = useCallback(() => {
+    const prettifiedValue = prettifyJson(substituteVariables(data), contentType);
     if (prettifiedValue !== null) {
       form.setFieldValue('data', prettifiedValue);
       setJsonIsValid(true);
     } else {
       setJsonIsValid(false);
     }
-  };
+  }, [form, data, contentType]);
 
   return (
     <Flex vertical style={{ marginBottom: 16 }}>
@@ -49,7 +56,7 @@ export function BodyEditor() {
             <Button
               icon={<FormatPainterOutlined />}
               onClick={handlePrettifyJson}
-              disabled={!data.trim() || !jsonIsValid}
+              disabled={!substituteVariables(data).trim() || !jsonIsValid}
               size="small"
               data-testid="prettify-button"
             >
