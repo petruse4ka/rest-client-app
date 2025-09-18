@@ -16,8 +16,9 @@ import {
   measureDuration,
 } from '@/shared/utils';
 
+import { Card, Form, Typography, Flex, Divider, Button, Modal } from 'antd';
+import { CodeGeneration } from '@/widgets';
 import { Content } from 'antd/es/layout/layout';
-import { Card, Form, Typography, Flex, Divider, Button } from 'antd';
 
 import type { RequestBody, ApiResponse, Header } from '@/types/interfaces';
 import { ContentType } from '@/types/types';
@@ -33,6 +34,8 @@ export default function RestClientPageDefault() {
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState<ApiResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [modalOpen, setModalOpen] = useState(false);
+  const formValues = Form.useWatch([], form);
 
   const urlParameters = useParams();
   const urlParts = Array.isArray(urlParameters.params) ? urlParameters.params : [];
@@ -177,11 +180,25 @@ export default function RestClientPageDefault() {
           </Form>
         </Card>
 
-        <Button type="primary" data-testid="generated-code-button" style={{ width: '100%' }}>
+        <Button
+          type="primary"
+          data-testid="generated-code-button"
+          style={{ width: '100%' }}
+          onClick={() => setModalOpen(true)}
+        >
           {t('generatedCode')}
         </Button>
 
         <Response loading={loading} error={error} response={response} />
+        <Modal
+          title={t('modalTitle')}
+          centered
+          open={modalOpen}
+          footer={null}
+          onCancel={() => setModalOpen(false)}
+        >
+          <CodeGeneration request={formValues} />
+        </Modal>
       </Flex>
     </Content>
   );
