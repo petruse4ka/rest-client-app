@@ -56,7 +56,7 @@ describe('Header Desktop', () => {
     mockUseAuth.mockReturnValue({ isLogin: true });
 
     render(<DesktopHeader />);
-    expect(screen.getByText('Sign Out')).toBeInTheDocument();
+    expect(screen.getByTestId('sign-out-btn')).toBeInTheDocument();
   });
 
   test('Auth Controls for Logout', () => {
@@ -77,7 +77,7 @@ describe('Header Desktop', () => {
     ) as unknown as typeof fetch;
 
     render(<DesktopHeader />);
-    const btn = screen.getByText('Sign Out');
+    const btn = screen.getByTestId('sign-out-btn');
 
     fireEvent.click(btn);
 

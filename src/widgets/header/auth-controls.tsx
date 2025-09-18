@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import { useRouter } from '@/shared/i18n/navigation';
 import { useAuth } from '@/shared/provider/auth-provider';
 
-import { Button, Flex, Tooltip, Typography } from 'antd';
+import { Button, Flex, Tooltip } from 'antd';
 import { appRoutes } from '@/shared/config/navigation';
 import { HomeOutlined, LogoutOutlined, UserOutlined } from '@ant-design/icons';
 
@@ -18,13 +18,6 @@ export default function AuthControls() {
   const goSignIn = () => router.push(appRoutes.signIn);
   const goSignUp = () => router.push(appRoutes.signUp);
   const goMainPage = () => router.push(appRoutes.home);
-
-  const userInfo = [
-    {
-      key: 'username',
-      label: user?.name || 'User',
-    },
-  ];
 
   const handleSignOut = async () => {
     try {
@@ -60,6 +53,7 @@ export default function AuthControls() {
               onClick={handleSignOut}
               loading={loading}
               icon={<LogoutOutlined />}
+              data-testid="sign-out-btn"
             />
           </Tooltip>
         </>
