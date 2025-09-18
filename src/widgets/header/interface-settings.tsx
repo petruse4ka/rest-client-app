@@ -26,7 +26,7 @@ export default function InterfaceSettings() {
   };
 
   return (
-    <Flex align="center" gap="middle">
+    <Flex align="center" gap="middle" data-testid="interface-settings">
       <Switch
         checked={themeValue === 'dark'}
         onChange={handleThemeChange}

@@ -21,7 +21,12 @@ export default function MobileHeader() {
 
   return (
     <>
-      <Flex justify="space-between" align="center" style={{ height: '100%' }}>
+      <Flex
+        justify="space-between"
+        align="center"
+        style={{ height: '100%' }}
+        data-testid="mobile-header"
+      >
         <Logo />
         <Button size="large" icon={<MenuOutlined />} onClick={showDrawer} aria-label="Open menu" />
       </Flex>

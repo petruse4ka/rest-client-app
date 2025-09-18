@@ -8,7 +8,12 @@ import { useAuth } from '@/shared/provider/auth-provider';
 export default function DesktopHeader() {
   const { isLogin } = useAuth();
   return (
-    <Row align="middle" justify="space-between" style={{ height: '100%' }}>
+    <Row
+      align="middle"
+      justify="space-between"
+      style={{ height: '100%' }}
+      data-testid="desktop-header"
+    >
       <Col>
         <InterfaceSettings />
       </Col>
