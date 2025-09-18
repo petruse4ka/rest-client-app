@@ -183,6 +183,7 @@
     },
     "btn": "Add new variable",
     "empty": "List of variables is empty",
+    "loading": "Loading...",
     "inputErrors": {
       "empty": "Please add value",
       "unique": "Variable must be unique"
@@ -209,5 +210,8 @@
     "title": "Something went wrong",
     "message": "An unexpected error occurred. Please try refreshing the page.",
     "buttonText": "Refresh page"
+  },
+  "LoadingSpinner": {
+    "loading": "Loading..."
   }
 }
