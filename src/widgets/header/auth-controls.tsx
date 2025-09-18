@@ -6,6 +6,7 @@ import { useAuth } from '@/shared/provider/auth-provider';
 
 import { Button, Flex, Typography } from 'antd';
 import { appRoutes } from '@/shared/config/navigation';
+import { HomeOutlined } from '@ant-design/icons';
 
 const { Text } = Typography;
 
@@ -18,6 +19,7 @@ export default function AuthControls() {
 
   const goSignIn = () => router.push(appRoutes.signIn);
   const goSignUp = () => router.push(appRoutes.signUp);
+  const goMainPage = () => router.push(appRoutes.home);
 
   const handleSignOut = async () => {
     try {
@@ -35,6 +37,15 @@ export default function AuthControls() {
       {isLogin ? (
         <>
           <Text>{user?.name || 'User'}</Text>
+          <Button
+            size="small"
+            type="default"
+            icon={<HomeOutlined />}
+            onClick={goMainPage}
+            loading={loading}
+          >
+            {t('home')}
+          </Button>
           <Button size="small" type="primary" onClick={handleSignOut} loading={loading}>
             {t('signOut')}
           </Button>

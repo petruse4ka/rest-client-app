@@ -13,6 +13,7 @@ const HeaderStyle: CSSProperties = {
   top: 0,
   zIndex: 1,
   transition: '0.3s',
+  borderBottom: '1px solid transparent',
 };
 
 export function HeaderApp() {
