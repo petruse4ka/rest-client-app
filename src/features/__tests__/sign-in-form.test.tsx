@@ -1,4 +1,5 @@
 import { screen, fireEvent, waitFor } from '@testing-library/react';
+import type { PropsWithChildren, AnchorHTMLAttributes } from 'react';
 import type { UserCredential } from 'firebase/auth';
 
 import { describe, test, beforeEach, vi, expect } from 'vitest';
@@ -8,12 +9,27 @@ vi.mock('@ant-design/v5-patch-for-react-19', () => ({}));
 
 const replace = vi.fn();
 const refresh = vi.fn();
+const push = vi.fn();
+
 vi.mock('@/shared/i18n/navigation', () => ({
-  useRouter: () => ({ replace, refresh }),
+  useRouter: () => ({ replace, refresh, push }),
+  Link: ({
+    href,
+    children,
+    ...rest
+  }: PropsWithChildren<AnchorHTMLAttributes<HTMLAnchorElement>>) => (
+    <a href={href} {...rest}>
+      {children}
+    </a>
+  ),
 }));
 
 vi.mock('@/shared/config/navigation', () => ({
   appRoutes: { home: '/' },
+}));
+
+vi.mock('@/shared/config/navigation', () => ({
+  appRoutes: { home: '/', forgotPassword: '/forgot-password' },
 }));
 
 vi.mock('@/shared/api/firebase/auth', () => ({

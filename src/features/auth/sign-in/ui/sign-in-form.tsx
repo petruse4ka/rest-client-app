@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import '@ant-design/v5-patch-for-react-19';
-import { useRouter } from '@/shared/i18n/navigation';
+import { Link, useRouter } from '@/shared/i18n/navigation';
 import { buildSignInRules } from '../model/shema';
 import { apiSignIn } from '@/shared/api/firebase/auth';
 import { finalizeLogin } from '@/shared/lib/auth/finalize-login';
@@ -72,7 +72,7 @@ export function SignInForm() {
 
       <Item>
         <Text type="secondary">
-          <a onClick={() => router.push(appRoutes.forgotPassword)}>{t('forgotPassword')}</a>
+          <Link href={appRoutes.forgotPassword}>{t('forgotPassword')}</Link>
         </Text>
       </Item>
 
