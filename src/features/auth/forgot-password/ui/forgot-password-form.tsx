@@ -52,7 +52,12 @@ export function ForgotPasswordForm() {
         <Text type="danger">{apiError || ' '}</Text>
       </Item>
       <Item<FieldType> label={t('email.label')} name="email" rules={rules.email}>
-        <Input placeholder={t('email.placeholder')} />
+        <Input
+          onChange={() => {
+            if (successMessage) setSuccessMessage(null);
+          }}
+          placeholder={t('email.placeholder')}
+        />
       </Item>
 
       {successMessage && (

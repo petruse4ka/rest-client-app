@@ -1,7 +1,7 @@
 import { FirebaseError } from 'firebase/app';
 
 type Field = 'email' | undefined;
-type Key = 'userNotFound' | 'invalidEmail' | 'tooManyRequests' | 'network' | 'generic';
+type Key = 'invalidEmail' | 'tooManyRequests' | 'network' | 'generic';
 
 export function mapResetPasswordError(err: unknown): { field: Field; key: Key } {
   const code = err instanceof FirebaseError ? err.code : undefined;
