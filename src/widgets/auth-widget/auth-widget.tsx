@@ -9,7 +9,7 @@ import { apiSignUpWithGooglePopup } from '@/shared/api/firebase/auth';
 import { mapGoogleAuthError } from '@/shared/api/firebase/map-google-error';
 import { finalizeLogin } from '@/shared/lib/auth/finalize-login';
 
-import { SignUpForm, SignInForm } from '@/features/auth/';
+import { SignUpForm, SignInForm, ForgotPasswordForm } from '@/features/auth/';
 import { Button, Card, Divider, Flex, Radio, Typography } from 'antd';
 import { Group } from 'antd/es/radio';
 
@@ -25,8 +25,11 @@ export function AuthWidget() {
   const t = useTranslations('Auth');
 
   const loginActive = pathname?.includes(appRoutes.signIn);
+  const forgotPasswordActive = pathname?.includes(appRoutes.forgotPassword);
 
-  const value = loginActive ? 'login' : 'signup';
+  let value: 'login' | 'signup' | 'forgotPassword' = 'signup';
+  if (loginActive) value = 'login';
+  if (forgotPasswordActive) value = 'forgotPassword';
 
   const [apiError, setApiError] = useState<string | null>(null);
 
@@ -62,13 +65,26 @@ export function AuthWidget() {
 
         <Title level={3}>{t(`titles.${value}`)}</Title>
 
-        {loginActive ? <SignInForm /> : <SignUpForm />}
-
+        {forgotPasswordActive ? (
+          <ForgotPasswordForm />
+        ) : loginActive ? (
+          <SignInForm />
+        ) : (
+          <SignUpForm />
+        )}
         <Flex justify="center">
           <Text type="secondary" data-testid="auth-cta">
-            {t(loginActive ? 'cta.noAccount' : 'cta.haveAccount')} {t('cta.click')}{' '}
-            <Link href={loginActive ? appRoutes.signUp : appRoutes.signIn}>{t('cta.here')}</Link>{' '}
-            {t(loginActive ? 'cta.signUpSuffix' : 'cta.loginSuffix')}
+            {forgotPasswordActive ? (
+              <Link href={appRoutes.signIn}>{t('cta.backToLogin')}</Link>
+            ) : (
+              <>
+                {t(loginActive ? 'cta.noAccount' : 'cta.haveAccount')} {t('cta.click')}{' '}
+                <Link href={loginActive ? appRoutes.signUp : appRoutes.signIn}>
+                  {t('cta.here')}
+                </Link>{' '}
+                {t(loginActive ? 'cta.signUpSuffix' : 'cta.loginSuffix')}
+              </>
+            )}
           </Text>
         </Flex>
 
