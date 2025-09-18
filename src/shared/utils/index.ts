@@ -9,3 +9,6 @@ export { encodeRestClientUrl } from './url-encoder';
 export { decodeRestClientUrl } from './url-decoder';
 export { getInitialFormValues } from './get-initial-form-values';
 export { substituteVariables } from './substitute-variable';
+export { useFormatters } from './translate-formatter';
+export { measureDuration } from './request-log-metrics';
+export { getSize } from './request-log-metrics';

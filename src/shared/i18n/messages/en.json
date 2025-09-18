@@ -41,7 +41,8 @@
     "error": "Error",
     "errorMessage": "Request failed",
     "invalidJson": "Invalid JSON format",
-    "required": "Value is required"
+    "required": "Value is required",
+    "modalTitle": "Code Generation"
   },
   "NotFound": {
     "title": "Page Not Found",
@@ -178,7 +179,12 @@
     "duration": "Duration",
     "requestSize": "Request Size",
     "responseSize": "Response Size",
-    "error": "Error"
+    "error": "Error",
+    "noError": "Request completed without errors",
+    "ms": "ms",
+    "bytes_one": "byte",
+    "bytes_few": "bytes",
+    "bytes_many": "bytes"
   },
   "ErrorBoundary": {
     "title": "Something went wrong",

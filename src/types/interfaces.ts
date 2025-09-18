@@ -28,19 +28,22 @@ export interface DecodedUrlData {
   headers?: Header[];
 }
 
-export interface RequestHistoryItem {
-  id: string;
+export interface LanguageItem {
+  key: string;
+  label: string;
+  syntax_mode: string;
+  variants: { key: string }[];
+}
+
+export interface RequestLogBase {
   url: string;
+  appRouterURL: string;
   method: HttpMethod;
-
-  timestamp: string;
-  durationMs: number;
   statusCode: number;
-
   requestSize: number;
   responseSize: number;
-
-  errorDetails?: string;
+  durationMs: number;
+  errorDetails: string;
 }
 
 export interface ErrorTexts {
