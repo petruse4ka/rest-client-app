@@ -63,6 +63,7 @@ export default function RestClientClient() {
 
       if (!isJsonValid) {
         setError(ERROR_MESSAGES.INVALID_JSON);
+        setLoading(false);
         return;
       }
     }
