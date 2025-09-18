@@ -8,6 +8,7 @@ import { ThemeProvider, AuthProvider } from '@/shared/provider';
 import { routing } from '@/shared/i18n/routing';
 import { notFound } from 'next/navigation';
 import { getServerUser } from '@/server/get-server-user';
+import { AntdRegistry } from '@ant-design/nextjs-registry';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -67,17 +68,19 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <body>
-        <NextIntlClientProvider messages={messages}>
-          <ThemeProvider>
-            <AuthProvider initialUser={initialUser}>
-              <Layout style={{ minHeight: '100vh' }}>
-                <HeaderApp />
-                {children}
-                <FooterApp />
-              </Layout>
-            </AuthProvider>
-          </ThemeProvider>
-        </NextIntlClientProvider>
+        <AntdRegistry>
+          <NextIntlClientProvider messages={messages}>
+            <ThemeProvider>
+              <AuthProvider initialUser={initialUser}>
+                <Layout style={{ minHeight: '100vh' }}>
+                  <HeaderApp />
+                  {children}
+                  <FooterApp />
+                </Layout>
+              </AuthProvider>
+            </ThemeProvider>
+          </NextIntlClientProvider>
+        </AntdRegistry>
       </body>
     </html>
   );
