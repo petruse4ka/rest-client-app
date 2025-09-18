@@ -28,6 +28,13 @@ export interface DecodedUrlData {
   headers?: Header[];
 }
 
+export interface LanguageItem {
+  key: string;
+  label: string;
+  syntax_mode: string;
+  variants: { key: string }[];
+}
+
 export interface RequestHistoryItem {
   id: string;
   url: string;
