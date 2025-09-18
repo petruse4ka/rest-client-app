@@ -5,7 +5,7 @@ import codegen from 'postman-code-generators';
 import sdk from 'postman-collection';
 import { Typography } from 'antd';
 import { LanguageItem } from '@/types/interfaces';
-import { useEffect, useState } from 'react';
+import { CSSProperties, useEffect, useState } from 'react';
 import { substituteVariables } from '@/shared/utils';
 
 const { Text } = Typography;
@@ -18,6 +18,15 @@ interface CodeGenerationProps {
     data: string;
   };
 }
+
+const TextContainerStyle: CSSProperties = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'flex-end',
+  gap: 5,
+};
+
+const CodeStyle: CSSProperties = { margin: 0, width: '100%', maxHeight: '50svh', overflow: 'auto' };
 
 export function CodeGeneration({ request }: CodeGenerationProps) {
   const { url, method, headers, data } = request;
@@ -56,9 +65,8 @@ export function CodeGeneration({ request }: CodeGenerationProps) {
       options,
       function (error: unknown, snippet: string) {
         if (error) {
-          console.log(error);
+          setCode('Error generating code snippet');
         }
-
         setCode(snippet);
       }
     );
@@ -72,12 +80,12 @@ export function CodeGeneration({ request }: CodeGenerationProps) {
     <Flex vertical gap={10}>
       <Select
         defaultValue={selectedLang}
-        style={{ width: 120 }}
+        style={{ width: 130 }}
         onChange={handleChange}
         options={codeLanguages}
       />
-      <Text copyable>
-        <pre style={{ margin: 0 }}>{code}</pre>
+      <Text copyable style={TextContainerStyle}>
+        <pre style={CodeStyle}>{code}</pre>
       </Text>
     </Flex>
   );
