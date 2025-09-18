@@ -2,23 +2,27 @@
 
 import '@ant-design/v5-patch-for-react-19';
 import { CSSProperties, useState } from 'react';
-import { useTranslations } from 'next-intl';
-import { Card, Form, Typography, Flex, Divider, Button, Modal } from 'antd';
-import { Content } from 'antd/es/layout/layout';
-import { RequestBody, ApiResponse, Header } from '@/types/interfaces';
-import { ContentType } from '@/types/types';
-import { HeadersEditor, BodyEditor, HttpMethods, Response } from '@/features/rest-client';
 import axios from 'axios';
+import { useTranslations } from 'next-intl';
+import { useSearchParams, useParams } from 'next/navigation';
+import { HeadersEditor, BodyEditor, HttpMethods, Response } from '@/features/rest-client';
 import {
   getReadableErrorMessage,
   validateJson,
   encodeRestClientUrl,
   getInitialFormValues,
   substituteVariables,
+  getSize,
+  measureDuration,
 } from '@/shared/utils';
-import { ERROR_MESSAGES } from '@/shared/constants';
-import { useSearchParams, useParams } from 'next/navigation';
+
+import { Card, Form, Typography, Flex, Divider, Button, Modal } from 'antd';
 import { CodeGeneration } from '@/widgets';
+import { Content } from 'antd/es/layout/layout';
+
+import type { RequestBody, ApiResponse, Header } from '@/types/interfaces';
+import { ContentType } from '@/types/types';
+import { ERROR_MESSAGES } from '@/shared/constants';
 
 const { Item } = Form;
 const { Title } = Typography;
@@ -104,12 +108,36 @@ export default function RestClientPageDefault() {
         contentType,
       };
 
-      const response = await axios.post('/api/rest-client', requestData);
+      const { response, durationMs } = await measureDuration(() =>
+        axios.post('/api/rest-client', requestData)
+      );
+      const statusCode = response.data.status;
+      const requestSize = getSize(requestData);
+      const responseSize = getSize(response?.data);
 
       if (response.data.error) {
         setError(response.data.error);
+        await axios.post('/api/request-logs', {
+          url: requestData.url,
+          appRouterURL: encodedUrl,
+          method,
+          requestSize,
+          responseSize,
+          durationMs,
+          errorDetails: response.data.error,
+        });
       } else {
         setResponse(response.data);
+        await axios.post('/api/request-logs', {
+          url: requestData.url,
+          appRouterURL: encodedUrl,
+          method,
+          statusCode,
+          requestSize,
+          responseSize,
+          durationMs,
+          errorDetails: '',
+        });
       }
     } catch (error) {
       setError(getReadableErrorMessage(error));
