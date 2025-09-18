@@ -192,6 +192,7 @@
   },
   "History": {
     "title": "History and Analytics",
+    "loading": "Loading...",
     "emptyTitle": "You haven't executed any requests yet.",
     "emptySubtitle": "It's empty here. Try to make a request",
     "goRestClient": "Go to REST client",
