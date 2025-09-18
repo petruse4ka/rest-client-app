@@ -91,6 +91,7 @@
     "subtitle": "We are building an amazing REST client application that will revolutionize how you test and interact with APIs."
   },
   "Auth": {
+    "loading": "Loading...",
     "tabs": { "login": "Login", "signup": "Sign Up" },
     "titles": { "login": "Sign In", "signup": "Registration", "forgotPassword": "Reset password" },
     "cta": {

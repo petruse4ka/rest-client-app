@@ -1,6 +1,7 @@
 import { CSSProperties } from 'react';
-import { AuthWidget } from '@/widgets/';
 import { Content } from 'antd/es/layout/layout';
+import AuthClientWrapper from '../auth-client-wrapper';
+import { useTranslations } from 'next-intl';
 
 export default function SignUpPage() {
   const contentStyles: CSSProperties = {
@@ -11,9 +12,12 @@ export default function SignUpPage() {
     padding: '40px 20px',
   };
 
+  const t = useTranslations('Auth');
+  const loadingText = t('loading');
+
   return (
     <Content style={contentStyles}>
-      <AuthWidget />
+      <AuthClientWrapper loadingText={loadingText} />
     </Content>
   );
 }
