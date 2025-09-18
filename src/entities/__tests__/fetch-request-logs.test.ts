@@ -1,6 +1,6 @@
 import { describe, test, beforeEach, vi, expect } from 'vitest';
 import { Timestamp } from 'firebase-admin/firestore';
-import type { FirestoreDoc } from '@/types/interfaces';
+import type { FirestoreDoc } from '@/types/types';
 
 type Snap = { docs: Array<{ id: string; data: () => Partial<FirestoreDoc> }> };
 

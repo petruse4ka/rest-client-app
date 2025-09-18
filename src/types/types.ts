@@ -1,3 +1,6 @@
+import { RequestLogBase } from './interfaces';
+import { type Timestamp } from 'firebase-admin/firestore';
+
 export type ThemeValue = 'light' | 'dark';
 
 export type ThemeContextType = {
@@ -26,3 +29,14 @@ export type VariablesData = {
   variable: string;
   value: string;
 };
+
+export type FirestoreDoc = RequestLogBase & {
+  createdAt: Timestamp | Date;
+};
+
+export type RequestHistoryItem = RequestLogBase & {
+  id: string;
+  timestamp: string;
+};
+
+export type LogRequestPayload = RequestLogBase;

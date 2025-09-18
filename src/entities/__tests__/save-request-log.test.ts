@@ -1,5 +1,5 @@
 import { describe, test, beforeEach, vi, expect } from 'vitest';
-import type { LogRequestPayload } from '@/types/interfaces';
+import type { LogRequestPayload } from '@/types/types';
 import { HttpMethod } from '@/types/types';
 
 type AddFn = (data: unknown) => Promise<void>;

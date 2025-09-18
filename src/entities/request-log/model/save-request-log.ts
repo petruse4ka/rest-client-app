@@ -1,5 +1,5 @@
 import { db } from '@/server/firebase-admin';
-import { LogRequestPayload } from '@/types/interfaces';
+import { LogRequestPayload } from '@/types/types';
 
 export async function saveRequestLog(params: { uid: string } & LogRequestPayload) {
   const { uid, ...rest } = params;

@@ -185,5 +185,10 @@
     "bytes_one": "byte",
     "bytes_few": "bytes",
     "bytes_many": "bytes"
+  },
+  "ErrorBoundary": {
+    "title": "Something went wrong",
+    "message": "An unexpected error occurred. Please try refreshing the page.",
+    "buttonText": "Refresh page"
   }
 }

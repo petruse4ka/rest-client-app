@@ -1,7 +1,7 @@
 import { describe, test, beforeEach, vi, expect } from 'vitest';
 import React from 'react';
 import { render, screen } from './test-utils/test-utils';
-import type { RequestHistoryItem } from '@/types/interfaces';
+import type { RequestHistoryItem } from '@/types/types';
 import { HttpMethod } from '@/types/types';
 import HistoryPage from '@/app/[locale]/history/page';
 import type { DecodedIdToken } from 'firebase-admin/auth';

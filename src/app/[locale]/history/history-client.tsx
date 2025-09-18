@@ -7,7 +7,7 @@ import { Content } from 'antd/es/layout/layout';
 import { Link } from '@/shared/i18n/navigation';
 import { ThemeContext } from '@/context/theme-context';
 import { useTranslations } from 'next-intl';
-import { RequestHistoryItem } from '@/types/interfaces';
+import { RequestHistoryItem } from '@/types/types';
 import { useFormatters } from '@/shared/utils/';
 
 const { Title, Text } = Typography;

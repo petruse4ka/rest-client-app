@@ -1,5 +1,4 @@
 import { HttpMethod, ContentType } from './types';
-import { type Timestamp } from 'firebase-admin/firestore';
 
 export interface Header {
   key: string;
@@ -47,13 +46,8 @@ export interface RequestLogBase {
   errorDetails: string;
 }
 
-export type FirestoreDoc = RequestLogBase & {
-  createdAt: Timestamp | Date;
-};
-
-export type RequestHistoryItem = RequestLogBase & {
-  id: string;
-  timestamp: string;
-};
-
-export type LogRequestPayload = RequestLogBase;
+export interface ErrorTexts {
+  title: string;
+  message: string;
+  buttonText: string;
+}

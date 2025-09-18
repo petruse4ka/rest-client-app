@@ -1,5 +1,5 @@
 import { QueryDocumentSnapshot, Timestamp } from 'firebase-admin/firestore';
-import { FirestoreDoc, RequestHistoryItem } from '@/types/interfaces';
+import { FirestoreDoc, RequestHistoryItem } from '@/types/types';
 import { db } from '@/server/firebase-admin';
 
 function mapDoc(doc: QueryDocumentSnapshot<FirestoreDoc>): RequestHistoryItem {

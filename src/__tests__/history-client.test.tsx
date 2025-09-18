@@ -2,7 +2,7 @@ import { screen, waitFor, within } from '@testing-library/react';
 import { render } from './test-utils/test-utils';
 import { describe, test, beforeEach, vi, expect } from 'vitest';
 import enMessages from '@/shared/i18n/messages/en.json';
-import type { RequestHistoryItem } from '@/types/interfaces';
+import type { RequestHistoryItem } from '@/types/types';
 import { HttpMethod } from '@/types/types';
 
 vi.mock('@ant-design/v5-patch-for-react-19', () => ({}));
