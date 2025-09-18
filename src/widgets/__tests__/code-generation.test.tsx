@@ -1,5 +1,5 @@
 import { render } from '@/__tests__/test-utils/test-utils';
-import { screen, fireEvent, waitFor } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import { CodeGeneration } from '../code-generation';
 
 describe('Code Generation', () => {
