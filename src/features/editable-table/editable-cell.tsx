@@ -20,6 +20,7 @@ export default function EditableCell(props: EditableCellProps) {
     <td>
       {editing ? (
         <Item
+          data-testid="editable-cell"
           name={dataIndex}
           style={{ margin: 0 }}
           rules={[

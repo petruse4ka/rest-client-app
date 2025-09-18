@@ -15,7 +15,7 @@ export default function Navigation() {
   const t = useTranslations('NavInfo');
 
   return (
-    <Flex gap="middle" vertical={!screens.md}>
+    <Flex gap="middle" vertical={!screens.md} data-testid="navigation">
       {navLinks.map(({ href, label }) => {
         const isActive = pathname === href;
 

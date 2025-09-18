@@ -11,6 +11,16 @@ declare global {
   const beforeEach: typeof import('vitest')['beforeEach'];
 }
 
+vi.mock('@/shared/i18n/navigation', () => {
+  return {
+    useRouter: () => ({
+      push: vi.fn(),
+      replace: vi.fn(),
+      refresh: vi.fn(),
+    }),
+  };
+});
+
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
   value: vi.fn().mockImplementation(query => ({

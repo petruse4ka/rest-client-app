@@ -12,16 +12,6 @@ vi.mock('next/navigation', () => ({
   useSearchParams: () => new URLSearchParams(),
 }));
 
-vi.mock('@/shared/i18n/navigation', () => {
-  return {
-    useRouter: () => ({
-      push: vi.fn(),
-      replace: vi.fn(),
-      refresh: vi.fn(),
-    }),
-  };
-});
-
 vi.mock('@/shared/config/firebase', () => {
   return {
     auth: {

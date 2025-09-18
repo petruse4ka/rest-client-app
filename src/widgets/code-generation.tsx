@@ -65,7 +65,7 @@ export function CodeGeneration({ request }: CodeGenerationProps) {
       options,
       function (error: unknown, snippet: string) {
         if (error) {
-          setCode('Error generating code snippet');
+          setCode('Error code generation');
         }
         setCode(snippet);
       }
@@ -83,9 +83,12 @@ export function CodeGeneration({ request }: CodeGenerationProps) {
         style={{ width: 130 }}
         onChange={handleChange}
         options={codeLanguages}
+        data-testid="language-select"
       />
       <Text copyable style={TextContainerStyle}>
-        <pre style={CodeStyle}>{code}</pre>
+        <pre data-testid="code-block" style={CodeStyle}>
+          {code}
+        </pre>
       </Text>
     </Flex>
   );
