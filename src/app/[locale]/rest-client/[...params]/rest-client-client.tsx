@@ -44,10 +44,6 @@ export default function RestClientClient() {
   const handleSubmit = async (values: RequestBody) => {
     const { method, url, headers, contentType, data } = values;
 
-    setLoading(true);
-    setError(null);
-    setResponse(null);
-
     const substitutedUrl = substituteVariables(url);
 
     const headersArray = Array.isArray(headers) ? headers : [];
@@ -62,11 +58,13 @@ export default function RestClientClient() {
       const isJsonValid = validateJson(substitutedData, contentType);
 
       if (!isJsonValid) {
-        setError(ERROR_MESSAGES.INVALID_JSON);
-        setLoading(false);
         return;
       }
     }
+
+    setLoading(true);
+    setError(null);
+    setResponse(null);
 
     const invalidHeaders = substitutedHeaders.filter(({ key, value }: Header) => {
       const keyTrim = key.trim();
