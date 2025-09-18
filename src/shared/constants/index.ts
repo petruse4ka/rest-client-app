@@ -8,6 +8,8 @@ export const ERROR_MESSAGES = {
   SSL_ERROR: "SSL/TLS error. There may be a problem with the server's security certificate.",
   KEY_AND_VALUE: 'Headers must have both key and value, or be completely empty',
   INVALID_JSON: 'Invalid JSON in request body',
+  INVALID_PAYLOAD: 'Invalid payload',
+  UNAUTHORIZED: 'Unauthorized',
 };
 
 export const JSON_PLACEHOLDER = '{\n  "key": "value"\n}';

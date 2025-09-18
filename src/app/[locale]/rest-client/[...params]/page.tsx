@@ -2,23 +2,26 @@
 
 import '@ant-design/v5-patch-for-react-19';
 import { CSSProperties, useState } from 'react';
-import { useTranslations } from 'next-intl';
-import { Card, Form, Typography, Flex, Divider, Button } from 'antd';
-import { Content } from 'antd/es/layout/layout';
-import { RequestBody, ApiResponse, Header } from '@/types/interfaces';
-import { ContentType } from '@/types/types';
-import { HeadersEditor, BodyEditor, HttpMethods, Response } from '@/features/rest-client';
 import axios from 'axios';
+import { useTranslations } from 'next-intl';
+import { useSearchParams, useParams } from 'next/navigation';
+import { HeadersEditor, BodyEditor, HttpMethods, Response } from '@/features/rest-client';
 import {
   getReadableErrorMessage,
   validateJson,
   encodeRestClientUrl,
   getInitialFormValues,
   substituteVariables,
+  getSize,
+  measureDuration,
 } from '@/shared/utils';
+
+import { Content } from 'antd/es/layout/layout';
+import { Card, Form, Typography, Flex, Divider, Button } from 'antd';
+
+import type { RequestBody, ApiResponse, Header } from '@/types/interfaces';
+import { ContentType } from '@/types/types';
 import { ERROR_MESSAGES } from '@/shared/constants';
-import { useSearchParams, useParams } from 'next/navigation';
-import { getSize, measureDuration } from '@/shared/lib/auth/request-log-metrics';
 
 const { Item } = Form;
 const { Title } = Typography;

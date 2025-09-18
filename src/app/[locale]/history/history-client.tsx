@@ -88,6 +88,7 @@ export default function HistoryView({ items }: { items: RequestHistoryItem[] }) 
                       <Link
                         href={item.appRouterURL}
                         className={`link link-font_size_small ${themeValue === 'dark' ? 'link--dark' : 'link--light'}`}
+                        onClick={(e) => e.stopPropagation()}
                       >
                         {item.url}
                       </Link>

@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { adminAuth } from '@/server/firebase-admin';
 import { saveRequestLog } from '@/entities/request-log/model/save-request-log';
+import { ERROR_MESSAGES } from '@/shared/constants';
 
 export async function POST(req: NextRequest) {
   try {
     const token = req.cookies.get('session')?.value;
-    if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    if (!token) return NextResponse.json({ error: ERROR_MESSAGES.UNAUTHORIZED }, { status: 401 });
 
     const decoded = await adminAuth.verifySessionCookie(token, true);
     const uid = decoded.uid;
@@ -23,7 +24,7 @@ export async function POST(req: NextRequest) {
     } = body ?? {};
 
     if (!url || !appRouterURL || !method) {
-      return NextResponse.json({ error: 'Invalid payload' }, { status: 400 });
+      return NextResponse.json({ error: ERROR_MESSAGES.INVALID_PAYLOAD }, { status: 400 });
     }
 
     await saveRequestLog({
