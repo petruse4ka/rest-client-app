@@ -37,7 +37,7 @@ export function HeaderApp() {
         ...(scrolled && { borderBottom: `1px solid ${token.colorPrimary}` }),
       }}
     >
-      {screens.md ? <DesktopHeader /> : <MobileHeader />}
+      {screens.xl ? <DesktopHeader /> : <MobileHeader />}
     </Header>
   );
 }

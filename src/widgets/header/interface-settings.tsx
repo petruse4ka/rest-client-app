@@ -34,7 +34,7 @@ export default function InterfaceSettings() {
         unCheckedChildren={<SunOutlined />}
       />
       <Dropdown menu={{ items: languages, onClick: handleMenuClick }} placement="bottom">
-        <Button shape="circle" icon={<GlobalOutlined />}></Button>
+        <Button size="small" shape="circle" icon={<GlobalOutlined />}></Button>
       </Dropdown>
     </Flex>
   );

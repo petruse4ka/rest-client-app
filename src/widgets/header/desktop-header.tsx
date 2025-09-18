@@ -14,17 +14,17 @@ export default function DesktopHeader() {
       style={{ height: '100%' }}
       data-testid="desktop-header"
     >
-      <Col>
+      <Col span={5}>
         <InterfaceSettings />
       </Col>
-      <Col flex="auto" style={{ textAlign: 'center' }}>
+      <Col flex="auto">
         <Flex gap="middle" align="center" justify="center">
           <Logo />
           {isLogin && <Navigation />}
         </Flex>
       </Col>
 
-      <Col>
+      <Col span={5}>
         <AuthControls />
       </Col>
     </Row>
