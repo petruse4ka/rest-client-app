@@ -92,14 +92,15 @@
   },
   "Auth": {
     "tabs": { "login": "Login", "signup": "Sign Up" },
-    "titles": { "login": "Sign In", "signup": "Registration" },
+    "titles": { "login": "Sign In", "signup": "Registration", "forgotPassword": "Reset password" },
     "cta": {
       "noAccount": "Don't have an account?",
       "haveAccount": "Already have an account?",
       "click": "Click",
       "here": "here",
       "signUpSuffix": "to sign up",
-      "loginSuffix": "to login"
+      "loginSuffix": "to login",
+      "backToLogin": "Back to login"
     },
     "or": "or",
     "continueWithGoogle": "Continue with Google",
@@ -113,7 +114,7 @@
   },
   "SignUpForm": {
     "name": { "label": "Name", "placeholder": "Your name" },
-    "email": { "label": "Email address", "placeholder": "Email address" },
+    "email": { "label": "Email", "placeholder": "Email" },
     "password": { "label": "Password", "placeholder": "Password" },
     "confirm": { "label": "Confirm password", "placeholder": "Confirm password" },
     "submit": "Sign up",
@@ -136,9 +137,10 @@
     }
   },
   "SignInForm": {
-    "email": { "label": "Email address", "placeholder": "Email address" },
+    "email": { "label": "Email", "placeholder": "Email" },
     "password": { "label": "Password", "placeholder": "Password" },
     "submit": "Sign in",
+    "forgotPassword": "Forgot password?",
     "errors": {
       "nameRequired": "Name is required",
       "emailRequired": "Email is required",
@@ -153,6 +155,23 @@
       "tooManyRequests": "Too many attempts. Please wait and try again.",
       "network": "Network error. Please try again.",
       "generic": "Failed to sign in. Please try again."
+    }
+  },
+  "ForgotPasswordForm": {
+    "email": { "label": "Email", "placeholder": "Email" },
+    "submit": "Reset Password",
+    "messages": {
+      "linkSent": "If an account exists for this email, a password reset email has been sent."
+    },
+    "errors": {
+      "emailRequired": "Email is required",
+      "emailInvalid": "Enter a valid email address"
+    },
+    "apiErrors": {
+      "invalidEmail": "Invalid email address.",
+      "tooManyRequests": "Too many attempts. Please try again later.",
+      "network": "Network error. Please try again.",
+      "generic": "Something went wrong. Please try again."
     }
   },
   "Variables": {

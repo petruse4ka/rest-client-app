@@ -92,14 +92,19 @@
   },
   "Auth": {
     "tabs": { "login": "Вход", "signup": "Регистрация" },
-    "titles": { "login": "Вход", "signup": "Регистрация" },
+    "titles": {
+      "login": "Вход",
+      "signup": "Регистрация",
+      "forgotPassword": "Восстановление пароля"
+    },
     "cta": {
       "noAccount": "Нет аккаунта?",
       "haveAccount": "Уже есть аккаунт?",
       "click": "Нажмите",
       "here": "здесь",
       "signUpSuffix": "чтобы зарегистрироваться",
-      "loginSuffix": "чтобы войти"
+      "loginSuffix": "чтобы войти",
+      "backToLogin": "Вернуться на страницу входа"
     },
     "or": "или",
     "continueWithGoogle": "Войти через Google",
@@ -141,6 +146,7 @@
     "password": { "label": "Пароль", "placeholder": "Пароль" },
     "confirm": { "label": "Подтвердите пароль", "placeholder": "Подтвердите пароль" },
     "submit": "Войти",
+    "forgotPassword": "Забыли пароль?",
     "errors": {
       "nameRequired": "Имя обязательно",
       "emailRequired": "Требуется email",
@@ -155,6 +161,23 @@
       "tooManyRequests": "Слишком много попыток. Подождите и повторите.",
       "network": "Сетевая ошибка. Попробуйте ещё раз.",
       "generic": "Не удалось выполнить вход. Попробуйте ещё раз."
+    }
+  },
+  "ForgotPasswordForm": {
+    "email": { "label": "Email", "placeholder": "Email" },
+    "submit": "Восстановить пароль",
+    "messages": {
+      "linkSent": "Если аккаунт с таким адресом существует, письмо для сброса пароля было отправлено."
+    },
+    "errors": {
+      "emailRequired": "Требуется email",
+      "emailInvalid": "Введите корректный адрес электронной почты"
+    },
+    "apiErrors": {
+      "invalidEmail": "Некорректный адрес электронной почты.",
+      "tooManyRequests": "Слишком много попыток. Попробуйте позже.",
+      "network": "Ошибка сети. Попробуйте снова.",
+      "generic": "Что-то пошло не так. Попробуйте снова."
     }
   },
   "Variables": {

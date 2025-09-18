@@ -2,12 +2,13 @@ export const appRoutes = {
   home: '/',
   signIn: '/sign-in',
   signUp: '/sign-up',
+  forgotPassword: '/forgot-password',
   restClient: '/rest-client',
   history: '/history',
   variables: '/variables',
 };
 
-export const AUTH_ROUTES = [appRoutes.signIn, appRoutes.signUp];
+export const AUTH_ROUTES = [appRoutes.signIn, appRoutes.signUp, appRoutes.forgotPassword];
 export const PROTECTED_ROUTES = [appRoutes.history, appRoutes.variables, appRoutes.restClient];
 
 export const navLinks = [
