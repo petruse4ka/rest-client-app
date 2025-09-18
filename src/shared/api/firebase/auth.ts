@@ -5,7 +5,7 @@ import {
   GoogleAuthProvider,
   type UserCredential,
   signInWithEmailAndPassword,
-  signOut,
+  sendPasswordResetEmail,
 } from 'firebase/auth';
 
 export type AuthPayload = { email: string; password: string };
@@ -24,6 +24,6 @@ export async function apiSignIn({ email, password }: AuthPayload): Promise<UserC
   return signInWithEmailAndPassword(auth, email, password);
 }
 
-export async function apiSignOut(): Promise<void> {
-  return signOut(auth);
+export async function apiResetPassword(email: string): Promise<void> {
+  return sendPasswordResetEmail(auth, email);
 }

@@ -10,17 +10,39 @@
   },
   "RestClient": {
     "title": "REST клиент",
+    "generatedCode": "Показать сгенерированный код",
+    "request": "Запрос",
     "method": "Метод",
     "methodRequired": "Пожалуйста, выберите метод",
     "url": "URL",
     "urlRequired": "Пожалуйста, введите URL",
     "urlPlaceholder": "Введите URL API",
-    "sendRequest": "Отправить запрос",
+    "headers": "Заголовки",
+    "addHeader": "Добавить заголовок",
+    "noHeaders": "Заголовки не добавлены",
+    "headerKey": "Ключ",
+    "headerValue": "Значение",
+    "removeHeader": "Удалить",
+    "columnsValue": "Значение",
+    "columnsControls": "Управление",
+    "placeholderKey": "Введите ключ заголовка",
+    "placeholderValue": "Введите значение заголовка",
+    "body": "Тело",
+    "contentType": "Тип контента",
+    "json": "JSON",
+    "text": "Текст",
+    "xml": "XML",
+    "bodyPlaceholder": "Введите тело запроса...",
+    "prettify": "Prettify",
+    "sendRequest": "Отправить",
     "response": "Ответ",
     "status": "Статус",
     "loading": "Загрузка...",
     "error": "Ошибка",
-    "errorMessage": "Запрос не выполнен"
+    "errorMessage": "Запрос не выполнен",
+    "invalidJson": "Неверный формат JSON",
+    "required": "Значение обязательно",
+    "modalTitle": "Генерация кода"
   },
   "NotFound": {
     "title": "Страница не найдена",
@@ -70,14 +92,19 @@
   },
   "Auth": {
     "tabs": { "login": "Вход", "signup": "Регистрация" },
-    "titles": { "login": "Вход", "signup": "Регистрация" },
+    "titles": {
+      "login": "Вход",
+      "signup": "Регистрация",
+      "forgotPassword": "Восстановление пароля"
+    },
     "cta": {
       "noAccount": "Нет аккаунта?",
       "haveAccount": "Уже есть аккаунт?",
       "click": "Нажмите",
       "here": "здесь",
       "signUpSuffix": "чтобы зарегистрироваться",
-      "loginSuffix": "чтобы войти"
+      "loginSuffix": "чтобы войти",
+      "backToLogin": "Вернуться на страницу входа"
     },
     "or": "или",
     "continueWithGoogle": "Войти через Google",
@@ -119,6 +146,7 @@
     "password": { "label": "Пароль", "placeholder": "Пароль" },
     "confirm": { "label": "Подтвердите пароль", "placeholder": "Подтвердите пароль" },
     "submit": "Войти",
+    "forgotPassword": "Забыли пароль?",
     "errors": {
       "nameRequired": "Имя обязательно",
       "emailRequired": "Требуется email",
@@ -135,6 +163,23 @@
       "generic": "Не удалось выполнить вход. Попробуйте ещё раз."
     }
   },
+  "ForgotPasswordForm": {
+    "email": { "label": "Email", "placeholder": "Email" },
+    "submit": "Восстановить пароль",
+    "messages": {
+      "linkSent": "Если аккаунт с таким адресом существует, письмо для сброса пароля было отправлено."
+    },
+    "errors": {
+      "emailRequired": "Требуется email",
+      "emailInvalid": "Введите корректный адрес электронной почты"
+    },
+    "apiErrors": {
+      "invalidEmail": "Некорректный адрес электронной почты.",
+      "tooManyRequests": "Слишком много попыток. Попробуйте позже.",
+      "network": "Ошибка сети. Попробуйте снова.",
+      "generic": "Что-то пошло не так. Попробуйте снова."
+    }
+  },
   "Variables": {
     "title": "Переменные",
     "columns": {
@@ -145,9 +190,30 @@
     "btn": "Добавить новую переменную",
     "empty": "Список переменных пуст",
     "inputErrors": {
-      "empty": "Пожалуйста, заполните",
+      "empty": "Пожалуйста, укажите значение",
       "unique": "Переменная должна быть уникальной"
     },
     "placeholder": "Заполните"
+  },
+  "History": {
+    "title": "История и Аналитика",
+    "emptyTitle": "Вы ещё не выполняли запросов. ",
+    "emptySubtitle": "Здесь пусто. Попробуйте сделать запрос",
+    "goRestClient": "Перейти в REST клиент",
+    "timestamp": "Время запроса",
+    "duration": "Длительность",
+    "requestSize": "Размер запроса",
+    "responseSize": "Размер ответа",
+    "error": "Ошибка",
+    "noError": "Запрос завершен без ошибок",
+    "ms": "мс",
+    "bytes_one": "байт",
+    "bytes_few": "байта",
+    "bytes_many": "байт"
+  },
+  "ErrorBoundary": {
+    "title": "Что-то пошло не так",
+    "message": "Произошла непредвиденная ошибка. Пожалуйста, попробуйте обновить страницу.",
+    "buttonText": "Обновить страницу"
   }
 }

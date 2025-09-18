@@ -6,6 +6,7 @@ import EditableCell from './editable-cell';
 import TableControls from './table-controls';
 import { useTranslations } from 'next-intl';
 const { Text } = Typography;
+import { LOCAL_STORAGE_KEY } from '@/shared/constants';
 
 export default function EditableTable() {
   const t = useTranslations('Variables');
@@ -27,7 +28,7 @@ export default function EditableTable() {
   };
 
   useEffect(() => {
-    const stored = localStorageController.get('rest-variables');
+    const stored = localStorageController.get(LOCAL_STORAGE_KEY);
     setData(stored || []);
   }, []);
 
@@ -37,7 +38,7 @@ export default function EditableTable() {
       const { variable, value } = lastItem;
       const isNotEmpty = variable !== '' && value !== '';
       if (isNotEmpty) {
-        localStorageController.set('rest-variables', data);
+        localStorageController.set(LOCAL_STORAGE_KEY, data);
       }
     }
   }, [data]);
@@ -51,7 +52,7 @@ export default function EditableTable() {
     }
 
     if (newData.length === 0) {
-      localStorageController.remove('rest-variables');
+      localStorageController.remove(LOCAL_STORAGE_KEY);
     }
   };
 
@@ -119,7 +120,7 @@ export default function EditableTable() {
     <Flex vertical gap={20}>
       <Form form={form}>
         {data.length === 0 ? (
-          <Empty description={<Text>{t('empty')}</Text>}></Empty>
+          <Empty description={<Text>{t('empty')}</Text>} />
         ) : (
           <Table
             components={{

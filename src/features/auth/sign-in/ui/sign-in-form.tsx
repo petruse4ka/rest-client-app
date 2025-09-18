@@ -2,14 +2,16 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { useRouter } from '@/shared/i18n/navigation';
+import '@ant-design/v5-patch-for-react-19';
+import { Link, useRouter } from '@/shared/i18n/navigation';
 import { buildSignInRules } from '../model/shema';
-
+import { apiSignIn } from '@/shared/api/firebase/auth';
+import { finalizeLogin } from '@/shared/lib/auth/finalize-login';
 import { mapSignInError } from '@/shared/api/firebase/map-sign-in-errors';
 
 import { Button, Form, Input, Typography } from 'antd';
 import Password from 'antd/es/input/Password';
-import { apiSignIn } from '@/shared/api/firebase/auth';
+import { appRoutes } from '@/shared/config/navigation';
 
 const { Item } = Form;
 const { Text } = Typography;
@@ -37,8 +39,11 @@ export function SignInForm() {
         password: values.password!,
       });
 
+      await finalizeLogin();
       form.resetFields(['email', 'password']);
-      router.push('/');
+
+      router.replace(appRoutes.home);
+      router.refresh();
     } catch (e) {
       const { field, key } = mapSignInError(e);
       const msg = t(`apiErrors.${key}`);
@@ -63,6 +68,12 @@ export function SignInForm() {
       </Item>
       <Item<FieldType> label={t('password.label')} name="password" rules={rules.password}>
         <Password placeholder={t('password.placeholder')} />
+      </Item>
+
+      <Item>
+        <Text type="secondary">
+          <Link href={appRoutes.forgotPassword}>{t('forgotPassword')}</Link>
+        </Text>
       </Item>
 
       <Item shouldUpdate>

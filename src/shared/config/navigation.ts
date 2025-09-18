@@ -1,9 +1,34 @@
+export const appRoutes = {
+  home: '/',
+  signIn: '/sign-in',
+  signUp: '/sign-up',
+  forgotPassword: '/forgot-password',
+  restClient: '/rest-client',
+  history: '/history',
+  variables: '/variables',
+};
+
+export const AUTH_ROUTES = [appRoutes.signIn, appRoutes.signUp, appRoutes.forgotPassword];
+export const PROTECTED_ROUTES = [appRoutes.history, appRoutes.variables, appRoutes.restClient];
+
 export const navLinks = [
-  { href: '/', label: 'home' },
-  { href: '/rest-client', label: 'restClient' },
-  { href: '/history', label: 'history' },
-  { href: '/variables', label: 'variables' },
+  { href: appRoutes.home, label: 'home' },
+  { href: appRoutes.restClient, label: 'restClient' },
+  { href: appRoutes.history, label: 'history' },
+  { href: appRoutes.variables, label: 'variables' },
 ];
+
+export const authLinks = [
+  {
+    href: appRoutes.signIn,
+    label: 'signIn',
+  },
+  {
+    href: appRoutes.signUp,
+    label: 'signUp',
+  },
+];
+
 export const authorLinks = [
   { href: 'https://github.com/petruse4ka', label: 'Konstantin Petrov' },
   { href: 'https://github.com/NatashaSolntseva', label: 'Nataliia Shmatenko' },
@@ -22,16 +47,5 @@ export const courseLinks = [
   {
     href: 'https://github.com/rolling-scopes-school/tasks/blob/master/react/modules/tasks/final.md',
     label: 'courseTask',
-  },
-];
-
-export const authLinks = [
-  {
-    href: '/sign-in',
-    label: 'signIn',
-  },
-  {
-    href: '/sign-up',
-    label: 'signUp',
   },
 ];

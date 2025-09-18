@@ -4,7 +4,8 @@ import { Flex, Grid } from 'antd';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { useContext } from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname } from '@/shared/i18n/navigation';
+
 const { useBreakpoint } = Grid;
 
 export default function Navigation() {
@@ -14,7 +15,7 @@ export default function Navigation() {
   const t = useTranslations('NavInfo');
 
   return (
-    <Flex gap="middle" vertical={!screens.md}>
+    <Flex gap="middle" vertical={!screens.md} data-testid="navigation">
       {navLinks.map(({ href, label }) => {
         const isActive = pathname === href;
 

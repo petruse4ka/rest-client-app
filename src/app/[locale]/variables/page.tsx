@@ -10,8 +10,10 @@ import { useTranslations } from 'next-intl';
 const EditableTable = lazy(() => import('@/features/editable-table'));
 
 const contentStyles: CSSProperties = {
+  maxWidth: '1440px',
+  margin: '0 auto',
+  padding: '20px 16px',
   height: '100%',
-  padding: '20px',
   textAlign: 'center',
 };
 
@@ -20,8 +22,8 @@ export default function VariablesPage() {
 
   return (
     <Suspense fallback={<Spin tip="Loading..." size="large" />}>
-      <Content style={contentStyles}>
-        <Flex vertical gap={20}>
+      <Content>
+        <Flex vertical gap={20} style={contentStyles}>
           <Title>{t('title')}</Title>
           <EditableTable />
         </Flex>

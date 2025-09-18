@@ -10,17 +10,39 @@
   },
   "RestClient": {
     "title": "REST Client",
+    "generatedCode": "Show Generated Code",
+    "request": "Request",
     "method": "Method",
     "methodRequired": "Please select a method",
     "url": "URL",
     "urlRequired": "Please enter a URL",
     "urlPlaceholder": "Enter API endpoint URL",
-    "sendRequest": "Send Request",
+    "headers": "Headers",
+    "addHeader": "Add Header",
+    "noHeaders": "No headers added",
+    "headerKey": "Key",
+    "headerValue": "Value",
+    "removeHeader": "Remove",
+    "columnsValue": "Value",
+    "columnsControls": "Controls",
+    "placeholderKey": "Enter header key",
+    "placeholderValue": "Enter header value",
+    "body": "Body",
+    "contentType": "Content Type",
+    "json": "JSON",
+    "text": "Text",
+    "xml": "XML",
+    "bodyPlaceholder": "Enter request body...",
+    "prettify": "Prettify",
+    "sendRequest": "Send",
     "response": "Response",
     "status": "Status",
     "loading": "Loading...",
     "error": "Error",
-    "errorMessage": "Request failed"
+    "errorMessage": "Request failed",
+    "invalidJson": "Invalid JSON format",
+    "required": "Value is required",
+    "modalTitle": "Code Generation"
   },
   "NotFound": {
     "title": "Page Not Found",
@@ -70,14 +92,15 @@
   },
   "Auth": {
     "tabs": { "login": "Login", "signup": "Sign Up" },
-    "titles": { "login": "Sign In", "signup": "Registration" },
+    "titles": { "login": "Sign In", "signup": "Registration", "forgotPassword": "Reset password" },
     "cta": {
       "noAccount": "Don't have an account?",
       "haveAccount": "Already have an account?",
       "click": "Click",
       "here": "here",
       "signUpSuffix": "to sign up",
-      "loginSuffix": "to login"
+      "loginSuffix": "to login",
+      "backToLogin": "Back to login"
     },
     "or": "or",
     "continueWithGoogle": "Continue with Google",
@@ -91,7 +114,7 @@
   },
   "SignUpForm": {
     "name": { "label": "Name", "placeholder": "Your name" },
-    "email": { "label": "Email address", "placeholder": "Email address" },
+    "email": { "label": "Email", "placeholder": "Email" },
     "password": { "label": "Password", "placeholder": "Password" },
     "confirm": { "label": "Confirm password", "placeholder": "Confirm password" },
     "submit": "Sign up",
@@ -114,9 +137,10 @@
     }
   },
   "SignInForm": {
-    "email": { "label": "Email address", "placeholder": "Email address" },
+    "email": { "label": "Email", "placeholder": "Email" },
     "password": { "label": "Password", "placeholder": "Password" },
     "submit": "Sign in",
+    "forgotPassword": "Forgot password?",
     "errors": {
       "nameRequired": "Name is required",
       "emailRequired": "Email is required",
@@ -133,6 +157,23 @@
       "generic": "Failed to sign in. Please try again."
     }
   },
+  "ForgotPasswordForm": {
+    "email": { "label": "Email", "placeholder": "Email" },
+    "submit": "Reset Password",
+    "messages": {
+      "linkSent": "If an account exists for this email, a password reset email has been sent."
+    },
+    "errors": {
+      "emailRequired": "Email is required",
+      "emailInvalid": "Enter a valid email address"
+    },
+    "apiErrors": {
+      "invalidEmail": "Invalid email address.",
+      "tooManyRequests": "Too many attempts. Please try again later.",
+      "network": "Network error. Please try again.",
+      "generic": "Something went wrong. Please try again."
+    }
+  },
   "Variables": {
     "title": "Variables",
     "columns": {
@@ -143,9 +184,30 @@
     "btn": "Add new variable",
     "empty": "List of variables is empty",
     "inputErrors": {
-      "empty": "Please Input",
+      "empty": "Please add value",
       "unique": "Variable must be unique"
     },
     "placeholder": "Add"
+  },
+  "History": {
+    "title": "History and Analytics",
+    "emptyTitle": "You haven't executed any requests yet.",
+    "emptySubtitle": "It's empty here. Try to make a request",
+    "goRestClient": "Go to REST client",
+    "timestamp": "Timestamp",
+    "duration": "Duration",
+    "requestSize": "Request Size",
+    "responseSize": "Response Size",
+    "error": "Error",
+    "noError": "Request completed without errors",
+    "ms": "ms",
+    "bytes_one": "byte",
+    "bytes_few": "bytes",
+    "bytes_many": "bytes"
+  },
+  "ErrorBoundary": {
+    "title": "Something went wrong",
+    "message": "An unexpected error occurred. Please try refreshing the page.",
+    "buttonText": "Refresh page"
   }
 }
