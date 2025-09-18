@@ -3,12 +3,9 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import '@ant-design/v5-patch-for-react-19';
-import { useRouter } from '@/shared/i18n/navigation';
 import { buildResetPswRules } from '../model/shema';
 import { apiResetPassword } from '@/shared/api/firebase/auth';
-
 import { Button, Form, Input, Typography } from 'antd';
-import { appRoutes } from '@/shared/config/navigation';
 import { mapResetPasswordError } from '@/shared/api/firebase/map-reset-password-errors';
 
 const { Item } = Form;
@@ -22,7 +19,6 @@ export function ForgotPasswordForm() {
   const t = useTranslations('ForgotPasswordForm');
   const [form] = Form.useForm<FieldType>();
   const rules = buildResetPswRules(t);
-  const router = useRouter();
 
   const [loading, setLoading] = useState(false);
   const [apiError, setApiError] = useState<string | null>(null);
