@@ -60,5 +60,10 @@
     "tailwindcss": "^4",
     "typescript": "^5",
     "vitest": "^3.2.4"
+  },
+  "overrides": {
+    "antd": {
+      "rc-field-form": "npm:@rc-component/form@1.3.1"
+    }
   }
 }
