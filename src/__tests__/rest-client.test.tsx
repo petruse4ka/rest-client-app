@@ -3,7 +3,7 @@ import { render } from './test-utils/test-utils';
 import React from 'react';
 import { describe, test, beforeEach, vi, expect } from 'vitest';
 import type { ApiResponse } from '@/types/interfaces';
-import RestClientClient from '@/app/[locale]/rest-client/[...params]/rest-client-client';
+import RestClientPageDefault from '@/app/[locale]/rest-client/[...params]/page';
 
 vi.mock('next/navigation', () => ({
   useParams: () => ({ params: [] }),
@@ -56,7 +56,7 @@ describe('REST Client Page', () => {
   });
 
   test('renders page title', async () => {
-    render(<RestClientClient />);
+    render(<RestClientPageDefault />);
 
     await waitFor(() => {
       expect(screen.getByText('REST Client')).toBeInTheDocument();
@@ -64,7 +64,7 @@ describe('REST Client Page', () => {
   });
 
   test('renders all main components', async () => {
-    render(<RestClientClient />);
+    render(<RestClientPageDefault />);
 
     await waitFor(() => {
       expect(screen.getByTestId('method-select')).toBeInTheDocument();
@@ -76,7 +76,7 @@ describe('REST Client Page', () => {
   });
 
   test('form has default values', async () => {
-    render(<RestClientClient />);
+    render(<RestClientPageDefault />);
 
     await waitFor(() => {
       expect(screen.getByText('GET')).toBeInTheDocument();
