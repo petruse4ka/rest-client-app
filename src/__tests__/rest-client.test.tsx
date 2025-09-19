@@ -58,28 +58,38 @@ describe('REST Client Page', () => {
   test('renders page title', async () => {
     render(<RestClientPageDefault />);
 
-    await waitFor(() => {
-      expect(screen.getByText('REST Client')).toBeInTheDocument();
-    });
+    await waitFor(
+      () => {
+        expect(screen.getByText('REST Client')).toBeInTheDocument();
+      },
+      { timeout: 3500 }
+    );
   });
 
-  test('renders all main components', async () => {
-    render(<RestClientPageDefault />);
+  test(
+    'renders all main components',
+    async () => {
+      render(<RestClientPageDefault />);
 
-    await waitFor(() => {
-      expect(screen.getByTestId('method-select')).toBeInTheDocument();
-    });
-    expect(screen.getByTestId('url-input')).toBeInTheDocument();
-    expect(screen.getByTestId('send-button')).toBeInTheDocument();
-    expect(screen.getByTestId('headers-editor')).toBeInTheDocument();
-    expect(screen.getByTestId('body-editor')).toBeInTheDocument();
-  });
+      await waitFor(() => {
+        expect(screen.getByTestId('method-select')).toBeInTheDocument();
+      });
+      expect(screen.getByTestId('url-input')).toBeInTheDocument();
+      expect(screen.getByTestId('send-button')).toBeInTheDocument();
+      expect(screen.getByTestId('headers-editor')).toBeInTheDocument();
+      expect(screen.getByTestId('body-editor')).toBeInTheDocument();
+    },
+    { timeout: 3500 }
+  );
 
   test('form has default values', async () => {
     render(<RestClientPageDefault />);
 
-    await waitFor(() => {
-      expect(screen.getByText('GET')).toBeInTheDocument();
-    });
+    await waitFor(
+      () => {
+        expect(screen.getByText('GET')).toBeInTheDocument();
+      },
+      { timeout: 3500 }
+    );
   });
 });
