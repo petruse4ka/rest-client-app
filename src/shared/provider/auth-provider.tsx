@@ -35,11 +35,13 @@ export function AuthProvider({
         try {
           await axios.post('/api/auth/verify');
         } catch (e) {
-          await axios.post('/api/logout');
-          router.push(appRoutes.home);
-          router.refresh();
-          clearInterval(interval.current!);
-          interval.current = null;
+          if (e) {
+            await axios.post('/api/logout');
+            router.push(appRoutes.home);
+            router.refresh();
+            clearInterval(interval.current!);
+            interval.current = null;
+          }
         }
       }, CHECK_TOKEN_INTERVAL);
     }
@@ -47,7 +49,7 @@ export function AuthProvider({
     return () => {
       if (interval.current) clearInterval(interval.current);
     };
-  }, [initialUser]);
+  }, [initialUser, router]);
 
   const value = { user: initialUser, isLogin: !!initialUser };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

@@ -1,9 +1,6 @@
 import { render } from '@/__tests__/test-utils/test-utils';
 import { screen } from '@testing-library/react';
 import { HeroSection } from '../hero-section';
-import { navLinks } from '@/shared/config';
-import { authLinks } from '@/shared/config/navigation';
-import { useTranslations } from 'next-intl';
 
 const mockUseAuth = vi.fn(() => ({ isLogin: false }));
 

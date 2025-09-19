@@ -6,7 +6,7 @@ export const prettifyJson = (value: string, contentType: ContentType): string | 
       const parsedValue = JSON.parse(value);
       return JSON.stringify(parsedValue, null, 2);
     } catch (error) {
-      return null;
+      if (error) return null;
     }
   }
   return value;

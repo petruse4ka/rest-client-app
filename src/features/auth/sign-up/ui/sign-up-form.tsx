@@ -46,7 +46,11 @@ export function SignUpForm() {
     } catch (e) {
       const { field, key } = mapSignUpError(e);
       const msg = t(`apiErrors.${key}`);
-      field ? form.setFields([{ name: field, errors: [msg] }]) : setApiError(msg);
+      if (field) {
+        form.setFields([{ name: field, errors: [msg] }]);
+      } else {
+        setApiError(msg);
+      }
     } finally {
       setLoading(false);
     }

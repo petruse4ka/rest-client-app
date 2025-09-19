@@ -5,7 +5,7 @@ import codegen from 'postman-code-generators';
 import sdk from 'postman-collection';
 import { Typography } from 'antd';
 import { LanguageItem } from '@/types/interfaces';
-import { CSSProperties, useEffect, useState } from 'react';
+import { CSSProperties, useEffect, useState, useCallback } from 'react';
 import { substituteVariables } from '@/shared/utils';
 
 const { Text } = Typography;
@@ -37,44 +37,47 @@ export function CodeGeneration({ request }: CodeGenerationProps) {
   }));
   const [selectedLang, setSelectedLang] = useState(codeLanguages[0].value);
 
-  const handleChange = (value: string) => {
-    setSelectedLang(value);
+  const handleChange = useCallback(
+    (value: string) => {
+      setSelectedLang(value);
 
-    const { key: language, variant } = JSON.parse(value);
-    const request = new sdk.Request({
-        url: substituteVariables(url),
-        method,
-        header:
-          headers?.map(({ key, value }) => ({
-            key: substituteVariables(key),
-            value: substituteVariables(value),
-          })) || [],
-        body: data ? { mode: 'raw', raw: substituteVariables(data.trim()) } : undefined,
-      }),
-      options = {
-        indentCount: 3,
-        indentType: 'Space',
-        trimRequestBody: true,
-        followRedirect: true,
-      };
+      const { key: language, variant } = JSON.parse(value);
+      const request = new sdk.Request({
+          url: substituteVariables(url),
+          method,
+          header:
+            headers?.map(({ key, value }) => ({
+              key: substituteVariables(key),
+              value: substituteVariables(value),
+            })) || [],
+          body: data ? { mode: 'raw', raw: substituteVariables(data.trim()) } : undefined,
+        }),
+        options = {
+          indentCount: 3,
+          indentType: 'Space',
+          trimRequestBody: true,
+          followRedirect: true,
+        };
 
-    codegen.convert(
-      language,
-      variant,
-      request,
-      options,
-      function (error: unknown, snippet: string) {
-        if (error) {
-          setCode('Error code generation');
+      codegen.convert(
+        language,
+        variant,
+        request,
+        options,
+        function (error: unknown, snippet: string) {
+          if (error) {
+            setCode('Error code generation');
+          }
+          setCode(snippet);
         }
-        setCode(snippet);
-      }
-    );
-  };
+      );
+    },
+    [url, method, headers, data]
+  );
 
   useEffect(() => {
     handleChange(selectedLang);
-  }, [request]);
+  }, [request, handleChange, selectedLang]);
 
   return (
     <Flex vertical gap={10}>

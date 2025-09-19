@@ -70,7 +70,7 @@ export default function RestClientClient() {
       const keyTrim = key.trim();
       const valueTrim = value.trim();
 
-      (keyTrim && !valueTrim) || (!keyTrim && valueTrim);
+      return (keyTrim && !valueTrim) || (!keyTrim && valueTrim);
     });
 
     if (invalidHeaders.length > 0) {
