@@ -12,13 +12,13 @@ vi.mock('@/shared/i18n/navigation', () => ({
 
 describe('Header Mobile', () => {
   test('Render', () => {
-    render(<HeaderApp />);
+    render(<HeaderApp user={null} />);
 
     expect(screen.queryByTestId('mobile-header')).toBeInTheDocument();
   });
 
   test('Drawer opens and closes', async () => {
-    render(<MobileHeader />);
+    render(<MobileHeader user={null} />);
 
     const menuButton = screen.getByRole('button', { name: /Open menu/i });
 
