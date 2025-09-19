@@ -7,9 +7,9 @@
     "signOut": "Выйти",
     "signIn": "Войти",
     "signUp": "Регистрация",
-    "confirmSignOut": "Are you sure you want to sign out?",
-    "yes": "Yes",
-    "cancel": "Cancel"
+    "confirmSignOut": "Вы уверены, что хотите выйти?",
+    "yes": "Дa",
+    "cancel": "Отмена"
   },
   "RestClient": {
     "title": "REST клиент",
