@@ -34,7 +34,7 @@ export function AuthProvider({
       interval.current = setInterval(async () => {
         try {
           await axios.post('/api/auth/verify');
-        } catch (e) {
+        } catch {
           await axios.post('/api/logout');
           router.push(appRoutes.home);
           router.refresh();
@@ -47,7 +47,7 @@ export function AuthProvider({
     return () => {
       if (interval.current) clearInterval(interval.current);
     };
-  }, [initialUser]);
+  }, [initialUser, router]);
 
   const value = { user: initialUser, isLogin: !!initialUser };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

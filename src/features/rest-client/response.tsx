@@ -1,5 +1,5 @@
 import { ApiResponse } from '@/types/interfaces';
-import { Card, Typography, Spin, Flex, Input, Space } from 'antd';
+import { Card, Typography, Spin, Flex, Input } from 'antd';
 import { useTranslations } from 'next-intl';
 
 const { Title, Text } = Typography;

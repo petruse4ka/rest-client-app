@@ -1,10 +1,11 @@
-import { describe, test, beforeEach, vi, expect } from 'vitest';
 import React from 'react';
-import { render, screen } from './test-utils/test-utils';
+import { render, screen, waitFor } from './test-utils/test-utils';
 import type { RequestHistoryItem } from '@/types/types';
 import { HttpMethod } from '@/types/types';
 import HistoryPage from '@/app/[locale]/history/page';
 import type { DecodedIdToken } from 'firebase-admin/auth';
+import { adminAuth } from '@/server/firebase-admin';
+import { fetchRequestLogs } from '@/entities/request-log/model/fetch-request-logs';
 
 type CookieStore = {
   get: (name: string) => { value?: string } | undefined;
@@ -29,16 +30,44 @@ vi.mock('@/shared/i18n/navigation', () => {
 vi.mock('next/headers', () => ({
   cookies: hoist.cookiesMock,
 }));
+
+vi.mock('next-intl/server', () => ({
+  getTranslations: vi.fn().mockResolvedValue((key: string) => {
+    const translations = {
+      loading: 'Loading...',
+    };
+    return translations[key as keyof typeof translations] || key;
+  }),
+}));
+
+vi.mock('@/app/[locale]/history/history-client-wrapper', () => ({
+  default: ({ items }: { items: RequestHistoryItem[] }) => {
+    lastItemsPassed = items;
+    return (
+      <div data-testid="history-view">
+        <h1>History</h1>
+        <div data-testid="history-items">
+          {items.map((item, index) => (
+            <div key={index} data-testid={`history-item-${index}`}>
+              {item.method} {item.url}
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  },
+}));
+
 vi.mock('@/server/firebase-admin', () => ({
   adminAuth: { verifySessionCookie: vi.fn() },
 }));
-import { adminAuth } from '@/server/firebase-admin';
+
 const verifySessionCookieMock = vi.mocked(adminAuth.verifySessionCookie);
 
 vi.mock('@/entities/request-log/model/fetch-request-logs', () => ({
   fetchRequestLogs: vi.fn(),
 }));
-import { fetchRequestLogs } from '@/entities/request-log/model/fetch-request-logs';
+
 const fetchRequestLogsMock = vi.mocked(fetchRequestLogs);
 
 let lastItemsPassed: RequestHistoryItem[] | undefined;
@@ -115,7 +144,10 @@ describe('HistoryPage (server component)', () => {
     expect(node).not.toBeNull();
 
     render(node as React.ReactElement);
-    expect(screen.getByTestId('history-view')).toBeInTheDocument();
+
+    await waitFor(() => {
+      expect(screen.getByTestId('history-view')).toBeInTheDocument();
+    });
 
     expect(verifySessionCookieMock).toHaveBeenCalledWith('TOKEN123', true);
     expect(fetchRequestLogsMock).toHaveBeenCalledWith('user-42');

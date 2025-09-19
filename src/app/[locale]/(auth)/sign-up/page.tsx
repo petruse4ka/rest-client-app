@@ -1,6 +1,6 @@
 import { CSSProperties } from 'react';
-import { AuthWidget } from '@/widgets/';
 import { Content } from 'antd/es/layout/layout';
+import AuthClientWrapper from '../auth-client-wrapper';
 
 export default function SignUpPage() {
   const contentStyles: CSSProperties = {
@@ -13,7 +13,7 @@ export default function SignUpPage() {
 
   return (
     <Content style={contentStyles}>
-      <AuthWidget />
+      <AuthClientWrapper />
     </Content>
   );
 }

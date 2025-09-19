@@ -35,7 +35,7 @@ export function decodeRestClientUrl(
     };
 
     return data;
-  } catch (error) {
+  } catch {
     return null;
   }
 }

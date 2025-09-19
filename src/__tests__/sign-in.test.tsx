@@ -1,5 +1,5 @@
 import { screen } from '@testing-library/react';
-import { render } from './test-utils/test-utils';
+import { render, waitFor } from './test-utils/test-utils';
 import { describe, test, beforeEach, vi, expect } from 'vitest';
 import SignInPage from '@/app/[locale]/(auth)/sign-in/page';
 
@@ -12,10 +12,12 @@ describe('SignInPage', () => {
     vi.clearAllMocks();
   });
 
-  test('renders AuthWidget inside centered Content', () => {
+  test('renders AuthWidget inside centered Content', async () => {
     render(<SignInPage />);
 
-    expect(screen.getByTestId('auth-widget')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByTestId('auth-widget')).toBeInTheDocument();
+    });
 
     const main = screen.getByRole('main');
     expect(main).toBeInTheDocument();

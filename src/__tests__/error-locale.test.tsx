@@ -2,7 +2,6 @@ import { screen } from '@testing-library/react';
 import { render } from './test-utils/test-utils';
 import LocaleError from '../app/[locale]/error';
 import enMessages from '@/shared/i18n/messages/en.json';
-import { orangeColors } from '@/shared/style/colors';
 
 const mockReload = vi.fn();
 

@@ -3,7 +3,7 @@ import { localStorageController } from '../utils';
 
 describe('Tests for localStorage controller', () => {
   beforeEach(() => {
-    localStorage.clear;
+    localStorage.clear();
   });
 
   test('Add and get string in localStorage', () => {

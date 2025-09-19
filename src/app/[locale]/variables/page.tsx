@@ -4,9 +4,11 @@ import '@ant-design/v5-patch-for-react-19';
 import { Flex } from 'antd';
 import { Content } from 'antd/es/layout/layout';
 import Title from 'antd/es/typography/Title';
-import { CSSProperties } from 'react';
-import EditableTable from '@/features/editable-table';
+import { CSSProperties, lazy, Suspense } from 'react';
 import { useTranslations } from 'next-intl';
+import { LoadingSpinner } from '@/shared/UI';
+
+const EditableTable = lazy(() => import('@/features/editable-table'));
 
 const contentStyles: CSSProperties = {
   maxWidth: '1440px',
@@ -20,11 +22,13 @@ export default function VariablesPage() {
   const t = useTranslations('Variables');
 
   return (
-    <Content>
-      <Flex vertical gap={20} style={contentStyles}>
-        <Title>{t('title')}</Title>
-        <EditableTable />
-      </Flex>
-    </Content>
+    <Suspense fallback={<LoadingSpinner tip={t('loading')} />}>
+      <Content>
+        <Flex vertical gap={20} style={contentStyles}>
+          <Title>{t('title')}</Title>
+          <EditableTable />
+        </Flex>
+      </Content>
+    </Suspense>
   );
 }

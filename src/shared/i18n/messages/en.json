@@ -91,6 +91,7 @@
     "subtitle": "We are building an amazing REST client application that will revolutionize how you test and interact with APIs."
   },
   "Auth": {
+    "loading": "Loading...",
     "tabs": { "login": "Login", "signup": "Sign Up" },
     "titles": { "login": "Sign In", "signup": "Registration", "forgotPassword": "Reset password" },
     "cta": {
@@ -183,6 +184,7 @@
     },
     "btn": "Add new variable",
     "empty": "List of variables is empty",
+    "loading": "Loading...",
     "inputErrors": {
       "empty": "Please add value",
       "unique": "Variable must be unique"
@@ -191,6 +193,7 @@
   },
   "History": {
     "title": "History and Analytics",
+    "loading": "Loading...",
     "emptyTitle": "You haven't executed any requests yet.",
     "emptySubtitle": "It's empty here. Try to make a request",
     "goRestClient": "Go to REST client",
@@ -209,5 +212,8 @@
     "title": "Something went wrong",
     "message": "An unexpected error occurred. Please try refreshing the page.",
     "buttonText": "Refresh page"
+  },
+  "LoadingSpinner": {
+    "loading": "Loading..."
   }
 }

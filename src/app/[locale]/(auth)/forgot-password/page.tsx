@@ -1,6 +1,6 @@
 import { CSSProperties } from 'react';
 import { Content } from 'antd/es/layout/layout';
-import { AuthWidget } from '@/widgets';
+import AuthClientWrapper from '../auth-client-wrapper';
 
 export default function ForgotPasswordPage() {
   const contentStyles: CSSProperties = {
@@ -13,7 +13,7 @@ export default function ForgotPasswordPage() {
 
   return (
     <Content style={contentStyles}>
-      <AuthWidget />
+      <AuthClientWrapper />
     </Content>
   );
 }
