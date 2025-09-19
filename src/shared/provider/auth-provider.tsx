@@ -34,14 +34,12 @@ export function AuthProvider({
       interval.current = setInterval(async () => {
         try {
           await axios.post('/api/auth/verify');
-        } catch (e) {
-          if (e) {
-            await axios.post('/api/logout');
-            router.push(appRoutes.home);
-            router.refresh();
-            clearInterval(interval.current!);
-            interval.current = null;
-          }
+        } catch {
+          await axios.post('/api/logout');
+          router.push(appRoutes.home);
+          router.refresh();
+          clearInterval(interval.current!);
+          interval.current = null;
         }
       }, CHECK_TOKEN_INTERVAL);
     }
