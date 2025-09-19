@@ -6,7 +6,10 @@
     "variables": "Variables",
     "signOut": "Sign Out",
     "signIn": "Sign In",
-    "signUp": "Sign Up"
+    "signUp": "Sign Up",
+    "confirmSignOut": "Вы уверены, что хотите выйти?",
+    "yes": "Дa",
+    "cancel": "Отмена"
   },
   "RestClient": {
     "title": "REST Client",
