@@ -1,21 +1,24 @@
-import { cookies } from 'next/headers';
 import HistoryClientWrapper from './history-client-wrapper';
-import { adminAuth } from '@/server/firebase-admin';
 import { fetchRequestLogs } from '@/entities/request-log/model/fetch-request-logs';
 import { getTranslations } from 'next-intl/server';
+import { getServerUser } from '@/server/get-server-user';
+import { HeaderApp } from '@/widgets';
 
 export default async function HistoryPage() {
-  const cookieStore = await cookies();
-  const token = cookieStore.get('session')?.value;
-  if (!token) {
+  const userServer = await getServerUser();
+  const user = userServer ? { name: userServer.name } : null;
+  const uid = userServer?.uid;
+  if (!uid) {
     return null;
   }
-  const decoded = await adminAuth.verifySessionCookie(token!, true);
-  const uid = decoded.uid;
-
   const items = await fetchRequestLogs(uid);
   const t = await getTranslations('History');
   const loadingText = t('loading');
 
-  return <HistoryClientWrapper items={items} loadingText={loadingText} />;
+  return (
+    <>
+      <HeaderApp user={user} />
+      <HistoryClientWrapper items={items} loadingText={loadingText} />
+    </>
+  );
 }

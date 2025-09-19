@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { type ReactNode } from 'react';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { getMessages } from 'next-intl/server';
-import { FooterApp, HeaderApp } from '@/widgets';
+import { FooterApp } from '@/widgets';
 import { Layout } from 'antd';
 import { ThemeProvider } from '@/shared/provider';
 import { routing } from '@/shared/i18n/routing';
@@ -63,9 +63,6 @@ export default async function LocaleLayout({
 
   const messages = await getMessages();
 
-  const userServer = await getServerUser();
-  const user = userServer ? { name: userServer.name } : null;
-
   return (
     <html lang={locale}>
       <body>
@@ -74,7 +71,6 @@ export default async function LocaleLayout({
             <NextIntlClientProvider messages={messages}>
               <ThemeProvider>
                 <Layout style={{ minHeight: '100vh' }}>
-                  <HeaderApp user={user} />
                   {children}
                   <FooterApp />
                 </Layout>

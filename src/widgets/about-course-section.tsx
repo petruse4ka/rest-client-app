@@ -1,3 +1,5 @@
+'use client';
+
 import { courseLinks } from '@/shared/config/navigation';
 import { Divider, Flex, Space, Typography } from 'antd';
 import Title from 'antd/es/typography/Title';
