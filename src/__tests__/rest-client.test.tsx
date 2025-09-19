@@ -1,9 +1,9 @@
 import { screen, waitFor } from '@testing-library/react';
 import { render } from './test-utils/test-utils';
-import RestClientPage from '@/app/[locale]/rest-client/page';
 import React from 'react';
 import { describe, test, beforeEach, vi, expect } from 'vitest';
 import type { ApiResponse } from '@/types/interfaces';
+import RestClientClient from '@/app/[locale]/rest-client/[...params]/rest-client-client';
 
 vi.mock('next/navigation', () => ({
   useParams: () => ({ params: [] }),
@@ -50,21 +50,13 @@ vi.mock('@/widgets', () => ({
   CodeGeneration: () => <div data-testid="code-generation">Code Generation</div>,
 }));
 
-vi.mock('@/shared/config/firebase', () => {
-  return {
-    auth: {
-      currentUser: null,
-    },
-  };
-});
-
 describe('REST Client Page', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
   test('renders page title', async () => {
-    render(<RestClientPage />);
+    render(<RestClientClient />);
 
     await waitFor(() => {
       expect(screen.getByText('REST Client')).toBeInTheDocument();
@@ -72,7 +64,7 @@ describe('REST Client Page', () => {
   });
 
   test('renders all main components', async () => {
-    render(<RestClientPage />);
+    render(<RestClientClient />);
 
     await waitFor(() => {
       expect(screen.getByTestId('method-select')).toBeInTheDocument();
@@ -84,7 +76,7 @@ describe('REST Client Page', () => {
   });
 
   test('form has default values', async () => {
-    render(<RestClientPage />);
+    render(<RestClientClient />);
 
     await waitFor(() => {
       expect(screen.getByText('GET')).toBeInTheDocument();

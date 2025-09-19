@@ -21,6 +21,16 @@ vi.mock('@/shared/i18n/navigation', () => {
   };
 });
 
+vi.mock('@/shared/config/firebase', () => {
+  return {
+    auth: {
+      currentUser: null,
+      onAuthStateChanged: vi.fn(),
+    },
+  };
+});
+
+
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
   value: vi.fn().mockImplementation(query => ({

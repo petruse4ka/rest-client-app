@@ -2,11 +2,11 @@ import { screen, fireEvent } from '@testing-library/react';
 import { render } from './test-utils/test-utils';
 
 import enMessages from '@/shared/i18n/messages/en.json';
-import NotFound from '@/app/[locale]/not-found';
+import { NotFoundWidget } from '@/widgets';
 
 describe('NotFound Page', () => {
   test('renders all components with test IDs', () => {
-    render(<NotFound />);
+    render(<NotFoundWidget />);
 
     expect(screen.getByTestId('not-found-content')).toBeInTheDocument();
     expect(screen.getByTestId('not-found-title')).toBeInTheDocument();
@@ -18,7 +18,7 @@ describe('NotFound Page', () => {
   });
 
   test('displays translated content', () => {
-    render(<NotFound />);
+    render(<NotFoundWidget />);
 
     expect(screen.getByText(enMessages.NotFound.title)).toBeInTheDocument();
     expect(screen.getByText(enMessages.NotFound.tryAnotherMessage)).toBeInTheDocument();
@@ -26,7 +26,7 @@ describe('NotFound Page', () => {
   });
 
   test('displays one of the random messages', () => {
-    render(<NotFound />);
+    render(<NotFoundWidget />);
 
     const messageElement = screen.getByTestId('not-found-message');
     const messageText = messageElement.textContent;
@@ -35,7 +35,7 @@ describe('NotFound Page', () => {
   });
 
   test('buttons are clickable', () => {
-    render(<NotFound />);
+    render(<NotFoundWidget />);
 
     const randomButton = screen.getByTestId('random-message-button');
     const homepageButton = screen.getByTestId('homepage-button');

@@ -79,6 +79,18 @@ vi.mock('@/app/[locale]/history/history-client', () => ({
   },
 }));
 
+const getServerUserMock = vi.fn();
+
+vi.mock('@/server/get-server-user', () => ({
+  getServerUser: () => getServerUserMock(),
+}));
+
+vi.mock('@/server/firebase-admin', () => ({
+  adminAuth: {
+    verifySessionCookie: vi.fn(),
+  },
+}));
+
 const makeItem = (
   id: string,
   ts: string,
@@ -106,9 +118,7 @@ describe('HistoryPage (server component)', () => {
   });
 
   test('returns null when no session cookie', async () => {
-    hoist.cookiesMock.mockResolvedValue({
-      get: () => undefined,
-    });
+    getServerUserMock.mockResolvedValue(null);
 
     const node = await HistoryPage();
     expect(node).toBeNull();
@@ -132,7 +142,14 @@ describe('HistoryPage (server component)', () => {
       auth_time: Math.floor(Date.now() / 1000),
       firebase: { identities: {}, sign_in_provider: 'custom' },
     };
+
     verifySessionCookieMock.mockResolvedValue(decoded);
+
+    getServerUserMock.mockImplementation(async () => {
+      const token = 'TOKEN123';
+      const result = await verifySessionCookieMock(token, true);
+      return { name: 'Test User', uid: result.uid };
+    });
 
     const items: RequestHistoryItem[] = [
       makeItem('1', '2024-02-01T10:00:00Z'),
@@ -151,7 +168,6 @@ describe('HistoryPage (server component)', () => {
 
     expect(verifySessionCookieMock).toHaveBeenCalledWith('TOKEN123', true);
     expect(fetchRequestLogsMock).toHaveBeenCalledWith('user-42');
-
     expect(lastItemsPassed).toEqual(items);
   });
 });
