@@ -15,7 +15,7 @@ export default function Navigation() {
   const t = useTranslations('NavInfo');
 
   return (
-    <Flex gap="middle" vertical={!screens.md} data-testid="navigation">
+    <Flex gap="middle" vertical={!screens.xl} align="center" data-testid="navigation">
       {navLinks.map(({ href, label }) => {
         const isActive = pathname === href;
 
@@ -24,6 +24,7 @@ export default function Navigation() {
             key={href}
             className={`link ${themeValue === 'dark' ? 'link--dark' : 'link--light'} ${isActive ? 'link--active' : ''}`}
             href={href}
+            style={screens.xl ? {} : { fontSize: '27px' }}
           >
             {t(label)}
           </Link>

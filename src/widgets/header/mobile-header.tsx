@@ -27,8 +27,8 @@ export default function MobileHeader() {
         style={{ height: '100%' }}
         data-testid="mobile-header"
       >
-        <Logo />
-        <Button size="large" icon={<MenuOutlined />} onClick={showDrawer} aria-label="Open menu" />
+        <Logo size={33} />
+        <Button size="small" icon={<MenuOutlined />} onClick={showDrawer} aria-label="Open menu" />
       </Flex>
       <Drawer
         closable={{ 'aria-label': 'Close Button' }}
@@ -40,9 +40,9 @@ export default function MobileHeader() {
           </Space>
         }
       >
-        <Space direction="vertical" size="large">
+        <Space direction="vertical" size="large" style={{ width: '100%' }}>
+          <AuthControls justify="center" drawerClose={hiddenDrawer} />
           {isLogin && <Navigation />}
-          <AuthControls />
         </Space>
       </Drawer>
     </>

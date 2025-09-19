@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { CSSProperties, useState } from 'react';
 
 import { useTranslations } from 'next-intl';
 import { useRouter } from '@/shared/i18n/navigation';
@@ -8,15 +8,26 @@ import { Button, Flex, Tooltip } from 'antd';
 import { appRoutes } from '@/shared/config/navigation';
 import { HomeOutlined, LogoutOutlined, UserOutlined } from '@ant-design/icons';
 
-export default function AuthControls() {
+interface AuthControlsProps {
+  justify?: string;
+  drawerClose?: () => void;
+}
+
+export default function AuthControls({ justify = 'flex-end', drawerClose }: AuthControlsProps) {
   const t = useTranslations('NavInfo');
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
   const { isLogin, user } = useAuth();
 
-  const goSignIn = () => router.push(appRoutes.signIn);
-  const goSignUp = () => router.push(appRoutes.signUp);
+  const goSign = (route: string) => {
+    router.push(route);
+
+    if (drawerClose) {
+      drawerClose();
+    }
+  };
+
   const goMainPage = () => router.push(appRoutes.home);
 
   const handleSignOut = async () => {
@@ -31,7 +42,7 @@ export default function AuthControls() {
   };
 
   return (
-    <Flex gap="middle" align="center" justify="flex-end">
+    <Flex gap="middle" align="center" justify={justify}>
       {isLogin ? (
         <>
           <Button
@@ -59,10 +70,22 @@ export default function AuthControls() {
         </>
       ) : (
         <>
-          <Button size="small" type="primary" onClick={goSignIn}>
+          <Button
+            size="small"
+            type="primary"
+            onClick={() => {
+              goSign(appRoutes.signIn);
+            }}
+          >
             {t('signIn')}
           </Button>
-          <Button size="small" type="primary" onClick={goSignUp}>
+          <Button
+            size="small"
+            type="primary"
+            onClick={() => {
+              goSign(appRoutes.signUp);
+            }}
+          >
             {t('signUp')}
           </Button>
         </>

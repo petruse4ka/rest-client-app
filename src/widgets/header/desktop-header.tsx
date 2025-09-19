@@ -19,7 +19,7 @@ export default function DesktopHeader() {
       </Col>
       <Col flex="auto">
         <Flex gap="middle" align="center" justify="center">
-          <Logo />
+          <Logo size={40} />
           {isLogin && <Navigation />}
         </Flex>
       </Col>
