@@ -1,5 +1,5 @@
 import { screen } from '@testing-library/react';
-import { render } from './test-utils/test-utils';
+import { render, waitFor } from './test-utils/test-utils';
 import { describe, test, beforeEach, vi, expect } from 'vitest';
 import ForgotPasswordPage from '@/app/[locale]/(auth)/forgot-password/page';
 
@@ -22,10 +22,12 @@ describe('ForgotPasswordPage', () => {
     vi.clearAllMocks();
   });
 
-  test('renders AuthWidget inside centered Content', () => {
+  test('renders AuthWidget inside centered Content', async () => {
     render(<ForgotPasswordPage />);
 
-    expect(screen.getByTestId('auth-widget')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByTestId('auth-widget')).toBeInTheDocument();
+    });
 
     const main = screen.getByRole('main');
     expect(main).toBeInTheDocument();

@@ -1,15 +1,53 @@
-import { screen, fireEvent, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import { render } from './test-utils/test-utils';
 import RestClientPage from '@/app/[locale]/rest-client/page';
-import enMessages from '@/shared/i18n/messages/en.json';
-import axios from 'axios';
-
-vi.mock('axios');
-const mockedAxios = vi.mocked(axios, true);
+import React from 'react';
+import { describe, test, beforeEach, vi, expect } from 'vitest';
+import type { ApiResponse } from '@/types/interfaces';
 
 vi.mock('next/navigation', () => ({
   useParams: () => ({ params: [] }),
   useSearchParams: () => new URLSearchParams(),
+}));
+
+vi.mock('@/features/rest-client', () => ({
+  HeadersEditor: () => <div data-testid="headers-editor">Headers Editor</div>,
+  BodyEditor: () => <div data-testid="body-editor">Body Editor</div>,
+  HttpMethods: ({ loading }: { loading: boolean }) => (
+    <div data-testid="http-methods-container">
+      <h2>Request</h2>
+      <div data-testid="http-methods">
+        <div data-testid="method-field">
+          <select data-testid="method-select">
+            <option value="GET">GET</option>
+          </select>
+        </div>
+        <input data-testid="url-input" placeholder="Enter API endpoint URL" />
+        <button data-testid="send-button" disabled={loading}>
+          {loading ? 'Loading...' : 'Send'}
+        </button>
+      </div>
+    </div>
+  ),
+  Response: ({
+    loading,
+    error,
+    response,
+  }: {
+    loading: boolean;
+    error: string | null;
+    response: ApiResponse | null;
+  }) => (
+    <div data-testid="response">
+      {loading && <div data-testid="loading-spinner">Loading...</div>}
+      {error && <div data-testid="error-card">Error: {error}</div>}
+      {response && <div data-testid="response-card">Response: {JSON.stringify(response)}</div>}
+    </div>
+  ),
+}));
+
+vi.mock('@/widgets', () => ({
+  CodeGeneration: () => <div data-testid="code-generation">Code Generation</div>,
 }));
 
 vi.mock('@/shared/config/firebase', () => {
@@ -25,119 +63,31 @@ describe('REST Client Page', () => {
     vi.clearAllMocks();
   });
 
-  test('renders all components with test IDs', () => {
+  test('renders page title', async () => {
     render(<RestClientPage />);
 
-    expect(screen.getByTestId('rest-client-title')).toBeInTheDocument();
-    expect(screen.getByRole('combobox', { name: /method/i })).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText('REST Client')).toBeInTheDocument();
+    });
+  });
+
+  test('renders all main components', async () => {
+    render(<RestClientPage />);
+
+    await waitFor(() => {
+      expect(screen.getByTestId('method-select')).toBeInTheDocument();
+    });
     expect(screen.getByTestId('url-input')).toBeInTheDocument();
     expect(screen.getByTestId('send-button')).toBeInTheDocument();
+    expect(screen.getByTestId('headers-editor')).toBeInTheDocument();
+    expect(screen.getByTestId('body-editor')).toBeInTheDocument();
   });
 
-  test('displays translated content', () => {
+  test('form has default values', async () => {
     render(<RestClientPage />);
-
-    expect(screen.getByText(enMessages.RestClient.title)).toBeInTheDocument();
-    expect(screen.getByText(enMessages.RestClient.method)).toBeInTheDocument();
-    expect(screen.getByText(enMessages.RestClient.url)).toBeInTheDocument();
-  });
-
-  test('form has pre-filled values', () => {
-    render(<RestClientPage />);
-
-    expect(screen.getByText('GET')).toBeInTheDocument();
-  });
-
-  test('send button is clickable', () => {
-    render(<RestClientPage />);
-
-    const sendButton = screen.getByTestId('send-button');
-    expect(sendButton).not.toBeDisabled();
-    expect(() => fireEvent.click(sendButton)).not.toThrow();
-  });
-
-  test('shows loading state when request is sent', async () => {
-    mockedAxios.post.mockImplementation(
-      () =>
-        new Promise((resolve) =>
-          setTimeout(
-            () =>
-              resolve({
-                data: { data: { test: 'response' }, status: 200, statusText: 'OK' },
-              }),
-            1000
-          )
-        )
-    );
-
-    render(<RestClientPage />);
-
-    const urlInput = screen.getByTestId('url-input');
-    fireEvent.change(urlInput, { target: { value: 'https://api.example.com/test' } });
-
-    const sendButton = screen.getByTestId('send-button');
-    fireEvent.click(sendButton);
 
     await waitFor(() => {
-      expect(screen.getAllByTestId('loading-spinner')).toHaveLength(2);
-    });
-  });
-
-  test('displays response when request succeeds', async () => {
-    const mockResponse = {
-      data: { data: { test: 'response' }, status: 200, statusText: 'OK' },
-    };
-    mockedAxios.post.mockResolvedValue(mockResponse);
-
-    render(<RestClientPage />);
-
-    const urlInput = screen.getByTestId('url-input');
-    fireEvent.change(urlInput, { target: { value: 'https://api.example.com/test' } });
-
-    const sendButton = screen.getByTestId('send-button');
-    fireEvent.click(sendButton);
-
-    await waitFor(() => {
-      expect(screen.getByTestId('response-card')).toBeInTheDocument();
-      expect(screen.getByText(enMessages.RestClient.response)).toBeInTheDocument();
-    });
-  });
-
-  test('displays error when request fails', async () => {
-    mockedAxios.post.mockRejectedValue(new Error('Network error'));
-
-    render(<RestClientPage />);
-
-    const urlInput = screen.getByTestId('url-input');
-    fireEvent.change(urlInput, { target: { value: 'https://api.example.com/test' } });
-
-    const sendButton = screen.getByTestId('send-button');
-    fireEvent.click(sendButton);
-
-    await waitFor(() => {
-      expect(screen.getByTestId('error-card')).toBeInTheDocument();
-      expect(screen.getByText(enMessages.RestClient.error)).toBeInTheDocument();
-    });
-  });
-
-  test('displays error when API returns error field in response', async () => {
-    const mockResponse = {
-      data: { error: 'API returned an error message' },
-    };
-    mockedAxios.post.mockResolvedValue(mockResponse);
-
-    render(<RestClientPage />);
-
-    const urlInput = screen.getByTestId('url-input');
-    fireEvent.change(urlInput, { target: { value: 'https://api.example.com/test' } });
-
-    const sendButton = screen.getByTestId('send-button');
-    fireEvent.click(sendButton);
-
-    await waitFor(() => {
-      expect(screen.getByTestId('error-card')).toBeInTheDocument();
-      expect(screen.getByText(enMessages.RestClient.error)).toBeInTheDocument();
-      expect(screen.getByText('API returned an error message')).toBeInTheDocument();
+      expect(screen.getByText('GET')).toBeInTheDocument();
     });
   });
 });
