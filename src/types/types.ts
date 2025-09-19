@@ -1,3 +1,4 @@
+import { DecodedIdToken } from 'firebase-admin/auth';
 import { RequestLogBase } from './interfaces';
 import { type Timestamp } from 'firebase-admin/firestore';
 
@@ -40,3 +41,5 @@ export type RequestHistoryItem = RequestLogBase & {
 };
 
 export type LogRequestPayload = RequestLogBase;
+
+export type AppUser = Pick<DecodedIdToken, 'name'> | null;

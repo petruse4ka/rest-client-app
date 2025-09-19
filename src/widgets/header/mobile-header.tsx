@@ -5,9 +5,14 @@ import InterfaceSettings from './interface-settings';
 import Navigation from './navigation';
 import AuthControls from './auth-controls';
 import Logo from './logo';
+import { AppUser } from '@/types/types';
 
-export default function MobileHeader() {
-  const [isLogin, setIsLigin] = useState<boolean>(false);
+type MobileHeaderProps = {
+  user: AppUser;
+};
+
+export default function MobileHeader({ user }: MobileHeaderProps) {
+  const isLogin = !!user;
   const [drawer, setDrawer] = useState(false);
 
   const showDrawer = () => {
@@ -41,7 +46,7 @@ export default function MobileHeader() {
       >
         <Space direction="vertical" size="large">
           {isLogin && <Navigation />}
-          <AuthControls />
+          <AuthControls user={user} />
         </Space>
       </Drawer>
     </>

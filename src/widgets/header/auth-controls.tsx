@@ -5,17 +5,20 @@ import { useRouter } from '@/shared/i18n/navigation';
 
 import { Button, Flex, Typography } from 'antd';
 import { appRoutes } from '@/shared/config/navigation';
+import { AppUser } from '@/types/types';
 
 const { Text } = Typography;
 
-export default function AuthControls() {
+type AuthControlsProps = {
+  user: AppUser;
+};
+
+export default function AuthControls({ user }: AuthControlsProps) {
   const t = useTranslations('NavInfo');
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
-  const [isLogin, setIsLigin] = useState<boolean>(false);
-
-  const user = { name: 'user' };
+  const isLogin = !!user;
 
   const goSignIn = () => router.push(appRoutes.signIn);
   const goSignUp = () => router.push(appRoutes.signUp);
