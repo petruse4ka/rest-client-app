@@ -4,10 +4,9 @@ import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { FooterApp, HeaderApp } from '@/widgets';
 import { Layout } from 'antd';
-import { ThemeProvider, AuthProvider } from '@/shared/provider';
+import { ThemeProvider } from '@/shared/provider';
 import { routing } from '@/shared/i18n/routing';
 import { notFound } from 'next/navigation';
-import { getServerUser } from '@/server/get-server-user';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 import './globals.css';
 import { ClientLoader } from '@/shared/UI';
@@ -63,8 +62,8 @@ export default async function LocaleLayout({
 
   const messages = await getMessages();
 
-  const userServer = await getServerUser();
-  const initialUser = userServer ? { name: userServer.name } : null;
+  // const userServer = await getServerUser();
+  // const initialUser = userServer ? { name: userServer.name } : null;
 
   return (
     <html lang={locale}>
@@ -73,13 +72,11 @@ export default async function LocaleLayout({
           <ClientLoader>
             <NextIntlClientProvider messages={messages}>
               <ThemeProvider>
-                <AuthProvider initialUser={initialUser}>
-                  <Layout style={{ minHeight: '100vh' }}>
-                    <HeaderApp />
-                    {children}
-                    <FooterApp />
-                  </Layout>
-                </AuthProvider>
+                <Layout style={{ minHeight: '100vh' }}>
+                  <HeaderApp />
+                  {children}
+                  <FooterApp />
+                </Layout>
               </ThemeProvider>
             </NextIntlClientProvider>
           </ClientLoader>

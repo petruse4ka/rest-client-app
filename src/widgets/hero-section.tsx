@@ -4,12 +4,12 @@ import { authLinks, navLinks } from '@/shared/config/navigation';
 import { Button, Flex, Typography } from 'antd';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-import { useAuth } from '../shared/provider/auth-provider';
+import { useState } from 'react';
 
 const { Title, Text } = Typography;
 
 export function HeroSection() {
-  const { isLogin } = useAuth();
+  const [isLogin, setIsLigin] = useState<boolean>(false);
 
   const links = isLogin ? navLinks.slice(1) : authLinks;
   const t = useTranslations('Hero');

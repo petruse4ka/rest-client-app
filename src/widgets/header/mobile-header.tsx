@@ -5,10 +5,9 @@ import InterfaceSettings from './interface-settings';
 import Navigation from './navigation';
 import AuthControls from './auth-controls';
 import Logo from './logo';
-import { useAuth } from '@/shared/provider/auth-provider';
 
 export default function MobileHeader() {
-  const { isLogin } = useAuth();
+  const [isLogin, setIsLigin] = useState<boolean>(false);
   const [drawer, setDrawer] = useState(false);
 
   const showDrawer = () => {

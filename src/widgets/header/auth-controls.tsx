@@ -2,7 +2,6 @@ import { useState } from 'react';
 
 import { useTranslations } from 'next-intl';
 import { useRouter } from '@/shared/i18n/navigation';
-import { useAuth } from '@/shared/provider/auth-provider';
 
 import { Button, Flex, Typography } from 'antd';
 import { appRoutes } from '@/shared/config/navigation';
@@ -14,7 +13,9 @@ export default function AuthControls() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
-  const { isLogin, user } = useAuth();
+  const [isLogin, setIsLigin] = useState<boolean>(false);
+
+  const user = { name: 'user' };
 
   const goSignIn = () => router.push(appRoutes.signIn);
   const goSignUp = () => router.push(appRoutes.signUp);

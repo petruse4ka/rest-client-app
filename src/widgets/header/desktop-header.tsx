@@ -4,9 +4,10 @@ import Navigation from './navigation';
 import AuthControls from './auth-controls';
 import Logo from './logo';
 import { useAuth } from '@/shared/provider/auth-provider';
+import { useState } from 'react';
 
 export default function DesktopHeader() {
-  const { isLogin } = useAuth();
+  const [isLogin, setIsLigin] = useState<boolean>(false);
   return (
     <Row
       align="middle"
