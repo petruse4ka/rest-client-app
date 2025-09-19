@@ -10,6 +10,7 @@ import { notFound } from 'next/navigation';
 import { getServerUser } from '@/server/get-server-user';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 import './globals.css';
+import { ClientLoader } from '@/shared/UI';
 
 export const metadata: Metadata = {
   title: 'REST Client App - Professional API Testing Tool',
@@ -69,17 +70,19 @@ export default async function LocaleLayout({
     <html lang={locale}>
       <body>
         <AntdRegistry>
-          <NextIntlClientProvider messages={messages}>
-            <ThemeProvider>
-              <AuthProvider initialUser={initialUser}>
-                <Layout style={{ minHeight: '100vh' }}>
-                  <HeaderApp />
-                  {children}
-                  <FooterApp />
-                </Layout>
-              </AuthProvider>
-            </ThemeProvider>
-          </NextIntlClientProvider>
+          <ClientLoader>
+            <NextIntlClientProvider messages={messages}>
+              <ThemeProvider>
+                <AuthProvider initialUser={initialUser}>
+                  <Layout style={{ minHeight: '100vh' }}>
+                    <HeaderApp />
+                    {children}
+                    <FooterApp />
+                  </Layout>
+                </AuthProvider>
+              </ThemeProvider>
+            </NextIntlClientProvider>
+          </ClientLoader>
         </AntdRegistry>
       </body>
     </html>
