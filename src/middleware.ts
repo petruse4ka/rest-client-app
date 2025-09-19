@@ -36,8 +36,7 @@ export function middleware(req: NextRequest) {
 
   if (!session && isProtected(restPathname)) {
     const url = req.nextUrl.clone();
-    url.pathname = withLocale(locale, appRoutes.signIn);
-    url.searchParams.set('next', pathname);
+    url.pathname = withLocale(locale, appRoutes.home);
     return NextResponse.redirect(url);
   }
 
