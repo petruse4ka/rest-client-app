@@ -65,7 +65,7 @@ describe('Header Desktop', () => {
 
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledWith('/api/logout', { method: 'POST' });
-      expect(mockPush).toHaveBeenCalledWith('/');
+      expect(mockPush).toHaveBeenCalledWith('/', { scroll: false });
       expect(mockRefresh).toHaveBeenCalled();
     });
   });
@@ -77,10 +77,10 @@ describe('Header Desktop', () => {
     const signUpButton = screen.getByText('Sign Up');
 
     fireEvent.click(signInButton);
-    expect(mockPush).toHaveBeenCalledWith('/sign-in');
+    expect(mockPush).toHaveBeenCalledWith('/sign-in', { scroll: false });
 
     fireEvent.click(signUpButton);
-    expect(mockPush).toHaveBeenCalledWith('/sign-up');
+    expect(mockPush).toHaveBeenCalledWith('/sign-up', { scroll: false });
   });
 
   test('Render Interface Settings', () => {

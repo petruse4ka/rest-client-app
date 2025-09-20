@@ -8,6 +8,13 @@ import RestClientPageDefault from '@/app/[locale]/rest-client/[...params]/page';
 vi.mock('next/navigation', () => ({
   useParams: () => ({ params: [] }),
   useSearchParams: () => new URLSearchParams(),
+  useRouter: () => ({
+    push: vi.fn(),
+    replace: vi.fn(),
+    back: vi.fn(),
+    forward: vi.fn(),
+    refresh: vi.fn(),
+  }),
 }));
 
 vi.mock('@/features/rest-client', () => ({

@@ -125,7 +125,7 @@ describe('SignUpForm', () => {
       });
       expect(mockedUpdateProfile).toHaveBeenCalledWith(fakeCred.user, { displayName: 'UserName' });
       expect(mockedFinalizeLogin).toHaveBeenCalledTimes(1);
-      expect(replace).toHaveBeenCalledWith('/');
+      expect(replace).toHaveBeenCalledWith('/', { scroll: false });
       expect(refresh).toHaveBeenCalledTimes(1);
     });
 

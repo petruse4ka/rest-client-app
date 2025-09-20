@@ -115,7 +115,7 @@ describe('SignInForm', () => {
         password: 'Secret123!',
       });
       expect(mockedFinalizeLogin).toHaveBeenCalledTimes(1);
-      expect(replace).toHaveBeenCalledWith('/');
+      expect(replace).toHaveBeenCalledWith('/', { scroll: false });
       expect(refresh).toHaveBeenCalledTimes(1);
     });
   });
