@@ -42,7 +42,7 @@ export function SignInForm() {
       await finalizeLogin();
       form.resetFields(['email', 'password']);
 
-      router.replace(appRoutes.home);
+      router.replace(appRoutes.home, { scroll: false });
       router.refresh();
     } catch (e) {
       const { field, key } = mapSignInError(e);
@@ -72,7 +72,9 @@ export function SignInForm() {
 
       <Item>
         <Text type="secondary">
-          <Link href={appRoutes.forgotPassword}>{t('forgotPassword')}</Link>
+          <Link href={appRoutes.forgotPassword} scroll={false}>
+            {t('forgotPassword')}
+          </Link>
         </Text>
       </Item>
 

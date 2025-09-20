@@ -78,7 +78,7 @@ export function NotFoundWidget() {
               {t('tryAnotherMessage')}
             </Button>
 
-            <Link href="/" data-testid="homepage-link">
+            <Link href="/" data-testid="homepage-link" scroll={false}>
               <Button data-testid="homepage-button" type="primary" icon={<HomeOutlined />}>
                 {t('returnToHomepage')}
               </Button>

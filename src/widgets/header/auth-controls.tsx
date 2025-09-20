@@ -21,16 +21,16 @@ export default function AuthControls({ user, justify = 'flex-end' }: AuthControl
   const isLogin = !!user;
 
   const goSign = (route: string) => {
-    router.push(route);
+    router.push(route, { scroll: false });
   };
 
-  const goMainPage = () => router.push(appRoutes.home);
+  const goMainPage = () => router.push(appRoutes.home, { scroll: false });
 
   const handleSignOut = async () => {
     try {
       setLoading(true);
       await fetch('/api/logout', { method: 'POST' });
-      router.push(appRoutes.home);
+      router.push(appRoutes.home, { scroll: false });
       router.refresh();
     } finally {
       setLoading(false);

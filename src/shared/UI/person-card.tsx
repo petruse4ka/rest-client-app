@@ -49,7 +49,7 @@ export function PersonCard({ person }: PersonCardProps) {
             marginBottom: '20px',
           }}
         />
-        <Flex justify="space-between" vertical gap={15}>
+        <Flex justify="space-between" vertical gap={15} style={{ flex: 1, width: '100%' }}>
           <Text style={{ textAlign: 'center' }}>{t(`${name}.description`)}</Text>
           <Link href={github.link} target="_blank" style={{ alignSelf: 'flex-end' }}>
             <Space size="small">

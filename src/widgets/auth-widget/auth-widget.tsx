@@ -38,7 +38,7 @@ export function AuthWidget() {
       setApiError(null);
       await apiSignUpWithGooglePopup();
       await finalizeLogin();
-      router.replace(appRoutes.home);
+      router.replace(appRoutes.home, { scroll: false });
       router.refresh();
     } catch (e) {
       const { key } = mapGoogleAuthError(e);
@@ -54,8 +54,8 @@ export function AuthWidget() {
             optionType="button"
             buttonStyle="solid"
             onChange={(e) => {
-              if (e.target.value === 'login') router.push(appRoutes.signIn);
-              else router.push(appRoutes.signUp);
+              if (e.target.value === 'login') router.push(appRoutes.signIn, { scroll: false });
+              else router.push(appRoutes.signUp, { scroll: false });
             }}
           >
             <Radio.Button value="login">{t('tabs.login')}</Radio.Button>
@@ -75,11 +75,13 @@ export function AuthWidget() {
         <Flex justify="center">
           <Text type="secondary" data-testid="auth-cta">
             {forgotPasswordActive ? (
-              <Link href={appRoutes.signIn}>{t('cta.backToLogin')}</Link>
+              <Link href={appRoutes.signIn} scroll={false}>
+                {t('cta.backToLogin')}
+              </Link>
             ) : (
               <>
                 {t(loginActive ? 'cta.noAccount' : 'cta.haveAccount')} {t('cta.click')}{' '}
-                <Link href={loginActive ? appRoutes.signUp : appRoutes.signIn}>
+                <Link href={loginActive ? appRoutes.signUp : appRoutes.signIn} scroll={false}>
                   {t('cta.here')}
                 </Link>{' '}
                 {t(loginActive ? 'cta.signUpSuffix' : 'cta.loginSuffix')}

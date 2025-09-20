@@ -4,7 +4,7 @@ export const lightTheme = {
   token: {
     colorPrimary: orangeColors[400],
     colorBgBase: zincColors[100],
-    colorTextBase: zincColors[800],
+    colorTextBase: zincColors[600],
     fontSize: 16,
     titleColor: orangeColors[400],
   },

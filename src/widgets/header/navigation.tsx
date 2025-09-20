@@ -25,6 +25,7 @@ export default function Navigation() {
             className={`link ${themeValue === 'dark' ? 'link--dark' : 'link--light'} ${isActive ? 'link--active' : ''}`}
             href={href}
             style={screens.xl ? {} : { fontSize: '27px' }}
+            scroll={false}
           >
             {t(label)}
           </Link>

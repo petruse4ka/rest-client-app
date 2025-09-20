@@ -41,7 +41,7 @@ export function SignUpForm() {
       await updateProfile(cred.user, { displayName: v.username });
       await finalizeLogin();
       form.resetFields(['username', 'email', 'password', 'confirmPassword']);
-      router.replace(appRoutes.home);
+      router.replace(appRoutes.home, { scroll: false });
       router.refresh();
     } catch (e) {
       const { field, key } = mapSignUpError(e);
