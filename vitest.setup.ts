@@ -18,8 +18,19 @@ vi.mock('@/shared/i18n/navigation', () => {
       replace: vi.fn(),
       refresh: vi.fn(),
     }),
+     usePathname: () => '',
   };
 });
+
+vi.mock('@/shared/config/firebase', () => {
+  return {
+    auth: {
+      currentUser: null,
+      onAuthStateChanged: vi.fn(),
+    },
+  };
+});
+
 
 Object.defineProperty(window, 'matchMedia', {
   writable: true,

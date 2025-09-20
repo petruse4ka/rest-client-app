@@ -1,34 +1,17 @@
-'use client';
-
 import '@ant-design/v5-patch-for-react-19';
-import { Flex } from 'antd';
-import { Content } from 'antd/es/layout/layout';
-import Title from 'antd/es/typography/Title';
-import { CSSProperties, lazy, Suspense } from 'react';
-import { useTranslations } from 'next-intl';
-import { LoadingSpinner } from '@/shared/UI';
 
-const EditableTable = lazy(() => import('@/features/editable-table'));
+import { HeaderApp } from '@/widgets';
+import { VariablesView } from './variables-client';
+import { getServerUser } from '@/server/get-server-user';
 
-const contentStyles: CSSProperties = {
-  maxWidth: '1440px',
-  margin: '0 auto',
-  padding: '20px 16px',
-  height: '100%',
-  textAlign: 'center',
-};
-
-export default function VariablesPage() {
-  const t = useTranslations('Variables');
+export default async function VariablesPage() {
+  const userServer = await getServerUser();
+  const user = userServer ? { name: userServer.name } : null;
 
   return (
-    <Suspense fallback={<LoadingSpinner tip={t('loading')} />}>
-      <Content>
-        <Flex vertical gap={20} style={contentStyles}>
-          <Title>{t('title')}</Title>
-          <EditableTable />
-        </Flex>
-      </Content>
-    </Suspense>
+    <>
+      <HeaderApp user={user} />
+      <VariablesView />
+    </>
   );
 }

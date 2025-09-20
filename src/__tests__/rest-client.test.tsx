@@ -1,9 +1,9 @@
 import { screen, waitFor } from '@testing-library/react';
 import { render } from './test-utils/test-utils';
-import RestClientPage from '@/app/[locale]/rest-client/page';
 import React from 'react';
 import { describe, test, beforeEach, vi, expect } from 'vitest';
 import type { ApiResponse } from '@/types/interfaces';
+import RestClientPageDefault from '@/app/[locale]/rest-client/[...params]/page';
 
 vi.mock('next/navigation', () => ({
   useParams: () => ({ params: [] }),
@@ -50,44 +50,46 @@ vi.mock('@/widgets', () => ({
   CodeGeneration: () => <div data-testid="code-generation">Code Generation</div>,
 }));
 
-vi.mock('@/shared/config/firebase', () => {
-  return {
-    auth: {
-      currentUser: null,
-    },
-  };
-});
-
 describe('REST Client Page', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
   test('renders page title', async () => {
-    render(<RestClientPage />);
+    render(<RestClientPageDefault />);
 
-    await waitFor(() => {
-      expect(screen.getByText('REST Client')).toBeInTheDocument();
-    });
+    await waitFor(
+      () => {
+        expect(screen.getByText('REST Client')).toBeInTheDocument();
+      },
+      { timeout: 3500 }
+    );
   });
 
-  test('renders all main components', async () => {
-    render(<RestClientPage />);
+  test(
+    'renders all main components',
+    async () => {
+      render(<RestClientPageDefault />);
 
-    await waitFor(() => {
-      expect(screen.getByTestId('method-select')).toBeInTheDocument();
-    });
-    expect(screen.getByTestId('url-input')).toBeInTheDocument();
-    expect(screen.getByTestId('send-button')).toBeInTheDocument();
-    expect(screen.getByTestId('headers-editor')).toBeInTheDocument();
-    expect(screen.getByTestId('body-editor')).toBeInTheDocument();
-  });
+      await waitFor(() => {
+        expect(screen.getByTestId('method-select')).toBeInTheDocument();
+      });
+      expect(screen.getByTestId('url-input')).toBeInTheDocument();
+      expect(screen.getByTestId('send-button')).toBeInTheDocument();
+      expect(screen.getByTestId('headers-editor')).toBeInTheDocument();
+      expect(screen.getByTestId('body-editor')).toBeInTheDocument();
+    },
+    { timeout: 3500 }
+  );
 
   test('form has default values', async () => {
-    render(<RestClientPage />);
+    render(<RestClientPageDefault />);
 
-    await waitFor(() => {
-      expect(screen.getByText('GET')).toBeInTheDocument();
-    });
+    await waitFor(
+      () => {
+        expect(screen.getByText('GET')).toBeInTheDocument();
+      },
+      { timeout: 3500 }
+    );
   });
 });

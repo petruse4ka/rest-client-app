@@ -3,10 +3,14 @@ import InterfaceSettings from './interface-settings';
 import Navigation from './navigation';
 import AuthControls from './auth-controls';
 import Logo from './logo';
-import { useAuth } from '@/shared/provider/auth-provider';
+import { AppUser } from '@/types/types';
 
-export default function DesktopHeader() {
-  const { isLogin } = useAuth();
+type DesktopHeaderProps = {
+  user: AppUser;
+};
+
+export default function DesktopHeader({ user }: DesktopHeaderProps) {
+  const isLogin = !!user;
   return (
     <Row
       align="middle"
@@ -25,7 +29,7 @@ export default function DesktopHeader() {
       </Col>
 
       <Col span={5}>
-        <AuthControls />
+        <AuthControls user={user} />
       </Col>
     </Row>
   );

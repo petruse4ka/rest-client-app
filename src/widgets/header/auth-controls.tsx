@@ -2,22 +2,23 @@ import { CSSProperties, useState } from 'react';
 
 import { useTranslations } from 'next-intl';
 import { useRouter } from '@/shared/i18n/navigation';
-import { useAuth } from '@/shared/provider/auth-provider';
 
 import { Button, Flex, Popconfirm, Tooltip } from 'antd';
 import { appRoutes } from '@/shared/config/navigation';
 import { HomeOutlined, LogoutOutlined, UserOutlined } from '@ant-design/icons';
+import { AppUser } from '@/types/types';
 
-interface AuthControlsProps {
+type AuthControlsProps = {
+  user: AppUser;
   justify?: string;
-}
+};
 
-export default function AuthControls({ justify = 'flex-end' }: AuthControlsProps) {
+export default function AuthControls({ user, justify = 'flex-end' }: AuthControlsProps) {
   const t = useTranslations('NavInfo');
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
-  const { isLogin, user } = useAuth();
+  const isLogin = !!user;
 
   const goSign = (route: string) => {
     router.push(route);

@@ -5,6 +5,7 @@ import { Header } from 'antd/es/layout/layout';
 import { CSSProperties, useEffect, useState } from 'react';
 import DesktopHeader from './desktop-header';
 import MobileHeader from './mobile-header';
+import { AppUser } from '@/types/types';
 
 const { useBreakpoint } = Grid;
 
@@ -16,7 +17,11 @@ const HeaderStyle: CSSProperties = {
   borderBottom: '1px solid transparent',
 };
 
-export function HeaderApp() {
+type HeaderAppProps = {
+  user: AppUser;
+};
+
+export function HeaderApp({ user }: HeaderAppProps) {
   const [scrolled, setScrolled] = useState(false);
   const { token } = theme.useToken();
   const screens = useBreakpoint();
@@ -37,7 +42,7 @@ export function HeaderApp() {
         ...(scrolled && { borderBottom: `1px solid ${token.colorPrimary}` }),
       }}
     >
-      {screens.xl ? <DesktopHeader /> : <MobileHeader />}
+      {screens.xl ? <DesktopHeader user={user} /> : <MobileHeader user={user} />}
     </Header>
   );
 }

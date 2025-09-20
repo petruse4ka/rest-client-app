@@ -4,12 +4,16 @@ import { authLinks, navLinks } from '@/shared/config/navigation';
 import { Button, Flex, Typography } from 'antd';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-import { useAuth } from '../shared/provider/auth-provider';
+import { AppUser } from '@/types/types';
 
 const { Title, Text } = Typography;
 
-export function HeroSection() {
-  const { isLogin } = useAuth();
+type HeroSectionProps = {
+  user: AppUser;
+};
+
+export function HeroSection({ user }: HeroSectionProps) {
+  const isLogin = !!user;
 
   const links = isLogin ? navLinks : authLinks;
   const t = useTranslations('Hero');

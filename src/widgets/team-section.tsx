@@ -1,3 +1,5 @@
+'use client';
+
 import { team } from '@/shared/config/team';
 import { PersonCard } from '@/shared/UI';
 import { Flex, Grid } from 'antd';

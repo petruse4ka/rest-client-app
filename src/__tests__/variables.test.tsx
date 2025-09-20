@@ -1,4 +1,4 @@
-import VariablesPage from '@/app/[locale]/variables/page';
+import { VariablesView } from '@/app/[locale]/variables/variables-client';
 import { render, waitFor } from './test-utils/test-utils';
 import { screen } from '@testing-library/react';
 
@@ -8,7 +8,7 @@ vi.mock('@/features/editable-table', () => ({
 
 describe('Variables Page', () => {
   test('Render Title', async () => {
-    render(<VariablesPage />);
+    render(<VariablesView />);
 
     await waitFor(() => {
       expect(screen.getByText('Variables')).toBeInTheDocument();
@@ -16,7 +16,7 @@ describe('Variables Page', () => {
   });
 
   test('renders EditableTable', async () => {
-    render(<VariablesPage />);
+    render(<VariablesView />);
 
     await waitFor(() => {
       expect(screen.getByTestId('editable-table')).toBeInTheDocument();
