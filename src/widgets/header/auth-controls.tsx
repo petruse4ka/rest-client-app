@@ -1,27 +1,30 @@
-import { useState } from 'react';
+import { CSSProperties, useState } from 'react';
 
 import { useTranslations } from 'next-intl';
 import { useRouter } from '@/shared/i18n/navigation';
 
-import { Button, Flex, Typography } from 'antd';
+import { Button, Flex, Popconfirm, Tooltip } from 'antd';
 import { appRoutes } from '@/shared/config/navigation';
+import { HomeOutlined, LogoutOutlined, UserOutlined } from '@ant-design/icons';
 import { AppUser } from '@/types/types';
-
-const { Text } = Typography;
 
 type AuthControlsProps = {
   user: AppUser;
+  justify?: string;
 };
 
-export default function AuthControls({ user }: AuthControlsProps) {
+export default function AuthControls({ user, justify = 'flex-end' }: AuthControlsProps) {
   const t = useTranslations('NavInfo');
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
   const isLogin = !!user;
 
-  const goSignIn = () => router.push(appRoutes.signIn);
-  const goSignUp = () => router.push(appRoutes.signUp);
+  const goSign = (route: string) => {
+    router.push(route);
+  };
+
+  const goMainPage = () => router.push(appRoutes.home);
 
   const handleSignOut = async () => {
     try {
@@ -35,20 +38,59 @@ export default function AuthControls({ user }: AuthControlsProps) {
   };
 
   return (
-    <Flex gap="middle" align="center">
+    <Flex gap="middle" align="center" justify={justify}>
       {isLogin ? (
         <>
-          <Text>{user?.name || 'User'}</Text>
-          <Button size="small" type="primary" onClick={handleSignOut} loading={loading}>
-            {t('signOut')}
+          <Button
+            size="small"
+            type="default"
+            icon={<HomeOutlined />}
+            onClick={goMainPage}
+            loading={loading}
+          >
+            {t('home')}
           </Button>
+          <Tooltip title={user?.name || 'User'}>
+            <Button
+              size="small"
+              shape="circle"
+              icon={<UserOutlined />}
+              style={{ cursor: 'default' }}
+            />
+          </Tooltip>
+          <Popconfirm
+            title={t('confirmSignOut') || 'Вы уверены, что хотите выйти?'}
+            okText={t('yes') || 'Да'}
+            cancelText={t('cancel') || 'Отмена'}
+            onConfirm={handleSignOut}
+          >
+            <Button
+              size="small"
+              type="default"
+              loading={loading}
+              icon={<LogoutOutlined />}
+              data-testid="sign-out-btn"
+            />
+          </Popconfirm>
         </>
       ) : (
         <>
-          <Button size="small" type="primary" onClick={goSignIn}>
+          <Button
+            size="small"
+            type="primary"
+            onClick={() => {
+              goSign(appRoutes.signIn);
+            }}
+          >
             {t('signIn')}
           </Button>
-          <Button size="small" type="primary" onClick={goSignUp}>
+          <Button
+            size="small"
+            type="primary"
+            onClick={() => {
+              goSign(appRoutes.signUp);
+            }}
+          >
             {t('signUp')}
           </Button>
         </>

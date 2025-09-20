@@ -14,6 +14,7 @@ const HeaderStyle: CSSProperties = {
   top: 0,
   zIndex: 1,
   transition: '0.3s',
+  borderBottom: '1px solid transparent',
 };
 
 type HeaderAppProps = {
@@ -41,7 +42,7 @@ export function HeaderApp({ user }: HeaderAppProps) {
         ...(scrolled && { borderBottom: `1px solid ${token.colorPrimary}` }),
       }}
     >
-      {screens.md ? <DesktopHeader user={user} /> : <MobileHeader user={user} />}
+      {screens.xl ? <DesktopHeader user={user} /> : <MobileHeader user={user} />}
     </Header>
   );
 }

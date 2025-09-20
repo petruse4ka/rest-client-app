@@ -23,6 +23,8 @@ export const lightTheme = {
     Layout: {
       headerBg: seanceColors[100],
       footerBg: seanceColors[100],
+      headerPadding: '0px 25px',
+      footerPadding: '20px 25px',
       bodyBg: `linear-gradient(45deg, ${seanceColors[200]}, ${seanceColors[300]})`,
     },
     Select: {
@@ -67,6 +69,10 @@ export const lightTheme = {
       colorIcon: orangeColors[700],
       colorIconHover: orangeColors[400],
     },
+    Tooltip: {
+      colorBgSpotlight: seanceColors[50],
+      colorTextLightSolid: orangeColors[700],
+    },
     Divider: {
       colorSplit: orangeColors[700],
     },
@@ -104,6 +110,8 @@ export const darkTheme = {
     },
     Layout: {
       headerBg: zincColors[800],
+      headerPadding: '0px 25px',
+      footerPadding: '20px 25px',
       footerBg: zincColors[800],
       bodyBg: `linear-gradient(45deg, ${zincColors[700]}, ${zincColors[900]})`,
     },
@@ -121,6 +129,10 @@ export const darkTheme = {
       colorBgElevated: zincColors[600],
       colorText: orangeColors[500],
       controlItemBgHover: zincColors[500],
+    },
+    Tooltip: {
+      colorBgSpotlight: zincColors[600],
+      colorTextLightSolid: orangeColors[500],
     },
     Button: {
       colorPrimary: `linear-gradient(45deg, ${orangeColors[300]}, ${orangeColors[500]})`,

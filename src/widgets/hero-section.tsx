@@ -15,7 +15,7 @@ type HeroSectionProps = {
 export function HeroSection({ user }: HeroSectionProps) {
   const isLogin = !!user;
 
-  const links = isLogin ? navLinks.slice(1) : authLinks;
+  const links = isLogin ? navLinks : authLinks;
   const t = useTranslations('Hero');
   const navt = useTranslations('NavInfo');
 

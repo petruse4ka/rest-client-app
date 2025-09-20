@@ -61,6 +61,7 @@ describe('Header Desktop', () => {
     const btn = screen.getByText('Sign Out');
 
     fireEvent.click(btn);
+    fireEvent.click(await screen.findByText('Yes'));
 
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledWith('/api/logout', { method: 'POST' });
