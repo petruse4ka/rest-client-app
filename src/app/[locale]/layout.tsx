@@ -10,7 +10,6 @@ import { notFound } from 'next/navigation';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 import './globals.css';
 import { ClientLoader } from '@/shared/UI';
-import { getServerUser } from '@/server/get-server-user';
 
 export const metadata: Metadata = {
   title: 'REST Client App - Professional API Testing Tool',

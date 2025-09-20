@@ -1,4 +1,4 @@
-import { CSSProperties, useState } from 'react';
+import { useState } from 'react';
 
 import { useTranslations } from 'next-intl';
 import { useRouter } from '@/shared/i18n/navigation';

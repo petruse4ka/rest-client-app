@@ -50,7 +50,7 @@ export default function RestClientClient() {
         router.push(appRoutes.home, { scroll: false });
         return;
       }
-    } catch (error) {
+    } catch {
       router.push(appRoutes.home, { scroll: false });
       return;
     }

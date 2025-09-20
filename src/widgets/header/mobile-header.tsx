@@ -28,7 +28,7 @@ export default function MobileHeader({ user }: MobileHeaderProps) {
 
   useEffect(() => {
     if (drawer) hiddenDrawer();
-  }, [pathname]);
+  }, [pathname, drawer]);
 
   return (
     <>
