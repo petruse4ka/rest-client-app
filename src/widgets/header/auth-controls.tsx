@@ -50,7 +50,12 @@ export default function AuthControls({ justify = 'flex-end' }: AuthControlsProps
             {t('home')}
           </Button>
           <Tooltip title={user?.name || 'User'}>
-            <Button size="small" shape="circle" icon={<UserOutlined />} />
+            <Button
+              size="small"
+              shape="circle"
+              icon={<UserOutlined />}
+              style={{ cursor: 'default' }}
+            />
           </Tooltip>
           <Popconfirm
             title={t('confirmSignOut') || 'Вы уверены, что хотите выйти?'}
