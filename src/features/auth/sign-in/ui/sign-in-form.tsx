@@ -21,7 +21,9 @@ type FieldType = {
   password?: string;
 };
 
-export function SignInForm() {
+type SignInFormProps = { onSubmittingChange?: (v: boolean) => void };
+
+export function SignInForm({ onSubmittingChange }: SignInFormProps) {
   const t = useTranslations('SignInForm');
   const [form] = Form.useForm<FieldType>();
   const rules = buildSignInRules(t);
@@ -30,10 +32,15 @@ export function SignInForm() {
   const [loading, setLoading] = useState(false);
   const [apiError, setApiError] = useState<string | null>(null);
 
+  const setSubmitting = (v: boolean) => {
+    setLoading(v);
+    onSubmittingChange?.(v);
+  };
+
   const onFinish = async (values: FieldType) => {
     try {
       setApiError(null);
-      setLoading(true);
+      setSubmitting(true);
       await apiSignIn({
         email: values.email!,
         password: values.password!,
@@ -54,20 +61,20 @@ export function SignInForm() {
         setApiError(msg);
       }
     } finally {
-      setLoading(false);
+      setSubmitting(false);
     }
   };
 
   return (
-    <Form form={form} layout="vertical" autoComplete="off" onFinish={onFinish}>
+    <Form form={form} layout="vertical" onFinish={onFinish}>
       <Item>
         <Text type="danger">{apiError || ' '}</Text>
       </Item>
       <Item<FieldType> label={t('email.label')} name="email" rules={rules.email}>
-        <Input placeholder={t('email.placeholder')} />
+        <Input placeholder={t('email.placeholder')} autoComplete="username" />
       </Item>
       <Item<FieldType> label={t('password.label')} name="password" rules={rules.password}>
-        <Password placeholder={t('password.placeholder')} />
+        <Password placeholder={t('password.placeholder')} autoComplete="current-password" />
       </Item>
 
       <Item>
@@ -76,7 +83,7 @@ export function SignInForm() {
         </Text>
       </Item>
 
-      <Item shouldUpdate>
+      <Item shouldUpdate style={{ paddingTop: 16 }}>
         {() => {
           const hasErrors = form.getFieldsError().some(({ errors }) => errors.length);
           const hasTouched = form.isFieldsTouched(true);

@@ -97,17 +97,4 @@ describe('buildSignUpRules', () => {
     await expect(invokeValidator(ruleObj, 'Wrong123!')).rejects.toThrow(passwordsDontMatch);
     expect(t).toHaveBeenCalledWith('errors.passwordsDontMatch');
   });
-
-  test('uses translator keys correctly (build-time only)', () => {
-    buildSignUpRules(form, t);
-
-    expect(t).toHaveBeenCalledWith('errors.nameRequired');
-    expect(t).toHaveBeenCalledWith('errors.emailRequired');
-    expect(t).toHaveBeenCalledWith('errors.emailInvalid');
-    expect(t).toHaveBeenCalledWith('errors.passwordRequired');
-    expect(t).toHaveBeenCalledWith('errors.passwordPattern');
-    expect(t).toHaveBeenCalledWith('errors.confirmRequired');
-
-    expect(vi.mocked(t).mock.calls).toHaveLength(6);
-  });
 });

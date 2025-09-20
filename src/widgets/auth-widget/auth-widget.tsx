@@ -33,9 +33,14 @@ export function AuthWidget() {
 
   const [apiError, setApiError] = useState<string | null>(null);
 
+  const [childSubmitting, setChildSubmitting] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
+
   const handleGoogleAuth = async () => {
+    if (childSubmitting) return;
     try {
       setApiError(null);
+      setGoogleLoading(true);
       await apiSignUpWithGooglePopup();
       await finalizeLogin();
       router.replace(appRoutes.home);
@@ -43,6 +48,8 @@ export function AuthWidget() {
     } catch (e) {
       const { key } = mapGoogleAuthError(e);
       setApiError(t(`apiErrors.${key}`));
+    } finally {
+      setGoogleLoading(false);
     }
   };
   return (
@@ -66,11 +73,11 @@ export function AuthWidget() {
         <Title level={3}>{t(`titles.${value}`)}</Title>
 
         {forgotPasswordActive ? (
-          <ForgotPasswordForm />
+          <ForgotPasswordForm onSubmittingChange={setChildSubmitting} />
         ) : loginActive ? (
-          <SignInForm />
+          <SignInForm onSubmittingChange={setChildSubmitting} />
         ) : (
-          <SignUpForm />
+          <SignUpForm onSubmittingChange={setChildSubmitting} />
         )}
         <Flex justify="center">
           <Text type="secondary" data-testid="auth-cta">
@@ -97,7 +104,13 @@ export function AuthWidget() {
         )}
 
         <Flex justify="center">
-          <Button onClick={handleGoogleAuth}>{t('continueWithGoogle')}</Button>
+          <Button
+            onClick={handleGoogleAuth}
+            disabled={childSubmitting || googleLoading}
+            loading={googleLoading}
+          >
+            {t('continueWithGoogle')}
+          </Button>
         </Flex>
       </Flex>
     </Card>
