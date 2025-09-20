@@ -31,7 +31,6 @@ vi.mock('@/shared/config/firebase', () => {
   };
 });
 
-
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
   value: vi.fn().mockImplementation(query => ({
