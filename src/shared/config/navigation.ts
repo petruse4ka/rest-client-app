@@ -12,7 +12,6 @@ export const AUTH_ROUTES = [appRoutes.signIn, appRoutes.signUp, appRoutes.forgot
 export const PROTECTED_ROUTES = [appRoutes.history, appRoutes.variables, appRoutes.restClient];
 
 export const navLinks = [
-  { href: appRoutes.home, label: 'home' },
   { href: appRoutes.restClient, label: 'restClient' },
   { href: appRoutes.history, label: 'history' },
   { href: appRoutes.variables, label: 'variables' },

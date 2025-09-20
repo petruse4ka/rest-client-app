@@ -1,12 +1,15 @@
 {
   "NavInfo": {
-    "home": "Home",
+    "home": "Main page",
     "restClient": "REST Client",
     "history": "History",
     "variables": "Variables",
     "signOut": "Sign Out",
     "signIn": "Sign In",
-    "signUp": "Sign Up"
+    "signUp": "Sign Up",
+    "confirmSignOut": "Are you sure you want to sign out?",
+    "yes": "Yes",
+    "cancel": "Cancel"
   },
   "RestClient": {
     "title": "REST Client",
