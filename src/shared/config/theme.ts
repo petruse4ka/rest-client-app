@@ -80,7 +80,7 @@ export const lightTheme = {
     Card: {
       colorBgContainer: seanceColors[100],
       headerHeight: 70,
-      colorBorderSecondary: orangeColors[500],
+      colorBorderSecondary: 'transparent',
     },
     Input: {
       activeShadow: '0',
@@ -171,7 +171,7 @@ export const darkTheme = {
     Card: {
       colorBgContainer: zincColors[900],
       headerHeight: 70,
-      colorBorderSecondary: orangeColors[500],
+      colorBorderSecondary: 'transparent',
     },
     Input: {
       activeShadow: '0',
