@@ -1,3 +1,5 @@
+import 'server-only';
+
 import { getServerUser } from '@/server/get-server-user';
 import RestClientPageDefault from './[...params]/page';
 import { HeaderApp } from '@/widgets';

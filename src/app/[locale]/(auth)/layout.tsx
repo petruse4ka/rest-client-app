@@ -1,3 +1,5 @@
+import 'server-only';
+
 import { ReactNode } from 'react';
 
 import { getServerUser } from '@/server/get-server-user';

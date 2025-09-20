@@ -1,3 +1,5 @@
+import 'server-only';
+
 import '@ant-design/v5-patch-for-react-19';
 import { HeaderApp, NotFoundWidget } from '@/widgets';
 import { getServerUser } from '@/server/get-server-user';

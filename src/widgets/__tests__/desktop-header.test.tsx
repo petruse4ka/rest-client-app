@@ -1,5 +1,5 @@
 import React from 'react';
-import { vi, describe, test, expect, beforeEach } from 'vitest';
+import { vi, describe, test, expect } from 'vitest';
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { render } from '@/__tests__/test-utils/test-utils';
 

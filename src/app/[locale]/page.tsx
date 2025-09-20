@@ -1,3 +1,5 @@
+import 'server-only';
+
 import '@ant-design/v5-patch-for-react-19';
 import { Content } from 'antd/es/layout/layout';
 import { AboutCourseSection, HeaderApp, HeroSection, TeamSection } from '@/widgets';
