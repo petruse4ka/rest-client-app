@@ -2,7 +2,7 @@ import type { Rule, FormInstance } from 'antd/es/form';
 
 export type SignUpFields = 'username' | 'email' | 'password' | 'confirmPassword';
 
-const PASSWORD_PATTERN = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[^\w\s]).{8,}$/;
+const PASSWORD_PATTERN = /^(?=.*\p{Ll})(?=.*\p{Lu})(?=.*\d)(?=.*[^\p{L}\p{N}\s]).{8,}$/u;
 
 export function buildSignUpRules(
   form: FormInstance,
