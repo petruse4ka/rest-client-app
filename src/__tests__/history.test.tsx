@@ -17,16 +17,6 @@ const hoist = vi.hoisted(() => {
   };
 });
 
-vi.mock('@/shared/i18n/navigation', () => {
-  return {
-    useRouter: () => ({
-      push: vi.fn(),
-      replace: vi.fn(),
-      refresh: vi.fn(),
-    }),
-  };
-});
-
 vi.mock('next/headers', () => ({
   cookies: hoist.cookiesMock,
 }));

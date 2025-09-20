@@ -41,7 +41,7 @@ describe('Header Desktop', () => {
 
   test('Auth Controls for Login', () => {
     render(<DesktopHeader user={{ name: 'Test user' }} />);
-    expect(screen.getByText('Sign Out')).toBeInTheDocument();
+    expect(screen.getByTestId('sign-out-btn')).toBeInTheDocument();
   });
 
   test('Auth Controls for Logout', () => {
@@ -58,7 +58,7 @@ describe('Header Desktop', () => {
     ) as unknown as typeof fetch;
 
     render(<DesktopHeader user={{ name: 'Test user' }} />);
-    const btn = screen.getByText('Sign Out');
+    const btn = screen.getByTestId('sign-out-btn');
 
     fireEvent.click(btn);
     fireEvent.click(await screen.findByText('Yes'));

@@ -18,6 +18,7 @@ vi.mock('@/shared/i18n/navigation', () => {
       replace: vi.fn(),
       refresh: vi.fn(),
     }),
+     usePathname: () => '',
   };
 });
 
