@@ -1,6 +1,6 @@
 import 'server-only';
 
-import HistoryClientWrapper from './history-client-wrapper';
+import HistoryClientWrapper from '@/app/[locale]/history/history-client-wrapper';
 import { fetchRequestLogs } from '@/entities/request-log/model/fetch-request-logs';
 import { getTranslations } from 'next-intl/server';
 import { getServerUser } from '@/server/get-server-user';
