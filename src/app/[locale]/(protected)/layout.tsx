@@ -1,9 +1,8 @@
 export const runtime = 'nodejs';
 
 import { redirect } from 'next/navigation';
-import { getServerUser } from '@/server/get-server-user';
 import type { ReactNode } from 'react';
-
+import { getServerUser } from '@/server/get-server-user';
 import { HeaderApp } from '@/widgets';
 
 export default async function ProtectedLayout({
@@ -11,10 +10,11 @@ export default async function ProtectedLayout({
   params,
 }: {
   children: ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
   const userServer = await getServerUser();
-  if (!userServer) redirect(`/${params.locale}/sign-in`);
+  if (!userServer) redirect(`/${locale}/`);
 
   const user = { name: userServer.name ?? null };
 
