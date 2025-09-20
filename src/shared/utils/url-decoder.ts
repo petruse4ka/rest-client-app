@@ -10,7 +10,10 @@ export function decodeRestClientUrl(
       return null;
     }
 
-    const method = urlParts[0] as HttpMethod;
+    const firstParam = urlParts[0];
+    const method = Object.values(HttpMethod).includes(firstParam as HttpMethod)
+      ? (firstParam as HttpMethod)
+      : HttpMethod.GET;
     const encodedUrl = urlParts[1];
     const encodedBody = urlParts[2];
 
