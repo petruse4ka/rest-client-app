@@ -79,13 +79,13 @@ export function AuthWidget() {
                 {t('cta.backToLogin')}
               </Link>
             ) : (
-              <>
+              <Text>
                 {t(loginActive ? 'cta.noAccount' : 'cta.haveAccount')} {t('cta.click')}{' '}
                 <Link href={loginActive ? appRoutes.signUp : appRoutes.signIn} scroll={false}>
                   {t('cta.here')}
                 </Link>{' '}
                 {t(loginActive ? 'cta.signUpSuffix' : 'cta.loginSuffix')}
-              </>
+              </Text>
             )}
           </Text>
         </Flex>

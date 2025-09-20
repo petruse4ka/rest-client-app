@@ -19,7 +19,7 @@ export default function HistoryView({ items }: { items: RequestHistoryItem[] }) 
   const contentStyles: CSSProperties = {
     maxWidth: '1440px',
     margin: '0 auto',
-    padding: '20px 16px',
+    padding: '20px 0',
   };
 
   const { formatMs, formatBytes } = useFormatters();
