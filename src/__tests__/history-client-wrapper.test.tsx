@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import HistoryClientWrapper from '@/app/[locale]/history/history-client-wrapper';
+import HistoryClientWrapper from '@/app/[locale]/(protected)/history/history-client-wrapper';
 import { describe, test, expect, vi } from 'vitest';
 import type { RequestHistoryItem } from '@/types/types';
 
@@ -12,7 +12,7 @@ vi.mock('@/shared/UI', () => ({
   ),
 }));
 
-vi.mock('@/app/[locale]/history/history-client', () => ({
+vi.mock('@/app/[locale]/(protected)/history/history-client', () => ({
   default: ({ items }: { items: RequestHistoryItem[] }) => (
     <div data-testid="history-view">
       <h1>History</h1>
