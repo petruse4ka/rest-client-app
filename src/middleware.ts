@@ -2,7 +2,6 @@ import createMiddleware from 'next-intl/middleware';
 import { routing } from './shared/i18n/routing';
 import { NextRequest, NextResponse } from 'next/server';
 import { AUTH_ROUTES, PROTECTED_ROUTES, appRoutes } from './shared/config/navigation';
-import { getServerUser } from './server/get-server-user';
 
 export function splitLocale(pathname: string) {
   const seg = pathname.split('/');
@@ -21,22 +20,21 @@ const intl = createMiddleware(routing);
 const isAuthRoute = (path: string) => AUTH_ROUTES.some((p) => path === p);
 const isProtected = (path: string) => PROTECTED_ROUTES.some((p) => path.startsWith(p));
 
-export async function middleware(req: NextRequest) {
+export function middleware(req: NextRequest) {
   const intlResponse = intl(req);
 
   const { pathname } = req.nextUrl;
+  const session = req.cookies.get('session')?.value || null;
+
   const { locale, restPathname } = splitLocale(pathname);
 
-  const userServer = await getServerUser();
-  const isUserAuth = Boolean(userServer);
-
-  if (isUserAuth && isAuthRoute(restPathname)) {
+  if (session && isAuthRoute(restPathname)) {
     const url = req.nextUrl.clone();
     url.pathname = withLocale(locale, appRoutes.home);
     return NextResponse.redirect(url);
   }
 
-  if (!isUserAuth && isProtected(restPathname)) {
+  if (!session && isProtected(restPathname)) {
     const url = req.nextUrl.clone();
     url.pathname = withLocale(locale, appRoutes.home);
     return NextResponse.redirect(url);
@@ -47,5 +45,4 @@ export async function middleware(req: NextRequest) {
 
 export const config = {
   matcher: '/((?!api|trpc|_next|_vercel|.*\\..*).*)',
-  runtime: 'nodejs',
 };
