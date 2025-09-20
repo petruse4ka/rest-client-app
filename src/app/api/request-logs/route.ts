@@ -1,3 +1,5 @@
+export const runtime = 'nodejs';
+
 import { NextRequest, NextResponse } from 'next/server';
 import { adminAuth } from '@/server/firebase-admin';
 import { saveRequestLog } from '@/entities/request-log/model/save-request-log';

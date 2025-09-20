@@ -1,7 +1,8 @@
+export const runtime = 'nodejs';
+
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 import { adminAuth } from '@/server/firebase-admin';
-import { appRoutes } from '@/shared/config/navigation';
 import { SESSION_TTL } from '@/shared/config/auth';
 
 export async function POST(req: Request) {
@@ -16,7 +17,7 @@ export async function POST(req: Request) {
       httpOnly: true,
       secure: true,
       sameSite: 'lax',
-      path: appRoutes.home,
+      path: '/',
       maxAge: expiresIn / 1000,
     });
     return new NextResponse(null, { status: 204 });
