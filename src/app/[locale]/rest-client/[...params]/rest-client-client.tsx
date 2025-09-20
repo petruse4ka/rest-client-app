@@ -4,7 +4,7 @@ import '@ant-design/v5-patch-for-react-19';
 import { CSSProperties, useState } from 'react';
 import axios from 'axios';
 import { useTranslations } from 'next-intl';
-import { useSearchParams, useParams } from 'next/navigation';
+import { useSearchParams, useParams, useRouter } from 'next/navigation';
 import { HeadersEditor, BodyEditor, HttpMethods, Response } from '@/features/rest-client';
 import {
   getReadableErrorMessage,
@@ -15,6 +15,7 @@ import {
   getSize,
   measureDuration,
 } from '@/shared/utils';
+import { appRoutes } from '@/shared/config/navigation';
 
 import { Card, Form, Typography, Flex, Divider, Button, Modal } from 'antd';
 import { CodeGeneration } from '@/widgets';
@@ -30,6 +31,7 @@ const { Title } = Typography;
 export default function RestClientClient() {
   const t = useTranslations('RestClient');
   const searchParams = useSearchParams();
+  const router = useRouter();
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState<ApiResponse | null>(null);
@@ -42,6 +44,17 @@ export default function RestClientClient() {
   const initialFormValues = getInitialFormValues(urlParts, searchParams);
 
   const handleSubmit = async (values: RequestBody) => {
+    try {
+      const authResponse = await axios.post('/api/auth/verify');
+      if (authResponse.status !== 204) {
+        router.push(appRoutes.home, { scroll: false });
+        return;
+      }
+    } catch (error) {
+      router.push(appRoutes.home, { scroll: false });
+      return;
+    }
+
     const { method, url, headers, contentType, data } = values;
 
     const substitutedUrl = substituteVariables(url);
