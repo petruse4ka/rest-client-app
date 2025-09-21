@@ -6,7 +6,7 @@ Our team develops a comprehensive and feature-rich 🌐 **REST Client Applicatio
 
 The main features of the application include:
 
-- 🔐 **User Authentication** via Firebase with email/password
+- 🔐 **User Authentication** via Firebase with email/password or Google
 - 🌍 **Internationalization (i18n)** supporting multiple languages with language toggle
 - 📡 **RESTful Client** with method selection, endpoint input, headers, and body editors
 - 📝 **Request History & Analytics** with detailed metrics and request restoration
@@ -241,32 +241,32 @@ Use the following scripts to assist with development, formatting, linting, build
 
 ### 🧹 Code Quality Scripts
 
-| Script                  | Description                                                                                                                                                                 |
-| :---------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `npm run lint`          | Execute ESLint on all files in the project to check for code quality issues.                                                                         |
-| `npm run lint:fix`      | Execute ESLint and automatically fix all fixable issues on `.ts`, `.tsx`, `.js`, and `.jsx` files in the `src/` folder.                                                    |
-| `npm run format`        | Execute Prettier on all `.js`, `.jsx`, `.ts`, `.tsx`, `.json`, `.css`, `.scss`, and `.md` files in the `src/` folder to format and fix all fixable issues. |
+| Script             | Description                                                                                                                                                |
+| :----------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm run lint`     | Execute ESLint on all files in the project to check for code quality issues.                                                                               |
+| `npm run lint:fix` | Execute ESLint and automatically fix all fixable issues on `.ts`, `.tsx`, `.js`, and `.jsx` files in the `src/` folder.                                    |
+| `npm run format`   | Execute Prettier on all `.js`, `.jsx`, `.ts`, `.tsx`, `.json`, `.css`, `.scss`, and `.md` files in the `src/` folder to format and fix all fixable issues. |
 
 ### ✅ Testing
 
-| Script                  | Description                                                                         |
-| :---------------------- | :---------------------------------------------------------------------------------- |
-| `npm run test`          | Execute unit tests using Vitest.                                                    |
-| `npm run test:coverage` | Execute unit tests using Vitest and view coverage info.                             |
+| Script                  | Description                                             |
+| :---------------------- | :------------------------------------------------------ |
+| `npm run test`          | Execute unit tests using Vitest.                        |
+| `npm run test:coverage` | Execute unit tests using Vitest and view coverage info. |
 
 ### ⚙️ Development & Deployment
 
-| Script            | Description                                 |
-| :---------------- | :------------------------------------------ |
-| `npm run dev`     | Start a local development server with Next.js using Turbopack. |
-| `npm run build`   | Build the project for production using Turbopack.           |
-| `npm run start`   | Start the production server.       |
+| Script          | Description                                                    |
+| :-------------- | :------------------------------------------------------------- |
+| `npm run dev`   | Start a local development server with Next.js using Turbopack. |
+| `npm run build` | Build the project for production using Turbopack.              |
+| `npm run start` | Start the production server.                                   |
 
 ### 🛡️ Git Hooks
 
-| Script               | Description                                               |
-| :------------------- | :-------------------------------------------------------- |
-| `npm run prepare`    | Set up Husky hooks.                                       |
+| Script               | Description                                                                 |
+| :------------------- | :-------------------------------------------------------------------------- |
+| `npm run prepare`    | Set up Husky hooks.                                                         |
 | `npm run pre-commit` | Run linting and formatting on staged files before commit using lint-staged. |
 
 ---
