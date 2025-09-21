@@ -2,6 +2,7 @@ import createMiddleware from 'next-intl/middleware';
 import { routing } from './shared/i18n/routing';
 import { NextRequest, NextResponse } from 'next/server';
 import { AUTH_ROUTES, PROTECTED_ROUTES, appRoutes } from './shared/config/navigation';
+import axios from 'axios';
 
 export function splitLocale(pathname: string) {
   const seg = pathname.split('/');
@@ -20,7 +21,7 @@ const intl = createMiddleware(routing);
 const isAuthRoute = (path: string) => AUTH_ROUTES.some((p) => path === p);
 const isProtected = (path: string) => PROTECTED_ROUTES.some((p) => path.startsWith(p));
 
-export function middleware(req: NextRequest) {
+export async function middleware(req: NextRequest) {
   const intlResponse = intl(req);
 
   const { pathname } = req.nextUrl;
@@ -28,13 +29,29 @@ export function middleware(req: NextRequest) {
 
   const { locale, restPathname } = splitLocale(pathname);
 
-  if (session && isAuthRoute(restPathname)) {
+  let isValid = false;
+
+  if (session) {
+    try {
+      const res = await fetch(`${req.nextUrl.origin}/api/auth/verify`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(session),
+      });
+
+      isValid = res.ok;
+    } catch {
+      return null;
+    }
+  }
+
+  if (isValid && isAuthRoute(restPathname)) {
     const url = req.nextUrl.clone();
     url.pathname = withLocale(locale, appRoutes.home);
     return NextResponse.redirect(url);
   }
 
-  if (!session && isProtected(restPathname)) {
+  if (!isValid && isProtected(restPathname)) {
     const url = req.nextUrl.clone();
     url.pathname = withLocale(locale, appRoutes.home);
     return NextResponse.redirect(url);

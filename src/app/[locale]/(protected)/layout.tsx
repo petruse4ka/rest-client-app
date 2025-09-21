@@ -12,11 +12,8 @@ export default async function ProtectedLayout({
   children: ReactNode;
   params: Promise<{ locale: string }>;
 }) {
-  const { locale } = await params;
   const userServer = await getServerUser();
-  if (!userServer) redirect(`/${locale}/`);
-
-  const user = { name: userServer.name ?? null };
+  const user = { name: userServer?.name ?? null };
 
   return (
     <>
