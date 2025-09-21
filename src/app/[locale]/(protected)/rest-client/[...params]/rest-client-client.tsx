@@ -140,6 +140,10 @@ export default function RestClientClient() {
         });
       } else {
         setResponse(response.data);
+        let errorText = '';
+        if (statusCode >= 400 && statusCode < 600) {
+          errorText = response.data.statusText || `HTTP ${statusCode}`;
+        }
         await axios.post('/api/request-logs', {
           url: requestData.url,
           appRouterURL: encodedUrl,
@@ -148,7 +152,7 @@ export default function RestClientClient() {
           requestSize,
           responseSize,
           durationMs,
-          errorDetails: '',
+          errorDetails: errorText,
         });
       }
     } catch (error) {
