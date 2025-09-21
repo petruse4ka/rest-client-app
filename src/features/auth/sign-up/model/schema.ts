@@ -9,7 +9,10 @@ export function buildSignUpRules(
   t: (key: string) => string
 ): Record<SignUpFields, Rule[]> {
   return {
-    username: [{ required: true, message: t('errors.nameRequired') }],
+    username: [
+      { required: true, message: t('errors.nameRequired') },
+      { max: 30, message: t('errors.nameTooLong') },
+    ],
     email: [
       { required: true, message: t('errors.emailRequired') },
       { type: 'email', message: t('errors.emailInvalid') },

@@ -24,7 +24,9 @@ type FieldType = {
   confirmPassword: string;
 };
 
-export function SignUpForm() {
+type SignUpFormProps = { onSubmittingChange?: (v: boolean) => void };
+
+export function SignUpForm({ onSubmittingChange }: SignUpFormProps) {
   const t = useTranslations('SignUpForm');
   const [form] = Form.useForm<FieldType>();
   const rules = buildSignUpRules(form, t);
@@ -33,9 +35,14 @@ export function SignUpForm() {
   const [loading, setLoading] = useState(false);
   const [apiError, setApiError] = useState<string | null>(null);
 
+  const setSubmitting = (v: boolean) => {
+    setLoading(v);
+    onSubmittingChange?.(v);
+  };
+
   const onFinish = async (v: FieldType) => {
     setApiError(null);
-    setLoading(true);
+    setSubmitting(true);
     try {
       const cred = await apiSignUp({ email: v.email!, password: v.password! });
       await updateProfile(cred.user, { displayName: v.username });
@@ -52,25 +59,25 @@ export function SignUpForm() {
         setApiError(msg);
       }
     } finally {
-      setLoading(false);
+      setSubmitting(false);
     }
   };
 
   return (
-    <Form form={form} layout="vertical" autoComplete="off" onFinish={onFinish}>
+    <Form form={form} layout="vertical" onFinish={onFinish}>
       <Item>
         <Text type="danger">{apiError || ' '}</Text>
       </Item>
       <Item<FieldType> label={t('name.label')} name="username" rules={rules.username}>
-        <Input placeholder={t('name.placeholder')} />
+        <Input placeholder={t('name.placeholder')} autoComplete="name" />
       </Item>
 
       <Item<FieldType> label={t('email.label')} name="email" rules={rules.email}>
-        <Input placeholder={t('email.placeholder')} />
+        <Input placeholder={t('email.placeholder')} autoComplete="email" />
       </Item>
 
       <Item<FieldType> label={t('password.label')} name="password" rules={rules.password}>
-        <Password placeholder={t('password.placeholder')} />
+        <Password placeholder={t('password.placeholder')} autoComplete="new-password" />
       </Item>
 
       <Item<FieldType>
@@ -79,10 +86,10 @@ export function SignUpForm() {
         dependencies={['password']}
         rules={rules.confirmPassword}
       >
-        <Password placeholder={t('confirm.placeholder')} />
+        <Password placeholder={t('confirm.placeholder')} autoComplete="new-password" />
       </Item>
 
-      <Item shouldUpdate>
+      <Item shouldUpdate style={{ paddingTop: 16 }}>
         {() => {
           const hasErrors = form.getFieldsError().some(({ errors }) => errors.length);
           const hasTouched = form.isFieldsTouched(true);
