@@ -127,7 +127,7 @@
       "emailRequired": "Email is required",
       "emailInvalid": "Enter a valid email address",
       "passwordRequired": "Password is required",
-      "passwordPattern": "Min 8 chars, include a letter, a digit and a special character",
+      "passwordPattern": "Min 8 chars, include uppercase, lowercase, digit and special character",
       "confirmRequired": "Please confirm your password",
       "passwordsDontMatch": "Passwords do not match"
     },
