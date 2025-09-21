@@ -14,8 +14,7 @@ export const localStorageController = {
       }
 
       return null;
-    } catch (e) {
-      console.error(e);
+    } catch {
       return null;
     }
   },

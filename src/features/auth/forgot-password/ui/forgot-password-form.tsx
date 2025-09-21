@@ -15,7 +15,9 @@ type FieldType = {
   email?: string;
 };
 
-export function ForgotPasswordForm() {
+type ForgotPasswordFormProps = { onSubmittingChange?: (v: boolean) => void };
+
+export function ForgotPasswordForm({ onSubmittingChange }: ForgotPasswordFormProps) {
   const t = useTranslations('ForgotPasswordForm');
   const [form] = Form.useForm<FieldType>();
   const rules = buildResetPswRules(t);
@@ -24,11 +26,16 @@ export function ForgotPasswordForm() {
   const [apiError, setApiError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
+  const setSubmitting = (v: boolean) => {
+    setLoading(v);
+    onSubmittingChange?.(v);
+  };
+
   const onFinish = async (values: FieldType) => {
     try {
       setApiError(null);
       setSuccessMessage(null);
-      setLoading(true);
+      setSubmitting(true);
 
       await apiResetPassword(values.email!);
       setSuccessMessage(t('messages.linkSent'));
@@ -42,12 +49,12 @@ export function ForgotPasswordForm() {
         setApiError(msg);
       }
     } finally {
-      setLoading(false);
+      setSubmitting(false);
     }
   };
 
   return (
-    <Form form={form} layout="vertical" autoComplete="off" onFinish={onFinish}>
+    <Form form={form} layout="vertical" onFinish={onFinish}>
       <Item>
         <Text type="danger">{apiError || ' '}</Text>
       </Item>
@@ -57,6 +64,7 @@ export function ForgotPasswordForm() {
             if (successMessage) setSuccessMessage(null);
           }}
           placeholder={t('email.placeholder')}
+          autoComplete="email"
         />
       </Item>
 
@@ -66,7 +74,7 @@ export function ForgotPasswordForm() {
         </Item>
       )}
 
-      <Item shouldUpdate>
+      <Item shouldUpdate style={{ paddingTop: 16 }}>
         {() => {
           const hasErrors = form.getFieldsError().some(({ errors }) => errors.length);
           const hasTouched = form.isFieldsTouched(true);

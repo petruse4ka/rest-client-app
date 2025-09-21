@@ -95,16 +95,16 @@
   },
   "Auth": {
     "loading": "Loading...",
-    "tabs": { "login": "Login", "signup": "Sign Up" },
-    "titles": { "login": "Sign In", "signup": "Registration", "forgotPassword": "Reset password" },
+    "tabs": { "login": "Sign In", "signup": "Sign Up" },
+    "titles": { "login": "Sign In", "signup": "Sign up", "forgotPassword": "Reset password" },
     "cta": {
       "noAccount": "Don't have an account?",
       "haveAccount": "Already have an account?",
       "click": "Click",
       "here": "here",
       "signUpSuffix": "to sign up",
-      "loginSuffix": "to login",
-      "backToLogin": "Back to login"
+      "loginSuffix": "to sign in",
+      "backToLogin": "Back to sign in"
     },
     "or": "or",
     "continueWithGoogle": "Continue with Google",
@@ -124,10 +124,11 @@
     "submit": "Sign up",
     "errors": {
       "nameRequired": "Name is required",
+      "nameTooLong": "Name must be at most 30 characters",
       "emailRequired": "Email is required",
       "emailInvalid": "Enter a valid email address",
       "passwordRequired": "Password is required",
-      "passwordPattern": "Min 8 chars, include a letter, a digit and a special character",
+      "passwordPattern": "Min 8 chars, include uppercase, lowercase, digit and special character",
       "confirmRequired": "Please confirm your password",
       "passwordsDontMatch": "Passwords do not match"
     },

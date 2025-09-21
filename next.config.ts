@@ -1,11 +1,7 @@
-import type { NextConfig } from "next";
-import createNextIntlPlugin from 'next-intl/plugin'
+import type { NextConfig } from 'next';
+import createNextIntlPlugin from 'next-intl/plugin';
 
-const nextConfig: NextConfig = {
-  experimental: {
-    scrollRestoration: false,
-  },
-};
+const nextConfig: NextConfig = {};
 
 const withNextIntl = createNextIntlPlugin('./src/shared/i18n/request.ts');
 

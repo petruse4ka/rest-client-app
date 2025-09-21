@@ -2,14 +2,17 @@ import type { Rule, FormInstance } from 'antd/es/form';
 
 export type SignUpFields = 'username' | 'email' | 'password' | 'confirmPassword';
 
-const PASSWORD_PATTERN = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[^\w\s]).{8,}$/;
+const PASSWORD_PATTERN = /^(?=.*\p{Ll})(?=.*\p{Lu})(?=.*\d)(?=.*[^\p{L}\p{N}\s]).{8,}$/u;
 
 export function buildSignUpRules(
   form: FormInstance,
   t: (key: string) => string
 ): Record<SignUpFields, Rule[]> {
   return {
-    username: [{ required: true, message: t('errors.nameRequired') }],
+    username: [
+      { required: true, message: t('errors.nameRequired') },
+      { max: 30, message: t('errors.nameTooLong') },
+    ],
     email: [
       { required: true, message: t('errors.emailRequired') },
       { type: 'email', message: t('errors.emailInvalid') },
