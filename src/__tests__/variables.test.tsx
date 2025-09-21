@@ -1,4 +1,4 @@
-import { VariablesView } from '@/app/[locale]/variables/variables-client';
+import { VariablesView } from '@/app/[locale]/(protected)/variables/variables-client';
 import { render, waitFor } from './test-utils/test-utils';
 import { screen } from '@testing-library/react';
 
