@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, waitFor } from './test-utils/test-utils';
 import type { RequestHistoryItem } from '@/types/types';
 import { HttpMethod } from '@/types/types';
-import HistoryPage from '@/app/[locale]/history/page';
+import HistoryPage from '@/app/[locale]/(protected)/history/page';
 import type { DecodedIdToken } from 'firebase-admin/auth';
 import { adminAuth } from '@/server/firebase-admin';
 import { fetchRequestLogs } from '@/entities/request-log/model/fetch-request-logs';
@@ -30,7 +30,7 @@ vi.mock('next-intl/server', () => ({
   }),
 }));
 
-vi.mock('@/app/[locale]/history/history-client-wrapper', () => ({
+vi.mock('@/app/[locale]/(protected)/history/history-client-wrapper', () => ({
   default: ({ items }: { items: RequestHistoryItem[] }) => {
     lastItemsPassed = items;
     return (
@@ -61,7 +61,7 @@ vi.mock('@/entities/request-log/model/fetch-request-logs', () => ({
 const fetchRequestLogsMock = vi.mocked(fetchRequestLogs);
 
 let lastItemsPassed: RequestHistoryItem[] | undefined;
-vi.mock('@/app/[locale]/history/history-client', () => ({
+vi.mock('@/app/[locale]/(protected)/history/history-client', () => ({
   __esModule: true,
   default: (props: { items: RequestHistoryItem[] }) => {
     lastItemsPassed = props.items;

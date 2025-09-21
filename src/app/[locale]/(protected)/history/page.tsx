@@ -2,11 +2,9 @@ import HistoryClientWrapper from './history-client-wrapper';
 import { fetchRequestLogs } from '@/entities/request-log/model/fetch-request-logs';
 import { getTranslations } from 'next-intl/server';
 import { getServerUser } from '@/server/get-server-user';
-import { HeaderApp } from '@/widgets';
 
 export default async function HistoryPage() {
   const userServer = await getServerUser();
-  const user = userServer ? { name: userServer.name } : null;
   const uid = userServer?.uid;
   if (!uid) {
     return null;
@@ -17,7 +15,6 @@ export default async function HistoryPage() {
 
   return (
     <>
-      <HeaderApp user={user} />
       <HistoryClientWrapper items={items} loadingText={loadingText} />
     </>
   );

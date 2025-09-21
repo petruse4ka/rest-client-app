@@ -3,7 +3,7 @@ import { render } from './test-utils/test-utils';
 import React from 'react';
 import { describe, test, beforeEach, vi, expect } from 'vitest';
 import type { ApiResponse } from '@/types/interfaces';
-import RestClientPageDefault from '@/app/[locale]/rest-client/[...params]/page';
+import RestClientPageDefault from '@/app/[locale]/(protected)/rest-client/[...params]/page';
 
 vi.mock('next/navigation', () => ({
   useParams: () => ({ params: [] }),

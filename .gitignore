@@ -44,3 +44,7 @@ next-env.d.ts
 
 # Package Lock
 package-lock.json
+
+# IDE
+.cursor/
+**/.cursor/

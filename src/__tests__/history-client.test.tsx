@@ -44,7 +44,9 @@ describe('HistoryView', () => {
   });
 
   test('renders empty state when history is empty', async () => {
-    const { default: HistoryView } = await import('@/app/[locale]/history/history-client');
+    const { default: HistoryView } = await import(
+      '@/app/[locale]/(protected)/history/history-client'
+    );
     const { container } = render(<HistoryView items={[]} />);
 
     expect(screen.getByRole('heading', { name: enMessages.History.title })).toBeInTheDocument();
@@ -67,7 +69,9 @@ describe('HistoryView', () => {
       makeItem('a', '2024-05-01T12:00:00Z', 500, HttpMethod.GET),
     ];
 
-    const { default: HistoryView } = await import('@/app/[locale]/history/history-client');
+    const { default: HistoryView } = await import(
+      '@/app/[locale]/(protected)/history/history-client'
+    );
     const { container } = render(<HistoryView items={items} />);
 
     await waitFor(() => {
