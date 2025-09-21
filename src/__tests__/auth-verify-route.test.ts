@@ -38,7 +38,13 @@ describe('Verify-session API Route (POST)', () => {
 
     verifySessionCookie.mockResolvedValueOnce(decoded);
 
-    const res = await POST();
+    const mockRequest = {
+      headers: {
+        get: vi.fn().mockReturnValue(null),
+      },
+    } as unknown as Request;
+
+    const res = await POST(mockRequest);
 
     expect(verifySessionCookie).toHaveBeenCalledWith('VALID_SESSION', true);
     expect(res).toBeInstanceOf(NextResponse);
@@ -51,7 +57,13 @@ describe('Verify-session API Route (POST)', () => {
     });
     verifySessionCookie.mockRejectedValueOnce(new Error('no cookie'));
 
-    const res = await POST();
+    const mockRequest = {
+      headers: {
+        get: vi.fn().mockReturnValue(null),
+      },
+    } as unknown as Request;
+
+    const res = await POST(mockRequest);
 
     expect(verifySessionCookie).toHaveBeenCalledWith('', true);
     expect(res.status).toBe(401);
@@ -63,7 +75,13 @@ describe('Verify-session API Route (POST)', () => {
     });
     verifySessionCookie.mockRejectedValueOnce(new Error('invalid'));
 
-    const res = await POST();
+    const mockRequest = {
+      headers: {
+        get: vi.fn().mockReturnValue(null),
+      },
+    } as unknown as Request;
+
+    const res = await POST(mockRequest);
 
     expect(verifySessionCookie).toHaveBeenCalledWith('BAD_SESSION', true);
     expect(res.status).toBe(401);

@@ -1,4 +1,4 @@
-import { CSSProperties, useState } from 'react';
+import { useState } from 'react';
 
 import { useTranslations } from 'next-intl';
 import { useRouter } from '@/shared/i18n/navigation';
@@ -21,16 +21,16 @@ export default function AuthControls({ user, justify = 'flex-end' }: AuthControl
   const isLogin = !!user;
 
   const goSign = (route: string) => {
-    router.push(route);
+    router.push(route, { scroll: false });
   };
 
-  const goMainPage = () => router.push(appRoutes.home);
+  const goMainPage = () => router.push(appRoutes.home, { scroll: false });
 
   const handleSignOut = async () => {
     try {
       setLoading(true);
       await fetch('/api/logout', { method: 'POST' });
-      router.push(appRoutes.home);
+      router.push(appRoutes.home, { scroll: false });
       router.refresh();
     } finally {
       setLoading(false);
@@ -59,9 +59,9 @@ export default function AuthControls({ user, justify = 'flex-end' }: AuthControl
             />
           </Tooltip>
           <Popconfirm
-            title={t('confirmSignOut') || 'Вы уверены, что хотите выйти?'}
-            okText={t('yes') || 'Да'}
-            cancelText={t('cancel') || 'Отмена'}
+            title={t('confirmSignOut') || 'Are you sure you want to sign out?'}
+            okText={t('yes') || 'Yes'}
+            cancelText={t('cancel') || 'Cancel'}
             onConfirm={handleSignOut}
           >
             <Button

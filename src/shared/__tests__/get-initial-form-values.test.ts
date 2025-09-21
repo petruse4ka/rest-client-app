@@ -14,7 +14,7 @@ describe('getInitialFormValues', () => {
       url: '',
       headers: DEFAULT_HEADERS,
       data: '',
-      contentType: ContentType.JSON,
+      contentType: ContentType.TEXT,
     });
   });
 
@@ -29,7 +29,7 @@ describe('getInitialFormValues', () => {
       url: '',
       headers: DEFAULT_HEADERS,
       data: '',
-      contentType: ContentType.JSON,
+      contentType: ContentType.TEXT,
     });
   });
 
@@ -48,7 +48,7 @@ describe('getInitialFormValues', () => {
       url: testUrl,
       headers: DEFAULT_HEADERS,
       data: '',
-      contentType: ContentType.JSON,
+      contentType: ContentType.TEXT,
     });
   });
 
@@ -72,7 +72,7 @@ describe('getInitialFormValues', () => {
     expect(result.headers).toEqual(DEFAULT_HEADERS);
     expect(result.data).toContain('"name": "John"');
     expect(result.data).toContain('"email": "john@example.com"');
-    expect(result.contentType).toBe(ContentType.JSON);
+    expect(result.contentType).toBe(ContentType.TEXT);
   });
 
   test('decodes valid URL with headers from searchParams', () => {
@@ -97,7 +97,7 @@ describe('getInitialFormValues', () => {
       ])
     );
     expect(result.data).toBe('');
-    expect(result.contentType).toBe(ContentType.JSON);
+    expect(result.contentType).toBe(ContentType.TEXT);
   });
 
   test('decodes valid URL with both body and headers', () => {
@@ -127,7 +127,7 @@ describe('getInitialFormValues', () => {
       ])
     );
     expect(result.data).toContain('"name": "Updated Name"');
-    expect(result.contentType).toBe(ContentType.JSON);
+    expect(result.contentType).toBe(ContentType.TEXT);
   });
 
   test('returns default values when decodeRestClientUrl returns null', () => {
@@ -141,7 +141,7 @@ describe('getInitialFormValues', () => {
       url: '',
       headers: DEFAULT_HEADERS,
       data: '',
-      contentType: ContentType.JSON,
+      contentType: ContentType.TEXT,
     });
   });
 
@@ -161,6 +161,6 @@ describe('getInitialFormValues', () => {
     expect(result.url).toBe(testUrl);
     expect(result.headers).toEqual(DEFAULT_HEADERS);
     expect(result.data).toBe('');
-    expect(result.contentType).toBe(ContentType.JSON);
+    expect(result.contentType).toBe(ContentType.TEXT);
   });
 });

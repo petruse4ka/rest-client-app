@@ -87,7 +87,7 @@
 }
 
 .link--dark {
-  color: #fec073;
+  color: #fc9129;
 }
 
 .link--light {
@@ -95,11 +95,11 @@
 }
 
 .link:hover {
-  color: #eb620b;
+  color: #fa7d15;
 }
 
 .link--active {
-  font-weight: bold;
+  color: #fc9129;
 }
 
 .bg-animate {

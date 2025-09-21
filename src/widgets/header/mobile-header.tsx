@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { MenuOutlined } from '@ant-design/icons';
 import { Button, Drawer, Flex, Space } from 'antd';
 import InterfaceSettings from './interface-settings';
@@ -20,14 +20,14 @@ export default function MobileHeader({ user }: MobileHeaderProps) {
     setDrawer(true);
   };
 
-  const hiddenDrawer = () => {
+  const hiddenDrawer = useCallback(() => {
     setDrawer(false);
-  };
+  }, []);
 
   const pathname = usePathname();
 
   useEffect(() => {
-    if (drawer) hiddenDrawer();
+    setDrawer(false);
   }, [pathname]);
 
   return (

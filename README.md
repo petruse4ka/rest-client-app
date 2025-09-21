@@ -17,6 +17,26 @@ The main features of the application include:
 
 ---
 
+## 🎥 Video Presentation
+
+Watch our project presentation to see the REST Client App in action:
+
+- **[Long Presentation](https://youtu.be/rY_P35rI7p0)** - Detailed walkthrough with timestamps
+- **[Short Presentation](https://youtu.be/2-f-0gEJSAk)** - 2x speed version of the long presentation
+
+### 📋 Presentation Timestamps
+
+- **Introduction** - 00:00
+- **Main Route** - 00:50
+- **Sign In / Sign Up** - 1:40
+- **Restful Client** - 2:40
+- **History and Analytics** - 5:53
+- **Variables** - 8:45
+- **General Requirements** - 10:55
+- **Outro** - 12:22
+
+---
+
 ## 📄 Key Pages
 
 - 🏠 **Main Page** - Welcome page with authentication status and navigation
@@ -430,9 +450,12 @@ Follow these guidelines for writing tests:
 
 ## 👥 Team Members
 
-- [**Daniil Biver**](https://github.com/tearzday) - Student
-- [**Nataliia Shmatenko**](https://github.com/NatashaSolntseva) - Student
-- [**Konstantin Petrov**](https://github.com/petruse4ka) - Student
+- [**Daniil Biver**](https://github.com/tearzday) - Student  
+  Discord: @tearzday
+- [**Nataliia Shmatenko**](https://github.com/NatashaSolntseva) - Student  
+  Discord: @ultranata.
+- [**Konstantin Petrov**](https://github.com/petruse4ka) - Student  
+  Discord: @petrusja
 - [**Marharyta Malets**](https://github.com/margaryta-maletz) - Mentor
 - [**Helena Krasnova**](https://github.com/helenakrasnova) - Mentor
 

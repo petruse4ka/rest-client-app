@@ -19,7 +19,7 @@ export default function HistoryView({ items }: { items: RequestHistoryItem[] }) 
   const contentStyles: CSSProperties = {
     maxWidth: '1440px',
     margin: '0 auto',
-    padding: '20px 16px',
+    padding: '20px 0',
   };
 
   const { formatMs, formatBytes } = useFormatters();
@@ -42,7 +42,7 @@ export default function HistoryView({ items }: { items: RequestHistoryItem[] }) 
               }
             ></Empty>
 
-            <Link href="/rest-client">
+            <Link href="/rest-client" scroll={false}>
               <Button type="primary" style={{ marginTop: '20px' }}>
                 {t('goRestClient')}
               </Button>
@@ -89,6 +89,7 @@ export default function HistoryView({ items }: { items: RequestHistoryItem[] }) 
                         href={item.appRouterURL}
                         className={`link link-font_size_small ${themeValue === 'dark' ? 'link--dark' : 'link--light'}`}
                         onClick={(e) => e.stopPropagation()}
+                        scroll={false}
                       >
                         {item.url}
                       </Link>

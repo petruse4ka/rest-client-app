@@ -7,8 +7,14 @@ import { adminAuth } from '@/server/firebase-admin';
 export async function POST(req: Request) {
   let session;
 
-  if (req) {
-    session = await req.json();
+  const contentType = req.headers.get('content-type');
+  if (contentType && contentType.includes('application/json')) {
+    try {
+      session = await req.json();
+    } catch {
+      const cookieStore = await cookies();
+      session = cookieStore.get('session')?.value || '';
+    }
   } else {
     const cookieStore = await cookies();
     session = cookieStore.get('session')?.value || '';

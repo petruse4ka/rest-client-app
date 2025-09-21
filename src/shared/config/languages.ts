@@ -1,10 +1,14 @@
 export const languages = [
   {
-    key: 'ru',
-    label: 'Russian',
-  },
-  {
     key: 'en',
     label: 'English',
+  },
+  {
+    key: 'ru',
+    label: 'Русский',
+  },
+  {
+    key: 'nl',
+    label: 'Nederlands',
   },
 ];

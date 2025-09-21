@@ -33,7 +33,7 @@ export function HeroSection({ user }: HeroSectionProps) {
       </Flex>
       <Flex gap={20} wrap justify="center">
         {links.map(({ href, label }) => (
-          <Link key={href} href={href}>
+          <Link key={href} href={href} scroll={false}>
             <Button type="primary" size="large">
               {navt(label)}
             </Button>

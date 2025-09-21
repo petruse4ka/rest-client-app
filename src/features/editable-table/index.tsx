@@ -135,6 +135,7 @@ export default function EditableTable() {
       </Form>
       <Button
         style={data.length === 0 ? { alignSelf: 'center' } : { alignSelf: 'flex-end' }}
+        type="primary"
         onClick={addItem}
         disabled={editingKey !== 0}
       >
