@@ -14,7 +14,7 @@ export function getInitialFormValues(urlParts: string[], searchParams: URLSearch
         url,
         headers: headers && headers.length > 0 ? headers : DEFAULT_HEADERS,
         data: body || '',
-        contentType: ContentType.JSON,
+        contentType: ContentType.TEXT,
       };
     }
   }
@@ -24,6 +24,6 @@ export function getInitialFormValues(urlParts: string[], searchParams: URLSearch
     url: '',
     headers: DEFAULT_HEADERS,
     data: '',
-    contentType: ContentType.JSON,
+    contentType: ContentType.TEXT,
   };
 }

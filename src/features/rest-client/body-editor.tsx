@@ -52,17 +52,17 @@ export function BodyEditor() {
       <Flex justify="space-between" align="center" style={{ marginBottom: 16 }}>
         <Text strong>{t('body')}</Text>
         <Space>
-          {contentType === ContentType.JSON && (
-            <Button
-              icon={<FormatPainterOutlined />}
-              onClick={handlePrettifyJson}
-              disabled={!substituteVariables(data).trim() || !jsonIsValid}
-              size="small"
-              data-testid="prettify-button"
-            >
-              {t('prettify')}
-            </Button>
-          )}
+          <Button
+            icon={<FormatPainterOutlined />}
+            onClick={handlePrettifyJson}
+            disabled={
+              contentType !== ContentType.JSON || !substituteVariables(data).trim() || !jsonIsValid
+            }
+            size="small"
+            data-testid="prettify-button"
+          >
+            {t('prettify')}
+          </Button>
           <Select
             value={contentType}
             onChange={handleBodyTypeChange}
