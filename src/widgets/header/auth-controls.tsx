@@ -59,9 +59,9 @@ export default function AuthControls({ user, justify = 'flex-end' }: AuthControl
             />
           </Tooltip>
           <Popconfirm
-            title={t('confirmSignOut') || 'Вы уверены, что хотите выйти?'}
-            okText={t('yes') || 'Да'}
-            cancelText={t('cancel') || 'Отмена'}
+            title={t('confirmSignOut') || 'Are you sure you want to sign out?'}
+            okText={t('yes') || 'Yes'}
+            cancelText={t('cancel') || 'Cancel'}
             onConfirm={handleSignOut}
           >
             <Button
