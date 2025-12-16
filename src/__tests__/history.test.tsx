@@ -1,25 +1,10 @@
 import React from 'react';
 import { render, screen, waitFor } from './test-utils/test-utils';
+import { describe, test, beforeEach, vi, expect } from 'vitest';
 import type { RequestHistoryItem } from '@/types/types';
 import { HttpMethod } from '@/types/types';
 import HistoryPage from '@/app/[locale]/(protected)/history/page';
-import type { DecodedIdToken } from 'firebase-admin/auth';
-import { adminAuth } from '@/server/firebase-admin';
 import { fetchRequestLogs } from '@/entities/request-log/model/fetch-request-logs';
-
-type CookieStore = {
-  get: (name: string) => { value?: string } | undefined;
-};
-
-const hoist = vi.hoisted(() => {
-  return {
-    cookiesMock: vi.fn<() => Promise<CookieStore>>(),
-  };
-});
-
-vi.mock('next/headers', () => ({
-  cookies: hoist.cookiesMock,
-}));
 
 vi.mock('next-intl/server', () => ({
   getTranslations: vi.fn().mockResolvedValue((key: string) => {
@@ -29,6 +14,8 @@ vi.mock('next-intl/server', () => ({
     return translations[key as keyof typeof translations] || key;
   }),
 }));
+
+let lastItemsPassed: RequestHistoryItem[] | undefined;
 
 vi.mock('@/app/[locale]/(protected)/history/history-client-wrapper', () => ({
   default: ({ items }: { items: RequestHistoryItem[] }) => {
@@ -48,37 +35,16 @@ vi.mock('@/app/[locale]/(protected)/history/history-client-wrapper', () => ({
   },
 }));
 
-vi.mock('@/server/firebase-admin', () => ({
-  adminAuth: { verifySessionCookie: vi.fn() },
-}));
-
-const verifySessionCookieMock = vi.mocked(adminAuth.verifySessionCookie);
-
 vi.mock('@/entities/request-log/model/fetch-request-logs', () => ({
   fetchRequestLogs: vi.fn(),
 }));
 
 const fetchRequestLogsMock = vi.mocked(fetchRequestLogs);
 
-let lastItemsPassed: RequestHistoryItem[] | undefined;
-vi.mock('@/app/[locale]/(protected)/history/history-client', () => ({
-  __esModule: true,
-  default: (props: { items: RequestHistoryItem[] }) => {
-    lastItemsPassed = props.items;
-    return <div data-testid="history-view" />;
-  },
-}));
-
 const getServerUserMock = vi.fn();
 
 vi.mock('@/server/get-server-user', () => ({
   getServerUser: () => getServerUserMock(),
-}));
-
-vi.mock('@/server/firebase-admin', () => ({
-  adminAuth: {
-    verifySessionCookie: vi.fn(),
-  },
 }));
 
 const makeItem = (
@@ -107,40 +73,47 @@ describe('HistoryPage (server component)', () => {
     lastItemsPassed = undefined;
   });
 
-  test('returns null when no session cookie', async () => {
+  test('returns null when user is not authenticated', async () => {
     getServerUserMock.mockResolvedValue(null);
 
     const node = await HistoryPage();
-    expect(node).toBeNull();
 
-    expect(verifySessionCookieMock).not.toHaveBeenCalled();
+    expect(node).toBeNull();
+  });
+
+  test('does not fetch logs when user is not authenticated', async () => {
+    getServerUserMock.mockResolvedValue(null);
+
+    await HistoryPage();
+
     expect(fetchRequestLogsMock).not.toHaveBeenCalled();
   });
 
-  test('verifies session, fetches logs and renders HistoryView with items', async () => {
-    hoist.cookiesMock.mockResolvedValue({
-      get: (name: string) => (name === 'session' ? { value: 'TOKEN123' } : undefined),
+  test('renders history view when user is authenticated', async () => {
+    getServerUserMock.mockResolvedValue({ name: 'Test User', uid: 'user-42' });
+    const items: RequestHistoryItem[] = [makeItem('1', '2024-02-01T10:00:00Z')];
+    fetchRequestLogsMock.mockResolvedValue(items);
+
+    const node = await HistoryPage();
+    render(node as React.ReactElement);
+
+    await waitFor(() => {
+      expect(screen.getByTestId('history-view')).toBeInTheDocument();
     });
+  });
 
-    const decoded: DecodedIdToken = {
-      uid: 'user-42',
-      aud: 'test-aud',
-      iss: 'test-iss',
-      sub: 'user-42',
-      exp: Math.floor(Date.now() / 1000) + 3600,
-      iat: Math.floor(Date.now() / 1000),
-      auth_time: Math.floor(Date.now() / 1000),
-      firebase: { identities: {}, sign_in_provider: 'custom' },
-    };
+  test('fetches request logs with authenticated user uid', async () => {
+    const userId = 'user-42';
+    getServerUserMock.mockResolvedValue({ name: 'Test User', uid: userId });
+    fetchRequestLogsMock.mockResolvedValue([]);
 
-    verifySessionCookieMock.mockResolvedValue(decoded);
+    await HistoryPage();
 
-    getServerUserMock.mockImplementation(async () => {
-      const token = 'TOKEN123';
-      const result = await verifySessionCookieMock(token, true);
-      return { name: 'Test User', uid: result.uid };
-    });
+    expect(fetchRequestLogsMock).toHaveBeenCalledWith(userId);
+  });
 
+  test('passes fetched items to history client component', async () => {
+    getServerUserMock.mockResolvedValue({ name: 'Test User', uid: 'user-42' });
     const items: RequestHistoryItem[] = [
       makeItem('1', '2024-02-01T10:00:00Z'),
       makeItem('2', '2024-03-01T10:00:00Z', 404, HttpMethod.POST),
@@ -148,16 +121,10 @@ describe('HistoryPage (server component)', () => {
     fetchRequestLogsMock.mockResolvedValue(items);
 
     const node = await HistoryPage();
-    expect(node).not.toBeNull();
-
     render(node as React.ReactElement);
 
     await waitFor(() => {
-      expect(screen.getByTestId('history-view')).toBeInTheDocument();
+      expect(lastItemsPassed).toEqual(items);
     });
-
-    expect(verifySessionCookieMock).toHaveBeenCalledWith('TOKEN123', true);
-    expect(fetchRequestLogsMock).toHaveBeenCalledWith('user-42');
-    expect(lastItemsPassed).toEqual(items);
   });
 });

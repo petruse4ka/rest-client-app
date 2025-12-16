@@ -40,7 +40,7 @@ export default function HistoryView({ items }: { items: RequestHistoryItem[] }) 
                   <Text type="secondary">{t('emptySubtitle')}</Text>
                 </Flex>
               }
-            ></Empty>
+            />
 
             <Link href="/rest-client" scroll={false}>
               <Button type="primary" style={{ marginTop: '20px' }}>
@@ -111,10 +111,7 @@ export default function HistoryView({ items }: { items: RequestHistoryItem[] }) 
                       <b>{t('responseSize')}:</b> {formatBytes(item.responseSize)}
                     </p>
                     <p>
-                      <b>{t('error')}:</b>{' '}
-                      {item.errorDetails && item.errorDetails.trim() !== ''
-                        ? item.errorDetails
-                        : t('noError')}
+                      <b>{t('error')}:</b> {item.errorDetails?.trim() || t('noError')}
                     </p>
                   </div>
                 ),
