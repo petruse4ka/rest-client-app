@@ -10,11 +10,13 @@ import {
   getReadableErrorMessage,
   validateJson,
   encodeRestClientUrl,
-  getInitialFormValues,
+  getFormValuesFromUrl,
   substituteVariables,
   getSize,
-  measureDuration,
+  getInvalidHeaders,
+  headersArrayToObject,
 } from '@/shared/utils';
+import { executeRestClientRequest, saveRequestLog } from '@/shared/api';
 import { appRoutes } from '@/shared/config/navigation';
 
 import { Card, Form, Typography, Flex, Divider, Button, Modal } from 'antd';
@@ -40,8 +42,7 @@ export default function RestClientClient() {
   const formValues = Form.useWatch([], form);
 
   const urlParameters = useParams();
-  const urlParts = Array.isArray(urlParameters.params) ? urlParameters.params : [];
-  const initialFormValues = getInitialFormValues(urlParts, searchParams);
+  const initialFormValues = getFormValuesFromUrl(urlParameters, searchParams);
 
   const handleSubmit = async (values: RequestBody) => {
     try {
@@ -79,27 +80,14 @@ export default function RestClientClient() {
     setError(null);
     setResponse(null);
 
-    const invalidHeaders = substitutedHeaders.filter(({ key, value }: Header) => {
-      const keyTrim = key.trim();
-      const valueTrim = value.trim();
-
-      return (keyTrim && !valueTrim) || (!keyTrim && valueTrim);
-    });
+    const invalidHeaders = getInvalidHeaders(substitutedHeaders);
 
     if (invalidHeaders.length > 0) {
       setError(ERROR_MESSAGES.KEY_AND_VALUE);
       return;
     }
 
-    const headersObject: Record<string, string> = {};
-    substitutedHeaders.forEach(({ key, value }: Header) => {
-      const keyTrim = key.trim();
-      const valueTrim = value.trim();
-
-      if (keyTrim && valueTrim) {
-        headersObject[keyTrim] = valueTrim;
-      }
-    });
+    const headersObject = headersArrayToObject(substitutedHeaders);
 
     const substitutedValues = {
       ...values,
@@ -120,16 +108,14 @@ export default function RestClientClient() {
         contentType,
       };
 
-      const { response, durationMs } = await measureDuration(() =>
-        axios.post('/api/rest-client', requestData)
-      );
+      const { response, durationMs } = await executeRestClientRequest(requestData);
       const statusCode = response.data.status;
       const requestSize = getSize(requestData);
       const responseSize = getSize(response?.data);
 
       if (response.data.error) {
         setError(response.data.error);
-        await axios.post('/api/request-logs', {
+        await saveRequestLog({
           url: requestData.url,
           appRouterURL: encodedUrl,
           method,
@@ -140,11 +126,11 @@ export default function RestClientClient() {
         });
       } else {
         setResponse(response.data);
-        let errorText = '';
-        if (statusCode >= 400 && statusCode < 600) {
-          errorText = response.data.statusText || `HTTP ${statusCode}`;
-        }
-        await axios.post('/api/request-logs', {
+        const errorText =
+          statusCode !== undefined && statusCode >= 400 && statusCode < 600
+            ? response.data.statusText || `HTTP ${statusCode}`
+            : '';
+        await saveRequestLog({
           url: requestData.url,
           appRouterURL: encodedUrl,
           method,

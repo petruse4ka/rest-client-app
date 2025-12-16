@@ -10,7 +10,7 @@ type DesktopHeaderProps = {
 };
 
 export default function DesktopHeader({ user }: DesktopHeaderProps) {
-  const isLogin = !!user;
+  const isLoggedIn = !!user;
   return (
     <Row
       align="middle"
@@ -24,7 +24,7 @@ export default function DesktopHeader({ user }: DesktopHeaderProps) {
       <Col flex="auto">
         <Flex gap="middle" align="center" justify="center">
           <Logo size={40} />
-          {isLogin && <Navigation />}
+          {isLoggedIn && <Navigation />}
         </Flex>
       </Col>
 
