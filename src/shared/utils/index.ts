@@ -14,3 +14,4 @@ export { useFormatters } from './translate-formatter';
 export { measureDuration } from './request-log-metrics';
 export { getSize } from './request-log-metrics';
 export { getInvalidHeaders, headersArrayToObject } from './headers-utils';
+export { getStatusCodeType } from './get-status-code-type';

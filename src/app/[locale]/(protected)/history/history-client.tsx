@@ -8,7 +8,7 @@ import { Link } from '@/shared/i18n/navigation';
 import { ThemeContext } from '@/context/theme-context';
 import { useTranslations } from 'next-intl';
 import { RequestHistoryItem } from '@/types/types';
-import { useFormatters } from '@/shared/utils/';
+import { useFormatters, getStatusCodeType } from '@/shared/utils/';
 
 const { Title, Text } = Typography;
 
@@ -19,15 +19,15 @@ export default function HistoryView({ items }: { items: RequestHistoryItem[] }) 
   const contentStyles: CSSProperties = {
     maxWidth: '1440px',
     margin: '0 auto',
-    padding: '20px 0',
+    padding: '20px 16px',
   };
 
   const { formatMs, formatBytes } = useFormatters();
 
   return (
-    <Content style={contentStyles}>
-      <Flex vertical align="center" style={contentStyles}>
-        <Title level={1} style={{ marginBottom: '16px' }}>
+    <Content>
+      <Flex vertical gap={20} style={contentStyles}>
+        <Title level={1} style={{ textAlign: 'center' }}>
           {t('title')}
         </Title>
 
@@ -52,6 +52,7 @@ export default function HistoryView({ items }: { items: RequestHistoryItem[] }) 
           <Card
             style={{
               width: '100%',
+              textAlign: 'left',
             }}
           >
             <Collapse
@@ -60,22 +61,12 @@ export default function HistoryView({ items }: { items: RequestHistoryItem[] }) 
                 key: item.id,
                 label: (
                   <Row gutter={16} wrap style={{ width: '100%' }}>
-                    <Col xs={12} md={4}>
+                    <Col xs={12} md={4} style={{ textAlign: 'left' }}>
                       <Text strong>[{item.method}]</Text>
                     </Col>
 
-                    <Col xs={12} md={4} style={{ textAlign: 'right' }}>
-                      <Text
-                        type={
-                          item.statusCode === 0
-                            ? 'danger'
-                            : item.statusCode >= 400
-                              ? 'danger'
-                              : item.statusCode >= 200 && item.statusCode < 300
-                                ? 'success'
-                                : 'secondary'
-                        }
-                      >
+                    <Col xs={12} md={4} style={{ textAlign: 'left' }}>
+                      <Text type={getStatusCodeType(item.statusCode)}>
                         {item.statusCode === 0 ? t('error') : item.statusCode}
                       </Text>
                     </Col>
@@ -83,7 +74,11 @@ export default function HistoryView({ items }: { items: RequestHistoryItem[] }) 
                     <Col
                       xs={24}
                       md={16}
-                      style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
+                      style={{
+                        textAlign: 'left',
+                        wordBreak: 'break-word',
+                        overflowWrap: 'break-word',
+                      }}
                     >
                       <Link
                         href={item.appRouterURL}
@@ -97,7 +92,7 @@ export default function HistoryView({ items }: { items: RequestHistoryItem[] }) 
                   </Row>
                 ),
                 children: (
-                  <div>
+                  <div style={{ textAlign: 'left' }}>
                     <p>
                       <b>{t('timestamp')}:</b> {new Date(item.timestamp).toLocaleString()}
                     </p>
