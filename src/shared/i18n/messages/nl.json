@@ -1,0 +1,227 @@
+{
+  "NavInfo": {
+    "home": "Hoofdpagina",
+    "restClient": "REST Client",
+    "history": "Geschiedenis",
+    "variables": "Variabelen",
+    "signOut": "Uitloggen",
+    "signIn": "Inloggen",
+    "signUp": "Registreren",
+    "confirmSignOut": "Bent u zeker dat u wilt uitloggen?",
+    "yes": "Ja",
+    "cancel": "Annuleren"
+  },
+  "RestClient": {
+    "title": "REST Client",
+    "generatedCode": "Toon gegenereerde code",
+    "request": "Verzoek",
+    "method": "Methode",
+    "methodRequired": "Selecteer een methode",
+    "url": "URL",
+    "urlRequired": "Voer een URL in",
+    "urlPlaceholder": "Voer API endpoint URL in",
+    "headers": "Headers",
+    "addHeader": "Header toevoegen",
+    "noHeaders": "Geen headers toegevoegd",
+    "headerKey": "Sleutel",
+    "headerValue": "Waarde",
+    "removeHeader": "Verwijderen",
+    "columnsValue": "Waarde",
+    "columnsControls": "Besturing",
+    "placeholderKey": "Voer header sleutel in",
+    "placeholderValue": "Voer header waarde in",
+    "body": "Body",
+    "contentType": "Content Type",
+    "json": "JSON",
+    "text": "Tekst",
+    "xml": "XML",
+    "bodyPlaceholder": "Voer request body in...",
+    "prettify": "Prettify",
+    "sendRequest": "Verstuur",
+    "response": "Antwoord",
+    "status": "Status",
+    "loading": "Laden...",
+    "error": "Fout",
+    "errorMessage": "Verzoek mislukt",
+    "invalidJson": "Ongeldig JSON formaat",
+    "required": "Waarde is verplicht",
+    "modalTitle": "Code generatie"
+  },
+  "NotFound": {
+    "title": "Pagina niet gevonden",
+    "messages": [
+      "Oeps! Deze pagina is op vakantie 🏖️",
+      "404: De pagina die je zoekt is in een ander kasteel 🏰",
+      "Deze pagina speelt verstoppertje... en wint! 🫥",
+      "Fout 404: Pagina niet gevonden (maar we vonden dit coole bericht!) 🎉",
+      "Houston, we hebben een probleem... deze pagina bestaat niet! 🚀",
+      "Deze pagina is zo verdwaald dat zelfs GPS hem niet kan vinden! 🗺️",
+      "404: De pagina die je zoekt is ontvoerd door aliens 👽",
+      "Deze pagina is momenteel op een feestje in een andere dimensie 🎭"
+    ],
+    "tryAnotherMessage": "Test onze creativiteit",
+    "returnToHomepage": "Terug naar hoofdpagina",
+    "logoAlt": "REST Client App Logo"
+  },
+  "Team": {
+    "title": "Ons Team",
+    "Konstantin": {
+      "name": "Konstantin",
+      "description": "Met een Master in Strategisch Management en meerdere jaren als Lead Project Manager, weet Konstantin hoe hij deadlines, budgetten en teams als een pro kan beheren. Nu in React past hij diezelfde beheersing toe - de juiste props doorgeven en de projectstate onder controle houden."
+    },
+    "Nataliia": {
+      "name": "Nataliia",
+      "description": "Natasha is een Frontend Developer die React componenten als Lego in elkaar zet, terwijl ze moeiteloos Redux, RTK Query en Zod schema's beheert. Ze verandert chaotische Figma dromen in pixel-perfecte apps — soms zelfs met een beetje GSAP magie."
+    },
+    "Daniil": {
+      "name": "Daniil",
+      "description": "Daniil, met een diploma in Toegepaste Informatica, is een frontend developer die snelle, schone en foutloze oplossingen bouwt — en als er toch een bug doorheen glipt, is zijn favoriete debug tool doen alsof hij het nooit heeft gezien."
+    }
+  },
+  "Hero": {
+    "title": "REST Client App",
+    "subtitle": "Een tool voor het testen en versturen van HTTP verzoeken"
+  },
+  "Course": {
+    "title": "Over de Cursus",
+    "subtitle": "Deze webapplicatie is gemaakt tijdens een React cursus bij RSSchool.",
+    "courseLink": "Cursus website",
+    "courseDocs": "Cursus docs",
+    "courseTask": "Cursus opdracht"
+  },
+  "Main": {
+    "title": "Iets Geweldigs Komt Er Aan",
+    "subtitle": "We bouwen een geweldige REST client applicatie die de manier waarop je API's test en ermee communiceert zal revolutioneren."
+  },
+  "Auth": {
+    "loading": "Laden...",
+    "tabs": { "login": "Inloggen", "signup": "Registreren" },
+    "titles": {
+      "login": "Inloggen",
+      "signup": "Registreren",
+      "forgotPassword": "Wachtwoord resetten"
+    },
+    "cta": {
+      "noAccount": "Nog geen account?",
+      "haveAccount": "Al een account?",
+      "click": "Klik",
+      "here": "hier",
+      "signUpSuffix": "om te registreren",
+      "loginSuffix": "om in te loggen",
+      "backToLogin": "Terug naar inloggen"
+    },
+    "or": "of",
+    "continueWithGoogle": "Doorgaan met Google",
+    "apiErrors": {
+      "popupClosed": "Het inlog popup venster werd gesloten.",
+      "accountExists": "Er bestaat al een account met een andere inlogmethode.",
+      "network": "Netwerkfout. Probeer opnieuw.",
+      "tooManyRequests": "Te veel pogingen. Wacht even en probeer opnieuw.",
+      "generic": "Google inloggen mislukt."
+    }
+  },
+  "SignUpForm": {
+    "name": { "label": "Naam", "placeholder": "Jouw naam" },
+    "email": { "label": "Email", "placeholder": "Email" },
+    "password": { "label": "Wachtwoord", "placeholder": "Wachtwoord" },
+    "confirm": { "label": "Bevestig wachtwoord", "placeholder": "Bevestig wachtwoord" },
+    "submit": "Registreren",
+    "errors": {
+      "nameRequired": "Naam is verplicht",
+      "nameTooLong": "Naam moet maximaal 30 karakters zijn",
+      "emailRequired": "Email is verplicht",
+      "emailInvalid": "Voer een geldig email adres in",
+      "passwordRequired": "Wachtwoord is verplicht",
+      "passwordPattern": "Min 8 karakters, incl. hoofd & kleine letter, cijfer & speciaal teken",
+      "confirmRequired": "Bevestig je wachtwoord",
+      "passwordsDontMatch": "Wachtwoorden komen niet overeen"
+    },
+    "apiErrors": {
+      "emailInUse": "Dit email adres wordt al gebruikt.",
+      "invalidEmail": "Voer een geldig email adres in.",
+      "weakPassword": "Wachtwoord is te zwak.",
+      "network": "Netwerkfout. Probeer opnieuw.",
+      "tooManyRequests": "Te veel pogingen. Wacht even en probeer opnieuw.",
+      "generic": "Registreren mislukt. Probeer opnieuw."
+    }
+  },
+  "SignInForm": {
+    "email": { "label": "Email", "placeholder": "Email" },
+    "password": { "label": "Wachtwoord", "placeholder": "Wachtwoord" },
+    "submit": "Inloggen",
+    "forgotPassword": "Wachtwoord vergeten?",
+    "errors": {
+      "nameRequired": "Naam is verplicht",
+      "emailRequired": "Email is verplicht",
+      "emailInvalid": "Voer een geldig email adres in",
+      "passwordRequired": "Wachtwoord is verplicht"
+    },
+    "apiErrors": {
+      "userNotFound": "Geen gebruiker gevonden met dit email adres.",
+      "wrongPassword": "Onjuist wachtwoord.",
+      "invalidEmail": "Voer een geldig email adres in.",
+      "invalidCredential": "Ongeldige inloggegevens opgegeven.",
+      "tooManyRequests": "Te veel pogingen. Wacht even en probeer opnieuw.",
+      "network": "Netwerkfout. Probeer opnieuw.",
+      "generic": "Inloggen mislukt. Probeer opnieuw."
+    }
+  },
+  "ForgotPasswordForm": {
+    "email": { "label": "Email", "placeholder": "Email" },
+    "submit": "Wachtwoord Resetten",
+    "messages": {
+      "linkSent": "Als er een account bestaat voor dit email, is er een wachtwoord reset email verzonden."
+    },
+    "errors": {
+      "emailRequired": "Email is verplicht",
+      "emailInvalid": "Voer een geldig email adres in"
+    },
+    "apiErrors": {
+      "invalidEmail": "Ongeldig email adres.",
+      "tooManyRequests": "Te veel pogingen. Probeer later opnieuw.",
+      "network": "Netwerkfout. Probeer opnieuw.",
+      "generic": "Er ging iets mis. Probeer opnieuw."
+    }
+  },
+  "Variables": {
+    "title": "Variabelen",
+    "columns": {
+      "variable": "Variabele",
+      "value": "Waarde",
+      "controls": "Besturing"
+    },
+    "btn": "Nieuwe variabele toevoegen",
+    "empty": "Lijst van variabelen is leeg",
+    "loading": "Laden...",
+    "inputErrors": {
+      "empty": "Voeg een waarde toe",
+      "unique": "Variabele moet uniek zijn"
+    },
+    "placeholder": "Toevoegen"
+  },
+  "History": {
+    "title": "Geschiedenis en Analytics",
+    "loading": "Laden...",
+    "emptyTitle": "Je hebt nog geen verzoeken uitgevoerd.",
+    "emptySubtitle": "Het is hier leeg. Probeer een verzoek te maken",
+    "goRestClient": "Ga naar REST client",
+    "timestamp": "Tijdstempel",
+    "duration": "Duur",
+    "requestSize": "Verzoek Grootte",
+    "responseSize": "Antwoord Grootte",
+    "error": "Fout",
+    "noError": "Verzoek voltooid zonder fouten",
+    "ms": "ms",
+    "bytes_one": "byte",
+    "bytes_few": "bytes",
+    "bytes_many": "bytes"
+  },
+  "ErrorBoundary": {
+    "title": "Er ging iets mis",
+    "message": "Er is een onverwachte fout opgetreden. Probeer de pagina te vernieuwen.",
+    "buttonText": "Pagina vernieuwen"
+  },
+  "LoadingSpinner": {
+    "loading": "Laden..."
+  }
+}

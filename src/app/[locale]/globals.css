@@ -1,0 +1,148 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --color-zinc-50: #fafafa;
+  --color-zinc-100: #f4f4f5;
+  --color-zinc-200: #e4e4e7;
+  --color-zinc-300: #d4d4d8;
+  --color-zinc-400: #a1a1aa;
+  --color-zinc-500: #71717a;
+  --color-zinc-600: #52525b;
+  --color-zinc-700: #3f3f46;
+  --color-zinc-800: #27272a;
+  --color-zinc-900: #1a1a1e;
+  --color-zinc-900: #18181b;
+  --color-zinc-950: #09090b;
+  --color-zinc-950: #0e0e11;
+  --font-inter: var(--font-inter);
+}
+
+@layer base {
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #e4e4e7;
+    border-radius: 9999px;
+    cursor: default;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #f59e0b;
+    border-radius: 9999px;
+    cursor: default;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #d97706;
+    cursor: default;
+  }
+
+  .dark ::-webkit-scrollbar-track {
+    background: #27272a;
+  }
+}
+
+:root {
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 400;
+  box-sizing: border-box;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes bg-move {
+  0% {
+    background-position:
+      -100% -50%,
+      50% 40%,
+      100% 100%;
+  }
+  50% {
+    background-position:
+      0% 0%,
+      100% -20%,
+      50% 70%;
+  }
+  100% {
+    background-position:
+      100% 30%,
+      60%,
+      70% -50% -150%;
+  }
+}
+
+.link--dark {
+  color: #fc9129;
+}
+
+.link--light {
+  color: #fc9129;
+}
+
+.link:hover {
+  color: #fa7d15;
+}
+
+.link--active {
+  color: #fc9129;
+}
+
+.bg-animate {
+  height: 100% !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-image:
+    url('/image/orange-circle.png'), url('/image/orange-circle.png'),
+    url('/image/orange-circle.png');
+  background-repeat: no-repeat, no-repeat;
+  background-size: 75%, 55%, 100%;
+  background-position:
+    -100% -50%,
+    100% 40%,
+    100% 100%;
+  animation: bg-move 7s linear infinite alternate;
+  padding: 0px 20px;
+}
+
+.ant-btn-primary {
+  border: none !important;
+}
+
+.ant-card-body {
+  height: calc(100% - 58px);
+}
+
+.ant-table-row {
+  vertical-align: top;
+}
+
+@media (max-width: 768px) {
+  .link {
+    font-size: 20px;
+  }
+
+  .link-font_size_small {
+    font-size: 16px;
+  }
+
+  .bg-animate {
+    background-size: auto;
+  }
+}

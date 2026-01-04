@@ -1,0 +1,223 @@
+{
+  "NavInfo": {
+    "home": "Main page",
+    "restClient": "REST Client",
+    "history": "History",
+    "variables": "Variables",
+    "signOut": "Sign Out",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "confirmSignOut": "Are you sure you want to sign out?",
+    "yes": "Yes",
+    "cancel": "Cancel"
+  },
+  "RestClient": {
+    "title": "REST Client",
+    "generatedCode": "Show Generated Code",
+    "request": "Request",
+    "method": "Method",
+    "methodRequired": "Please select a method",
+    "url": "URL",
+    "urlRequired": "Please enter a URL",
+    "urlPlaceholder": "Enter API endpoint URL",
+    "headers": "Headers",
+    "addHeader": "Add Header",
+    "noHeaders": "No headers added",
+    "headerKey": "Key",
+    "headerValue": "Value",
+    "removeHeader": "Remove",
+    "columnsValue": "Value",
+    "columnsControls": "Controls",
+    "placeholderKey": "Enter header key",
+    "placeholderValue": "Enter header value",
+    "body": "Body",
+    "contentType": "Content Type",
+    "json": "JSON",
+    "text": "Text",
+    "xml": "XML",
+    "bodyPlaceholder": "Enter request body...",
+    "prettify": "Prettify",
+    "sendRequest": "Send",
+    "response": "Response",
+    "status": "Status",
+    "loading": "Loading...",
+    "error": "Error",
+    "errorMessage": "Request failed",
+    "invalidJson": "Invalid JSON format",
+    "required": "Value is required",
+    "modalTitle": "Code Generation"
+  },
+  "NotFound": {
+    "title": "Page Not Found",
+    "messages": [
+      "Oops! This page went on vacation 🏖️",
+      "404: The page you're looking for is in another castle 🏰",
+      "This page is playing hide and seek... and winning! 🫥",
+      "Error 404: Page not found (but we found this cool message instead!) 🎉",
+      "Houston, we have a problem... this page doesn't exist! 🚀",
+      "This page is so lost, even GPS can't find it! 🗺️",
+      "404: The page you seek has been abducted by aliens 👽",
+      "This page is currently attending a party in another dimension 🎭"
+    ],
+    "tryAnotherMessage": "Test our creativity",
+    "returnToHomepage": "Return to Homepage",
+    "logoAlt": "REST Client App Logo"
+  },
+  "Team": {
+    "title": "Our Team",
+    "Konstantin": {
+      "name": "Konstantin",
+      "description": "With a Master’s in Strategic Management and multiple years as a Lead Project Manager, Konstantin knows how to juggle deadlines, budgets, and teams like a pro. Now in React, he applies that same mastery - passing the right props and keeping the project state under control."
+    },
+    "Nataliia": {
+      "name": "Nataliia",
+      "description": "Natasha is a Frontend Developer who snaps React components together like Lego, juggling Redux, RTK Query, and Zod schemas with ease. She turns messy Figma dreams into pixel-perfect apps — sometimes even sprinkling in a bit of GSAP magic."
+    },
+    "Daniil": {
+      "name": "Daniil",
+      "description": "Daniil, with a degree in Applied Informatics, is a frontend developer who builds fast, clean, and bug-free solutions — and if a bug slips through, his go-to debugging tool is pretending he never saw it."
+    }
+  },
+  "Hero": {
+    "title": "REST Client App",
+    "subtitle": "A tool for testing and sending HTTP requests"
+  },
+  "Course": {
+    "title": "About Course",
+    "subtitle": "This web application was created during a React course at RSSchool.",
+    "courseLink": "Course website",
+    "courseDocs": "Course docs",
+    "courseTask": "Course task"
+  },
+  "Main": {
+    "title": "Something Great is Coming",
+    "subtitle": "We are building an amazing REST client application that will revolutionize how you test and interact with APIs."
+  },
+  "Auth": {
+    "loading": "Loading...",
+    "tabs": { "login": "Sign In", "signup": "Sign Up" },
+    "titles": { "login": "Sign In", "signup": "Sign up", "forgotPassword": "Reset password" },
+    "cta": {
+      "noAccount": "Don't have an account?",
+      "haveAccount": "Already have an account?",
+      "click": "Click",
+      "here": "here",
+      "signUpSuffix": "to sign up",
+      "loginSuffix": "to sign in",
+      "backToLogin": "Back to sign in"
+    },
+    "or": "or",
+    "continueWithGoogle": "Continue with Google",
+    "apiErrors": {
+      "popupClosed": "The sign-in popup was closed.",
+      "accountExists": "An account already exists with a different sign-in method.",
+      "network": "Network error. Please try again.",
+      "tooManyRequests": "Too many attempts. Please wait and try again.",
+      "generic": "Google sign-in failed."
+    }
+  },
+  "SignUpForm": {
+    "name": { "label": "Name", "placeholder": "Your name" },
+    "email": { "label": "Email", "placeholder": "Email" },
+    "password": { "label": "Password", "placeholder": "Password" },
+    "confirm": { "label": "Confirm password", "placeholder": "Confirm password" },
+    "submit": "Sign up",
+    "errors": {
+      "nameRequired": "Name is required",
+      "nameTooLong": "Name must be at most 30 characters",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Enter a valid email address",
+      "passwordRequired": "Password is required",
+      "passwordPattern": "Min 8 chars, include uppercase, lowercase, digit and special character",
+      "confirmRequired": "Please confirm your password",
+      "passwordsDontMatch": "Passwords do not match"
+    },
+    "apiErrors": {
+      "emailInUse": "This email is already in use.",
+      "invalidEmail": "Please enter a valid email address.",
+      "weakPassword": "Password is too weak.",
+      "network": "Network error. Try again.",
+      "tooManyRequests": "Too many attempts. Please wait and try again.",
+      "generic": "Failed to sign up. Please try again."
+    }
+  },
+  "SignInForm": {
+    "email": { "label": "Email", "placeholder": "Email" },
+    "password": { "label": "Password", "placeholder": "Password" },
+    "submit": "Sign in",
+    "forgotPassword": "Forgot password?",
+    "errors": {
+      "nameRequired": "Name is required",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Enter a valid email address",
+      "passwordRequired": "Password is required"
+    },
+    "apiErrors": {
+      "userNotFound": "No user found with this email.",
+      "wrongPassword": "Incorrect password.",
+      "invalidEmail": "Please enter a valid email address.",
+      "invalidCredential": "Invalid credentials provided.",
+      "tooManyRequests": "Too many attempts. Please wait and try again.",
+      "network": "Network error. Please try again.",
+      "generic": "Failed to sign in. Please try again."
+    }
+  },
+  "ForgotPasswordForm": {
+    "email": { "label": "Email", "placeholder": "Email" },
+    "submit": "Reset Password",
+    "messages": {
+      "linkSent": "If an account exists for this email, a password reset email has been sent."
+    },
+    "errors": {
+      "emailRequired": "Email is required",
+      "emailInvalid": "Enter a valid email address"
+    },
+    "apiErrors": {
+      "invalidEmail": "Invalid email address.",
+      "tooManyRequests": "Too many attempts. Please try again later.",
+      "network": "Network error. Please try again.",
+      "generic": "Something went wrong. Please try again."
+    }
+  },
+  "Variables": {
+    "title": "Variables",
+    "columns": {
+      "variable": "Variable",
+      "value": "Value",
+      "controls": "Controls"
+    },
+    "btn": "Add new variable",
+    "empty": "List of variables is empty",
+    "loading": "Loading...",
+    "inputErrors": {
+      "empty": "Please add value",
+      "unique": "Variable must be unique"
+    },
+    "placeholder": "Add"
+  },
+  "History": {
+    "title": "History and Analytics",
+    "loading": "Loading...",
+    "emptyTitle": "You haven't executed any requests yet.",
+    "emptySubtitle": "It's empty here. Try to make a request",
+    "goRestClient": "Go to REST client",
+    "timestamp": "Timestamp",
+    "duration": "Duration",
+    "requestSize": "Request Size",
+    "responseSize": "Response Size",
+    "error": "Error",
+    "noError": "Request completed without errors",
+    "ms": "ms",
+    "bytes_one": "byte",
+    "bytes_few": "bytes",
+    "bytes_many": "bytes"
+  },
+  "ErrorBoundary": {
+    "title": "Something went wrong",
+    "message": "An unexpected error occurred. Please try refreshing the page.",
+    "buttonText": "Refresh page"
+  },
+  "LoadingSpinner": {
+    "loading": "Loading..."
+  }
+}
