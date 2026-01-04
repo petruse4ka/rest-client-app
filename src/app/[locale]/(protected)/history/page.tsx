@@ -13,9 +13,5 @@ export default async function HistoryPage() {
   const t = await getTranslations('History');
   const loadingText = t('loading');
 
-  return (
-    <>
-      <HistoryClientWrapper items={items} loadingText={loadingText} />
-    </>
-  );
+  return <HistoryClientWrapper items={items} loadingText={loadingText} />;
 }

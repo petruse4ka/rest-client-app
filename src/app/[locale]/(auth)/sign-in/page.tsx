@@ -1,19 +1,8 @@
-import { CSSProperties } from 'react';
-import { Content } from 'antd/es/layout/layout';
 import AuthClientWrapper from '../auth-client-wrapper';
+import { withContentStyles } from '@/shared/UI';
 
-export default function SignIpPage() {
-  const contentStyles: CSSProperties = {
-    height: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '40px 20px',
-  };
+const AuthClientPage = withContentStyles(AuthClientWrapper);
 
-  return (
-    <Content style={contentStyles}>
-      <AuthClientWrapper />
-    </Content>
-  );
+export default function SignInPage() {
+  return <AuthClientPage />;
 }

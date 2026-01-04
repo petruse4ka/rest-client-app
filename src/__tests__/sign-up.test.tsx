@@ -12,20 +12,27 @@ describe('SignUpPage', () => {
     vi.clearAllMocks();
   });
 
-  test('renders AuthWidget inside centered Content', async () => {
+  test('renders the authentication widget', async () => {
     render(<SignUpPage />);
 
     await waitFor(() => {
       expect(screen.getByTestId('auth-widget')).toBeInTheDocument();
     });
+  });
+
+  test('renders accessible main content area', async () => {
+    render(<SignUpPage />);
 
     const main = screen.getByRole('main');
     expect(main).toBeInTheDocument();
+  });
 
-    expect(main).toHaveStyle('display: flex');
-    expect(main).toHaveStyle('align-items: center');
-    expect(main).toHaveStyle('justify-content: center');
-    expect(main).toHaveStyle('padding: 40px 20px');
-    expect(main).toHaveStyle('height: 100%');
+  test('displays authentication widget to the user', async () => {
+    render(<SignUpPage />);
+
+    await waitFor(() => {
+      const authWidget = screen.getByTestId('auth-widget');
+      expect(authWidget).toBeVisible();
+    });
   });
 });

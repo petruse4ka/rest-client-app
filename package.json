@@ -29,12 +29,12 @@
     "@types/postman-collection": "^3.5.11",
     "axios": "^1.11.0",
     "firebase": "^12.2.1",
-    "next": "15.5.2",
-    "next-intl": "^4.3.6",
+    "next": "^16.0.10",
+    "next-intl": "^4.6.1",
     "postman-code-generators": "^2.0.0",
     "postman-collection": "^5.1.1",
-    "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
   },
   "devDependencies": {
     "@ant-design/icons": "^6.0.0",
@@ -51,7 +51,7 @@
     "@vitest/coverage-v8": "^3.2.4",
     "antd": "^5.27.2",
     "eslint": "^9",
-    "eslint-config-next": "15.5.2",
+    "eslint-config-next": "^16.0.10",
     "firebase-admin": "^13.5.0",
     "husky": "^9.1.7",
     "jsdom": "^26.1.0",
